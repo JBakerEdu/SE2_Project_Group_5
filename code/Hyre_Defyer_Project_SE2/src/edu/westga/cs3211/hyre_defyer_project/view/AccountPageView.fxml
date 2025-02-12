@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -57,44 +58,50 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Pane layoutX="106.0" layoutY="107.0" prefHeight="387.0" prefWidth="688.0">
+      <Pane layoutX="106.0" layoutY="88.0" prefHeight="461.0" prefWidth="688.0">
          <children>
-            <Label layoutX="32.0" layoutY="57.0" prefHeight="25.0" prefWidth="126.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Description:">
+            <Label layoutX="46.0" layoutY="96.0" prefHeight="25.0" prefWidth="126.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Description:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="32.0" layoutY="5.0" prefHeight="45.0" prefWidth="206.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="User Name">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="241.0" layoutY="14.0" prefHeight="45.0" prefWidth="206.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="User Name">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="545.0" layoutY="13.0" mnemonicParsing="false" onAction="#handleSignInClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Edit">
+            <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleEditClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Edit">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <TextArea layoutX="92.0" layoutY="93.0" prefHeight="154.0" prefWidth="564.0" />
-            <Button fx:id="ViewCatergoriesButton" alignment="CENTER" contentDisplay="CENTER" layoutX="314.0" layoutY="335.0" mnemonicParsing="false" onAction="#handleMoreCatergoriesClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
+            <TextArea layoutX="130.0" layoutY="95.0" prefHeight="154.0" prefWidth="513.0" wrapText="true" />
+            <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Label layoutX="32.0" layoutY="265.0" prefHeight="25.0" prefWidth="51.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Skills:">
+            <Label layoutX="46.0" layoutY="265.0" prefHeight="25.0" prefWidth="51.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Skills:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Line endX="397.66668701171875" endY="-1.52587890625E-5" layoutX="133.0" layoutY="50.0" startX="-100.0" />
-            <Pane layoutX="82.0" layoutY="249.0" prefHeight="58.0" prefWidth="585.0">
+            <Line endX="518.3333129882812" endY="-1.52587890625E-5" layoutX="134.0" layoutY="71.0" startX="-100.0" />
+            <Pane layoutX="109.0" layoutY="249.0" prefHeight="58.0" prefWidth="557.0">
                <children>
-                  <ComboBox layoutX="14.0" layoutY="17.0" prefHeight="25.0" prefWidth="104.0" />
-                  <ComboBox layoutX="127.0" layoutY="17.0" prefHeight="25.0" prefWidth="104.0" />
-                  <ComboBox layoutX="241.0" layoutY="17.0" prefHeight="25.0" prefWidth="104.0" />
-                  <ComboBox layoutX="354.0" layoutY="17.0" prefHeight="25.0" prefWidth="104.0" />
-                  <ComboBox layoutX="467.0" layoutY="17.0" prefHeight="25.0" prefWidth="104.0" />
+                  <TextField fx:id="skill1TextFeild" layoutX="22.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
+                  <TextField fx:id="skill2TextFeild" layoutX="126.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
+                  <TextField fx:id="skill3TextFeild" layoutX="231.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
+                  <TextField fx:id="skill4TextFeild" layoutX="335.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
+                  <TextField fx:id="skill5TextFeild" layoutX="440.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
                </children>
             </Pane>
+            <Label layoutX="46.0" layoutY="311.0" prefHeight="25.0" prefWidth="84.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Catergory:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="catergoryComboBox" layoutX="130.0" layoutY="311.0" prefHeight="25.0" prefWidth="95.0" />
          </children>
       </Pane>
    </children>

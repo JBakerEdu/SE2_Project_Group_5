@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	private static final String WINDOW_TITLE = "Hyre Defyer";
-	private static final String GUI_RESOURCE = "view/AccountPageView.fxml";
+	private static final String GUI_RESOURCE = "view/HomePageView.fxml";
 	  
 	/** JavaFX entry point.​
 	  *​
