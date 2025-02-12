@@ -8,6 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * This is the code for the Sign in / create account Page 
+ * 
+ * @author Jacob Baker
+ * @version Spring 2025
+ */
 public class SignInView {
 
     @FXML
