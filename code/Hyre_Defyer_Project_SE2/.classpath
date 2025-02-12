@@ -6,6 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx.base.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx.controls.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx.fxml.jar"/>
@@ -14,6 +15,5 @@
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx.swing.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx.web.jar"/>
 	<classpathentry kind="var" path="ECLIPSE_HOME/javafx-sdk/lib/javafx-swt.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
