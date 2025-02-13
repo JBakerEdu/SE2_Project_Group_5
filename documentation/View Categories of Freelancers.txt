@@ -1,0 +1,11 @@
+Use Case 2: View Categories of Freelancers
+Actor: User, Freelancer, Employer
+Pre-condition: none
+Description: A user can view categories of freelancers available in the platform to help them find the right freelancer for the task.
+Basic Flow:
+The user clicks on the "Browse Categories" button/drop-down.
+The system displays a list of categories (programming, writing, math).
+The user selects a category to explore further.
+Alternative Flow 1: If no categories are available:
+The system displays a "No categories available" message.
+Post-condition: The user can see a list of freelancer categories to explore.
