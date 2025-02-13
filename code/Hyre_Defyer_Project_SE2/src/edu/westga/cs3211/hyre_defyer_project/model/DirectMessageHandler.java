@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class DirectMessageHandler {
 	private User sender;
 	private User receiver;
-	private ArrayList<Message> fullMessageLog;
+	private ArrayList<Message> messageLog;
 	private ServerActor server;
 
 	/** Creates a user with ​
@@ -34,7 +34,7 @@ public class DirectMessageHandler {
 	 * @postcondition the message log is updated
      */
 	public void updateMessageLog() {
-        this.fullMessageLog = this.server.getMessagesBetween(this.sender, this.receiver);
+        this.messageLog = this.server.getMessagesBetween(this.sender, this.receiver);
     }
 	
 	/** Sends a direct message to the receiver​
@@ -57,6 +57,6 @@ public class DirectMessageHandler {
 	 * @return the full message log
 	 */
 	public ArrayList<Message> getFullMessageLog() {
-		return this.fullMessageLog;
+		return this.messageLog;
 	}
 }

@@ -9,7 +9,7 @@ public class User {
 	
 	private String userName;
 	private String userBio;
-	private ServerActor server;
+	private String password;
 	
 	/** Creates a user​
 	  *​
@@ -17,17 +17,12 @@ public class User {
 	  * @postcondition none
 	  * 
 	  * @param userName The users name
-	  * @param password The users password
-	  * 
-	  * @throws IllegalArgumentException with wrong credentials​​
+	  * @param password The users password​​
 	  */
 	public User(String userName, String password) {
-		if (this.server.login(userName, password)) { 
 			this.userName = userName; 
-			this.userBio = this.server.getUserBio(userName);
-		} else { 
-			throw new IllegalArgumentException("Invalid login credentials"); 
-		}	
+			this.password = password;
+			this.userBio = "Bio";
 	}
 	
 	/**
@@ -52,5 +47,17 @@ public class User {
 	 */
 	public String getBio() {
 		return this.userBio;
+	}
+
+	/**
+	 * Gets the users password
+	 *
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the users password
+	 */
+	public String getPassword() {
+		return this.password;
 	}
 }

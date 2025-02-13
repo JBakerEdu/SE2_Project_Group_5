@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 public class ServerActor {
 	private ArrayList<Message> messageLog;
+	private ArrayList<User> users;
 
 	/**
 	 * Gets the messages between two users
@@ -20,7 +21,7 @@ public class ServerActor {
 	 * @param sender   The sender
 	 * @param receiver The receiver
 	 * 
-	 * @return the messages between the two user
+	 * @return the messages between the two users
 	 */
 	public ArrayList<Message> getMessagesBetween(User sender, User receiver) {
 		return this.messageLog;
@@ -28,12 +29,46 @@ public class ServerActor {
 	
 	/**
 	 * Verify login credentials
+	 * 
 	 * @param userName the username
 	 * @param password the password
-	 * @return true if the credentials are valid
+	 * 
+	 * @return the user object itself, null if the login credentials are invalid
 	 */
-	public Boolean login(String userName, String password) {
-		return true;
+	public User login(String userName, String password) {
+		for (User user : this.users) {
+			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+	private Boolean isDuplicateUsername(String userName) {
+		for (User user : this.users) {
+			if (user.getUserName().equals(userName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Creates an account
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param userName the username
+	 * @param password the password
+	 * 
+	 * @return true if the account was created, false if duplicate username
+     */
+	public Boolean createAccount(String userName, String password) {
+		if (this.isDuplicateUsername(userName)) {
+			return false;
+		}
+		return this.users.add(new User(userName, password));
 	}
 
 	/**
@@ -48,18 +83,4 @@ public class ServerActor {
 	public void sendMessage(Message message, User receiver) {
 		this.messageLog.add(message);
     }
-
-	/**
-	 * Gets the users biography
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @param userName the user name
-	 * 
-	 * @return the users biography
-	 */
-	public String getUserBio(String userName) {
-		return "This is a bio";
-	}
 }
