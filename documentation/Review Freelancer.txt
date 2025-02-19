@@ -1,0 +1,11 @@
+Use Case 6: Review Freelancer
+Actor: Employer
+Pre-condition: The freelancer has completed a task for the employer.
+Description: After the task is completed, the employer can leave a review for the freelancer.
+Basic Flow:
+The employer navigates to the freelancer’s profile.
+The employer leaves a rating (1-5 stars) and writes feedback.
+The system updates the freelancer’s profile with the new review.
+Alternative Flow 1: If the employer does not wish to leave a review:
+The employer simply skips the review process.
+Post-condition: The freelancer receives feedback and ratings.
