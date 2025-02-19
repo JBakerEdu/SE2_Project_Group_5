@@ -1,0 +1,15 @@
+Use Case 5: Post Job Skills
+Actor: Freelancer
+Pre-condition: The freelancer is logged in.
+Description: The freelancer can post or update their job skills to attract potential employers.
+Basic Flow:
+The freelancer navigates to the profile page.
+The freelancer selects the "Edit" button.
+The freelancer enters or updates their job skills and/or description.
+The freelancer selects the "Save" button.
+The system saves the changes to the freelancer’s profile.
+Alternative Flow 1: If the freelancer enters invalid skill names:
+The system displays a warning to correct the skill.
+Alternative Flow 2: If the freelancer enters an invalid description:
+The system displays a warning to correct the description.
+Post-condition: The freelancer's profile is updated with new or modified skills.
