@@ -1,7 +1,10 @@
 package edu.westga.cs3211.hyre_defyer_project.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +22,7 @@ public class TempServerTest {
         assertNotNull(user);
         assertEquals("user1", user.getUserName());
         assertEquals("password1", user.getPassword());
+        assertEquals("Bio", user.getBio());
     }
 	
 	@Test
@@ -39,5 +43,23 @@ public class TempServerTest {
         assertEquals("Hello", handler.getFullMessageLog().get(0).getMessage());
         assertEquals("World", handler1.getFullMessageLog().get(0).getMessage());
     }
+	
+	@Test
+	public void testDuplicateAccount() {
+		ServerActor server = new ServerActor();
+		assertTrue(server.createAccount("user1", "password1"));
+		
+        assertFalse(server.createAccount("user1", "password2"));
+
+	}
+	
+	@Test
+	public void testInvalidLogin() {
+		ServerActor server = new ServerActor();
+		assertTrue(server.createAccount("user1", "password1"));
+		
+        assertNull(server.login("user1", "notpassword"));
+
+	}
 	
 }
