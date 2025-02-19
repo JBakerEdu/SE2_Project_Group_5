@@ -19,9 +19,11 @@ public class DirectMessageHandler {
 	  * @postcondition none
 	  * 
 	  * @param sender The sender
-	  * @param receiver The receiver​​
+	  * @param receiver The receiver
+	  * @param server The server​​
 	  */
-	public DirectMessageHandler(User sender, User receiver) {
+	public DirectMessageHandler(User sender, User receiver, ServerActor server) {
+		this.server = server;
         this.sender = sender;
         this.receiver = receiver;
         this.updateMessageLog();
@@ -45,7 +47,7 @@ public class DirectMessageHandler {
 	  * @param message the message to send​​
 	  */
 	public void sendMessage(Message message) {
-		this.server.sendMessage(message, this.receiver);
+		this.server.sendMessage(message);
 		this.updateMessageLog();
 	}
 	

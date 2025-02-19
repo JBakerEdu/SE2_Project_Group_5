@@ -9,8 +9,19 @@ import java.util.ArrayList;
  * @version Spring 2025
  */
 public class ServerActor {
-	private ArrayList<Message> messageLog;
+	private ArrayList<ArrayList<Message>> godMessageLog;
 	private ArrayList<User> users;
+	
+	/**
+	 * Instantiates a new ServerActor
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public ServerActor() {
+		this.godMessageLog = new ArrayList<ArrayList<Message>>();
+		this.users = new ArrayList<User>();
+	}
 
 	/**
 	 * Gets the messages between two users
@@ -21,10 +32,21 @@ public class ServerActor {
 	 * @param sender   The sender
 	 * @param receiver The receiver
 	 * 
-	 * @return the messages between the two users
+	 * @return the messages between the two users, empty list if no messages
 	 */
 	public ArrayList<Message> getMessagesBetween(User sender, User receiver) {
-		return this.messageLog;
+		for (ArrayList<Message> messageLog : this.godMessageLog) {
+			if (messageLog.get(0).getUser1().equals(sender) && messageLog.get(0).getUser2().equals(receiver)) {
+				return messageLog;
+			}
+			if (messageLog.get(0).getUser1().equals(receiver) && messageLog.get(0).getUser2().equals(sender)) {
+				return messageLog;
+			}
+		}
+		ArrayList<Message> newMessageLog = new ArrayList<Message>();
+		newMessageLog.add(new Message("TEMP", sender, receiver));
+		this.godMessageLog.add(newMessageLog);
+		return newMessageLog;
 	}
 	
 	/**
@@ -78,9 +100,14 @@ public class ServerActor {
 	 * @postcondition none
 	 * 
 	 * @param message  The message
-	 * @param receiver The receiver
 	 */
-	public void sendMessage(Message message, User receiver) {
-		this.messageLog.add(message);
+	public void sendMessage(Message message) {
+		User sender = message.getUser1();
+		User receiver = message.getUser2();
+		ArrayList<Message> messageLog = this.getMessagesBetween(sender, receiver);
+		messageLog.add(message);
+		if (messageLog.get(0).getMessage().equals("TEMP")) {
+			this.getMessagesBetween(receiver, sender).remove(0);
+		}
     }
 }

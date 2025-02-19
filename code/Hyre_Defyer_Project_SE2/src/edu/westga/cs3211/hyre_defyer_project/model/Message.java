@@ -7,7 +7,8 @@ package edu.westga.cs3211.hyre_defyer_project.model;
  */
 public class Message {
 	private String message;
-	private User sender;
+	private User user1;
+	private User user2;
 	
 	/**
 	 * Creates a message​ ​
@@ -16,11 +17,13 @@ public class Message {
 	 * @postcondition none
 	 * 
 	 * @param message The message
-	 * @param sender  The sender​​
+	 * @param sender  The sender
+	 * @param receiver  The receiver​​
 	 */
-	public Message(String message, User sender) {
+	public Message(String message, User sender, User receiver) {
 		this.message = message;
-        this.sender = sender;
+        this.user1 = sender;
+        this.user2 = receiver;
     }
 	
 	/**
@@ -33,11 +36,20 @@ public class Message {
 	}
 	
 	/**
-	 * Gets the sender
+	 * Gets one of the users
 	 * 
 	 * @return the sender
 	 */
-	public User getSender() {
-		return this.sender;
+	public User getUser1() {
+		return this.user1;
+	}
+	
+	/**
+	 * Gets one of the users
+	 * 
+	 * @return the sender
+	 */
+	public User getUser2() {
+		return this.user2;
 	}
 }
