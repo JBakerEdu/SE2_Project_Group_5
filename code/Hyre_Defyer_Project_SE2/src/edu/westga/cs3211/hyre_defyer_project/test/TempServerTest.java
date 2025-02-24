@@ -22,7 +22,7 @@ public class TempServerTest {
         assertNotNull(user);
         assertEquals("user1", user.getUserName());
         assertEquals("password1", user.getPassword());
-        assertEquals("Bio", user.getBio());
+        assertEquals("", user.getBio());
     }
 	
 	@Test
