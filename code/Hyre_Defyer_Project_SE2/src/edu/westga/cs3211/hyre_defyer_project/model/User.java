@@ -1,7 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
 /** Handles and stores information about a user​
- *​
+ *
  * @author Alec Neal amd Kate Anglin​
  * @version Spring 2025​
  */
@@ -10,7 +10,6 @@ public class User {
 	private String userName;
 	private String userBio;
 	private String password;
-	
 
 	/** 
 	 * Creates a user with a username, password, and biography.
@@ -54,10 +53,9 @@ public class User {
 	 */
 	public String getUserName() {
 		return this.userName;
-	}
-	
-	/**
-	 * Sets the user's name.
+  }
+
+	 /* Sets the user's name.
 	 *
 	 * @precondition userName != null && !userName.isBlank()
 	 * @postcondition this.userName is set
@@ -127,5 +125,4 @@ public class User {
 		}
 		this.userBio = bio;
 	}
-	
 }
