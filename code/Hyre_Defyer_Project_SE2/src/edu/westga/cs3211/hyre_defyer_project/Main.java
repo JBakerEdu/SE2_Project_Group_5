@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 /** Entry point for the program​
  *​
- * @author Jacob Baker​
+ * @author Jacob Baker & Myles Debro​
  * @version Spring 2025​
  */
 public class Main extends Application {
@@ -44,5 +44,12 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		Main.launch(args);
 	}
-
+	
+	/** Get the window title
+	 * 
+	 * @return window title
+	 */
+	public static String getWindowTitle() {
+		return Main.WINDOW_TITLE;
+	}
 }

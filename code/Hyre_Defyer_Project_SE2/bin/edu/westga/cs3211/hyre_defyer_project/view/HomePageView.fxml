@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.HomePageView">
+<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.HomePageView">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="HONEYDEW" height="58.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <ImageView fitHeight="219.0" fitWidth="464.0" layoutX="258.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 2, 2, 3, 3);">
@@ -86,7 +86,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Button fx:id="ViewCatergoriesButton" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleMoreCatergoriesClick" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="View More Catergories">
+      <Button fx:id="viewCatergoriesButton" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="548.0" mnemonicParsing="false" onAction="#handleMoreCatergoriesClick" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="View More Catergories">
          <effect>
             <Bloom />
          </effect>
