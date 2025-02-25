@@ -1,0 +1,24 @@
+Use Case 7: Communicate with Other Users
+Actor: Freelancer, Employer
+Pre-condition: The user is logged in and the employer has selected the "Hyre" button.
+Description: The employer initiates communication by selecting the "Hyre" button. The freelancer can respond once the employer has initiated the conversation.
+Employer Flow:
+Basic Flow:
+The employer navigates to a freelancer's profile.
+The employer clicks the "Hyre" button to initiate a direct message (DM) with the freelancer.
+The system creates a new conversation and notifies the freelancer that they have received a message from the employer.
+The system displays the message in both the employer’s and freelancer's message inboxes.
+Alternative Flow 1: If the message fails to send:
+The system notifies the employer of an error
+The employer is prompted to retry sending the message.
+Post-condition: The employer has successfully initiated a conversation with the freelancer. The freelancer receives a notification of the new message.
+Freelancer Flow:
+Basic Flow:
+The freelancer receives a notification that they have a new message from an employer.
+The freelancer navigates to the "Direct Messages" section of the platform.
+The freelancer selects the conversation initiated by the employer.
+The freelancer can now respond to the employer’s message via the platform’s messaging interface.
+Alternative Flow 1: If the freelancer is unable to open the message:
+The system displays an error.
+The freelancer can try accessing the message again or refresh the page.
+Post-condition: The freelancer has successfully opened the conversation and can send a reply to the employer.
