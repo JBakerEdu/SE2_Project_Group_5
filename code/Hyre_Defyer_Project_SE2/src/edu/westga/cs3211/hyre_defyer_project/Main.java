@@ -52,4 +52,5 @@ public class Main extends Application {
 	public static String getWindowTitle() {
 		return Main.WINDOW_TITLE;
 	}
+
 }

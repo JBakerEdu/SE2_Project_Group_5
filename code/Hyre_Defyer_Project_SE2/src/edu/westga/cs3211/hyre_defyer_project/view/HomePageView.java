@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -99,6 +100,7 @@ public class HomePageView {
     void handleSignInClick(ActionEvent event) throws IOException {
     	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
     	GUIHelper.switchView(stage, "view/SignInView.fxml");
+
     }
 
 }
