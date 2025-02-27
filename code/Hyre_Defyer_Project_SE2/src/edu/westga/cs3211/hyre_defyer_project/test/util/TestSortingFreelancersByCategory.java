@@ -161,6 +161,7 @@ class TestSortingFreelancersByCategory {
 
 	    @Test
 	    public void testSortByCategoryWithNullList() {
+	    	new FreelancerSorter();
 	        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	            FreelancerSorter.sortByCategory(null);
 	        });
