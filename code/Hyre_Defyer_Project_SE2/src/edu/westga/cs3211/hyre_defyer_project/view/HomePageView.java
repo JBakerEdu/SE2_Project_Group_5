@@ -1,17 +1,28 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+/**
+ * Codebehind for HomePageView
+ * 
+ * @author Myles Debro & Jacob Baker
+ * @version Spring 2025
+ */
 public class HomePageView {
 
     @FXML
-    private Button ViewCatergoriesButton;
+    private Button viewCatergoriesButton;
 
     @FXML
     private ImageView accountBioImage;
@@ -51,6 +62,9 @@ public class HomePageView {
 
     @FXML
     private Button signInButton;
+    
+    @FXML
+    private AnchorPane anchorPane;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -83,8 +97,10 @@ public class HomePageView {
     }
 
     @FXML
-    void handleSignInClick(ActionEvent event) {
-    	
+    void handleSignInClick(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
+    	GUIHelper.switchView(stage, "view/SignInView.fxml");
+
     }
 
 }

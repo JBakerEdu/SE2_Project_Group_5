@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Use Case 3: Search for Freelancers Based on Criteria
 Actor: User, Freelancer, Employer
 Pre-condition: None
@@ -9,3 +10,16 @@ The user can view freelancer profiles and narrow the search further if needed.
 Alternative Flow 1: If no freelancers match the criteria:
 The system displays a message like "No results found."
 Post-condition: The user sees a list of freelancers that meet their criteria or a display message.
+=======
+Use Case 3: Search for Freelancers Based on Criteria
+Actor: User, Freelancer, Employer
+Pre-condition: None
+Description: The user can search for freelancers using filters like skills, experience, and payment range.
+Basic Flow:
+The user enters a search query with specific filters ("Python" "3+ years experience," "less than 100$").
+The system displays a list of freelancers that match the search criteria.
+The user can view freelancer profiles and narrow the search further if needed.
+Alternative Flow 1: If no freelancers match the criteria:
+The system displays a message like "No results found."
+Post-condition: The user sees a list of freelancers that meet their criteria or a display message.
+>>>>>>> ea22223e105bb435dc5d4c9b7014161bff7904d5
