@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 
 import java.io.IOException;
 
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -100,7 +101,15 @@ public class HomePageView {
     void handleSignInClick(ActionEvent event) throws IOException {
     	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
     	GUIHelper.switchView(stage, "view/SignInView.fxml");
-
+    }
+    
+    @FXML
+    void initialize() {
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	} else {
+    		this.accountLabel.textProperty().setValue("Account");
+    	}
     }
 
 }
