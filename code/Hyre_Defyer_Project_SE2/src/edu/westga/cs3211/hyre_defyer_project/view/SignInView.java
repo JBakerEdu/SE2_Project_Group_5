@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -51,6 +52,8 @@ public class SignInView {
 
     @FXML
     private TextField userNameSignInTextFeild;
+    
+    private SignInViewModel vm;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -79,7 +82,7 @@ public class SignInView {
 
     @FXML
     void handleSignInClick(ActionEvent event) {
-
+    	this.vm.signIn(this.userNameSignInTextFeild.toString(), this.passwordSignInTextFeild.toString());
     }
 
 }
