@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -21,18 +22,23 @@ public class GUIHelper {
 	/**
 	 * Switch the current view to a different one
 	 * 
-	 * @param stage the Stage of the current view
-	 * @param fileLocation the location of the view you want to switch to
+	 * @param anchorPane the anchor pane of the current view
+	 * @param view the enum of the view you want to switch to
 	 * @throws IOException if file is not found (be sure to use "view/" in front of the file name)
 	 */
-	public static void switchView(Stage stage, String fileLocation) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource(fileLocation));
-		loader.load();
-		Parent parent = loader.getRoot();
-		Scene scene = new Scene(parent);
-		stage.setTitle(Main.getWindowTitle());
-		stage.setScene(scene);
+	public static void switchView(AnchorPane anchorPane, Views view) {
+		try {
+			Stage stage = (Stage) anchorPane.getScene().getWindow();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(Main.class.getResource(view.location()));
+			loader.load();
+			Parent parent = loader.getRoot();
+			Scene scene = new Scene(parent);
+			stage.setTitle(Main.getWindowTitle());
+			stage.setScene(scene);
+		} catch (IOException error) {
+			displayError("Display Switch Error", error.getMessage());
+		}
 	}
 	
 	/**

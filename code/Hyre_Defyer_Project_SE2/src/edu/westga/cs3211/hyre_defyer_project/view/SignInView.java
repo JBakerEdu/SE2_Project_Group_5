@@ -64,11 +64,11 @@ public class SignInView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
 
     @FXML
-    void handleCreateAccountClick(ActionEvent event) throws IOException {
+    void handleCreateAccountClick(ActionEvent event) {
     	String username = this.userNameCreateAccountTextFeild.textProperty().getValue();
     	String password = this.passwordCreateAccountTextFeild.textProperty().getValue();
     	String confirmPassword = this.confirmPasswordCreateAccountTextFeild.textProperty().getValue();
@@ -76,8 +76,7 @@ public class SignInView {
     		return;
     	}
       if (this.vm.createAccount(username, password, confirmPassword)) {
-      	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
-      	GUIHelper.switchView(stage, "view/HomePageView.fxml");
+      	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
       } else {
       	GUIHelper.displayError("Unable to create account", "Username: " + username + "\n Password: " + password + "\n Confirm: " + confirmPassword);
       }
@@ -85,12 +84,12 @@ public class SignInView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
 
     @FXML
     void handleHomeClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
@@ -106,8 +105,7 @@ public class SignInView {
     		return;
     	}
       if (this.vm.signIn(username, password)) {
-      	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
-      	GUIHelper.switchView(stage, "view/HomePageView.fxml");
+      	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
       } else {
       	GUIHelper.displayError("Unable to sign in", "Input doesn't match the data in our servers.");
       }
@@ -120,6 +118,11 @@ public class SignInView {
     	this.passwordCreateAccountTextFeild.textProperty().set("");
     	this.passwordSignInTextFeild.textProperty().set("");
     	this.confirmPasswordCreateAccountTextFeild.textProperty().set("");
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	} else {
+    		this.accountLabel.textProperty().setValue("Account");
+    	}
       this.vm = new SignInViewModel();
     }
 

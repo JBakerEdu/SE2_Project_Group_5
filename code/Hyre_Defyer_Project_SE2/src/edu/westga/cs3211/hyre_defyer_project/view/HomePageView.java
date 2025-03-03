@@ -69,7 +69,7 @@ public class HomePageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	
+    	GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
 
     @FXML
@@ -79,12 +79,12 @@ public class HomePageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	
+    	GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
 
     @FXML
     void handleHomeClick(MouseEvent event) {
-    	
+    	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
@@ -98,9 +98,8 @@ public class HomePageView {
     }
 
     @FXML
-    void handleSignInClick(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
-    	GUIHelper.switchView(stage, "view/SignInView.fxml");
+    void handleSignInClick(ActionEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
     }
     
     @FXML
