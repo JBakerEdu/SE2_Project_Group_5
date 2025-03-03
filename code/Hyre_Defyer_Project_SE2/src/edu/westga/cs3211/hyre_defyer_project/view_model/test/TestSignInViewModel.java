@@ -41,4 +41,31 @@ public class TestSignInViewModel {
 		SignInViewModel vm = new SignInViewModel();
 		assertFalse(vm.createAccount("new_user", "other password", "password"));
 	}
+	
+	@Test
+	public void testSignOut() {
+		SignInViewModel vm = new SignInViewModel();
+		vm.createAccount("user", "password", "password");
+		assertTrue(SignInViewModel.signOut());
+	}
+	
+	@Test
+	public void testIsSignedIn() {
+		SignInViewModel vm = new SignInViewModel();
+		vm.createAccount("user", "password", "password");
+		assertTrue(SignInViewModel.isSignedIn());
+	}
+	
+	@Test
+	public void testIsNotSignedIn() {
+		SignInViewModel vm = new SignInViewModel();
+		vm.createAccount("user", "password", "password");
+		SignInViewModel.signOut();
+		assertFalse(SignInViewModel.isSignedIn());
+	}
+	
+	@Test
+	public void testUserDoesNotExist() {
+		assertFalse(SignInViewModel.isSignedIn());
+	}
 }

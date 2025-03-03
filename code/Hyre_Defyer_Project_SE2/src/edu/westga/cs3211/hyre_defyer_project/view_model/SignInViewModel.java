@@ -63,5 +63,23 @@ public class SignInViewModel {
 	public static User getCurrentUser() {
 		return currentUser;
 	}
+	
+	/**
+	 * Finds out if the user is signed in
+	 * @return true if the user is signed in
+	 * 				 false if the user isn't signed in
+	 */
+	public static boolean isSignedIn() {
+		return currentUser != null;
+	}
+	
+	/**
+	 * Sign out a user by setting the current user to null
+	 * @return true user has been set to null
+	 */
+	public static boolean signOut() {
+		currentUser = null;
+		return true;
+	}
 
 }
