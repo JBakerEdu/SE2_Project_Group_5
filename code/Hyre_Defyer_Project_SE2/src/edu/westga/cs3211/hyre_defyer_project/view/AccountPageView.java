@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * This is the code for Account Page 
  * 
- * @author Jacob Baker
+ * @author Jacob Baker & Myles Debro
  * @version Spring 2025
  */
 public class AccountPageView {

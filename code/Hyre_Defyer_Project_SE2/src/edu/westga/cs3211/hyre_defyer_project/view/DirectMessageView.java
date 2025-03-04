@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * This is the UI for the direct message
  * 
- * @author Jacob Baker
+ * @author Jacob Baker & Myles Debro
  * @version Spring 2025
  */
 public class DirectMessageView {
