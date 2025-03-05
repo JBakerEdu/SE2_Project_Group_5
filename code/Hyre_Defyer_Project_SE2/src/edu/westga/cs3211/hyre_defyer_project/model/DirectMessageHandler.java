@@ -11,7 +11,6 @@ public class DirectMessageHandler {
 	private User sender;
 	private User receiver;
 	private ArrayList<Message> messageLog;
-	private ServerActor server;
 
 	/** Creates a user with ​
 	  *​
@@ -19,11 +18,9 @@ public class DirectMessageHandler {
 	  * @postcondition none
 	  * 
 	  * @param sender The sender
-	  * @param receiver The receiver
-	  * @param server The server​​
+	  * @param receiver The receiver​​
 	  */
-	public DirectMessageHandler(User sender, User receiver, ServerActor server) {
-		this.server = server;
+	public DirectMessageHandler(User sender, User receiver) {
         this.sender = sender;
         this.receiver = receiver;
         this.updateMessageLog();
@@ -36,7 +33,7 @@ public class DirectMessageHandler {
 	 * @postcondition the message log is updated
      */
 	public void updateMessageLog() {
-        this.messageLog = this.server.getMessagesBetween(this.sender, this.receiver);
+        this.messageLog = ServerActor.getMessagesBetween(this.sender, this.receiver);
     }
 	
 	/** Sends a direct message to the receiver​
@@ -47,7 +44,7 @@ public class DirectMessageHandler {
 	  * @param message the message to send​​
 	  */
 	public void sendMessage(Message message) {
-		this.server.sendMessage(message);
+		ServerActor.sendMessage(message);
 		this.updateMessageLog();
 	}
 	

@@ -57,7 +57,7 @@ public class ServerActor {
 	 * 
 	 * @return the user object itself, null if the login credentials are invalid
 	 */
-	public User login(String userName, String password) {
+	public static User login(String userName, String password) {
 		for (User user : users) {
 			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
 				return user;
@@ -66,7 +66,7 @@ public class ServerActor {
 		return null;
 	}
 	
-	private Boolean isDuplicateUsername(String userName) {
+	private static Boolean isDuplicateUsername(String userName) {
 		for (User user : users) {
 			if (user.getUserName().equals(userName)) {
 				return true;
@@ -86,8 +86,8 @@ public class ServerActor {
 	 * 
 	 * @return true if the account was created, false if duplicate username
      */
-	public Boolean createAccount(String userName, String password) {
-		if (this.isDuplicateUsername(userName)) {
+	public static Boolean createAccount(String userName, String password) {
+		if (isDuplicateUsername(userName)) {
 			return false;
 		}
 		return users.add(new User(userName, password));
@@ -101,7 +101,7 @@ public class ServerActor {
 	 * 
 	 * @param message  The message
 	 */
-	public void sendMessage(Message message) {
+	public static void sendMessage(Message message) {
 		User sender = message.getUser1();
 		User receiver = message.getUser2();
 		ArrayList<Message> messageLog = getMessagesBetween(sender, receiver);
