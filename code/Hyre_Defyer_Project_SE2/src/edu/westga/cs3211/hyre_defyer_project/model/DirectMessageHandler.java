@@ -25,14 +25,8 @@ public class DirectMessageHandler {
         this.receiver = receiver;
         this.updateMessageLog();
     }
-	
-	/**
-	 * Updates the message log
-	 * 
-	 * @precondition none
-	 * @postcondition the message log is updated
-     */
-	public void updateMessageLog() {
+
+	private void updateMessageLog() {
 		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerActor.getMessagesBetween(this.sender, this.receiver));
 		if (fullMessageLog.get(0).getMessage().equals("TEMP")) {
 			            fullMessageLog.remove(0);
@@ -60,6 +54,7 @@ public class DirectMessageHandler {
 	 * @return the full message log
 	 */
 	public ArrayList<Message> getFullMessageLog() {
+		this.updateMessageLog();
 		return this.messageLog;
 	}
 }

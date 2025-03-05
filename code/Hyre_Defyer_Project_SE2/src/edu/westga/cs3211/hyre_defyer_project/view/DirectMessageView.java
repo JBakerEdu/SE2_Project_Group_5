@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
@@ -59,6 +60,8 @@ public class DirectMessageView {
     
     @FXML
     private ListView<Message> messageListView;
+    
+    private DirectMessageHandler directMessageHandler;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -94,8 +97,9 @@ public class DirectMessageView {
     	String message = this.draftMessageTextArea.getText();
     	User otherPerson = this.contactListView.getSelectionModel().getSelectedItem();
     	User currentUser = SignInViewModel.getCurrentUser();
-    	ServerActor.sendMessage(new Message(message, currentUser, otherPerson));
-    	this.updateDisplayedMessages(currentUser, otherPerson);
+    	
+    	this.directMessageHandler.sendMessage(new Message(message, currentUser, otherPerson));
+    	this.updateDisplayedMessages();
     }
     
     @FXML
@@ -113,12 +117,14 @@ public class DirectMessageView {
     	
     	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-    		updateDisplayedMessages(SignInViewModel.getCurrentUser(), newValue);
+    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+    		updateDisplayedMessages();
+    		
     	});
     }
 
-	private void updateDisplayedMessages(User user1, User user2) {
-		this.messageListView.setItems(FXCollections.observableArrayList(ServerActor.getMessagesBetween(user1, user2)));
+	private void updateDisplayedMessages() {
+		this.messageListView.setItems(FXCollections.observableArrayList(this.directMessageHandler.getFullMessageLog()));
 	}
 
 }
