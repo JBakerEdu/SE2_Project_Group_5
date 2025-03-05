@@ -52,4 +52,9 @@ public class Message {
 	public User getUser2() {
 		return this.user2;
 	}
+	
+	@Override
+	public String toString() {
+		return this.message;
+	}
 }

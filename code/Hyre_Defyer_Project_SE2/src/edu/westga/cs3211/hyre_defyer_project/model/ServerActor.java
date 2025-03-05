@@ -35,7 +35,7 @@ public class ServerActor {
 	 * 
 	 * @return the messages between the two users, empty list if no messages
 	 */
-	public ArrayList<Message> getMessagesBetween(User sender, User receiver) {
+	public static ArrayList<Message> getMessagesBetween(User sender, User receiver) {
 		for (ArrayList<Message> messageLog : godMessageLog) {
 			if (messageLog.get(0).getUser1().equals(sender) && messageLog.get(0).getUser2().equals(receiver)) {
 				return messageLog;
@@ -105,10 +105,10 @@ public class ServerActor {
 	public void sendMessage(Message message) {
 		User sender = message.getUser1();
 		User receiver = message.getUser2();
-		ArrayList<Message> messageLog = this.getMessagesBetween(sender, receiver);
+		ArrayList<Message> messageLog = getMessagesBetween(sender, receiver);
 		messageLog.add(message);
 		if (messageLog.get(0).getMessage().equals("TEMP")) {
-			this.getMessagesBetween(receiver, sender).remove(0);
+			getMessagesBetween(receiver, sender).remove(0);
 		}
     }
 	

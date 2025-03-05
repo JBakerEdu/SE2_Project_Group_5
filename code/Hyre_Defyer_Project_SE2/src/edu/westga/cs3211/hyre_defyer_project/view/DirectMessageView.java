@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
@@ -55,6 +56,9 @@ public class DirectMessageView {
     
     @FXML
     private AnchorPane anchorPane;
+    
+    @FXML
+    private ListView<Message> messageListView;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -102,7 +106,11 @@ public class DirectMessageView {
 
     	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
     	this.contactListView.setItems(observableListUsers);
-
+    	
+    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+    		this.messageListView.setItems(FXCollections.observableArrayList(ServerActor.getMessagesBetween(SignInViewModel.getCurrentUser(), newValue)));
+    	});
     }
 
 }
