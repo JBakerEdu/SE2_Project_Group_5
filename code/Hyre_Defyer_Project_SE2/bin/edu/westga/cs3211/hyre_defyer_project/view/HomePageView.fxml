@@ -21,7 +21,7 @@
             <Image url="@../../../../../../images/HyreDefyerLogo_Rectangle.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="299.0" layoutY="294.0" prefHeight="45.0" prefWidth="302.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Let us defy your expectations!">
+      <Label alignment="CENTER" layoutX="299.0" layoutY="293.0" prefHeight="45.0" prefWidth="302.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Let us defy your expectations!">
          <font>
             <Font size="20.0" />
          </font>
@@ -39,32 +39,32 @@
       </Label>
       <Pane fx:id="catergoryPane" layoutX="54.0" layoutY="432.0" prefHeight="117.0" prefWidth="792.0">
          <children>
-            <Button fx:id="categoryButton1" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton1" alignment="CENTER" contentDisplay="CENTER" layoutX="28.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="categoryButton2" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton2" alignment="CENTER" contentDisplay="CENTER" layoutX="153.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="categoryButton3" alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton3" alignment="CENTER" contentDisplay="CENTER" layoutX="279.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="categoryButton4" alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton4" alignment="CENTER" contentDisplay="CENTER" layoutX="404.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="categoryButton5" alignment="CENTER" contentDisplay="CENTER" layoutX="529.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton5" alignment="CENTER" contentDisplay="CENTER" layoutX="529.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="categoryButton6" alignment="CENTER" contentDisplay="CENTER" layoutX="654.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category">
+            <Button fx:id="categoryButton6" alignment="CENTER" contentDisplay="CENTER" layoutX="654.0" layoutY="17.0" mnemonicParsing="false" onAction="#handleCategoryClick" prefHeight="83.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Category" textAlignment="CENTER" wrapText="true">
                <effect>
                   <Bloom />
                </effect>

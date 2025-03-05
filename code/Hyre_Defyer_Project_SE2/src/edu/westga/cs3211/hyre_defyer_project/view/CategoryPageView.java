@@ -1,5 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class CategoryPageView {
+	private CategoryViewModel categoryViewModel;
 
     @FXML
     private ImageView accountBioImage;
@@ -134,17 +137,25 @@ public class CategoryPageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
     void handleDMClick(MouseEvent event) {
-
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
     void handleHomeClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
@@ -160,6 +171,20 @@ public class CategoryPageView {
     @FXML
     void handlePeopleClick(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void initialize() {
+        if (CategoryViewModel.selectedCategory != null) {
+            this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
+        } else {
+            this.categoryName.setText("No category selected");
+        }
+        if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	} else {
+    		this.accountLabel.textProperty().setValue("Account");
+    	}
     }
 
 }
