@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * @version Spring 2025
  */
 public class ServerActor {
-	private ArrayList<ArrayList<Message>> godMessageLog;
-	private ArrayList<User> users;
+	private static ArrayList<ArrayList<Message>> godMessageLog;
+	private static ArrayList<User> users;
 	
 	/**
 	 * Instantiates a new ServerActor
@@ -19,8 +19,8 @@ public class ServerActor {
 	 * @postcondition none
 	 */
 	public ServerActor() {
-		this.godMessageLog = new ArrayList<ArrayList<Message>>();
-		this.users = new ArrayList<User>();
+		godMessageLog = new ArrayList<ArrayList<Message>>();
+		users = new ArrayList<User>();
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class ServerActor {
 	 * @return the messages between the two users, empty list if no messages
 	 */
 	public ArrayList<Message> getMessagesBetween(User sender, User receiver) {
-		for (ArrayList<Message> messageLog : this.godMessageLog) {
+		for (ArrayList<Message> messageLog : godMessageLog) {
 			if (messageLog.get(0).getUser1().equals(sender) && messageLog.get(0).getUser2().equals(receiver)) {
 				return messageLog;
 			}
@@ -45,7 +45,7 @@ public class ServerActor {
 		}
 		ArrayList<Message> newMessageLog = new ArrayList<Message>();
 		newMessageLog.add(new Message("TEMP", sender, receiver));
-		this.godMessageLog.add(newMessageLog);
+		godMessageLog.add(newMessageLog);
 		return newMessageLog;
 	}
 	
@@ -58,7 +58,7 @@ public class ServerActor {
 	 * @return the user object itself, null if the login credentials are invalid
 	 */
 	public User login(String userName, String password) {
-		for (User user : this.users) {
+		for (User user : users) {
 			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
 				return user;
 			}
@@ -67,7 +67,7 @@ public class ServerActor {
 	}
 	
 	private Boolean isDuplicateUsername(String userName) {
-		for (User user : this.users) {
+		for (User user : users) {
 			if (user.getUserName().equals(userName)) {
 				return true;
 			}
@@ -90,7 +90,7 @@ public class ServerActor {
 		if (this.isDuplicateUsername(userName)) {
 			return false;
 		}
-		return this.users.add(new User(userName, password));
+		return users.add(new User(userName, password));
 	}
 
 	/**
