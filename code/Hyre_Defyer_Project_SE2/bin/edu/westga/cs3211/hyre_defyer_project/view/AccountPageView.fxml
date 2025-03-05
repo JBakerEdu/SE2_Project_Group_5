@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.AccountPageView">
+<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.AccountPageView">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="HONEYDEW" height="58.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <ImageView fx:id="accountBioImage" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="5.0" onMouseClicked="#handleAccountClick" pickOnBounds="true" preserveRatio="true">
@@ -75,7 +75,7 @@
                   <Bloom />
                </effect>
             </Button>
-            <TextArea layoutX="130.0" layoutY="95.0" prefHeight="154.0" prefWidth="513.0" wrapText="true" />
+            <TextArea layoutX="130.0" layoutY="94.0" prefHeight="154.0" prefWidth="513.0" wrapText="true" />
             <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
                <effect>
                   <Bloom />

@@ -66,12 +66,20 @@ public class AccountPageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML

@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +22,9 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class HomePageView {
-	
-    @FXML
+	CategoryViewModel categoryViewModel;
+
+	@FXML
     private ImageView accountBioImage;
 
     @FXML
@@ -90,7 +92,15 @@ public class HomePageView {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button) event.getSource();
             String buttonText = clickedButton.getText();
-            System.out.println("Clicked button text: " + buttonText);
+            Categories selectedCategory = null;
+            try {
+                selectedCategory = Categories.valueOf(buttonText.replace(" ", "_").toUpperCase());
+                this.categoryViewModel.setSelectedCategory(selectedCategory);
+
+            } catch (IllegalArgumentException e) {
+                System.err.println("Invalid category selected: " + buttonText);
+                return;
+            }
             GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
         }
     }
@@ -103,7 +113,11 @@ public class HomePageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
@@ -113,7 +127,7 @@ public class HomePageView {
 
     @FXML
     void handleHyreClick(MouseEvent event) {
-
+    	
     }
 
     @FXML
@@ -134,6 +148,7 @@ public class HomePageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+    	this.categoryViewModel = new CategoryViewModel();
     	this.otherCategoryPane.setVisible(false);
     	List<Button> buttons = List.of(categoryButton1, categoryButton2, categoryButton3, categoryButton4, categoryButton5, categoryButton6);
         Categories[] categories = Categories.values();
@@ -150,16 +165,29 @@ public class HomePageView {
     }
     
     private void bindUIAndListeners() {
-    	categoryListView.setOnMouseClicked(event -> {
+        categoryListView.setOnMouseClicked(event -> {
             Object selectedItem = categoryListView.getSelectionModel().getSelectedItem();
 
             if (selectedItem != null) {
+                // Retrieve the name of the selected category
                 String categoryName = selectedItem.toString();
                 System.out.println("Selected ListView item: " + categoryName);
+
+                // Set the selected category in the ViewModel
+                try {
+                    Categories selectedCategory = Categories.valueOf(categoryName.replace(" ", "_").toUpperCase());
+                    this.categoryViewModel.setSelectedCategory(selectedCategory);
+                    
+                    // Optionally switch views
+                    GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
+                } catch (IllegalArgumentException e) {
+                    System.err.println("Invalid category selected: " + categoryName);
+                }
             } else {
                 System.out.println("No item selected from ListView.");
             }
         });
     }
+
 
 }

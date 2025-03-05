@@ -11,7 +11,7 @@ public enum Views {
 	HOMEPAGE("view/HomePageView.fxml"),
 	DMS("view/DirectMessageView.fxml"),
 	ACCOUNT("view/AccountPageView.fxml"),
-	CATEGORY("view/CategoryView.fxml");
+	CATEGORY("view/CategoryPageView.fxml");
 	
 	private String fileLocation;
 	
