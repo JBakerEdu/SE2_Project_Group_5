@@ -2,11 +2,11 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -22,34 +22,40 @@ import javafx.stage.Stage;
 public class HomePageView {
 
     @FXML
-    private Button viewCatergoriesButton;
-
-    @FXML
     private ImageView accountBioImage;
 
     @FXML
     private Label accountLabel;
 
     @FXML
-    private Button catergoryButton1;
+    private AnchorPane anchorPane;
 
     @FXML
-    private Button catergoryButton2;
+    private Button categoryButton1;
 
     @FXML
-    private Button catergoryButton3;
+    private Button categoryButton2;
 
     @FXML
-    private Button catergoryButton4;
+    private Button categoryButton3;
 
     @FXML
-    private Button catergoryButton5;
+    private Button categoryButton4;
 
     @FXML
-    private Button catergoryButton6;
+    private Button categoryButton5;
+
+    @FXML
+    private Button categoryButton6;
+
+    @FXML
+    private ListView<?> categoryListView;
 
     @FXML
     private Pane catergoryPane;
+
+    @FXML
+    private Button closeButton1;
 
     @FXML
     private Label dmLabel;
@@ -61,39 +67,47 @@ public class HomePageView {
     private Label hyreLabel;
 
     @FXML
-    private Button signInButton;
-    
+    private Pane otherCategoryPane;
+
     @FXML
-    private AnchorPane anchorPane;
+    private Button signInButton;
+
+    @FXML
+    private Button viewCategoriesButton;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	
+
     }
 
     @FXML
-    void handleCatergoryClick(ActionEvent event) {
-    	
+    void handleCategoryClick(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleCloseClick(ActionEvent event) {
+
     }
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	
+
     }
 
     @FXML
     void handleHomeClick(MouseEvent event) {
-    	
+
     }
 
     @FXML
     void handleHyreClick(MouseEvent event) {
-    	
+
     }
 
     @FXML
-    void handleMoreCatergoriesClick(ActionEvent event) {
-    	
+    void handleMoreCategoriesClick(ActionEvent event) {
+
     }
 
     @FXML
