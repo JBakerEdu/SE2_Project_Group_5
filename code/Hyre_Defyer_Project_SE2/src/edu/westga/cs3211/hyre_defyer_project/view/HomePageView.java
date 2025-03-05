@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -11,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * Codebehind for HomePageView
@@ -77,7 +77,7 @@ public class HomePageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
 
     @FXML
@@ -92,12 +92,12 @@ public class HomePageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
 
     @FXML
     void handleHomeClick(MouseEvent event) {
-
+    	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
@@ -111,10 +111,17 @@ public class HomePageView {
     }
 
     @FXML
-    void handleSignInClick(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) this.anchorPane.getScene().getWindow();
-    	GUIHelper.switchView(stage, "view/SignInView.fxml");
-
+    void handleSignInClick(ActionEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    }
+    
+    @FXML
+    void initialize() {
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	} else {
+    		this.accountLabel.textProperty().setValue("Account");
+    	}
     }
 
 }
