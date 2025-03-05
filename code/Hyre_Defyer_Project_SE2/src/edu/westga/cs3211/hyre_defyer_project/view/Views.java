@@ -3,14 +3,15 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 /**
  * Stores the different view locations
  * 
- * @author Myles Debro
+ * @author Myles Debro and Jacob Baker
  * @version Spring 2025
  */
 public enum Views {
 	SIGNIN("view/SignInView.fxml"),
 	HOMEPAGE("view/HomePageView.fxml"),
 	DMS("view/DirectMessageView.fxml"),
-	ACCOUNT("view/AccountPageView.fxml");
+	ACCOUNT("view/AccountPageView.fxml"),
+	CATEGORY("view/CategoryPageView.fxml");
 	
 	private String fileLocation;
 	
@@ -25,5 +26,4 @@ public enum Views {
 	public String location() {
 		return this.fileLocation;
 	}
-	
 }

@@ -212,6 +212,6 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <ComboBox fx:id="filter" layoutX="693.0" layoutY="77.0" prefWidth="150.0" promptText="Filter" />
+      <ComboBox fx:id="filter" layoutX="693.0" layoutY="78.0" prefWidth="150.0" promptText="Filter" />
    </children>
 </AnchorPane>

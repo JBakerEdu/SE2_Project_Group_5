@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /**
  * This is the code for the Sign in / create account Page 
@@ -64,7 +63,11 @@ public class SignInView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
@@ -84,7 +87,11 @@ public class SignInView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		GUIHelper.switchView(this.anchorPane, Views.DMS);
+    	} else {
+    		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
+    	}
     }
 
     @FXML
