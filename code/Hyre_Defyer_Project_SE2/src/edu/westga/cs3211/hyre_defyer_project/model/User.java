@@ -125,4 +125,9 @@ public class User {
 		}
 		this.userBio = bio;
 	}
+	
+	@Override
+	public String toString() {
+		return this.userName;
+	}
 }

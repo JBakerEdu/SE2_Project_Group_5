@@ -1,6 +1,13 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +33,7 @@ public class DirectMessageView {
     private Label accountLabel;
 
     @FXML
-    private ListView<?> contactListView;
+    private ListView<User> contactListView;
 
     @FXML
     private Label dmLabel;
@@ -81,6 +88,12 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+    	List<User> users = new ArrayList<>(ServerActor.getUsers());
+    	users.remove(SignInViewModel.getCurrentUser());
+
+    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
+    	this.contactListView.setItems(observableListUsers);
+
     }
 
 }

@@ -1,6 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Acts as a temporary interactive server for the application
@@ -110,4 +111,8 @@ public class ServerActor {
 			this.getMessagesBetween(receiver, sender).remove(0);
 		}
     }
+	
+	public static List<User> getUsers() {
+		return users;
+	}
 }
