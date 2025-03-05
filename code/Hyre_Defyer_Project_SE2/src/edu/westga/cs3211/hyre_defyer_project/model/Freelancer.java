@@ -172,6 +172,6 @@ public class Freelancer extends User {
             }
         }
         return false;
-    }
+    } 
 	
 }
