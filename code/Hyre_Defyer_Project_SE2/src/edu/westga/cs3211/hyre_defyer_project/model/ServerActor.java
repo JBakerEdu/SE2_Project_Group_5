@@ -36,10 +36,10 @@ public class ServerActor {
 	 */
 	public static ArrayList<Message> getMessagesBetween(User sender, User receiver) {
 		for (ArrayList<Message> messageLog : godMessageLog) {
-			if (messageLog.get(0).getUser1().equals(sender) && messageLog.get(0).getUser2().equals(receiver)) {
+			if (messageLog.get(0).getSender().equals(sender) && messageLog.get(0).getReceiver().equals(receiver)) {
 				return messageLog;
 			}
-			if (messageLog.get(0).getUser1().equals(receiver) && messageLog.get(0).getUser2().equals(sender)) {
+			if (messageLog.get(0).getSender().equals(receiver) && messageLog.get(0).getReceiver().equals(sender)) {
 				return messageLog;
 			}
 		}
@@ -102,8 +102,8 @@ public class ServerActor {
 	 * @param message  The message
 	 */
 	public static void sendMessage(Message message) {
-		User sender = message.getUser1();
-		User receiver = message.getUser2();
+		User sender = message.getSender();
+		User receiver = message.getReceiver();
 		ArrayList<Message> messageLog = getMessagesBetween(sender, receiver);
 		messageLog.add(message);
 		if (messageLog.get(0).getMessage().equals("TEMP")) {

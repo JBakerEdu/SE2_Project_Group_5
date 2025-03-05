@@ -33,7 +33,11 @@ public class DirectMessageHandler {
 	 * @postcondition the message log is updated
      */
 	public void updateMessageLog() {
-        this.messageLog = ServerActor.getMessagesBetween(this.sender, this.receiver);
+		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerActor.getMessagesBetween(this.sender, this.receiver));
+		if (fullMessageLog.get(0).getMessage().equals("TEMP")) {
+			            fullMessageLog.remove(0);
+		}
+        this.messageLog = fullMessageLog;
     }
 	
 	/** Sends a direct message to the receiver​

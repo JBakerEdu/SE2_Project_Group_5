@@ -91,7 +91,11 @@ public class DirectMessageView {
 
     @FXML
     void handleSendMessageClick(ActionEvent event) {
-    	
+    	String message = this.draftMessageTextArea.getText();
+    	User otherPerson = this.contactListView.getSelectionModel().getSelectedItem();
+    	User currentUser = SignInViewModel.getCurrentUser();
+    	ServerActor.sendMessage(new Message(message, currentUser, otherPerson));
+    	this.updateDisplayedMessages(currentUser, otherPerson);
     }
     
     @FXML
@@ -109,8 +113,12 @@ public class DirectMessageView {
     	
     	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-    		this.messageListView.setItems(FXCollections.observableArrayList(ServerActor.getMessagesBetween(SignInViewModel.getCurrentUser(), newValue)));
+    		updateDisplayedMessages(SignInViewModel.getCurrentUser(), newValue);
     	});
     }
+
+	private void updateDisplayedMessages(User user1, User user2) {
+		this.messageListView.setItems(FXCollections.observableArrayList(ServerActor.getMessagesBetween(user1, user2)));
+	}
 
 }
