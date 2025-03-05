@@ -1,11 +1,13 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,7 +16,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * This is the code for Account Page 
  * 
- * @author Jacob Baker & Myles Debro
+ * @author Jacob Baker & Myles Debro & Kate Anglin
  * @version Spring 2025
  */
 public class AccountPageView {
@@ -24,12 +26,15 @@ public class AccountPageView {
 
     @FXML
     private ImageView accountBioImage;
+    
+    @FXML
+    private TextArea accountBio;
 
     @FXML
     private Label accountLabel;
 
     @FXML
-    private ComboBox<?> catergoryComboBox;
+    private ComboBox<Categories> catergoryComboBox;
 
     @FXML
     private Label dmLabel;
@@ -92,14 +97,18 @@ public class AccountPageView {
 
     @FXML
     void handleEditClick(ActionEvent event) {
-
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		SignInViewModel.getCurrentUser().setBio(this.accountBio.textProperty().get());
+    	}
     }
     
     @FXML
     void initialize() {
+    	this.catergoryComboBox.getItems().addAll(Categories.values());
     	if (SignInViewModel.getCurrentUser() != null) {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     		this.userLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    		this.accountBio.textProperty().setValue(SignInViewModel.getCurrentUser().getBio());
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     		this.userLabel.textProperty().setValue("Account");
