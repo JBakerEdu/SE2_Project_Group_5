@@ -1,6 +1,15 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
+import edu.westga.cs3211.hyre_defyer_project.model.Message;
+import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,7 +35,7 @@ public class DirectMessageView {
     private Label accountLabel;
 
     @FXML
-    private ListView<?> contactListView;
+    private ListView<User> contactListView;
 
     @FXML
     private Label dmLabel;
@@ -48,6 +57,11 @@ public class DirectMessageView {
     
     @FXML
     private AnchorPane anchorPane;
+    
+    @FXML
+    private ListView<Message> messageListView;
+    
+    private DirectMessageHandler directMessageHandler;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -80,7 +94,12 @@ public class DirectMessageView {
 
     @FXML
     void handleSendMessageClick(ActionEvent event) {
+    	String message = this.draftMessageTextArea.getText();
+    	User otherPerson = this.contactListView.getSelectionModel().getSelectedItem();
+    	User currentUser = SignInViewModel.getCurrentUser();
     	
+    	this.directMessageHandler.sendMessage(new Message(message, currentUser, otherPerson));
+    	this.updateDisplayedMessages();
     }
     
     @FXML
@@ -90,6 +109,22 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+    	List<User> users = new ArrayList<>(ServerActor.getUsers());
+    	users.remove(SignInViewModel.getCurrentUser());
+
+    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
+    	this.contactListView.setItems(observableListUsers);
+    	
+    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+    		updateDisplayedMessages();
+    		
+    	});
     }
+
+	private void updateDisplayedMessages() {
+		this.messageListView.setItems(FXCollections.observableArrayList(this.directMessageHandler.getFullMessageLog()));
+	}
 
 }

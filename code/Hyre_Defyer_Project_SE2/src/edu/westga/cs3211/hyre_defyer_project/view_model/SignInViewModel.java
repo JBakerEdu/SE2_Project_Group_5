@@ -11,14 +11,12 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
  */
 public class SignInViewModel {
 	private static User currentUser;
-	private ServerActor serverActor;
 	
 	/**
 	 * Creates new SignInViewModel object
 	 */
 	public SignInViewModel() {
-		this.serverActor = new ServerActor();
-		this.serverActor.createAccount("admin", "1234567");
+		ServerActor.createAccount("admin", "1234567");
 	}
 	
 	/**
@@ -29,7 +27,7 @@ public class SignInViewModel {
 	 * 				 false if user information doesn't match
 	 */
 	public boolean signIn(String userName, String userPassword) {
-		User user = this.serverActor.login(userName, userPassword);
+		User user = ServerActor.login(userName, userPassword);
 		if (user == null) {
 			return false;
 		} else {
@@ -48,7 +46,7 @@ public class SignInViewModel {
 	 */
 	public boolean createAccount(String username, String userpassword, String confirmPassword) {
 		if (userpassword.equals(confirmPassword)) {
-			if (this.serverActor.createAccount(username, userpassword)) {
+			if (ServerActor.createAccount(username, userpassword)) {
 				this.signIn(username, userpassword);
 				return true;
 			}

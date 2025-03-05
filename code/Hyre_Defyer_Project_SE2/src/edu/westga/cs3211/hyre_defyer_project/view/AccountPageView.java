@@ -116,7 +116,6 @@ public class AccountPageView {
     	if (SignInViewModel.getCurrentUser() != null) {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     		this.userLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    		this.accountBio.textProperty().setValue(SignInViewModel.getCurrentUser().getBio());
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     		this.userLabel.textProperty().setValue("Account");

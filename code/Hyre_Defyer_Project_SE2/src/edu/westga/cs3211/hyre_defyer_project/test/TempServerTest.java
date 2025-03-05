@@ -16,9 +16,8 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 public class TempServerTest {
 	@Test
 	public void testCreateAccount() {
-        ServerActor server = new ServerActor();
-        server.createAccount("user1", "password1");
-        User user = server.login("user1", "password1");
+        ServerActor.createAccount("user1", "password1");
+        User user = ServerActor.login("user1", "password1");
         assertNotNull(user);
         assertEquals("user1", user.getUserName());
         assertEquals("password1", user.getPassword());
@@ -27,15 +26,14 @@ public class TempServerTest {
 	
 	@Test
 	public void testSendMessage() {
-        ServerActor server = new ServerActor();
-        server.createAccount("user1", "password1");
-        server.createAccount("user2", "password2");
-        server.createAccount("user3", "password3");
-        User user1 = server.login("user1", "password1");
-        User user2 = server.login("user2", "password2");
-        User user3 = server.login("user3", "password3");
-        DirectMessageHandler handler = new DirectMessageHandler(user1, user2, server);
-        DirectMessageHandler handler1 = new DirectMessageHandler(user1, user3, server);
+        ServerActor.createAccount("user1", "password1");
+        ServerActor.createAccount("user2", "password2");
+        ServerActor.createAccount("user3", "password3");
+        User user1 = ServerActor.login("user1", "password1");
+        User user2 = ServerActor.login("user2", "password2");
+        User user3 = ServerActor.login("user3", "password3");
+        DirectMessageHandler handler = new DirectMessageHandler(user1, user2);
+        DirectMessageHandler handler1 = new DirectMessageHandler(user1, user3);
         Message message = new Message("Hello", user1, user2);
         Message message1 = new Message("World", user1, user3);
         handler1.sendMessage(message1);
@@ -46,19 +44,17 @@ public class TempServerTest {
 	
 	@Test
 	public void testDuplicateAccount() {
-		ServerActor server = new ServerActor();
-		assertTrue(server.createAccount("user1", "password1"));
+		assertTrue(ServerActor.createAccount("user1", "password1"));
 		
-        assertFalse(server.createAccount("user1", "password2"));
+        assertFalse(ServerActor.createAccount("user1", "password2"));
 
 	}
 	
 	@Test
 	public void testInvalidLogin() {
-		ServerActor server = new ServerActor();
-		assertTrue(server.createAccount("user1", "password1"));
+		assertTrue(ServerActor.createAccount("user1", "password1"));
 		
-        assertNull(server.login("user1", "notpassword"));
+        assertNull(ServerActor.login("user1", "notpassword"));
 
 	}
 	
