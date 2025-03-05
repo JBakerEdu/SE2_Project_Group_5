@@ -10,8 +10,8 @@ import java.util.List;
  * @version Spring 2025
  */
 public class ServerActor {
-	private static ArrayList<ArrayList<Message>> godMessageLog;
-	private static ArrayList<User> users;
+	private static ArrayList<ArrayList<Message>> godMessageLog = new ArrayList<ArrayList<Message>>();
+	private static ArrayList<User> users = new ArrayList<User>();
 	
 	/**
 	 * Instantiates a new ServerActor
@@ -20,8 +20,7 @@ public class ServerActor {
 	 * @postcondition none
 	 */
 	public ServerActor() {
-		godMessageLog = new ArrayList<ArrayList<Message>>();
-		users = new ArrayList<User>();
+		
 	}
 
 	/**
