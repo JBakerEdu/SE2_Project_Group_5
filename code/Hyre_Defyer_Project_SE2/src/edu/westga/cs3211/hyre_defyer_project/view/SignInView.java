@@ -137,34 +137,54 @@ public class SignInView {
     	this.passwordCreateAccountTextFeild.textProperty().set("");
     	this.passwordSignInTextFeild.textProperty().set("");
     	this.confirmPasswordCreateAccountTextFeild.textProperty().set("");
+    	this.signInButton.disableProperty().setValue(true);
     	this.createAccountButton.disableProperty().setValue(true);
     }
     
     private void setListeners() {
     	this.confirmPasswordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyRequiredFields();
+    			this.emptyCreateAccountRequiredFields();
     		}
     	});
     	this.passwordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyRequiredFields();
+    			this.emptyCreateAccountRequiredFields();
     		}
     	});
     	this.userNameCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyRequiredFields();
+    			this.emptyCreateAccountRequiredFields();
+    		}
+    	});
+    	this.passwordSignInTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue != oldValue) {
+    			this.emptySignInRequiredFields();
+    		}
+    	});
+    	this.userNameSignInTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue != oldValue) {
+    			this.emptySignInRequiredFields();
     		}
     	});
     }
     
-    private void emptyRequiredFields() {
+    private void emptyCreateAccountRequiredFields() {
     	if (this.confirmPasswordCreateAccountTextFeild.textProperty().isEmpty().get() 
     			|| this.passwordCreateAccountTextFeild.textProperty().isEmpty().get() 
     			|| this.userNameCreateAccountTextFeild.textProperty().isEmpty().get()) {
     		this.createAccountButton.disableProperty().setValue(true);
     	} else {
     		this.createAccountButton.disableProperty().setValue(false);
+    	}
+    }
+    
+    private void emptySignInRequiredFields() {
+    	if (this.passwordSignInTextFeild.textProperty().isEmpty().get()
+    			|| this.userNameSignInTextFeild.textProperty().isEmpty().get()) {
+    		this.signInButton.disableProperty().setValue(true);
+    	} else {
+    		this.signInButton.disableProperty().setValue(false);
     	}
     }
 
