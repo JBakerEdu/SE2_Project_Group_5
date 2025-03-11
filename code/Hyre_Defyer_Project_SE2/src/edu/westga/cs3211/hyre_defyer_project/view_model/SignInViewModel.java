@@ -2,6 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 /**
  * View model for SignInView

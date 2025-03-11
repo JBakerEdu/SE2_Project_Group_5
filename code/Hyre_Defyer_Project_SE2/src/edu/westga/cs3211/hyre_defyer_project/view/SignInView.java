@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.io.IOException;
 
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -120,17 +121,51 @@ public class SignInView {
     
     @FXML
     void initialize() {
-    	this.userNameCreateAccountTextFeild.textProperty().set("");
-    	this.userNameSignInTextFeild.textProperty().set("");
-    	this.passwordCreateAccountTextFeild.textProperty().set("");
-    	this.passwordSignInTextFeild.textProperty().set("");
-    	this.confirmPasswordCreateAccountTextFeild.textProperty().set("");
+    	this.setElements();
+    	this.setListeners();
+    	this.vm = new SignInViewModel();
     	if (SignInViewModel.getCurrentUser() != null) {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-      this.vm = new SignInViewModel();
+    }
+    
+    private void setElements() {
+    	this.userNameCreateAccountTextFeild.textProperty().set("");
+    	this.userNameSignInTextFeild.textProperty().set("");
+    	this.passwordCreateAccountTextFeild.textProperty().set("");
+    	this.passwordSignInTextFeild.textProperty().set("");
+    	this.confirmPasswordCreateAccountTextFeild.textProperty().set("");
+    	this.createAccountButton.disableProperty().setValue(true);
+    }
+    
+    private void setListeners() {
+    	this.confirmPasswordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue != oldValue) {
+    			this.emptyRequiredFields();
+    		}
+    	});
+    	this.passwordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue != oldValue) {
+    			this.emptyRequiredFields();
+    		}
+    	});
+    	this.userNameCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
+    		if (newValue != oldValue) {
+    			this.emptyRequiredFields();
+    		}
+    	});
+    }
+    
+    private void emptyRequiredFields() {
+    	if (this.confirmPasswordCreateAccountTextFeild.textProperty().isEmpty().get() 
+    			|| this.passwordCreateAccountTextFeild.textProperty().isEmpty().get() 
+    			|| this.userNameCreateAccountTextFeild.textProperty().isEmpty().get()) {
+    		this.createAccountButton.disableProperty().setValue(true);
+    	} else {
+    		this.createAccountButton.disableProperty().setValue(false);
+    	}
     }
 
 }
