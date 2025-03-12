@@ -4,10 +4,29 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 
+import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 
 public class TestSignInViewModel {
+
+	@AfterAll void knockDown() {
+		User remove = null;
+		for (User user : ServerActor.getUsers()) {
+			if (user.getUserName().equals("new account")
+					|| user.getUserName().equals("user")
+					|| user.getUserName().equals("not user")
+					|| user.getUserName().equals("users")
+					|| user.getUserName().equals("not user")) {
+				remove = user;
+			}
+		}
+		if (remove != null) {
+			ServerActor.getUsers().remove(remove);
+		} 
+	}
 
 	@Test
 	public void testSigninSuccess() {
@@ -26,40 +45,34 @@ public class TestSignInViewModel {
 	@Test
 	public void testCreateAccountSuccess() {
 		SignInViewModel vm = new SignInViewModel();
-		assertTrue(vm.createAccount("new_user", "1234567", "1234567"));
+		assertTrue(vm.createAccount("users", "1234567", "1234567"));
 	}
 	
 	@Test
 	public void testCreateAccountDuplicateUser() {
 		SignInViewModel vm = new SignInViewModel();
-		assertTrue(vm.createAccount("new_user", "other password", "other password"));
-		assertFalse(vm.createAccount("new_user", "password", "password"));
-	}
-	
-	@Test
-	public void testCreateAccountWrongConfirmationPassword() {
-		SignInViewModel vm = new SignInViewModel();
-		assertFalse(vm.createAccount("new_user", "other password", "password"));
+		assertTrue(vm.createAccount("new user", "other password", "other password"));
+		assertFalse(vm.createAccount("new user", "password", "password"));
 	}
 	
 	@Test
 	public void testSignOut() {
 		SignInViewModel vm = new SignInViewModel();
-		vm.createAccount("user", "password", "password");
+		vm.signIn("user", "password");
 		assertTrue(SignInViewModel.signOut());
 	}
 	
 	@Test
 	public void testIsSignedIn() {
 		SignInViewModel vm = new SignInViewModel();
-		vm.createAccount("user", "password", "password");
+		vm.signIn("user", "password");
 		assertTrue(SignInViewModel.isSignedIn());
 	}
 	
 	@Test
 	public void testIsNotSignedIn() {
 		SignInViewModel vm = new SignInViewModel();
-		vm.createAccount("user", "password", "password");
+		vm.signIn("user", "password");
 		SignInViewModel.signOut();
 		assertFalse(SignInViewModel.isSignedIn());
 	}
@@ -67,5 +80,18 @@ public class TestSignInViewModel {
 	@Test
 	public void testUserDoesNotExist() {
 		assertFalse(SignInViewModel.isSignedIn());
+	}
+	
+	@Test
+	public void testUserNotInServer() {
+		SignInViewModel vm = new SignInViewModel();
+		assertFalse(vm.userExists("bob"));
+	}
+	
+	@Test
+	public void testUserExistsInServer() {
+		SignInViewModel vm = new SignInViewModel();
+		vm.createAccount("user", "password", "password");
+		assertTrue(vm.userExists("user"));
 	}
 }

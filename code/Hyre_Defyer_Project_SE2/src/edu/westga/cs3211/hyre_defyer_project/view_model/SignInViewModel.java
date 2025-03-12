@@ -47,11 +47,9 @@ public class SignInViewModel {
 	 * 				 false if the account wasn't created due to duplicate username or if password != confirmPassword
 	 */
 	public boolean createAccount(String username, String userpassword, String confirmPassword) {
-		if (userpassword.equals(confirmPassword)) {
-			if (ServerActor.createAccount(username, userpassword)) {
-				this.signIn(username, userpassword);
-				return true;
-			}
+		if (ServerActor.createAccount(username, userpassword)) {
+			this.signIn(username, userpassword);
+			return true;
 		}
 		return false;
 	}
