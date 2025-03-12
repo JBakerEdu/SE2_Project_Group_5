@@ -81,5 +81,20 @@ public class SignInViewModel {
 		currentUser = null;
 		return true;
 	}
+	
+	/**
+	 * Finds out if the input userName exists in our server
+	 * @param username the input userName
+	 * @return true if the user exists in the server
+	 * 				 false if the user doesn't exist in the server
+	 */
+	public boolean userExists(String username) {
+		for (User currUser : ServerActor.getUsers()) {
+			if (currUser.getUserName().equals(username)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

@@ -109,13 +109,12 @@ public class SignInView {
     void handleSignInClick(ActionEvent event) throws IOException {
     	String username = this.userNameSignInTextFeild.textProperty().getValue();
     	String password = this.passwordSignInTextFeild.textProperty().getValue();
-    	if (username.isEmpty() || password.isEmpty()) {
-    		return;
-    	}
       if (this.vm.signIn(username, password)) {
       	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
+      } else if (!this.vm.userExists(username)) {
+      	GUIHelper.displayError("Unable to sign in", "This user doesn't exist in our servers. Try creating an account to your right.");
       } else {
-      	GUIHelper.displayError("Unable to sign in", "Input doesn't match the data in our servers.");
+      	GUIHelper.displayError("Unable to sign in", "The password doesn't match the username provided.");
       }
     }
     
