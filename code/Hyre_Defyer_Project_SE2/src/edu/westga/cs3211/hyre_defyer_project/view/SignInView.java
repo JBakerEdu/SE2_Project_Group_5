@@ -32,6 +32,9 @@ public class SignInView {
 
     @FXML
     private TextField confirmPasswordCreateAccountTextFeild;
+    
+    @FXML
+    private Label passwordWarningText;
 
     @FXML
     private Button createAccountButton;
@@ -76,13 +79,10 @@ public class SignInView {
     	String username = this.userNameCreateAccountTextFeild.textProperty().getValue();
     	String password = this.passwordCreateAccountTextFeild.textProperty().getValue();
     	String confirmPassword = this.confirmPasswordCreateAccountTextFeild.textProperty().getValue();
-    	if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
-    		return;
-    	}
       if (this.vm.createAccount(username, password, confirmPassword)) {
       	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
       } else {
-      	GUIHelper.displayError("Unable to create account", "Username: " + username + "\n Password: " + password + "\n Confirm: " + confirmPassword);
+      	GUIHelper.displayError("Unable to create account", "Username is taken. Please try another.");
       }
     }
 
@@ -144,17 +144,17 @@ public class SignInView {
     private void setListeners() {
     	this.confirmPasswordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyCreateAccountRequiredFields();
+    			this.invalidCreateAccountRequiredFields();
     		}
     	});
     	this.passwordCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyCreateAccountRequiredFields();
+    			this.invalidCreateAccountRequiredFields();
     		}
     	});
     	this.userNameCreateAccountTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
     		if (newValue != oldValue) {
-    			this.emptyCreateAccountRequiredFields();
+    			this.invalidCreateAccountRequiredFields();
     		}
     	});
     	this.passwordSignInTextFeild.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -169,13 +169,18 @@ public class SignInView {
     	});
     }
     
-    private void emptyCreateAccountRequiredFields() {
+    private void invalidCreateAccountRequiredFields() {
     	if (this.confirmPasswordCreateAccountTextFeild.textProperty().isEmpty().get() 
     			|| this.passwordCreateAccountTextFeild.textProperty().isEmpty().get() 
     			|| this.userNameCreateAccountTextFeild.textProperty().isEmpty().get()) {
     		this.createAccountButton.disableProperty().setValue(true);
+    		this.passwordWarningText.visibleProperty().setValue(false);
+    	} else if (this.passwordsDontMatch()) {
+    		this.createAccountButton.disableProperty().setValue(true);
+    		this.passwordWarningText.visibleProperty().setValue(true);
     	} else {
     		this.createAccountButton.disableProperty().setValue(false);
+    		this.passwordWarningText.visibleProperty().setValue(false);
     	}
     }
     
@@ -186,6 +191,13 @@ public class SignInView {
     	} else {
     		this.signInButton.disableProperty().setValue(false);
     	}
+    }
+    
+    private boolean passwordsDontMatch() {
+    	if (!this.confirmPasswordCreateAccountTextFeild.textProperty().get().equals(this.passwordCreateAccountTextFeild.textProperty().get())) {
+    		return true;
+    	}
+    	return false;
     }
 
 }
