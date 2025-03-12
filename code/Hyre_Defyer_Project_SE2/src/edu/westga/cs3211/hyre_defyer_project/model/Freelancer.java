@@ -1,5 +1,8 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * The Freelancer class stores the category selected and the skills listed.
  * 
@@ -172,6 +175,32 @@ public class Freelancer extends User {
             }
         }
         return false;
-    } 
-	
+    }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(this.skills);
+		result = prime * result + Objects.hash(this.category);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+			
+		if (obj == null) {
+			return false;
+		}
+			
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		Freelancer other = (Freelancer) obj;
+		return (this.category == other.category) && (Arrays.equals(this.skills, other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())) && (other.getPassword().equals(this.getPassword())));
+	} 
+    
 }
