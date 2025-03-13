@@ -25,7 +25,16 @@ import javafx.scene.layout.Pane;
 public class CategoryPageView {
 	private List<Button> peopleButtons;
 	private List<Freelancer> freelancers;
-
+	
+	@FXML
+    private Button NextPageButton;
+	
+	@FXML
+    private Label pageNumber;
+	
+	@FXML
+    private Button previousPageButton;
+	
     @FXML
     private ImageView accountBioImage;
 
@@ -137,8 +146,6 @@ public class CategoryPageView {
     @FXML
     private Pane row4PeoplePane;
 
-    @FXML
-    private Button viewMorePeopleButton;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -169,12 +176,17 @@ public class CategoryPageView {
     }
 
     @FXML
-    void handleMorePeopleClick(ActionEvent event) {
+    void handlePeopleClick(ActionEvent event) {
 
     }
-
+    
     @FXML
-    void handlePeopleClick(ActionEvent event) {
+    void handleNextPageClick(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void handlePreviousPageClick(ActionEvent event) {
 
     }
     
