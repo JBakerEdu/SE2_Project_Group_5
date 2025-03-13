@@ -1,6 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CategoryViewModel {
     
     public static Categories selectedCategory;
+    public static FreelancerRoster freelancerRoster = new FreelancerRoster();
     private List<Freelancer> freelancers;
 
     /**
@@ -54,15 +56,5 @@ public class CategoryViewModel {
         } else {
             throw new IllegalArgumentException(freelancer.getUserName() + " does not belong to this category.");
         }
-    }
-
-
-    /**
-     * Gets the list of freelancers in the current category.
-     * 
-     * @return the list of freelancers in the category
-     */
-    public List<Freelancer> getFreelancers() {
-        return this.freelancers;
     }
 }

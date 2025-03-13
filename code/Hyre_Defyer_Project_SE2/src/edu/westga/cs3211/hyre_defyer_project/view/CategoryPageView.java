@@ -1,5 +1,9 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.Arrays;
+import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -19,7 +23,8 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class CategoryPageView {
-	private CategoryViewModel categoryViewModel;
+	private List<Button> peopleButtons;
+	private List<Freelancer> freelancers;
 
     @FXML
     private ImageView accountBioImage;
@@ -177,6 +182,8 @@ public class CategoryPageView {
     void initialize() {
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
+            this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            System.out.print(this.freelancers);
         } else {
             this.categoryName.setText("No category selected");
         }
@@ -185,6 +192,30 @@ public class CategoryPageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+        this.initializeFreelancerButtons();
+        this.updatePeopleButtons();
+    }
+    
+    private void initializeFreelancerButtons() {
+        this.peopleButtons = Arrays.asList(this.peopleButton1, this.peopleButton2, this.peopleButton3, this.peopleButton4, this.peopleButton5, this.peopleButton6, this.peopleButton7, this.peopleButton8, this.peopleButton9, this.peopleButton10, this.peopleButton11, this.peopleButton12, this.peopleButton13, this.peopleButton14, this.peopleButton15, this.peopleButton16, this.peopleButton17, this.peopleButton18, this.peopleButton19, this.peopleButton20, this.peopleButton21, this.peopleButton22, this.peopleButton23, this.peopleButton24);
+        for (Button button : this.peopleButtons) {
+            button.setVisible(false);
+        }
+        
+    }
+    
+    /**
+     * Updates the buttons based on the selected category's freelancers.
+     */
+    public void updatePeopleButtons() {
+        for (int i = 0; i < this.peopleButtons.size(); i++) {
+            if (i < this.freelancers.size()) {
+                peopleButtons.get(i).setText(freelancers.get(i).getUserName());
+                peopleButtons.get(i).setVisible(true);
+            } else {
+                peopleButtons.get(i).setVisible(false);
+            }
+        }
     }
 
 }
