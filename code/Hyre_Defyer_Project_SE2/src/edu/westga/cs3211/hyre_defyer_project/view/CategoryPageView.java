@@ -25,9 +25,11 @@ import javafx.scene.layout.Pane;
 public class CategoryPageView {
 	private List<Button> peopleButtons;
 	private List<Freelancer> freelancers;
+	private int currentPage = 1;
+	private int pageSize;
 	
 	@FXML
-    private Button NextPageButton;
+    private Button nextPageButton;
 	
 	@FXML
     private Label pageNumber;
@@ -182,52 +184,68 @@ public class CategoryPageView {
     
     @FXML
     void handleNextPageClick(ActionEvent event) {
-
+        if ((this.currentPage * this.pageSize) < this.freelancers.size()) {
+            currentPage++;
+            this.pageNumber.setText("Page: " + this.currentPage);
+            this.updatePeopleButtons();
+        }
     }
-    
+
     @FXML
     void handlePreviousPageClick(ActionEvent event) {
-
+        if (this.currentPage > 1) {
+        	this.currentPage--;
+            this.pageNumber.setText("Page: " + this.currentPage);
+            this.updatePeopleButtons();
+        }
     }
-    
+
     @FXML
     void initialize() {
+        this.pageNumber.setText("Page: 1");
+        this.previousPageButton.setDisable(true);
+        this.nextPageButton.setDisable(true);
+
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
             this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
-            System.out.print(this.freelancers);
         } else {
             this.categoryName.setText("No category selected");
         }
+
         if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    	} else {
-    		this.accountLabel.textProperty().setValue("Account");
-    	}
+            this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+        } else {
+            this.accountLabel.textProperty().setValue("Account");
+        }
         this.initializeFreelancerButtons();
         this.updatePeopleButtons();
     }
+
     
     private void initializeFreelancerButtons() {
         this.peopleButtons = Arrays.asList(this.peopleButton1, this.peopleButton2, this.peopleButton3, this.peopleButton4, this.peopleButton5, this.peopleButton6, this.peopleButton7, this.peopleButton8, this.peopleButton9, this.peopleButton10, this.peopleButton11, this.peopleButton12, this.peopleButton13, this.peopleButton14, this.peopleButton15, this.peopleButton16, this.peopleButton17, this.peopleButton18, this.peopleButton19, this.peopleButton20, this.peopleButton21, this.peopleButton22, this.peopleButton23, this.peopleButton24);
         for (Button button : this.peopleButtons) {
             button.setVisible(false);
         }
+        this.pageSize = this.peopleButtons.size();
         
     }
     
     /**
      * Updates the buttons based on the selected category's freelancers.
      */
-    public void updatePeopleButtons() {
+    private void updatePeopleButtons() {
+        int startIndex = (this.currentPage - 1) * this.pageSize;
         for (int i = 0; i < this.peopleButtons.size(); i++) {
-            if (i < this.freelancers.size()) {
-                peopleButtons.get(i).setText(freelancers.get(i).getUserName());
-                peopleButtons.get(i).setVisible(true);
+            if (i + startIndex < this.freelancers.size()) {
+            	this.peopleButtons.get(i).setText(this.freelancers.get(i + startIndex).getUserName());
+            	this.peopleButtons.get(i).setVisible(true);
             } else {
-                peopleButtons.get(i).setVisible(false);
+            	this.peopleButtons.get(i).setVisible(false);
             }
         }
+        this.previousPageButton.setDisable(this.currentPage == 1);
+        this.nextPageButton.setDisable(this.currentPage * this.pageSize >= this.freelancers.size());
     }
-
 }

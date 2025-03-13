@@ -213,17 +213,17 @@
             <Bloom />
          </effect>
       </Button>
-      <Button fx:id="NextPageButton" alignment="CENTER" contentDisplay="CENTER" layoutX="668.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleNextPageClick" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Next Page">
+      <Button fx:id="nextPageButton" alignment="CENTER" contentDisplay="CENTER" layoutX="668.0" layoutY="504.0" mnemonicParsing="false" onAction="#handleNextPageClick" prefHeight="30.0" prefWidth="189.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Next Page">
          <effect>
             <Bloom />
          </effect>
       </Button>
-      <Label fx:id="pageNumber" layoutX="436.0" layoutY="507.0" onMouseClicked="#handleHyreClick" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Page: 1">
+      <Label fx:id="pageNumber" layoutX="436.0" layoutY="507.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Page: 1">
          <font>
             <Font size="16.0" />
          </font>
          <cursor>
-            <Cursor fx:constant="HAND" />
+            <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Label>
    </children>

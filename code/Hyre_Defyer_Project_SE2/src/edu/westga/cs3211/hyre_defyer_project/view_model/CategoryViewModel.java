@@ -52,7 +52,7 @@ public class CategoryViewModel {
      */
     public void addPersonToCategory(Freelancer freelancer) {
         if (freelancer.getCategory() == selectedCategory) {
-            freelancers.add(freelancer);
+        	this.freelancers.add(freelancer);
         } else {
             throw new IllegalArgumentException(freelancer.getUserName() + " does not belong to this category.");
         }
