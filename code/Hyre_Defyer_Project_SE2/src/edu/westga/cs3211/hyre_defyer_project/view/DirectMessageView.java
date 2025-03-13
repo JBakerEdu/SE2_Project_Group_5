@@ -5,8 +5,8 @@ import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
-import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

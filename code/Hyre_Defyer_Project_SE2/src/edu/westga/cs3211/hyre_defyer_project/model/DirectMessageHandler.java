@@ -2,6 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.model;
 
 import java.util.ArrayList;
 
+import edu.westga.cs3211.hyre_defyer_project.server.ServerActor;
+
 /** Handles and stores direct message information between two users​
  *​
  * @author Alec Neal​

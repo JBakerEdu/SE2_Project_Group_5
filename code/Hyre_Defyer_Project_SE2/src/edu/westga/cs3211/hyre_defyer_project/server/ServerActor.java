@@ -1,7 +1,10 @@
-package edu.westga.cs3211.hyre_defyer_project.model;
+package edu.westga.cs3211.hyre_defyer_project.server;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.Message;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
 
 /**
  * Acts as a temporary interactive server for the application

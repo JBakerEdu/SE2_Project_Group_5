@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
-import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerActor;
 
 public class TempServerTest {
 	@Test
