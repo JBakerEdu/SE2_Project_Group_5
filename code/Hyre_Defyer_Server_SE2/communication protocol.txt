@@ -1,0 +1,27 @@
+//Create Account request
+	{
+	    "type" : "create account"
+	    "userName" : <username>,
+	    "password" : <password>
+	}
+//Create account response
+	{
+	    "success_code": "success"|"fail",
+	    “error description”:<error message> #only if fail
+	    
+	}
+//Login request
+    {
+        "type" : "login",
+        "userName" : <username>,
+        "password" : <password>"
+    }
+//Login response
+    {
+        "success_code": "success"|"fail",
+        "userName" : <username>,  #only if success
+        "bio" : <bio>, #only if success
+        “error description”:<error message> #only if fail
+        
+        }
+    }
