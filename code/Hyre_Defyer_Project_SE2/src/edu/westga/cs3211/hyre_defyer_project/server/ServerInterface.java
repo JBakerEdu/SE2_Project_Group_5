@@ -52,8 +52,19 @@ public class ServerInterface {
 	 * @return the user object itself, null if the login credentials are invalid
 	 */
 	public static User login(String userName, String password) {
-        //TODO
-		return null;
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_LOGIN);
+		request.put(Constants.REQ_USERNAME, userName);
+		request.put(Constants.REQ_PASSWORD, password);
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+            String bio = jsonObject.getString(Constants.REQ_BIO);
+            String username = jsonObject.getString(Constants.REQ_USERNAME);
+            return new User(username, password, bio);
+		}
+		return null; 
 	}
 
 	
