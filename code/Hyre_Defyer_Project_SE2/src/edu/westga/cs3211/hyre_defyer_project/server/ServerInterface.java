@@ -3,6 +3,8 @@ package edu.westga.cs3211.hyre_defyer_project.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 
@@ -14,18 +16,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
  */
 public class ServerInterface {
 	private static ArrayList<ArrayList<Message>> godMessageLog = new ArrayList<ArrayList<Message>>();
-	private static ArrayList<User> users = new ArrayList<User>();
 	
-	/**
-	 * Instantiates a new ServerActor
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 */
-	public ServerInterface() {
-		
-	}
-
 	/**
 	 * Gets the messages between two users
 	 * 
@@ -61,22 +52,10 @@ public class ServerInterface {
 	 * @return the user object itself, null if the login credentials are invalid
 	 */
 	public static User login(String userName, String password) {
-		for (User user : users) {
-			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-				return user;
-			}
-		}
+        //TODO
 		return null;
 	}
-	
-	private static Boolean isDuplicateUsername(String userName) {
-		for (User user : users) {
-			if (user.getUserName().equals(userName)) {
-				return true;
-			}
-		}
-		return false;
-	}
+
 	
 	/**
 	 * Creates an account
@@ -90,10 +69,14 @@ public class ServerInterface {
 	 * @return true if the account was created, false if duplicate username
      */
 	public static Boolean createAccount(String userName, String password) {
-		if (isDuplicateUsername(userName)) {
-			return false;
-		}
-		return users.add(new User(userName, password));
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_CREATE_ACCOUNT);
+		request.put(Constants.REQ_USERNAME, userName);
+		request.put(Constants.REQ_PASSWORD, password);
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		return successCode.equals(Constants.REP_SUCCESS);
 	}
 
 	/**
@@ -115,6 +98,7 @@ public class ServerInterface {
     }
 	
 	public static List<User> getUsers() {
-		return users;
+		//TODO
+		return null;
 	}
 }

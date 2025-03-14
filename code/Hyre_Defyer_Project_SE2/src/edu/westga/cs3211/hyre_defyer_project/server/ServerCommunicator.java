@@ -7,9 +7,6 @@ import org.json.JSONObject;
 import java.net.Socket;
 
 public class ServerCommunicator {
-	
-	private static final String HOST = "127.0.0.1";
-	private static final int PORT = 4225;
 
 	/**
 	 * Sends a request to the server and returns the servers response.
@@ -17,7 +14,7 @@ public class ServerCommunicator {
 	 * @param request the request
 	 */
 	public static String sendRequestToServer(JSONObject request) {
-		try (Socket clientSocket = new Socket(HOST, PORT);
+		try (Socket clientSocket = new Socket(Constants.IP_ADDRESS, Constants.PORT);
 			     DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
 			     DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream())) {
 
