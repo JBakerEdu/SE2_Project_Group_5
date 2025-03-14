@@ -23,8 +23,8 @@ public class CategoryViewModelTest {
     @BeforeEach
     public void setUp() {
         categoryViewModel = new CategoryViewModel();
-        freelancer1 = new Freelancer("Freelancer1", "password123", "Business and Finance Guy.", Categories.BUSINESS_AND_FINANCE);
-        freelancer2 = new Freelancer("Freelancer2", "password456", "Creative Music and Audio Designer", Categories.MUSIC_AND_AUDIO);
+        freelancer1 = new Freelancer("Freelancer1", "Business and Finance Guy.", Categories.BUSINESS_AND_FINANCE);
+        freelancer2 = new Freelancer("Freelancer2", "Creative Music and Audio Designer", Categories.MUSIC_AND_AUDIO);
         categoryViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
     }
 

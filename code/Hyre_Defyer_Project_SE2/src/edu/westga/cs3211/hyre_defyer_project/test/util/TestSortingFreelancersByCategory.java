@@ -16,7 +16,7 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategoryWithOneItem() {
 	    	List<Freelancer> freelancers = new ArrayList<>();
-	    	Freelancer alice = new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, 
+	    	Freelancer alice = new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, 
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"});
 	        freelancers.add(alice);
 	        FreelancerSorter.sortByCategory(freelancers);
@@ -27,9 +27,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategoryWithTwoItems() {
 	    	List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 	            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT,
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT,
 	            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 	        FreelancerSorter.sortByCategory(freelancers);
 	        assertEquals(Categories.DEVELOPMENT_AND_IT, freelancers.get(0).getCategory());
@@ -39,9 +39,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation1() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -53,9 +53,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation2() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -67,9 +67,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation3() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -81,9 +81,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation4() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -95,9 +95,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation5() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -109,9 +109,9 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategory_Permutation6() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);
 
@@ -123,11 +123,11 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategoryAlreadySorted() {
 	    	List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DESIGN_AND_CREATIVE,
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DESIGN_AND_CREATIVE,
 	            new String[]{"Photoshop", "Illustrator", "Figma", "Sketch", "UI/UX"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.DEVELOPMENT_AND_IT,
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.DEVELOPMENT_AND_IT,
 	            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 	            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
 	        FreelancerSorter.sortByCategory(freelancers);
 	        assertEquals(Categories.DESIGN_AND_CREATIVE, freelancers.get(0).getCategory());
@@ -138,11 +138,11 @@ class TestSortingFreelancersByCategory {
 	    @Test
 	    public void testSortByCategoryWithDuplicates() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 	            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-	        freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 	            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"}));
-	        freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+	        freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 	            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
 	        FreelancerSorter.sortByCategory(freelancers);

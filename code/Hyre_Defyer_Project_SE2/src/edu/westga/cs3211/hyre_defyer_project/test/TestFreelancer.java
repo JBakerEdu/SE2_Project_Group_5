@@ -14,12 +14,12 @@ class TestFreelancer {
 	@BeforeEach
     public void setUp() {
         String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
-        freelancer = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
     }
 	
 	@Test
     public void testDefaultConstructorValidInputs() {
-		freelancer = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT);
+		freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT);
         assertEquals("JohnDoe", freelancer.getUserName());
         assertEquals("Experienced Developer", freelancer.getBio());
         assertEquals(Categories.DEVELOPMENT_AND_IT, freelancer.getCategory());

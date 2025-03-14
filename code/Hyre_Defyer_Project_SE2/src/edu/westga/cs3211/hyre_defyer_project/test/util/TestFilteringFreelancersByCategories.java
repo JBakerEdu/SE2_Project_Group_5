@@ -26,11 +26,11 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByCategoryWithNoCategories() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-		    freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+		    freelancers.add(new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"}));
-		    freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+		    freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
 	        List<Categories> catList = new ArrayList<>();
@@ -42,11 +42,11 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByCategoryWithCategoryNotInList() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-		    freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+		    freelancers.add(new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"}));
-		    freelancers.add(new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+		    freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
 	        List<Categories> catList = new ArrayList<>();
@@ -59,11 +59,11 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByCategoryWithCategoryInList() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        Freelancer charlie = new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+	        Freelancer charlie = new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"});
-	        freelancers.add(new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        freelancers.add(new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"}));
-		    freelancers.add(new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+		    freelancers.add(new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"}));
 		    freelancers.add(charlie);
 
@@ -77,11 +77,11 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByCategoryWithCategoryInListTwoResults() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        Freelancer alice = new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        Freelancer alice = new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"});
-	        Freelancer bob = new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+	        Freelancer bob = new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"});
-	        Freelancer charlie = new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+	        Freelancer charlie = new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"});
 	        freelancers.add(alice);
 	        freelancers.add(bob);
@@ -98,11 +98,11 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByTwoCategories() {
 	        List<Freelancer> freelancers = new ArrayList<>();
-	        Freelancer alice = new Freelancer("Alice", "pass123", "Bio A", Categories.MARKETING_AND_SALES,
+	        Freelancer alice = new Freelancer("Alice", "Bio A", Categories.MARKETING_AND_SALES,
 		            new String[]{"SEO", "Content", "Branding", "Social Media", "Advertising"});
-	        Freelancer bob = new Freelancer("Bob", "pass456", "Bio B", Categories.MARKETING_AND_SALES,
+	        Freelancer bob = new Freelancer("Bob", "Bio B", Categories.MARKETING_AND_SALES,
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"});
-	        Freelancer charlie = new Freelancer("Charlie", "pass789", "Bio C", Categories.DEVELOPMENT_AND_IT,
+	        Freelancer charlie = new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"});
 	        freelancers.add(alice);
 	        freelancers.add(bob);

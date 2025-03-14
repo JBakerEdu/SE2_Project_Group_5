@@ -11,42 +11,33 @@ public class TestUserConstructor {
 	
 	@Test
     void testValidUserCreation() {
-        User user = new User("Alice", "securePass123");
+        User user = new User("Alice");
         assertEquals("Alice", user.getUserName());
-        assertEquals("securePass123", user.getPassword());
         assertEquals("", user.getBio(), "Default bio should be empty");
     }
 
     @Test
     void testValidUserCreationWithBio() {
-        User user = new User("Bob", "strongPass456", "Bio");
+        User user = new User("Bob", "Bio");
         assertEquals("Bob", user.getUserName());
-        assertEquals("strongPass456", user.getPassword());
         assertEquals("Bio", user.getBio());
     }
 
     @Test
     void testInvalidUserNameThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> new User("", "password123"));
-        assertThrows(IllegalArgumentException.class, () -> new User("   ", "password123"));
-        assertThrows(IllegalArgumentException.class, () -> new User(null, "password123"));
-    }
-
-    @Test
-    void testInvalidPasswordThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> new User("Alice", ""));
-        assertThrows(IllegalArgumentException.class, () -> new User("Alice", "   "));
-        assertThrows(IllegalArgumentException.class, () -> new User("Alice", null));
+        assertThrows(IllegalArgumentException.class, () -> new User(""));
+        assertThrows(IllegalArgumentException.class, () -> new User("   "));
+        assertThrows(IllegalArgumentException.class, () -> new User(null));
     }
 
     @Test
     void testInvalidBioThrowsException() {
-        assertThrows(IllegalArgumentException.class, () -> new User("Alice", "password123", null));
+        assertThrows(IllegalArgumentException.class, () -> new User("Alice", null));
     }
 
     @Test
     void testSetUserName() {
-        User user = new User("Alice", "password123");
+        User user = new User("Alice");
         user.setUserName("Charlie");
         assertEquals("Charlie", user.getUserName());
 
@@ -56,23 +47,12 @@ public class TestUserConstructor {
     }
 
     @Test
-    void testSetPassword() {
-        User user = new User("Alice", "password123");
-        user.setPassword("newSecurePass");
-        assertEquals("newSecurePass", user.getPassword());
-
-        assertThrows(IllegalArgumentException.class, () -> user.setPassword(""));
-        assertThrows(IllegalArgumentException.class, () -> user.setPassword("   "));
-        assertThrows(IllegalArgumentException.class, () -> user.setPassword(null));
-    }
-
-    @Test
     void testSetBio() {
-        User user = new User("Alice", "password123");
+        User user = new User("Alice");
         user.setBio("Loves coding in Java!");
         assertEquals("Loves coding in Java!", user.getBio());
 
-        user.setBio(""); // Empty bio is allowed
+        user.setBio("");
         assertEquals("", user.getBio());
 
         assertThrows(IllegalArgumentException.class, () -> user.setBio(null));

@@ -21,7 +21,6 @@ public class TempServerTest {
         User user = ServerInterface.login("user1", "password1");
         assertNotNull(user);
         assertEquals("user1", user.getUserName());
-        assertEquals("password1", user.getPassword());
         assertEquals("", user.getBio());
         
     }

@@ -62,7 +62,7 @@ public class ServerInterface {
 		if (successCode.equals(Constants.REP_SUCCESS)) {
             String bio = jsonObject.getString(Constants.REQ_BIO);
             String username = jsonObject.getString(Constants.REQ_USERNAME);
-            return new User(username, password, bio);
+            return new User(username, bio);
 		}
 		return null; 
 	}
