@@ -3,9 +3,8 @@ Created on Mar 10, 2025
 
 @author: alecx
 '''
-PROTOCOL = "tcp"
 IP_ADDRESS = "127.0.0.1"
-PORT="5555"
+PORT="4225"
 
 REQ_TYPE = "request_type"
 REQ_USERNAME = "username"

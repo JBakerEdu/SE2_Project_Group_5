@@ -1,42 +1,42 @@
 package edu.westga.cs3211.hyre_defyer_project.server;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import org.json.JSONObject;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ServerCommunicator {
 	
 	private static final String HOST = "127.0.0.1";
-	private static final int PORT = 5555;
+	private static final int PORT = 4225;
 
 	/**
-	 * Main entry point of client.
+	 * Sends a request to the server and returns the servers response.
 	 * 
-	 * @param args not used
+	 * @param request the request
 	 */
-	public static void main(String[] args) {
+	public static String sendRequestToServer(JSONObject request) {
 		try (Socket clientSocket = new Socket(HOST, PORT);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream())) {
+			     DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
+			     DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream())) {
 
-            System.out.println("Session started...");
-            // TODO Figure out how to send JSON objects, The python server only excepts JSON objects,
-            //  so here in java we need to serialize our objects but we need a dependency for that
-            
-            /*JSONObject request = new JSONObject();
-            request.put("message", "Test");
-            request.put("type", "testMessage");
+	            String jsonMessage = request.toString();
+	            byte[] jsonBytes = jsonMessage.getBytes("UTF-8");
 
-            // Send the JSON string
-            objectOutputStream.writeObject(request.toString());
-            objectOutputStream.flush();
-            */
+	            dataOutputStream.writeInt(jsonBytes.length);
+	            dataOutputStream.write(jsonBytes);
+	            dataOutputStream.flush();
+	            
+	            int messageLength = dataInputStream.readInt();
+	            byte[] responseBytes = new byte[messageLength];
+	            dataInputStream.readFully(responseBytes);
 
-            System.out.println("\tObject was sent!\nSession disconnected.");
-        } catch (IOException e) {
-            System.err.println("Error: Unable to communicate with the server.");
-            e.printStackTrace();
-        }
+	            return new String(responseBytes, "UTF-8");
+	        } catch (IOException e) {
+	            System.err.println("❌ Failed to connect to the server.");
+	            e.printStackTrace();
+	        }
+		return "ERROR";
 	}
 }
