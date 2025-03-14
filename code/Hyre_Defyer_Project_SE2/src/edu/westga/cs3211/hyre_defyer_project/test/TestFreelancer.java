@@ -7,14 +7,27 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
 
 class TestFreelancer {
 	private Freelancer freelancer;
+	
+	private Freelancer freelancer1;
+	private Freelancer freelancer2;
+	private Freelancer freelancer3;
+	
+	private String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+	private String[] skills1 = {"Java", "Python", "C++", "JavaScript", "SQL"};
+    private  String[] skills2 = {"Java", "Python", "C++", "JavaScript", "SQL"};
+    private String[] skills3 = {"Ruby", "Go", "Swift", "HTML", "CSS"};
 
 	@BeforeEach
     public void setUp() {
-        String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
         freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+
+        freelancer1 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills1);
+        freelancer2 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+        freelancer3 = new Freelancer("JaneDoe",  "Experienced Developer", Categories.BUSINESS_AND_FINANCE, skills3);
     }
 	
 	@Test
@@ -141,6 +154,77 @@ class TestFreelancer {
             freelancer.setAllSkills(new String[4]);
         });
         assertEquals("Skills array must be of size 5.", exception.getMessage());
+    }
+    
+    @Test
+    public void testEquals_SameObject() {
+    	
+        assertTrue(freelancer1.equals(freelancer1), "Freelancer should be equal to itself.");
+    }
+    
+    @Test
+    public void testEquals_NullObject() {
+        assertFalse(freelancer1.equals(null), "Freelancer should not be equal to null.");
+    }
+    
+    @Test
+    public void testEquals_DifferetObject() {
+    	User user = new User("user", "pass", "Bio");
+        assertFalse(freelancer1.equals(user), "Freelancer should not be equal to User.");
+    }
+
+    @Test
+    public void testEquals_SameValues() {
+        assertTrue(freelancer1.equals(freelancer2), "Freelancer objects with the same values should be equal.");
+    }
+    
+    @Test
+    public void testEquals_DifferentUserName() {
+    	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JaneDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different usernames should not be equal.");
+    }
+    
+    @Test
+    public void testEquals_DifferentBio() {
+    	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced DeveloperA", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced DeveloperB", Categories.DEVELOPMENT_AND_IT, skills);
+        assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different Bios should not be equal.");
+    }
+    
+    @Test
+    public void testEquals_SameSkillsDifferentPlace() {
+    	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
+    	String[] skills2 = {"Ruby", "Go", "Swift", "HTML", "CSS"};
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+        assertTrue(freelancer4.equals(freelancer5), "Freelancer objects with same Skills should be equal.");
+    }
+    
+    @Test
+    public void testEquals_DifferentSkills() {
+    	String[] skills = {"Different", "Go", "Swift", "HTML", "CSS"};
+    	String[] skills2 = {"Ruby", "Go", "Swift", "HTML", "CSS"};
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+        assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different Skills should not be equal.");
+    }
+
+    @Test
+    public void testEquals_DifferentValues() {
+        assertFalse(freelancer1.equals(freelancer3), "Freelancer objects with different values should not be equal.");
+    }
+
+    @Test
+    public void testHashCode_SameValues() {
+        assertEquals(freelancer1.hashCode(), freelancer2.hashCode(), "Hash codes should be the same for equal objects.");
+    }
+
+    @Test
+    public void testHashCode_DifferentValues() {
+        assertNotEquals(freelancer1.hashCode(), freelancer3.hashCode(), "Hash codes should be different for non-equal objects.");
     }
 
 

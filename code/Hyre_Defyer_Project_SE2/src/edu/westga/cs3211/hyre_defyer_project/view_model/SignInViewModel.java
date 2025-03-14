@@ -2,6 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 
 /**
  * View model for SignInView
@@ -45,11 +47,9 @@ public class SignInViewModel {
 	 * 				 false if the account wasn't created due to duplicate username or if password != confirmPassword
 	 */
 	public boolean createAccount(String username, String userpassword, String confirmPassword) {
-		if (userpassword.equals(confirmPassword)) {
-			if (ServerInterface.createAccount(username, userpassword)) {
-				this.signIn(username, userpassword);
-				return true;
-			}
+		if (ServerInterface.createAccount(username, userpassword)) {
+			this.signIn(username, userpassword);
+			return true;
 		}
 		return false;
 	}
@@ -78,6 +78,21 @@ public class SignInViewModel {
 	public static boolean signOut() {
 		currentUser = null;
 		return true;
+	}
+	
+	/**
+	 * Finds out if the input userName exists in our server
+	 * @param username the input userName
+	 * @return true if the user exists in the server
+	 * 				 false if the user doesn't exist in the server
+	 */
+	public boolean userExists(String username) {
+		for (User currUser : ServerActor.getUsers()) {
+			if (currUser.getUserName().equals(username)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
