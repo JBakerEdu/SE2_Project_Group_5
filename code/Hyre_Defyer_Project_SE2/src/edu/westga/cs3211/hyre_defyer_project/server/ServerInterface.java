@@ -12,7 +12,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
  * @author Alec Neal
  * @version Spring 2025
  */
-public class ServerActor {
+public class ServerInterface {
 	private static ArrayList<ArrayList<Message>> godMessageLog = new ArrayList<ArrayList<Message>>();
 	private static ArrayList<User> users = new ArrayList<User>();
 	
@@ -22,7 +22,7 @@ public class ServerActor {
 	 * @precondition none
 	 * @postcondition none
 	 */
-	public ServerActor() {
+	public ServerInterface() {
 		
 	}
 
