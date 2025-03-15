@@ -1,7 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
-import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 
@@ -18,7 +18,7 @@ public class SignInViewModel {
 	 * Creates new SignInViewModel object
 	 */
 	public SignInViewModel() {
-		ServerActor.createAccount("admin", "1234567");
+		ServerInterface.createAccount("admin", "1234567");
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class SignInViewModel {
 	 * 				 false if user information doesn't match
 	 */
 	public boolean signIn(String userName, String userPassword) {
-		User user = ServerActor.login(userName, userPassword);
+		User user = ServerInterface.login(userName, userPassword);
 		if (user == null) {
 			return false;
 		} else {
@@ -47,7 +47,7 @@ public class SignInViewModel {
 	 * 				 false if the account wasn't created due to duplicate username or if password != confirmPassword
 	 */
 	public boolean createAccount(String username, String userpassword, String confirmPassword) {
-		if (ServerActor.createAccount(username, userpassword)) {
+		if (ServerInterface.createAccount(username, userpassword)) {
 			this.signIn(username, userpassword);
 			return true;
 		}

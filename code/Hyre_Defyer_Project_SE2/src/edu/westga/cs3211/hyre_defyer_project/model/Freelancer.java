@@ -24,34 +24,32 @@ public class Freelancer extends User {
     /**
      * Creates a freelancer with a username, password, biography, and category.
      *
-     * @precondition userName != null && !userName.isBlank() && password != null && !password.isBlank() && userBio != null && category != null
-     * @postcondition userName, password, userBio, and category are set; skills is initialized as an empty array of size 5
+     * @precondition userName != null && !userName.isBlank() && userBio != null && category != null
+     * @postcondition userName, userBio, and category are set; skills is initialized as an empty array of size 5
      *
      * @param userName The freelancer's name
-     * @param password The freelancer's password
      * @param userBio The freelancer's biography
      * @param category The freelancer's category
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String password, String userBio, Categories category) {
-    	this(userName, password, userBio, category, new String[NUM_OF_SKILLS]);
+    public Freelancer(String userName, String userBio, Categories category) {
+    	this(userName, userBio, category, new String[NUM_OF_SKILLS]);
     }
     
     /**
      * Creates a freelancer with a username, password, biography, category, and skills.
      *
-     * @precondition userName != null && !userName.isBlank() && password != null && !password.isBlank() && userBio != null && category != null && skills.length == 5
-     * @postcondition userName, password, userBio, category, and skills are set
+     * @precondition userName != null && !userName.isBlank() && userBio != null && category != null && skills.length == 5
+     * @postcondition userName, userBio, category, and skills are set
      *
      * @param userName The freelancer's name
-     * @param password The freelancer's password
      * @param userBio The freelancer's biography
      * @param category The freelancer's category
      * @param skills The freelancer's skills
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String password, String userBio, Categories category, String[] skills) {
-        super(userName, password, userBio);
+    public Freelancer(String userName, String userBio, Categories category, String[] skills) {
+        super(userName, userBio);
         this.setCategory(category);
         this.setAllSkills(skills);
     }

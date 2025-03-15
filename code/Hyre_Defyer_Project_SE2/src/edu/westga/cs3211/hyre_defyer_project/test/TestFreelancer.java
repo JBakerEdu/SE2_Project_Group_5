@@ -23,16 +23,16 @@ class TestFreelancer {
 
 	@BeforeEach
     public void setUp() {
-        freelancer = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
 
-        freelancer1 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills1);
-        freelancer2 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
-        freelancer3 = new Freelancer("JaneDoe", "password456", "Experienced Developer", Categories.BUSINESS_AND_FINANCE, skills3);
+        freelancer1 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills1);
+        freelancer2 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+        freelancer3 = new Freelancer("JaneDoe",  "Experienced Developer", Categories.BUSINESS_AND_FINANCE, skills3);
     }
 	
 	@Test
     public void testDefaultConstructorValidInputs() {
-		freelancer = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT);
+		freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT);
         assertEquals("JohnDoe", freelancer.getUserName());
         assertEquals("Experienced Developer", freelancer.getBio());
         assertEquals(Categories.DEVELOPMENT_AND_IT, freelancer.getCategory());
@@ -181,24 +181,16 @@ class TestFreelancer {
     @Test
     public void testEquals_DifferentUserName() {
     	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
-    	Freelancer freelancer4 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-        Freelancer freelancer5 = new Freelancer("JaneDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JaneDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
         assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different usernames should not be equal.");
-    }
-    
-    @Test
-    public void testEquals_DifferentPassWord() {
-    	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
-    	Freelancer freelancer4 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-        Freelancer freelancer5 = new Freelancer("JohnDoe", "password456", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-        assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different passwords should not be equal.");
     }
     
     @Test
     public void testEquals_DifferentBio() {
     	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
-    	Freelancer freelancer4 = new Freelancer("JohnDoe", "password123", "Experienced DeveloperA", Categories.DEVELOPMENT_AND_IT, skills);
-        Freelancer freelancer5 = new Freelancer("JohnDoe", "password456", "Experienced DeveloperB", Categories.DEVELOPMENT_AND_IT, skills);
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced DeveloperA", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced DeveloperB", Categories.DEVELOPMENT_AND_IT, skills);
         assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different Bios should not be equal.");
     }
     
@@ -206,8 +198,8 @@ class TestFreelancer {
     public void testEquals_SameSkillsDifferentPlace() {
     	String[] skills = {"Ruby", "Go", "Swift", "HTML", "CSS"};
     	String[] skills2 = {"Ruby", "Go", "Swift", "HTML", "CSS"};
-    	Freelancer freelancer4 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-        Freelancer freelancer5 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
         assertTrue(freelancer4.equals(freelancer5), "Freelancer objects with same Skills should be equal.");
     }
     
@@ -215,8 +207,8 @@ class TestFreelancer {
     public void testEquals_DifferentSkills() {
     	String[] skills = {"Different", "Go", "Swift", "HTML", "CSS"};
     	String[] skills2 = {"Ruby", "Go", "Swift", "HTML", "CSS"};
-    	Freelancer freelancer4 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-        Freelancer freelancer5 = new Freelancer("JohnDoe", "password123", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+    	Freelancer freelancer4 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        Freelancer freelancer5 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
         assertFalse(freelancer4.equals(freelancer5), "Freelancer objects with different Skills should not be equal.");
     }
 

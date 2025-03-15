@@ -2,6 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.model;
 
 import java.util.ArrayList;
 
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+
 /** Handles and stores direct message information between two users​
  *​
  * @author Alec Neal​
@@ -27,7 +29,7 @@ public class DirectMessageHandler {
     }
 
 	private void updateMessageLog() {
-		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerActor.getMessagesBetween(this.sender, this.receiver));
+		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerInterface.getMessagesBetween(this.sender, this.receiver));
 		if (fullMessageLog.get(0).getMessage().equals("TEMP")) {
 			            fullMessageLog.remove(0);
 		}
@@ -42,7 +44,7 @@ public class DirectMessageHandler {
 	  * @param message the message to send​​
 	  */
 	public void sendMessage(Message message) {
-		ServerActor.sendMessage(message);
+		ServerInterface.sendMessage(message);
 		this.updateMessageLog();
 	}
 	
