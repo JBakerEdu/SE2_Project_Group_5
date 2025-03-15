@@ -21,7 +21,7 @@ def main():
     server_socket.listen(1)
     while True:
         log("Waiting for client...")
-        client_socket = server_socket.accept()
+        client_socket, addr = server_socket.accept()
 
         try:
             message_length = int.from_bytes(client_socket.recv(4), byteorder="big")
