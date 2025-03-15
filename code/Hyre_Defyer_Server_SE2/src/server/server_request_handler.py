@@ -16,7 +16,6 @@ class ServerRequestHandler:
     def _sendMessage(self, request):
         '''
             Sends a message between two users
-            TODO
         '''
         response = {}
         messageText = request.get(constants.REQ_TEXT)
@@ -29,20 +28,6 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
-    def _deleteMessage(self, request):
-        '''
-            Deletes a message between two users
-            TODO
-        '''
-        response = {}
-        messageText = request.get(constants.REQ_TEXT)
-        sender = request.get(constants.REQ_SENDER)
-        receiver = request.get(constants.REQ_RECEIVER)
-
-        response[constants.SUCCESS_CODE] = constants.REP_FAIL
-        response[constants.REP_ERROR_DESCRIPTION] = "Message not found"
-        return response
-
     def _createAccount(self, request):
         '''
             Creates a new user account with a username and password
@@ -67,14 +52,15 @@ class ServerRequestHandler:
     def _getMessages(self, request):
         '''
             Returns all messages between two users
-            TODO
         '''
         response = {}
         sender = request.get(constants.REQ_SENDER)
         receiver = request.get(constants.REQ_RECEIVER)
         
+        messages = self._serverResourceHandler.getMessagesBetween(sender, receiver)
+        
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        response[constants.REP_MESSAGES] = []
+        response[constants.REP_MESSAGES] = messages
         return response
         
 
@@ -108,8 +94,7 @@ class ServerRequestHandler:
             Handles and distributes requests and returns with their appropriate responses.
             
             Supported request types:
-                TODO: send message
-                TODO: delete message
+                send message
                 TODO: get messages
                 create account
                 login
@@ -121,9 +106,6 @@ class ServerRequestHandler:
 
         if req_type == constants.REQ_SEND_MESSAGE:
             response = self._sendMessage(request)
-            
-        elif req_type == constants.REQ_DELETE_MESSAGE:
-            response = self._deleteMessage(request)
             
         elif req_type == constants.REQ_CREATE_ACCOUNT:
             response = self._createAccount(request)

@@ -12,8 +12,7 @@ public class Constants {
     public static final String REQ_SENDER = "sender";
     public static final String REQ_RECEIVER = "receiver";
     public static final String REQ_TEXT = "text";
-    public static final String REQ_SEND_MESSAGE = "create message";
-    public static final String REQ_DELETE_MESSAGE = "delete message";
+    public static final String REQ_SEND_MESSAGE = "send message";
     public static final String REQ_CREATE_ACCOUNT = "create account";
     public static final String REQ_LOGIN = "login";
     public static final String REQ_GET_MESSAGES = "get messages";

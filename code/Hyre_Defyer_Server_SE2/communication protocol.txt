@@ -25,3 +25,38 @@
         
         }
     }
+//Send message request
+    {
+        "type" : "send message",
+        "sender" : <username>,
+        "receiver" : <username>,
+        "text" : <message>
+    }
+//Send message response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
+ //Get messages between users request
+    {
+        "type" : "get messages",
+        "sender" : <username>,
+        "receiver" : <username>
+    }
+//Get messages between users response
+    {
+        "success_code": "success"|"fail",
+        "messages" : [
+            {
+                "sender" : <username>,
+                "receiver" : <username>,
+                "text" : <message>
+            },
+            {
+                "sender" : <username>,
+                "receiver" : <username>,
+                "text" : <message>
+            }
+        ],
+        “error description”:<error message> #only if fail
+    }
