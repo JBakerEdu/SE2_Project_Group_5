@@ -4,6 +4,7 @@ Created on Mar 10, 2025
 @author: alecx
 '''
 from src.server import constants
+from src.model.message import Message
 from src.server.server_resource_handler import ServerResourceHandler
 
 class ServerRequestHandler:
@@ -15,30 +16,20 @@ class ServerRequestHandler:
     def _sendMessage(self, request):
         '''
             Sends a message between two users
-            TODO
         '''
         response = {}
         messageText = request.get(constants.REQ_TEXT)
-        sender = request.get(constants.REQ_SENDER)
-        receiver = request.get(constants.REQ_RECEIVER)
+        senderName = request.get(constants.REQ_SENDER)
+        receiverName = request.get(constants.REQ_RECEIVER)
+        sender = self._serverResourceHandler.getUser(senderName)
+        receiver = self._serverResourceHandler.getUser(receiverName)
+        
+        message = Message(messageText, sender, receiver)
+        self._serverResourceHandler.sendMessage(message)
 
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
-    def _deleteMessage(self, request):
-        '''
-            Deletes a message between two users
-            TODO
-        '''
-        response = {}
-        messageText = request.get(constants.REQ_TEXT)
-        sender = request.get(constants.REQ_SENDER)
-        receiver = request.get(constants.REQ_RECEIVER)
-
-        response[constants.SUCCESS_CODE] = constants.REP_FAIL
-        response[constants.REP_ERROR_DESCRIPTION] = "Message not found"
-        return response
-
     def _createAccount(self, request):
         '''
             Creates a new user account with a username and password
@@ -63,16 +54,35 @@ class ServerRequestHandler:
     def _getMessages(self, request):
         '''
             Returns all messages between two users
-            TODO
         '''
         response = {}
-        sender = request.get(constants.REQ_SENDER)
-        receiver = request.get(constants.REQ_RECEIVER)
+        senderName = request.get(constants.REQ_SENDER)
+        receiverName = request.get(constants.REQ_RECEIVER)
+        sender = self._serverResourceHandler.getUser(senderName)
+        receiver = self._serverResourceHandler.getUser(receiverName)
         
+        messages = self._serverResourceHandler.getMessagesBetween(sender, receiver)
+               
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        response[constants.REP_MESSAGES] = []
+        formatted_messages = [msg.to_dict() for msg in messages]
+        response[constants.REP_MESSAGES] = formatted_messages
+        
         return response
         
+    def _getMessageableUsers(self, request):
+        '''
+            Returns all users that can be messaged
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        user = self._serverResourceHandler.getUser(userName)
+        
+        users = user.getMessageableUsers()
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        response[constants.REP_USERS] = users
+        
+        return response
 
     def _login(self, request):
         '''
@@ -99,16 +109,30 @@ class ServerRequestHandler:
         
         return response
     
+    def _addMessageableUser(self, request):
+        '''
+            Adds a user to the list of users that can be messaged
+        '''
+        response = {}
+        sender = request.get(constants.REQ_SENDER)
+        receiver = request.get(constants.REQ_RECEIVER)
+        
+        self._serverResourceHandler.addUserToDMList(sender, receiver)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.
             
             Supported request types:
-                TODO: send message
-                TODO: delete message
-                TODO: get messages
+                send message
+                get messages
                 create account
                 login
+                get messageable users
+                add messageable user
                 
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
@@ -118,9 +142,6 @@ class ServerRequestHandler:
         if req_type == constants.REQ_SEND_MESSAGE:
             response = self._sendMessage(request)
             
-        elif req_type == constants.REQ_DELETE_MESSAGE:
-            response = self._deleteMessage(request)
-            
         elif req_type == constants.REQ_CREATE_ACCOUNT:
             response = self._createAccount(request)
             
@@ -129,6 +150,12 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_GET_MESSAGES:
             response = self._getMessages(request)
+            
+        elif req_type == constants.REQ_GET_MESSAGEABLE_USERS:
+            response = self._getMessageableUsers(request)
+            
+        elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
+            response = self._addMessageableUser(request)
         
         return response
         

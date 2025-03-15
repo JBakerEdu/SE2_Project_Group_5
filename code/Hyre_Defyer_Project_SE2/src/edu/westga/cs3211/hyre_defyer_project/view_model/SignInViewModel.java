@@ -47,6 +47,10 @@ public class SignInViewModel {
 	public boolean createAccount(String username, String userpassword, String confirmPassword) {
 		if (ServerInterface.createAccount(username, userpassword)) {
 			this.signIn(username, userpassword);
+			//TEMPORARY: REMOVE LATER
+			//WILL ADD FUNCTIONALITY TO ADD USERS TO DM LIST DIRECTLY, THIS IS FOR TESTING ADMIN TO USER MESSAGES
+			User admin = new User("admin");
+			ServerInterface.addMessageableUser(currentUser, admin);
 			return true;
 		}
 		return false;

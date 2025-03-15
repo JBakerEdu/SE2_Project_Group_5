@@ -1,6 +1,8 @@
 import unittest
 from src.server import constants
 from src.server.server_request_handler import ServerRequestHandler
+from src.model.message import Message
+from src.model.user import User
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -45,7 +47,63 @@ class TestServerRequestHandler(unittest.TestCase):
         
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
-         
+    
+    def test_send_message(self):
+        create_request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(create_request)
+        
+        create_request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username2",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(create_request)
+        
+        message_request = {
+            constants.REQ_TYPE: constants.REQ_SEND_MESSAGE,
+            constants.REQ_TEXT: "message",
+            constants.REQ_RECEIVER: "username2",
+            constants.REQ_SENDER: "username"
+        }
+        response = self.serverRequestHandler.handleRequest(message_request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+        message_request = {
+            constants.REQ_TYPE: constants.REQ_SEND_MESSAGE,
+            constants.REQ_TEXT: "message2",
+            constants.REQ_RECEIVER: "username",
+            constants.REQ_SENDER: "username2"
+        }
+        response = self.serverRequestHandler.handleRequest(message_request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+        message_get_request = {
+            constants.REQ_TYPE: constants.REQ_GET_MESSAGES,
+            constants.REQ_SENDER: "username",
+            constants.REQ_RECEIVER: "username2"
+        }
+        
+        response = self.serverRequestHandler.handleRequest(message_get_request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        self.assertEqual(len(response[constants.REP_MESSAGES]), 2)
+        
+        message_dicts = response[constants.REP_MESSAGES]
+        
+        messages = [
+            Message(msg["text"], User(msg["sender"], ""), User(msg["receiver"], ""))
+            for msg in message_dicts
+        ]
+
+        self.assertEqual(messages[0].getMessage(), "message")
+        self.assertEqual(messages[0].getSender().getUserName(), "username")
+        self.assertEqual(messages[0].getReceiver().getUserName(), "username2")
+        self.assertEqual(messages[1].getMessage(), "message2")
+        self.assertEqual(messages[1].getSender().getUserName(), "username2")
+        self.assertEqual(messages[1].getReceiver().getUserName(), "username")
 
 if __name__ == "__main__":
     unittest.main()

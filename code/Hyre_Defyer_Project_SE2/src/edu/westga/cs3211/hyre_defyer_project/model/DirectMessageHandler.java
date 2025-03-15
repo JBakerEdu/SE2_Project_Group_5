@@ -30,9 +30,6 @@ public class DirectMessageHandler {
 
 	private void updateMessageLog() {
 		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerInterface.getMessagesBetween(this.sender, this.receiver));
-		if (fullMessageLog.get(0).getMessage().equals("TEMP")) {
-			            fullMessageLog.remove(0);
-		}
         this.messageLog = fullMessageLog;
     }
 	
@@ -52,7 +49,6 @@ public class DirectMessageHandler {
 	 * Gets the Full Message Log
 	 *
 	 * @precondition none
-	 * @postcondition none
 	 * @return the full message log
 	 */
 	public ArrayList<Message> getFullMessageLog() {

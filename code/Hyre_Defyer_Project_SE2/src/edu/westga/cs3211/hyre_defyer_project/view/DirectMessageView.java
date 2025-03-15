@@ -109,8 +109,7 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-    	List<User> users = new ArrayList<>(ServerInterface.getUsers());
-    	users.remove(SignInViewModel.getCurrentUser());
+    	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
 
     	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
     	this.contactListView.setItems(observableListUsers);

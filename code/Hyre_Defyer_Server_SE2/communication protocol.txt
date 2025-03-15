@@ -25,3 +25,70 @@
         
         }
     }
+//Send message request
+    {
+        "type" : "send message",
+        "sender" : <username>,
+        "receiver" : <username>,
+        "text" : <message>
+    }
+//Send message response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
+ //Get messages between users request
+    {
+        "type" : "get messages",
+        "sender" : <username>,
+        "receiver" : <username>
+    }
+//Get messages between users response
+    {
+        "success_code": "success"|"fail",
+        "messages" : [
+            {
+                "sender" : <username>,
+                "receiver" : <username>,
+                "text" : <message>
+            },
+            {
+                "sender" : <username>,
+                "receiver" : <username>,
+                "text" : <message>
+            }
+        ],
+        “error description”:<error message> #only if fail
+    }
+//Get Messageable Users request
+    {
+        "type" : "get messagable users",
+        "userName" : <username>
+    }
+    
+//Get Messageable Users response
+    {
+        "success_code": "success"|"fail",
+        "users" : [
+            {
+                "userName" : <username>,
+            },
+            {
+                "userName" : <username>,
+            }
+        ], #only if success
+        “error description”:<error message> #only if fail
+    }
+//Add Messageable User request
+    {
+        "type" : "add messagable user",
+        "sender" : <username>,
+        "receiver" : <username>
+    }
+//Add Messageable User response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
+
+    

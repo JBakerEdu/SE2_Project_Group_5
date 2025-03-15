@@ -43,6 +43,21 @@ public class TempServerTest {
     }
 	
 	@Test
+	public void testSendMultipleMessages() {
+        ServerInterface.createAccount("Connor", "password1");
+        ServerInterface.createAccount("Dokken", "password2");
+        User user1 = ServerInterface.login("Connor", "password1");
+        User user2 = ServerInterface.login("Dokken", "password2");
+        DirectMessageHandler handler = new DirectMessageHandler(user1, user2);
+        Message message = new Message("Hello", user1, user2);
+        Message message1 = new Message("World", user1, user2);
+        handler.sendMessage(message);
+        handler.sendMessage(message1);
+        assertEquals("Hello", handler.getFullMessageLog().get(0).getMessage());
+        assertEquals("World", handler.getFullMessageLog().get(1).getMessage());
+    }
+	
+	@Test
 	public void testDuplicateAccount() {
 		assertTrue(ServerInterface.createAccount("kate", "password1"));
 		
