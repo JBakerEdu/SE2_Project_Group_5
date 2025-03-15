@@ -25,7 +25,7 @@ private FreelancerRoster roster;
     public void testInitializationWithExampleFreelancers() {
         assertNotNull(roster);
         assertFalse(roster.getAllFreelancers().isEmpty());
-        assertEquals(24, roster.getAllFreelancers().size());
+        assertEquals(51, roster.getAllFreelancers().size());
     }
     
     @Test
@@ -39,8 +39,8 @@ private FreelancerRoster roster;
     @Test
     public void testConstructorInitializesWithGivenList() {
         List<Freelancer> initialFreelancers = new ArrayList<>();
-        initialFreelancers.add(new Freelancer("TestUser1", "password1", "Bio1", Categories.WRITING_AND_TRANSLATION, new String[]{"Editing", "Copywriting", "", "", ""}));
-        initialFreelancers.add(new Freelancer("TestUser2", "password2", "Bio2", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "", "", ""}));
+        initialFreelancers.add(new Freelancer("TestUser1", "Bio1", Categories.WRITING_AND_TRANSLATION, new String[]{"Editing", "Copywriting", "", "", ""}));
+        initialFreelancers.add(new Freelancer("TestUser2", "Bio2", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "", "", ""}));
         
         FreelancerRoster customRoster = new FreelancerRoster(initialFreelancers);
         assertEquals(2, customRoster.getAllFreelancers().size());
@@ -109,14 +109,14 @@ private FreelancerRoster roster;
     
     @Test
     public void testAddFreelancer() {
-        Freelancer newFreelancer = new Freelancer("Zane", "test123", "New freelancer", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "SQL", "Python", "Git"});
+        Freelancer newFreelancer = new Freelancer("Zane", "New freelancer", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "C++", "SQL", "Python", "Git"});
         roster.addFreelancer(newFreelancer);
         assertTrue(roster.getAllFreelancers().contains(newFreelancer));
     }
 
     @Test
     public void testRemoveFreelancerNotInRoster() {
-        Freelancer freelancer = new Freelancer("NonExistent", "password", "Bio", Categories.WRITING_AND_TRANSLATION, new String[]{"Editing", "Copywriting", "", "", ""});
+        Freelancer freelancer = new Freelancer("NonExistent", "Bio", Categories.WRITING_AND_TRANSLATION, new String[]{"Editing", "Copywriting", "", "", ""});
         assertFalse(roster.removeFreelancer(freelancer));
     }
 
@@ -141,7 +141,7 @@ private FreelancerRoster roster;
         List<Freelancer> freelancers = roster.getAllFreelancers();
         assertFalse(freelancers.isEmpty());
         Freelancer freelancer = freelancers.get(0);
-        Freelancer toRemove = new Freelancer(freelancer.getUserName(), freelancer.getPassword(), freelancer.getBio(), freelancer.getCategory(), freelancer.getSkills());
+        Freelancer toRemove = new Freelancer(freelancer.getUserName(), freelancer.getBio(), freelancer.getCategory(), freelancer.getSkills());
         roster.removeFreelancer(toRemove);
         assertFalse(roster.getAllFreelancers().contains(freelancer));
     }

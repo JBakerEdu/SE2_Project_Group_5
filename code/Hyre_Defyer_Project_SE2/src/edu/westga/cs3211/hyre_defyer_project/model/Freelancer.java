@@ -198,7 +198,7 @@ public class Freelancer extends User {
 			return false;
 		}
 		Freelancer other = (Freelancer) obj;
-		return (this.category == other.category) && (Arrays.equals(this.skills, other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())) && (other.getPassword().equals(this.getPassword())));
+		return (this.category == other.category) && (Arrays.equals(this.skills, other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())));
 	} 
     
 }
