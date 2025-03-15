@@ -3,7 +3,6 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.io.IOException;
 
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

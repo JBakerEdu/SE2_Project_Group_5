@@ -21,10 +21,10 @@ public class CategoryViewModelTest {
     @BeforeEach
     void setUp() {
         categoryViewModel = new CategoryViewModel();
-        freelancer1 = new Freelancer("JohnDoe", "Pass", "Bio", Categories.DEVELOPMENT_AND_IT);
-        freelancer2 = new Freelancer("JaneSmith", "Pass", "Bio", Categories.DESIGN_AND_CREATIVE);
-        freelancer3 = new Freelancer("MikeJones", "Pass", "Bio", Categories.DEVELOPMENT_AND_IT);
-        freelancer4 = new Freelancer("NewFreelancer", "password", "New Role", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Go", "Rust"});
+        freelancer1 = new Freelancer("JohnDoe", "Bio", Categories.DEVELOPMENT_AND_IT);
+        freelancer2 = new Freelancer("JaneSmith", "Bio", Categories.DESIGN_AND_CREATIVE);
+        freelancer3 = new Freelancer("MikeJones", "Bio", Categories.DEVELOPMENT_AND_IT);
+        freelancer4 = new Freelancer("NewFreelancer", "New Role", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Go", "Rust"});
         
         CategoryViewModel.freelancerRoster.addFreelancer(freelancer1);
         CategoryViewModel.freelancerRoster.addFreelancer(freelancer2);

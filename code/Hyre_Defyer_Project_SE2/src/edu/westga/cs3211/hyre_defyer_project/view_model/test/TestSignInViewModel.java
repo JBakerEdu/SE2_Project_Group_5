@@ -4,29 +4,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-
-import edu.westga.cs3211.hyre_defyer_project.model.ServerActor;
-import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 
 public class TestSignInViewModel {
-
-	@AfterAll void knockDown() {
-		User remove = null;
-		for (User user : ServerActor.getUsers()) {
-			if (user.getUserName().equals("new account")
-					|| user.getUserName().equals("user")
-					|| user.getUserName().equals("not user")
-					|| user.getUserName().equals("users")
-					|| user.getUserName().equals("not user")) {
-				remove = user;
-			}
-		}
-		if (remove != null) {
-			ServerActor.getUsers().remove(remove);
-		} 
-	}
 
 	@Test
 	public void testSigninSuccess() {
@@ -45,7 +25,7 @@ public class TestSignInViewModel {
 	@Test
 	public void testCreateAccountSuccess() {
 		SignInViewModel vm = new SignInViewModel();
-		assertTrue(vm.createAccount("users", "1234567", "1234567"));
+		assertTrue(vm.createAccount("user1", "1234567", "1234567"));
 	}
 	
 	@Test

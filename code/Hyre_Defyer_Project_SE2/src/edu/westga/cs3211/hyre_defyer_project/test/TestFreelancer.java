@@ -169,7 +169,7 @@ class TestFreelancer {
     
     @Test
     public void testEquals_DifferetObject() {
-    	User user = new User("user", "pass", "Bio");
+    	User user = new User("user", "Bio");
         assertFalse(freelancer1.equals(user), "Freelancer should not be equal to User.");
     }
 

@@ -27,73 +27,73 @@ public class FreelancerRoster {
      */
     public FreelancerRoster() {
         this.freelancers = new ArrayList<>();
-        this.freelancers.add(new Freelancer("Alice1", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob1", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie1", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice1", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob1", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie1", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice2", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob2", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie2", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice2", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob2", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie2", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice3", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob3", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie3", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice3", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob3", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie3", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice4", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob4", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie4", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice4", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob4", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie4", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice5", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob5", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie5", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice5", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob5", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie5", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice6", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob6", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie6", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice6", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob6", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie6", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice7", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob7", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie7", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice7", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob7", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie7", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice8", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob8", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie8", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice8", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob8", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie8", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice9", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob9", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie9", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice9", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob9", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie9", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
 
-        this.freelancers.add(new Freelancer("Alice10", "pass123", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
-        this.freelancers.add(new Freelancer("Bob10", "secure456", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
-        this.freelancers.add(new Freelancer("Charlie10", "money789", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        this.freelancers.add(new Freelancer("Alice10", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        this.freelancers.add(new Freelancer("Bob10", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        this.freelancers.add(new Freelancer("Charlie10", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
         
-        this.freelancers.add(new Freelancer("Dana", "design123", "Graphic Designer", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Branding", "UI/UX", "Typography"}));
-        this.freelancers.add(new Freelancer("Eli", "artistic456", "Illustrator", Categories.DESIGN_AND_CREATIVE, new String[]{"Digital Art", "Comics", "Concept Art", "Vector Graphics", "Sketching"}));
-        this.freelancers.add(new Freelancer("Fay", "color789", "Animator", Categories.DESIGN_AND_CREATIVE, new String[]{"2D Animation", "3D Animation", "After Effects", "Storyboarding", "Motion Graphics"}));
+        this.freelancers.add(new Freelancer("Dana", "Graphic Designer", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Branding", "UI/UX", "Typography"}));
+        this.freelancers.add(new Freelancer("Eli", "Illustrator", Categories.DESIGN_AND_CREATIVE, new String[]{"Digital Art", "Comics", "Concept Art", "Vector Graphics", "Sketching"}));
+        this.freelancers.add(new Freelancer("Fay", "Animator", Categories.DESIGN_AND_CREATIVE, new String[]{"2D Animation", "3D Animation", "After Effects", "Storyboarding", "Motion Graphics"}));
         
-        this.freelancers.add(new Freelancer("George", "dev123", "Java Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Git", "REST APIs"}));
-        this.freelancers.add(new Freelancer("Hannah", "code456", "Web Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"HTML", "CSS", "JavaScript", "React", "Node.js"}));
-        this.freelancers.add(new Freelancer("Ian", "tech789", "Data Scientist", Categories.DEVELOPMENT_AND_IT, new String[]{"Python", "Machine Learning", "Pandas", "NumPy", "Deep Learning"}));
+        this.freelancers.add(new Freelancer("George", "Java Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Git", "REST APIs"}));
+        this.freelancers.add(new Freelancer("Hannah", "Web Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"HTML", "CSS", "JavaScript", "React", "Node.js"}));
+        this.freelancers.add(new Freelancer("Ian", "Data Scientist", Categories.DEVELOPMENT_AND_IT, new String[]{"Python", "Machine Learning", "Pandas", "NumPy", "Deep Learning"}));
         
-        this.freelancers.add(new Freelancer("Jack", "engineer123", "Mechanical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"SolidWorks", "AutoCAD", "Finite Element Analysis", "Thermodynamics", "CAD Design"}));
-        this.freelancers.add(new Freelancer("Karen", "science456", "Biomedical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Medical Devices", "Biomaterials", "3D Printing", "Regulatory Compliance", "Clinical Trials"}));
-        this.freelancers.add(new Freelancer("Leo", "rocket789", "Aerospace Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Aerodynamics", "Propulsion", "Satellite Systems", "Orbital Mechanics", "Composites"}));
+        this.freelancers.add(new Freelancer("Jack", "Mechanical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"SolidWorks", "AutoCAD", "Finite Element Analysis", "Thermodynamics", "CAD Design"}));
+        this.freelancers.add(new Freelancer("Karen", "Biomedical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Medical Devices", "Biomaterials", "3D Printing", "Regulatory Compliance", "Clinical Trials"}));
+        this.freelancers.add(new Freelancer("Leo", "Aerospace Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Aerodynamics", "Propulsion", "Satellite Systems", "Orbital Mechanics", "Composites"}));
         
-        this.freelancers.add(new Freelancer("Mia", "sales123", "Marketing Specialist", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Social Media", "Content Marketing", "Google Ads", "Email Campaigns"}));
-        this.freelancers.add(new Freelancer("Noah", "brand456", "Sales Consultant", Categories.MARKETING_AND_SALES, new String[]{"B2B Sales", "CRM", "Negotiation", "Cold Calling", "Sales Funnels"}));
-        this.freelancers.add(new Freelancer("Olivia", "ads789", "Digital Advertiser", Categories.MARKETING_AND_SALES, new String[]{"Facebook Ads", "PPC", "Conversion Optimization", "Market Research", "Copywriting"}));
+        this.freelancers.add(new Freelancer("Mia", "Marketing Specialist", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Social Media", "Content Marketing", "Google Ads", "Email Campaigns"}));
+        this.freelancers.add(new Freelancer("Noah", "Sales Consultant", Categories.MARKETING_AND_SALES, new String[]{"B2B Sales", "CRM", "Negotiation", "Cold Calling", "Sales Funnels"}));
+        this.freelancers.add(new Freelancer("Olivia", "Digital Advertiser", Categories.MARKETING_AND_SALES, new String[]{"Facebook Ads", "PPC", "Conversion Optimization", "Market Research", "Copywriting"}));
         
-        this.freelancers.add(new Freelancer("Paul", "music123", "Music Producer", Categories.MUSIC_AND_AUDIO, new String[]{"Mixing", "Mastering", "Ableton Live", "Logic Pro", "Music Composition"}));
-        this.freelancers.add(new Freelancer("Quinn", "sound456", "Sound Designer", Categories.MUSIC_AND_AUDIO, new String[]{"Foley", "Game Audio", "Synthesizers", "Film Scoring", "Podcast Editing"}));
-        this.freelancers.add(new Freelancer("Ryan", "record789", "Voice Actor", Categories.MUSIC_AND_AUDIO, new String[]{"Narration", "Character Voices", "Commercials", "E-Learning", "Dubbing"}));
+        this.freelancers.add(new Freelancer("Paul", "Music Producer", Categories.MUSIC_AND_AUDIO, new String[]{"Mixing", "Mastering", "Ableton Live", "Logic Pro", "Music Composition"}));
+        this.freelancers.add(new Freelancer("Quinn", "Sound Designer", Categories.MUSIC_AND_AUDIO, new String[]{"Foley", "Game Audio", "Synthesizers", "Film Scoring", "Podcast Editing"}));
+        this.freelancers.add(new Freelancer("Ryan", "Voice Actor", Categories.MUSIC_AND_AUDIO, new String[]{"Narration", "Character Voices", "Commercials", "E-Learning", "Dubbing"}));
         
-        this.freelancers.add(new Freelancer("Sarah", "build123", "Carpenter", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Woodworking", "Cabinet Making", "Blueprint Reading", "Furniture Design", "Framing"}));
-        this.freelancers.add(new Freelancer("Tom", "plumb456", "Plumber", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Pipe Fitting", "Drain Cleaning", "Fixture Installation", "Water Heaters", "Soldering"}));
-        this.freelancers.add(new Freelancer("Uma", "electric789", "Electrician", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Wiring", "Troubleshooting", "Panel Upgrades", "Lighting Design", "Circuitry"}));
+        this.freelancers.add(new Freelancer("Sarah", "Carpenter", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Woodworking", "Cabinet Making", "Blueprint Reading", "Furniture Design", "Framing"}));
+        this.freelancers.add(new Freelancer("Tom", "Plumber", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Pipe Fitting", "Drain Cleaning", "Fixture Installation", "Water Heaters", "Soldering"}));
+        this.freelancers.add(new Freelancer("Uma", "Electrician", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Wiring", "Troubleshooting", "Panel Upgrades", "Lighting Design", "Circuitry"}));
         
-        this.freelancers.add(new Freelancer("Victor", "write123", "Copywriter", Categories.WRITING_AND_TRANSLATION, new String[]{"SEO Writing", "Blogging", "Technical Writing", "Ad Copy", "Editing"}));
-        this.freelancers.add(new Freelancer("Wendy", "translate456", "Translator", Categories.WRITING_AND_TRANSLATION, new String[]{"Spanish", "French", "German", "Mandarin", "Localization"}));
-        this.freelancers.add(new Freelancer("Xander", "novel789", "Fiction Writer", Categories.WRITING_AND_TRANSLATION, new String[]{"Creative Writing", "Screenwriting", "Storytelling", "Character Development", "Editing"}));
+        this.freelancers.add(new Freelancer("Victor", "Copywriter", Categories.WRITING_AND_TRANSLATION, new String[]{"SEO Writing", "Blogging", "Technical Writing", "Ad Copy", "Editing"}));
+        this.freelancers.add(new Freelancer("Wendy", "Translator", Categories.WRITING_AND_TRANSLATION, new String[]{"Spanish", "French", "German", "Mandarin", "Localization"}));
+        this.freelancers.add(new Freelancer("Xander", "Fiction Writer", Categories.WRITING_AND_TRANSLATION, new String[]{"Creative Writing", "Screenwriting", "Storytelling", "Character Development", "Editing"}));
     }
     
     /**
