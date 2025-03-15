@@ -5,6 +5,7 @@ Created on Mar 10, 2025
 '''
 from src.model.user import User
 from src.server import constants
+from src.model.message import Message
 
 class ServerResourceHandler:
     def __init__(self):
@@ -12,6 +13,7 @@ class ServerResourceHandler:
             Stores and manages all of the resources for the server
         '''
         self._users = {}
+        self._godMessageLog: list[list[Message]] = []
     
     def createAccount(self, userName, password):
         '''
@@ -51,6 +53,48 @@ class ServerResourceHandler:
             }
         return None
     
+    def getMessagesBetween(self, sender, receiver):
+        '''
+            Retrieves the message log between two users.
+        
+            @precondition none
+            @postcondition none
+            
+            @param sender: The sender user
+            @param receiver: The receiver user
+            
+            @return: The list of messages between the two users
+        '''
+        for messageLog in self._godMessageLog:
+            if (messageLog and 
+                ((messageLog[0].getSender() == sender and messageLog[0].getReceiver() == receiver) or
+                 (messageLog[0].getSender() == receiver and messageLog[0].getReceiver() == sender))):
+                return messageLog
+
+        return []
+    
+    def sendMessage(self, message):
+        '''
+        Sends a message between users.
+    
+        @precondition none
+        @postcondition The message is sent between the users
+        
+        @param message: The message to be sent
+        '''
+        
+        sender = message.getSender()
+        receiver = message.getReceiver()
+        
+        messageLog = self.getMessagesBetween(sender, receiver)
+        
+        if not messageLog:
+            messageLog = [message]
+            
+            self._godMessageLog.append(messageLog)
+        else:
+            messageLog.append(message)
+    
     def addUserToDMList(self, user, otherUser):
         '''
             Adds a user to another user's DM list
@@ -61,8 +105,8 @@ class ServerResourceHandler:
             @param user: the user
             @param otherUser: the other user
         '''
-        user.addMessagableUser().append(otherUser)
-        otherUser.addMessagableUser().append(user)
+        user.addMessagableUser(otherUser)
+        otherUser.addMessagableUser(user)
         
     def removeUserFromDMList(self, user, otherUser):
         '''
@@ -74,5 +118,5 @@ class ServerResourceHandler:
             @param user: the user
             @param otherUser: the other user
         '''
-        user.addMessagableUser().remove(otherUser)
-        otherUser.addMessagableUser().remove(user)
+        user.addMessagableUser(otherUser)
+        otherUser.addMessagableUser(user)

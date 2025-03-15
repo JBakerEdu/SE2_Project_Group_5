@@ -85,3 +85,8 @@ class User:
             @param user: the user to remove
         '''
         self.messagableUsers.remove(user)
+        
+    def __eq__(self, other):
+        if isinstance(other, User):
+            return self._userName == other.getUserName()
+        return False

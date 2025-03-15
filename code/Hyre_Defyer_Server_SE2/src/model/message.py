@@ -1,9 +1,9 @@
-    """
+'''
     Stores information about a message.
     
     @author: alecx
     Version: Spring 2025
-    """
+'''
 
 class Message:
     
@@ -56,3 +56,10 @@ class Message:
         @return the receiver
         '''
         return self._receiver
+    
+    def __eq__(self, other):
+        if isinstance(other, Message):
+            return (self._sender == other.getSender() and
+                    self._receiver == other.getReceiver() and
+                    self._message == other.getMessage())
+        return False

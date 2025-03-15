@@ -4,6 +4,7 @@ Created on Mar 10, 2025
 @author: alecx
 '''
 from src.server import constants
+from src.model.message import Message
 from src.server.server_resource_handler import ServerResourceHandler
 
 class ServerRequestHandler:
@@ -21,6 +22,9 @@ class ServerRequestHandler:
         messageText = request.get(constants.REQ_TEXT)
         sender = request.get(constants.REQ_SENDER)
         receiver = request.get(constants.REQ_RECEIVER)
+        
+        message = Message(messageText, sender, receiver)
+        self._serverResourceHandler.sendMessage(message)
 
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
