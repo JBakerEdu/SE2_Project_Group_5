@@ -97,7 +97,7 @@ class ServerResourceHandler:
     
     def addUserToDMList(self, user, otherUser):
         '''
-            Adds a user to another user's DM list
+            Adds a users to their own DM list
             
             @precondition none
             @postcondition otherUser is added to user's DM list and user is added to otherUser's DM list
@@ -105,8 +105,23 @@ class ServerResourceHandler:
             @param user: the user
             @param otherUser: the other user
         '''
-        user.addMessagableUser(otherUser)
-        otherUser.addMessagableUser(user)
+        user1 = self.getUser(user)
+        user2 = self.getUser(otherUser)
+        user1.addMessageableUser(otherUser)
+        user2.addMessageableUser(user)
+        
+    def getUser(self, userName):
+        '''
+            Retrieves a user by their username
+            
+            @precondition none
+            @postcondition none
+            
+            @param userName: the username
+            
+            @return the user
+        '''
+        return self._users.get(userName)
         
     def removeUserFromDMList(self, user, otherUser):
         '''
@@ -118,5 +133,7 @@ class ServerResourceHandler:
             @param user: the user
             @param otherUser: the other user
         '''
-        user.addMessagableUser(otherUser)
-        otherUser.addMessagableUser(user)
+        user1 = self.getUser(user)
+        user2 = self.getUser(otherUser)
+        user1.removeMessageableUser(otherUser)
+        user2.removeMessageableUser(user)

@@ -4,6 +4,7 @@
     @author: alecx
     Version: Spring 2025
 '''
+from src.server import constants
 
 class Message:
     
@@ -59,7 +60,14 @@ class Message:
     
     def __eq__(self, other):
         if isinstance(other, Message):
-            return (self._sender == other.getSender() and
-                    self._receiver == other.getReceiver() and
-                    self._message == other.getMessage())
+            sender_match = (self._sender == other.getSender() and self._receiver == other.getReceiver()) or \
+                       (self._sender == other.getReceiver() and self._receiver == other.getSender())
+            return sender_match and self._message == other.getMessage()
         return False
+    
+    def to_dict(self):
+        return {
+            constants.REQ_SENDER: self._sender.getUserName(),
+            constants.REQ_RECEIVER: self._receiver.getUserName(),
+            constants.REQ_TEXT: self._message
+        }

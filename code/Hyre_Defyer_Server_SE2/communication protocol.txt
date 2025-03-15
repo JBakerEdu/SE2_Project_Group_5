@@ -60,3 +60,35 @@
         ],
         “error description”:<error message> #only if fail
     }
+//Get Messageable Users request
+    {
+        "type" : "get messagable users",
+        "userName" : <username>
+    }
+    
+//Get Messageable Users response
+    {
+        "success_code": "success"|"fail",
+        "users" : [
+            {
+                "userName" : <username>,
+            },
+            {
+                "userName" : <username>,
+            }
+        ], #only if success
+        “error description”:<error message> #only if fail
+    }
+//Add Messageable User request
+    {
+        "type" : "add messagable user",
+        "sender" : <username>,
+        "receiver" : <username>
+    }
+//Add Messageable User response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
+
+    

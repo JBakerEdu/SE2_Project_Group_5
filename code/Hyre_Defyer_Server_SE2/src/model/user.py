@@ -3,6 +3,7 @@ Created on Mar 10, 2025
 
 @author: alecx
 '''
+from src.server import constants
 
 class User:
     def __init__(self, userName, password):
@@ -18,7 +19,7 @@ class User:
         self._userName = userName
         self._password = password
         self._bio = ""
-        self.messagableUsers = []
+        self._messageableUsers = []
 
     def getUserName(self):
         ''' 
@@ -64,18 +65,19 @@ class User:
         ''' 
         self._bio = newBio
         
-    def addMessagableUser(self, user):
+    def addMessageableUser(self, user):
         ''' 
             Adds a user to the list of users that this user can message
         
             @precondition none
-            @postcondition the user is added to the list of users that this user can message
+            @postcondition the user is added to the list of users that this user can message, won't add if already in list
             
             @param user: the user to add
         '''
-        self.messagableUsers.append(user)
+        if user not in self._messageableUsers:
+            self._messageableUsers.append(user)
         
-    def removeMessagableUser(self, user):
+    def removeMessageableUser(self, user):
         ''' 
             Removes a user from the list of users that this user can message
         
@@ -84,9 +86,27 @@ class User:
             
             @param user: the user to remove
         '''
-        self.messagableUsers.remove(user)
+        self._messageableUsers.remove(user)
+        
+    def getMessageableUsers(self):
+        ''' 
+            Returns the list of users that this user can message
+        
+            @precondition none
+            @postcondition none
+            
+            @return the list of users that this user can message
+        '''
+        return self._messageableUsers
         
     def __eq__(self, other):
         if isinstance(other, User):
             return self._userName == other.getUserName()
         return False
+    
+    def to_dict(self):
+        return {
+            constants.REQ_USERNAME: self._userName,
+            constants.REQ_BIO: self._bio
+        }
+    

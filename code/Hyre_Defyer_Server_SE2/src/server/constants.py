@@ -17,10 +17,13 @@ REQ_SEND_MESSAGE = "send message"
 REQ_CREATE_ACCOUNT = "create account"
 REQ_LOGIN = "login"
 REQ_GET_MESSAGES = "get messages"
+REQ_GET_MESSAGEABLE_USERS = "get messageable users"
+REQ_ADD_MESSAGEABLE_USER = "add messageable user"
 
 REP_SUCCESS = "success"
 REP_FAIL = "fail"
 REP_ERROR_DESCRIPTION = "error description"
 REP_MESSAGES = "messages"
+REP_USERS = "users";
 
 SUCCESS_CODE = "success code"

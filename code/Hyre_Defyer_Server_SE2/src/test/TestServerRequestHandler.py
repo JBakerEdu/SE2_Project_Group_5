@@ -1,6 +1,8 @@
 import unittest
 from src.server import constants
 from src.server.server_request_handler import ServerRequestHandler
+from src.model.message import Message
+from src.model.user import User
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -89,12 +91,19 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
         self.assertEqual(len(response[constants.REP_MESSAGES]), 2)
         
-        self.assertEqual(response[constants.REP_MESSAGES][0].getMessage(), "message")
-        self.assertEqual(response[constants.REP_MESSAGES][1].getMessage(), "message2")
-        self.assertEqual(response[constants.REP_MESSAGES][0].getSender(), "username")
-        self.assertEqual(response[constants.REP_MESSAGES][1].getSender(), "username2")
-        self.assertEqual(response[constants.REP_MESSAGES][0].getReceiver(), "username2")
-        self.assertEqual(response[constants.REP_MESSAGES][1].getReceiver(), "username")
+        message_dicts = response[constants.REP_MESSAGES]
+        
+        messages = [
+            Message(msg["text"], User(msg["sender"], ""), User(msg["receiver"], ""))
+            for msg in message_dicts
+        ]
+
+        self.assertEqual(messages[0].getMessage(), "message")
+        self.assertEqual(messages[0].getSender().getUserName(), "username")
+        self.assertEqual(messages[0].getReceiver().getUserName(), "username2")
+        self.assertEqual(messages[1].getMessage(), "message2")
+        self.assertEqual(messages[1].getSender().getUserName(), "username2")
+        self.assertEqual(messages[1].getReceiver().getUserName(), "username")
 
 if __name__ == "__main__":
     unittest.main()
