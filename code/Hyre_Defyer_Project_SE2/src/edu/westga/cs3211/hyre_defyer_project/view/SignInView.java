@@ -111,10 +111,8 @@ public class SignInView {
     	String password = this.passwordSignInTextFeild.textProperty().getValue();
       if (this.vm.signIn(username, password)) {
       	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
-      } else if (!this.vm.userExists(username)) {
-      	GUIHelper.displayError("Unable to sign in", "This user doesn't exist in our servers. Try creating an account to your right.");
       } else {
-      	GUIHelper.displayError("Unable to sign in", "The password doesn't match the username provided.");
+      	GUIHelper.displayError("Log in Failed", "Incorrect username or password.");
       }
     }
     

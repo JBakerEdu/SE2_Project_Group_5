@@ -81,17 +81,4 @@ public class TestSignInViewModel {
 	public void testUserDoesNotExist() {
 		assertFalse(SignInViewModel.isSignedIn());
 	}
-	
-	@Test
-	public void testUserNotInServer() {
-		SignInViewModel vm = new SignInViewModel();
-		assertFalse(vm.userExists("bob"));
-	}
-	
-	@Test
-	public void testUserExistsInServer() {
-		SignInViewModel vm = new SignInViewModel();
-		vm.createAccount("user", "password", "password");
-		assertTrue(vm.userExists("user"));
-	}
 }

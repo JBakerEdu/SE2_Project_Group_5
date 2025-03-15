@@ -169,16 +169,10 @@ public class HomePageView {
             Object selectedItem = categoryListView.getSelectionModel().getSelectedItem();
 
             if (selectedItem != null) {
-                // Retrieve the name of the selected category
                 String categoryName = selectedItem.toString();
-                System.out.println("Selected ListView item: " + categoryName);
-
-                // Set the selected category in the ViewModel
                 try {
                     Categories selectedCategory = Categories.valueOf(categoryName.replace(" ", "_").toUpperCase());
                     this.categoryViewModel.setSelectedCategory(selectedCategory);
-                    
-                    // Optionally switch views
                     GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
                 } catch (IllegalArgumentException e) {
                     System.err.println("Invalid category selected: " + categoryName);

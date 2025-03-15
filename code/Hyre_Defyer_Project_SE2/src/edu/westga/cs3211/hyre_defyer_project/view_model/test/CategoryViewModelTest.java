@@ -1,71 +1,84 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model.test;
 
-import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test the Category View Model class that handles some logic that will be used in the categoryPageView
- * 
- * @author Jacob baker
- * @version Spring 2025
+ * Unit tests for the CategoryViewModel class.
  */
 public class CategoryViewModelTest {
-
+    
     private CategoryViewModel categoryViewModel;
     private Freelancer freelancer1;
     private Freelancer freelancer2;
+    private Freelancer freelancer3;
+    private Freelancer freelancer4;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         categoryViewModel = new CategoryViewModel();
-        freelancer1 = new Freelancer("Freelancer1", "Business and Finance Guy.", Categories.BUSINESS_AND_FINANCE);
-        freelancer2 = new Freelancer("Freelancer2", "Creative Music and Audio Designer", Categories.MUSIC_AND_AUDIO);
-        categoryViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-    }
-
-    @Test
-    public void testSetSelectedCategory() {
-        categoryViewModel.setSelectedCategory(Categories.MUSIC_AND_AUDIO);
-        assertEquals(Categories.MUSIC_AND_AUDIO, categoryViewModel.getSelectedCategory());
-    }
-
-    @Test
-    public void testAddPersonToCategory_ValidCategory() {        
-        categoryViewModel.addPersonToCategory(freelancer1);
+        freelancer1 = new Freelancer("JohnDoe", "Pass", "Bio", Categories.DEVELOPMENT_AND_IT);
+        freelancer2 = new Freelancer("JaneSmith", "Pass", "Bio", Categories.DESIGN_AND_CREATIVE);
+        freelancer3 = new Freelancer("MikeJones", "Pass", "Bio", Categories.DEVELOPMENT_AND_IT);
+        freelancer4 = new Freelancer("NewFreelancer", "password", "New Role", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Go", "Rust"});
         
-        assertEquals(freelancer1.getUserName(), categoryViewModel.getFreelancers().get(0).getUserName());
+        CategoryViewModel.freelancerRoster.addFreelancer(freelancer1);
+        CategoryViewModel.freelancerRoster.addFreelancer(freelancer2);
+        CategoryViewModel.freelancerRoster.addFreelancer(freelancer3);
+        CategoryViewModel.freelancerRoster.addFreelancer(freelancer4);
     }
 
     @Test
-    public void testAddPersonToCategory_InvalidCategory() {
-        categoryViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            categoryViewModel.addPersonToCategory(freelancer2);
-        });
-        assertEquals("Freelancer2 does not belong to this category.", exception.getMessage());
+    void testSetSelectedCategory() {
+        categoryViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
+        assertEquals(Categories.DEVELOPMENT_AND_IT, categoryViewModel.getSelectedCategory(), "Selected category should be set correctly.");
     }
 
     @Test
-    public void testGetFreelancers() {
-        categoryViewModel.setSelectedCategory(Categories.MUSIC_AND_AUDIO);
-        categoryViewModel.addPersonToCategory(freelancer2);
-        assertEquals(1, categoryViewModel.getFreelancers().size());
-        assertEquals(freelancer2.getUserName(), categoryViewModel.getFreelancers().get(0).getUserName());
-        assertFalse(categoryViewModel.getFreelancers().stream()
-                     .anyMatch(freelancer -> freelancer.getUserName().equals(freelancer1.getUserName())));
+    void testAddFreelancerToCorrectCategory() {
+        categoryViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
+        categoryViewModel.addPersonToCategory(freelancer4);
+        boolean containsFreelancer = false;
+        for (Freelancer freelancer : CategoryViewModel.freelancerRoster.getFreelancersByCategory(Categories.DEVELOPMENT_AND_IT)) {
+            if (freelancer.getUserName().equals(freelancer4.getUserName())) {
+                containsFreelancer = true;
+                break;
+            }
+        }
+        assertTrue(containsFreelancer, "Freelancer should be added to the correct category.");
     }
 
     @Test
-    public void testAddPersonToCategoryError() {
+    void testAddFreelancerToWrongCategoryThrowsException() {
         categoryViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             categoryViewModel.addPersonToCategory(freelancer2);
         });
-        assertEquals(freelancer2.getUserName() + " does not belong to this category.", exception.getMessage());
+        assertEquals("JaneSmith does not belong to this category.", exception.getMessage(), "Should throw exception for incorrect category.");
     }
+
+    @Test
+    void testAddMultipleFreelancersToSameCategory() {
+        categoryViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
+        categoryViewModel.addPersonToCategory(freelancer1);
+        categoryViewModel.addPersonToCategory(freelancer3);
+        boolean containsFreelancer1 = false;
+        boolean containsFreelancer3 = false;
+
+        for (Freelancer freelancer : CategoryViewModel.freelancerRoster.getFreelancersByCategory(Categories.DEVELOPMENT_AND_IT)) {
+            if (freelancer.getUserName().equals(freelancer1.getUserName())) {
+                containsFreelancer1 = true;
+            }
+            if (freelancer.getUserName().equals(freelancer3.getUserName())) {
+                containsFreelancer3 = true;
+            }
+        }
+        assertTrue(containsFreelancer1, "First freelancer should be added.");
+        assertTrue(containsFreelancer3, "Second freelancer should be added.");
+    }
+
 }
