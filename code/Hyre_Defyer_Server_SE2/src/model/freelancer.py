@@ -1,0 +1,133 @@
+'''
+Created on Mar 26, 2025
+
+@author: Kate Anglin
+'''
+
+from src.model.user import User
+
+class Freelancer(User):
+    '''
+        Represents a freelancer with a username, bio, category, and a fixed number of skills.
+    '''
+    def __init__(self, userName, password):
+        '''
+            Creates a new freelancer with the provided username and password.
+        
+            @precondition none
+            @postcondition getUserName() == userName && getPassword() == password
+            
+            @param userName: the username
+            @param password: the password
+        '''
+        super().__init__(userName, password)
+        self._categories = set()
+        self._skills = set()
+    
+    def addCategory(self, category):
+        '''
+            Adds a category to the freelancer.
+            
+            @precondition none
+            @postcondition the category is added to the set of categories
+            
+            @param category: the category to add
+        '''
+        self._categories.add(category)
+    
+    def removeCategory(self, category):
+        '''
+            Removes a category from the freelancer.
+            
+            @precondition none
+            @postcondition the category is removed from the set of categories
+            
+            @param category: the category to remove
+        '''
+        self._categories.discard(category)
+    
+    def getCategories(self):
+        '''
+            Returns the set of categories associated with the freelancer.
+            
+            @precondition none
+            @postcondition none
+            
+            @return the set of categories
+        '''
+        return self._categories
+    
+    def addSkill(self, skill):
+        '''
+            Adds a skill to the freelancer.
+            
+            @precondition none
+            @postcondition the skill is added to the set of skills
+            
+            @param skill: the skill to add
+        '''
+        self._skills.add(skill)
+    
+    def removeSkill(self, skill):
+        '''
+            Removes a skill from the freelancer.
+            
+            @precondition none
+            @postcondition the skill is removed from the set of skills
+            
+            @param skill: the skill to remove
+        '''
+        self._skills.discard(skill)
+    
+    def getSkills(self):
+        '''
+            Returns the set of skills associated with the freelancer.
+            
+            @precondition none
+            @postcondition none
+            
+            @return the set of skills
+        '''
+        return self._skills
+    
+    def to_dict(self):
+        '''
+            Returns a dictionary representation of the freelancer, including username, bio, categories, and skills.
+            
+            @precondition none
+            @postcondition none
+            
+            @return a dictionary representation of the freelancer
+        '''
+        base_dict = super().to_dict()
+        base_dict.update({
+            "categories": list(self._categories),
+            "skills": list(self._skills)
+        })
+        return base_dict
+    
+    def __eq__(self, other):
+        '''
+            Returns whether two freelancers are equal to each other based on username, bio, categories, and skills.
+            
+            @precondition none
+            @postcondition none
+            
+            @return wheither two freelancers are equal to each other.
+        '''
+        if not isinstance(other, Freelancer):
+            return False
+        return (self.username == other.username and self.bio == other.bio and
+                self.category == other.category and self.skills == other.skills)
+
+    def __repr__(self):
+        '''
+            Returns representation of the freelancer, including username, bio, categories, and skills.
+            
+            @precondition none
+            @postcondition none
+            
+            @return a representation of the freelancer
+        '''
+        return f"Freelancer(username={self.username}, category={self.category}, skills={self.skills})"
+    
