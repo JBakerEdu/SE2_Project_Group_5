@@ -164,4 +164,18 @@ public class ServerInterface {
 		ServerCommunicator.sendRequestToServer(request);
 		
 	}
+	
+	/**
+	 * Delete the chat between two users
+	 * @param user1 the current user
+	 * @param user2 the user associated with the chat the current user wants to delete
+	 */
+	public static void deleteChat(User user1, User user2) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_DELETE_CHAT);
+		request.put(Constants.REQ_SENDER, user1.getUserName());
+		request.put(Constants.REQ_RECEIVER, user2.getUserName());
+		
+		ServerCommunicator.sendRequestToServer(request);
+	}
 }

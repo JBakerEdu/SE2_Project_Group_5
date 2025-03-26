@@ -109,6 +109,9 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+    	//DELETE LATER
+    	ServerInterface.addMessageableUser(SignInViewModel.getCurrentUser(), new User("User1"));
+    	//DELETE LATER
     	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
 
     	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
@@ -117,8 +120,7 @@ public class DirectMessageView {
     	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
     		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
-    		updateDisplayedMessages();
-    		
+    		this.updateDisplayedMessages();		
     	});
     }
 

@@ -122,6 +122,19 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
+    def _deleteChat(self, request):
+        '''
+            Deletes a user from the list of users that can be messaged
+        '''
+        response = {}
+        current_user = request.get(constants.REQ_SENDER)
+        other_user = request.get(constants.REQ_RECEIVER)
+        
+        self._serverResourceHandler.removeUserFromDMList(current_user, other_user)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.

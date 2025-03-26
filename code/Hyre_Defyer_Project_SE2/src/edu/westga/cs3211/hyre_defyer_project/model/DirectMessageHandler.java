@@ -55,4 +55,14 @@ public class DirectMessageHandler {
 		this.updateMessageLog();
 		return this.messageLog;
 	}
+	
+	/**
+	 * Deletes the chat between two users
+	 * @param user1 the current user
+	 * @param user2 the user associated with the chat the current user wants to delete 
+	 */
+	public void deleteChat(User user1, User user2) {
+		ServerInterface.deleteChat(user1, user2);
+		this.updateMessageLog();
+	}
 }

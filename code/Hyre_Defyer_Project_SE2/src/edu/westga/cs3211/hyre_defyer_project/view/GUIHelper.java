@@ -37,7 +37,7 @@ public class GUIHelper {
 			stage.setTitle(Main.getWindowTitle());
 			stage.setScene(scene);
 		} catch (IOException error) {
-			displayError("Display Switch Error", error.getMessage());
+			displayError("Display Switch Error", "Failed to switch views");
 		}
 	}
 	

@@ -18,6 +18,7 @@ public class Constants {
     public static final String REQ_GET_MESSAGES = "get messages";
     public static final String REQ_GET_MESSAGEABLE_USERS = "get messageable users";
     public static final String REQ_ADD_MESSAGEABLE_USER = "add messageable user";
+    public static final String REQ_DELETE_CHAT = "delete chat";
 
     public static final String REP_SUCCESS = "success";
     public static final String REP_FAIL = "fail";
