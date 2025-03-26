@@ -46,7 +46,7 @@ class FreelancerRoster:
         """
         if not category:
             raise ValueError("Category cannot be null.")
-        return [f for f in self.freelancers if f.get_category() == category]
+        return [f for f in self.freelancers if f.containsCategory(category)]
 
     def get_freelancers_by_skill(self, skill: str) -> List[Freelancer]:
         """
@@ -62,6 +62,20 @@ class FreelancerRoster:
         if not skill:
             raise ValueError("Skill cannot be null.")
         return [f for f in self.freelancers if f.contains_skill(skill)]
+    
+    def remove_freelancer(self, freelancer: Freelancer):
+        """
+            Removes a freelancer from the roster.
+            
+            @precondition freelancer != null && freelancer.Class == Freelancer
+            @postcondition freelancer removed from roster
+
+            @param freelancer: The Freelancer object to remove.
+            @raises ValueError: If freelancer is not in the roster.
+        """
+        if freelancer not in self.freelancers:
+            raise ValueError("Freelancer not found in roster.")
+        self.freelancers.remove(freelancer)
 
     def __repr__(self):
         """

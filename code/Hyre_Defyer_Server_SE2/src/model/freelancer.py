@@ -57,6 +57,15 @@ class Freelancer(User):
         '''
         return self._categories
     
+    def containsCategory(self, category: str) -> bool:
+        """
+            Checks if the freelancer contains the given category.
+        
+            @param category: The category to search for.
+            @return True if the category is found, False otherwise.
+        """
+        return category in self.getCategories()
+    
     def addSkill(self, skill):
         '''
             Adds a skill to the freelancer.
@@ -90,6 +99,18 @@ class Freelancer(User):
         '''
         return self._skills
     
+    def contains_skill(self, skill):
+        '''
+            Checks if the freelancer has the specified skill.
+            
+            @precondition skill != null
+            @postcondition none
+            
+            @param skill: The skill to check for.
+            @return: True if the freelancer has the skill, False otherwise.
+        '''
+        return skill in self.getSkills()
+    
     def to_dict(self):
         '''
             Returns a dictionary representation of the freelancer, including username, bio, categories, and skills.
@@ -117,17 +138,17 @@ class Freelancer(User):
         '''
         if not isinstance(other, Freelancer):
             return False
-        return (self.username == other.username and self.bio == other.bio and
-                self.category == other.category and self.skills == other.skills)
+        return (self.getUserName() == other.getUserName()and self.getBio()== other.getBio() and
+                self.getCategories() == other.getCategories() and self.getSkills() == other.getSkills())
 
     def __repr__(self):
         '''
-            Returns representation of the freelancer, including username, bio, categories, and skills.
-            
+            Returns representation of the freelancer, including username, categories, and skills.
+        
             @precondition none
             @postcondition none
-            
+        
             @return a representation of the freelancer
         '''
-        return f"Freelancer(username={self.username}, category={self.category}, skills={self.skills})"
+        return f"Freelancer(username={self.getUserName()}, categories={self.getCategories()}, skills={self.getSkills()})"
     
