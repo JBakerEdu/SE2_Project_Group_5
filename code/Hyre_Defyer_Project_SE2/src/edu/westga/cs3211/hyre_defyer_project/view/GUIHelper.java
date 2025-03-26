@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -52,5 +53,22 @@ public class GUIHelper {
 		alert.setContentText(contextTxt);
 		alert.showAndWait();
 	}
-
+	
+	/**
+	 * Display a confirmation modal window
+	 *  @param headerTxt the text you want for the header of the window
+	 * @param contextTxt the text you want in the main window
+	 * @return true if the user confirms their choice
+	 * 				 false if the user doesn't confirm their choice
+	 */
+	public static boolean displayConfirmation(String headerTxt, String contextTxt) {
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText(headerTxt);
+		alert.setContentText(contextTxt);
+		alert.showAndWait();
+		if (alert.showAndWait().get() == ButtonType.OK) {
+			return true;
+		}
+		return false;
+	}
 }

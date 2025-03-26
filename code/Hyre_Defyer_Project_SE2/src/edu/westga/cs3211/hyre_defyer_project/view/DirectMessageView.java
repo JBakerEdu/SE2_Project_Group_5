@@ -15,6 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -33,6 +35,13 @@ public class DirectMessageView {
 
     @FXML
     private Label accountLabel;
+    
+
+    @FXML
+    private MenuButton chatSettingsMenu;
+
+    @FXML
+    private MenuItem deleteChat;
 
     @FXML
     private ListView<User> contactListView;
@@ -109,20 +118,36 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+    	
     	//DELETE LATER
     	ServerInterface.addMessageableUser(SignInViewModel.getCurrentUser(), new User("User1"));
     	//DELETE LATER
+    	
     	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
-
     	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
     	this.contactListView.setItems(observableListUsers);
     	
-    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    	this.bindElements();
+    	this.setUpListeners();
+    }
+
+		private void setUpListeners() {
+			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
     		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
     		this.updateDisplayedMessages();		
     	});
-    }
+			
+			this.deleteChat.setOnAction((event) -> {
+				if (GUIHelper.displayConfirmation("Delete Chat", "Are you sure you'd like to delete your chat with " + this.contactListView.getSelectionModel().getSelectedItem().getUserName())) {
+					this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+				}
+			});
+		}
+		
+		private void bindElements() {
+			this.chatSettingsMenu.disableProperty().bind(this.contactListView.getSelectionModel().selectedItemProperty().isNotNull());
+		}
 
 	private void updateDisplayedMessages() {
 		this.messageListView.setItems(FXCollections.observableArrayList(this.directMessageHandler.getFullMessageLog()));
