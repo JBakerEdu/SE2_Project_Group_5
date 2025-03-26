@@ -70,13 +70,13 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleEditClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Edit">
+            <Button fx:id="editButton" alignment="CENTER" contentDisplay="CENTER" layoutX="532.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleEditClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Edit">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <TextArea layoutX="130.0" layoutY="94.0" prefHeight="154.0" prefWidth="513.0" wrapText="true" />
-            <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="365.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
+            <TextArea fx:id="descriptionTextBox" layoutX="130.0" layoutY="94.0" prefHeight="154.0" prefWidth="513.0" wrapText="true" />
+            <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
                <effect>
                   <Bloom />
                </effect>
@@ -96,12 +96,23 @@
                   <TextField fx:id="skill5TextFeild" layoutX="440.0" layoutY="17.0" prefHeight="25.0" prefWidth="95.0" />
                </children>
             </Pane>
-            <Label layoutX="46.0" layoutY="311.0" prefHeight="25.0" prefWidth="84.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Catergory:">
+            <Label layoutX="46.0" layoutY="311.0" prefHeight="25.0" prefWidth="84.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Category:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="catergoryComboBox" layoutX="130.0" layoutY="311.0" prefHeight="25.0" prefWidth="95.0" />
+            <ComboBox fx:id="catergoryComboBox" layoutX="130.0" layoutY="311.0" onAction="#handleCategorySelected" prefHeight="25.0" prefWidth="302.0" />
+            <Button fx:id="saveButton" alignment="CENTER" contentDisplay="CENTER" layoutX="532.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleSaveClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Save">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
+            <Button fx:id="hyreButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleHyreButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Hyre">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
+            <TextField fx:id="categoryTextFeild" layoutX="129.0" layoutY="310.0" prefHeight="25.0" prefWidth="302.0" promptText="Category" />
          </children>
       </Pane>
    </children>

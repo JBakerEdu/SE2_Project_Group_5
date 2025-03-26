@@ -1,6 +1,8 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,39 +16,51 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * This is the code for Account Page 
+ * This is the View for the Account page
  * 
- * @author Jacob Baker & Myles Debro & Kate Anglin
+ * @author Jacob Baker
  * @version Spring 2025
  */
 public class AccountPageView {
 
     @FXML
-    private Button signOutButton;
-
-    @FXML
     private ImageView accountBioImage;
-    
-    @FXML
-    private TextArea accountBio;
 
     @FXML
     private Label accountLabel;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private TextField categoryTextFeild;
+
+    @FXML
     private ComboBox<Categories> catergoryComboBox;
+
+    @FXML
+    private TextArea descriptionTextBox;
 
     @FXML
     private Label dmLabel;
 
     @FXML
+    private Button editButton;
+
+    @FXML
     private Label homeLabel;
+
+    @FXML
+    private Button hyreButton;
 
     @FXML
     private Label hyreLabel;
 
     @FXML
-    private Button editButton;
+    private Button saveButton;
+
+    @FXML
+    private Button signOutButton;
 
     @FXML
     private TextField skill1TextFeild;
@@ -62,20 +76,23 @@ public class AccountPageView {
 
     @FXML
     private TextField skill5TextFeild;
-    
-    @FXML
-    private AnchorPane anchorPane;
-    
+
     @FXML
     private Label userLabel;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
     	}
+    }
+
+    @FXML
+    void handleCategorySelected(ActionEvent event) {
+    	this.categoryTextFeild.setText(this.catergoryComboBox.getValue().toString());
     }
 
     @FXML
@@ -88,13 +105,28 @@ public class AccountPageView {
     }
 
     @FXML
+    void handleEditClick(ActionEvent event) {
+    	this.toggleEditMode(true);
+    }
+
+    @FXML
     void handleHomeClick(MouseEvent event) {
 			GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
+    void handleHyreButtonClick(ActionEvent event) {
+    	
+    }
 
+    @FXML
+    void handleHyreClick(MouseEvent event) {
+    	
+    }
+
+    @FXML
+    void handleSaveClick(ActionEvent event) {
+        this.toggleEditMode(false);
     }
 
     @FXML
@@ -104,22 +136,39 @@ public class AccountPageView {
     }
 
     @FXML
-    void handleEditClick(ActionEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		SignInViewModel.getCurrentUser().setBio(this.accountBio.textProperty().get());
-    	}
-    }
-    
-    @FXML
     void initialize() {
     	this.catergoryComboBox.getItems().addAll(Categories.values());
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    		this.userLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    	} else {
-    		this.accountLabel.textProperty().setValue("Account");
-    		this.userLabel.textProperty().setValue("Account");
-    	}
+    	User currentUser = SignInViewModel.getCurrentUser();
+        User selectedUser = AccountPageViewModel.getUserSelectedToView();
+        this.toggleEditMode(false);
+        this.categoryTextFeild.setEditable(false);
+        if (currentUser != null) {
+            this.accountLabel.textProperty().setValue(currentUser.getUserName());            
+            if (selectedUser != null && currentUser.equals(selectedUser)) {
+                this.userLabel.textProperty().setValue(currentUser.getUserName());
+                this.hyreButton.setVisible(false);
+                this.signOutButton.setVisible(true);
+            } else {
+                this.editButton.setVisible(false);
+                this.hyreButton.setVisible(true);
+            }
+        } else {
+            this.accountLabel.textProperty().setValue("Account");
+            this.userLabel.textProperty().setValue("Account");
+        }
     }
-
+    
+    private void toggleEditMode(boolean isEditing) {
+    	this.saveButton.setVisible(isEditing);
+    	this.editButton.setVisible(!isEditing);
+    	this.descriptionTextBox.setEditable(isEditing);
+        this.catergoryComboBox.setVisible(isEditing);
+        this.categoryTextFeild.setVisible(!isEditing);
+        this.skill1TextFeild.setEditable(isEditing);
+        this.skill2TextFeild.setEditable(isEditing);
+        this.skill3TextFeild.setEditable(isEditing);
+        this.skill4TextFeild.setEditable(isEditing);
+        this.skill5TextFeild.setEditable(isEditing);
+    }
 }
+
