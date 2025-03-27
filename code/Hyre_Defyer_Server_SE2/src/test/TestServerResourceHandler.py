@@ -3,6 +3,7 @@ import unittest
 from src.server import constants
 from src.server.server_resource_handler import ServerResourceHandler
 from src.model.message import Message
+from src.model.freelancer import Freelancer
 
 class TestServerResourceHandler(unittest.TestCase):
     def setUp(self):
@@ -40,6 +41,11 @@ class TestServerResourceHandler(unittest.TestCase):
         messageLog = self.serverResourceHandler.getMessagesBetween(sender, receiver)
         
         self.assertEqual(messageLog, [message, message2])
+        
+    def test_add_freelancer(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
+        self.assertTrue(self.serverResourceHandler.getFreelancers().contains(self.freelancer.getUserName()))
 
 if __name__ == "__main__":
     unittest.main()

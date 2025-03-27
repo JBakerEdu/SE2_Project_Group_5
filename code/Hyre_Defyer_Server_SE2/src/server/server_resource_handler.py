@@ -6,6 +6,7 @@ Created on Mar 10, 2025
 from src.model.user import User
 from src.server import constants
 from src.model.message import Message
+from src.model.freelanceer_roster import FreelancerRoster
 
 class ServerResourceHandler:
     def __init__(self):
@@ -14,6 +15,7 @@ class ServerResourceHandler:
         '''
         self._users = {}
         self._godMessageLog: list[list[Message]] = []
+        self.freelancers = FreelancerRoster()
     
     def createAccount(self, userName, password):
         '''
@@ -137,3 +139,23 @@ class ServerResourceHandler:
         user2 = self.getUser(otherUser)
         user1.removeMessageableUser(otherUser)
         user2.removeMessageableUser(user)
+        
+    def addFreelancerToRoster(self, freelancer):
+        '''
+            Adds the freelancer to the roster
+            
+            @precondition freelancer != null && username cannot already exist
+            @postcondition freelancer is added
+            
+            @param freelancer: the freelancer being added to the roster
+        '''
+        self.freelancers.add_freelancer(freelancer)
+        
+    def getFreelancers(self):
+        '''
+            gets the freelancers 
+            
+            @precondition none
+            @postcondition none 
+        '''
+        return self.freelancers

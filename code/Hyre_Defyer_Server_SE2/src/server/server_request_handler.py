@@ -122,6 +122,18 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
+    def _getFreelancers(self, request):
+        '''
+            Returns all freelancers
+        '''
+        response = {}
+        freelancers = self._serverResourceHandler.getFreelancers()
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        response[constants.REP_FREELANCERS] = freelancers
+        
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.
@@ -156,6 +168,9 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
             response = self._addMessageableUser(request)
+            
+        elif req_type == constants.REQ_GET_FREELANCERS:
+            response = self._getFreelancers(request)
         
         return response
         

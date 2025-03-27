@@ -31,6 +31,8 @@ class FreelancerRoster:
         """
         if not freelancer:
             raise ValueError("Freelancer cannot be null.")
+        if any(f.getUserName() == freelancer.getUserName() for f in self.freelancers):
+            raise ValueError(f"Username '{freelancer.getUserName()}' is already taken.")
         self.freelancers.append(freelancer)
 
     def get_freelancers_by_category(self, category: str) -> List[Freelancer]:
@@ -76,6 +78,19 @@ class FreelancerRoster:
         if freelancer not in self.freelancers:
             raise ValueError("Freelancer not found in roster.")
         self.freelancers.remove(freelancer)
+        
+    def contains(self, username):
+        """
+            Checks if a freelancer with the given username exists in the roster.
+
+            @param username: The username to check.
+            @return: True if a freelancer with the username exists, otherwise False.
+            @raises ValueError: If username is None.
+        """
+        if username is None:
+            raise ValueError("Username cannot be null.")
+        
+        return any(f.getUserName() == username for f in self.freelancers)
 
     def __repr__(self):
         """

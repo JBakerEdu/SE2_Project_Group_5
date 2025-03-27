@@ -1,5 +1,12 @@
 package edu.westga.cs3211.hyre_defyer_project.server;
 
+/**
+ * The constant strings for the server communication
+ * 
+ * @author Alec Neal and Kate Anglin
+ * @version Spring 2025
+ */
+
 public class Constants {
 
     public static final String IP_ADDRESS = "127.0.0.1";
@@ -18,6 +25,9 @@ public class Constants {
     public static final String REQ_GET_MESSAGES = "get messages";
     public static final String REQ_GET_MESSAGEABLE_USERS = "get messageable users";
     public static final String REQ_ADD_MESSAGEABLE_USER = "add messageable user";
+    public static final String REQ_GET_FREELANCERS = "get freelancers";
+    public static final String REQ_ADD_FREELANCER= "add freelancer";
+    public static final String REQ_REMOVE_FREELANCER = "remove freelancer";
 
     public static final String REP_SUCCESS = "success";
     public static final String REP_FAIL = "fail";

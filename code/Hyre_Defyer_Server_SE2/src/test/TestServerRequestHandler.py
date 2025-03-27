@@ -104,6 +104,17 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertEqual(messages[1].getMessage(), "message2")
         self.assertEqual(messages[1].getSender().getUserName(), "username2")
         self.assertEqual(messages[1].getReceiver().getUserName(), "username")
+        
+    def test_getFreelancers_empty_list(self):
+        self.serverRequestHandler._serverResourceHandler.getFreelancers.return_value = []
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: []
+        }
+
+        response = self.api._getFreelancers(request=None)
+        self.assertEqual(response, expected_response)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -31,6 +31,13 @@ class TestFreelancerRoster(unittest.TestCase):
         
         self.assertIn(self.freelancer1, self.roster.freelancers)
         self.assertIn(self.freelancer2, self.roster.freelancers)
+        
+    def test_add_freelancer_already_existing(self):
+        self.roster.add_freelancer(self.freelancer1)
+        with self.assertRaises(ValueError):
+            self.roster.add_freelancer(self.freelancer1)
+        
+        self.assertIn(self.freelancer1, self.roster.freelancers)
     
     def test_add_freelancer_invalid(self):
         with self.assertRaises(ValueError):
@@ -78,6 +85,18 @@ class TestFreelancerRoster(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.roster.remove_freelancer(self.freelancer1)
+            
+    def test_contains_freelancer(self):
+        self.freelancer1 = Freelancer("Charlie", "freelancePass")
+        self.roster.add_freelancer(self.freelancer1)
+        
+        self.assertTrue(self.roster.contains(self.freelancer1.getUserName()))
+        
+    def test_contains_invalid_username(self):        
+        with self.assertRaises(ValueError) as context:
+            self.roster.contains(None)
+    
+        self.assertEqual(str(context.exception), "Username cannot be null.")
     
     def test_repr(self):
         self.roster.add_freelancer(self.freelancer1)
