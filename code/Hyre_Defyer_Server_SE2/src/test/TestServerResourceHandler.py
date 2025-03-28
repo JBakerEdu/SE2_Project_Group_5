@@ -20,6 +20,10 @@ class TestServerResourceHandler(unittest.TestCase):
             constants.REQ_USERNAME: "username",
             constants.REQ_BIO: ""
         })
+    def test_failLogin(self):
+        self.serverResourceHandler.createAccount("username", "password")
+        user = self.serverResourceHandler.login("username", "wrongpassword")
+        self.assertIsNone(user)
         
     def test_duplicate_accounts(self):
         self.assertTrue(self.serverResourceHandler.createAccount("username", "password"))
@@ -41,6 +45,17 @@ class TestServerResourceHandler(unittest.TestCase):
         messageLog = self.serverResourceHandler.getMessagesBetween(sender, receiver)
         
         self.assertEqual(messageLog, [message, message2])
+        
+    def test_messagableUsersSystem(self):
+        self.serverResourceHandler.createAccount("username", "password")
+        self.serverResourceHandler.createAccount("friend", "password")
+       
+        self.serverResourceHandler.addUserToDMList("username", "friend")
+        user = self.serverResourceHandler.getUser("username")
+        self.assertIn("friend", user.getMessageableUsers())
+        self.serverResourceHandler.removeUserFromDMList("username", "friend")
+        self.assertNotIn("friend", user.getMessageableUsers())
+
         
     def test_add_freelancer(self):
         self.freelancer = Freelancer("New", "Freelancer")

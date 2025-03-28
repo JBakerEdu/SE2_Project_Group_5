@@ -93,7 +93,6 @@ class ServerRequestHandler:
         response = {}
         userName = request.get(constants.REQ_USERNAME)
         password = request.get(constants.REQ_PASSWORD)
-        
         if not userName or not password:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
             response[constants.REP_ERROR_DESCRIPTION] = "Invalid username or password"

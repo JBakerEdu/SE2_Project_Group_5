@@ -17,8 +17,60 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_null_account(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: None
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid username or password")
 
-
+    def test_invalid_login(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_LOGIN,
+            constants.REQ_USERNAME: None
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid username or password")
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_LOGIN,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "wrongpassword"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid credentials")
+        
+        
+    def test_messagable_users(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_MESSAGEABLE_USERS,
+            constants.REQ_USERNAME: "username"
+        }
+        
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        self.assertEqual(response[constants.REP_USERS], [])
+            
+        
     def test_login_success(self):
         create_request = {
             constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
@@ -168,6 +220,35 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         self.assertEqual(response, expected_response)
 
+    def test_equalMessage(self):
+        msg1 = Message("Hello", User("Alice", ""), User("Bob", ""))
+        msg2 = Message("Hello", User("Alice", ""), User("Bob", ""))
+        msg3 = Message("Hi", User("Alice", ""), User("Bob", ""))
+        
+        self.assertTrue(msg1 == msg2)
+        self.assertFalse(msg1 == msg3)
+        self.assertFalse("bingo" == msg3)
+        
+    def test_add_messageable_user(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username2",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
+            constants.REQ_SENDER: "username",
+            constants.REQ_RECEIVER: "username2"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
 
 if __name__ == "__main__":
     unittest.main()
