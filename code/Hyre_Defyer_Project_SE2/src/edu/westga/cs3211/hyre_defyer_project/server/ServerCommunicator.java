@@ -1,10 +1,9 @@
 package edu.westga.cs3211.hyre_defyer_project.server;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import org.zeromq.ZMQ;
+import org.zeromq.ZMQ.Context;
+import org.zeromq.ZMQ.Socket;
 import org.json.JSONObject;
-import java.net.Socket;
 
 public class ServerCommunicator {
 
@@ -12,28 +11,29 @@ public class ServerCommunicator {
 	 * Sends a request to the server and returns the servers response.
 	 * 
 	 * @param request the request
-	 */
+	 */	
 	public static String sendRequestToServer(JSONObject request) {
-		try (Socket clientSocket = new Socket(Constants.IP_ADDRESS, Constants.PORT);
-			     DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
-			     DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream())) {
-
-	            String jsonMessage = request.toString();
-	            byte[] jsonBytes = jsonMessage.getBytes("UTF-8");
-
-	            dataOutputStream.writeInt(jsonBytes.length);
-	            dataOutputStream.write(jsonBytes);
-	            dataOutputStream.flush();
-	            
-	            int messageLength = dataInputStream.readInt();
-	            byte[] responseBytes = new byte[messageLength];
-	            dataInputStream.readFully(responseBytes);
-
-	            return new String(responseBytes, "UTF-8");
-	        } catch (IOException e) {
-	            System.err.println("❌ Failed to connect to the server.");
-	            e.printStackTrace();
-	        }
+		Context context = ZMQ.context(1);
+		
+        Socket socket = context.socket(ZMQ.REQ);
+        
+		try {
+			String address = "tcp://" + Constants.IP_ADDRESS + ":" + Constants.PORT;
+	        socket.connect(address);
+	
+	    	String jsonMessage = request.toString();
+	
+	        socket.send(jsonMessage.getBytes(ZMQ.CHARSET), 0);
+	
+	        byte[] reply = socket.recv(0);
+	        return new String(reply, ZMQ.CHARSET);
+		} catch (Exception e) {
+	        System.err.println(e.getMessage());
+	        e.printStackTrace();
+	    } finally {
+	    	socket.close();
+	        context.term();
+	    }
 		return "ERROR";
 	}
 }
