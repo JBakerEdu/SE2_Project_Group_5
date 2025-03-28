@@ -133,7 +133,7 @@ class ServerRequestHandler:
         freelancers = self._serverResourceHandler.getFreelancers()
         
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        response[constants.REP_FREELANCERS] = freelancers
+        response[constants.REP_FREELANCERS] = [freelancer.to_dict() for freelancer in freelancers]
         
         return response
     
@@ -143,12 +143,12 @@ class ServerRequestHandler:
         password = request.get(constants.REQ_PASSWORD)
         bio = request.get(constants.REQ_BIO)
         skills = request.get(constants.REQ_SKILLS)
-        catagories = request.get(constants.REQ_CATAGORIES)
+        categories = request.get(constants.REQ_CATEGORIES)
         
         freelancer = Freelancer(userName,password)
         freelancer.setBio(bio)
-        freelancer._skills = skills
-        freelancer._categories = catagories
+        freelancer._skills = set(skills) if isinstance(skills, list) else {skills}
+        freelancer._categories = set(categories) if isinstance(categories, list) else {categories}
         
         self._serverResourceHandler.addFreelancerToRoster(freelancer)
         

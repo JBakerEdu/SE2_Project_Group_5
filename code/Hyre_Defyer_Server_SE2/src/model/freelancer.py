@@ -5,6 +5,7 @@ Created on Mar 26, 2025
 '''
 
 from src.model.user import User
+from src.server import constants
 
 class Freelancer(User):
     '''
@@ -34,6 +35,8 @@ class Freelancer(User):
             @param category: the category to add
         '''
         self._categories.add(category)
+        
+        print(f"📌 Added category: {category}, Current categories: {self._categories}")
     
     def removeCategory(self, category):
         '''
@@ -122,8 +125,8 @@ class Freelancer(User):
         '''
         base_dict = super().to_dict()
         base_dict.update({
-            "categories": list(self._categories),
-            "skills": list(self._skills)
+            constants.REQ_CATEGORIES: list(self._categories),
+            constants.REQ_SKILLS: list(self._skills)
         })
         return base_dict
     

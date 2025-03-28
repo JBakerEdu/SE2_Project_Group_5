@@ -17,7 +17,7 @@ public class Constants {
     public static final String REQ_PASSWORD = "password";
     public static final String REQ_BIO = "bio";
     public static final String REQ_SKILLS = "skills";
-    public static final String REQ_CATAGORIES = "catagories";
+    public static final String REQ_CATEGORIES = "categories";
     public static final String REQ_SENDER = "sender";
     public static final String REQ_RECEIVER = "receiver";
     public static final String REQ_TEXT = "text";

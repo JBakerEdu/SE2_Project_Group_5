@@ -56,8 +56,8 @@ class TestFreelancer(unittest.TestCase):
         expected_dict = {
             constants.REQ_USERNAME: "Charlie",
             constants.REQ_BIO: "",
-            "categories": ["Web Development"],
-            "skills": ["Python"]
+            constants.REQ_CATEGORIES: ["Web Development"],
+            constants.REQ_SKILLS: ["Python"]
         }
         self.assertEqual(self.freelancer.to_dict(), expected_dict)
     
@@ -83,8 +83,6 @@ class TestFreelancer(unittest.TestCase):
         self.freelancer.addCategory("Web Development")
         self.freelancer.addSkill("Python")
         expected_repr = f"Freelancer(username=Charlie, categories={{'Web Development'}}, skills={{'Python'}})"
-        print(self.freelancer.__class__.__name__)
-        print(type(self.freelancer))
         self.assertEqual(repr(self.freelancer), expected_repr)
     
 if __name__ == "__main__":

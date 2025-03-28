@@ -125,7 +125,7 @@ class TestServerRequestHandler(unittest.TestCase):
             constants.REQ_PASSWORD: "password",
             constants.REQ_BIO: "bio",
             constants.REQ_SKILLS: [],
-            constants.REQ_CATAGORIES: []
+            constants.REQ_CATEGORIES: []
         }
         response = self.serverRequestHandler.handleRequest(request)
         
@@ -145,7 +145,7 @@ class TestServerRequestHandler(unittest.TestCase):
         
         expected_response = {
             constants.SUCCESS_CODE: constants.REP_SUCCESS,
-            constants.REP_FREELANCERS: [freelancer]
+            constants.REP_FREELANCERS: [freelancer.to_dict()]
         }
         self.assertEqual(response, expected_response)
     
@@ -164,9 +164,10 @@ class TestServerRequestHandler(unittest.TestCase):
     
         expected_response = {
             constants.SUCCESS_CODE: constants.REP_SUCCESS,
-            constants.REP_FREELANCERS: [freelancer1, freelancer2, freelancer3]
+            constants.REP_FREELANCERS: [freelancer1.to_dict(), freelancer2.to_dict(), freelancer3.to_dict()]
         }
         self.assertEqual(response, expected_response)
+
 
 if __name__ == "__main__":
     unittest.main()

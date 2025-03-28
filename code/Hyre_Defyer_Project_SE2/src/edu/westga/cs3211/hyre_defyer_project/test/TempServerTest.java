@@ -80,14 +80,7 @@ public class TempServerTest {
 	}
 	
 	@Test
-	public void getFreelancersEmpty() {
-		FreelancerRoster result = ServerInterface.getFreelancers();
-		
-		assertTrue(result.getAllFreelancers().isEmpty());
-	}
-	
-	@Test
-	public void addFreelancer() {
+	public void testAddFreelancer() {
 		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
 		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
 		
@@ -96,22 +89,28 @@ public class TempServerTest {
 		assertTrue(response);
 	}
 	
-//	@Test
-//	public void getMultipleFreelancers() {
-//		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
-//		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-//
-//		ServerInterface.addFreelancer(freelancer);
-//		
-//		String[] skills2 =  {"Ruby", "Go", "Swift", "HTML", "CSS"};
-//		Freelancer freelancer2 = new Freelancer("JaneDoe", "Moderate Developer", Categories.DEVELOPMENT_AND_IT, skills2);
-//
-//		ServerInterface.addFreelancer(freelancer2);
-//		FreelancerRoster result = ServerInterface.getFreelancers();
-//		
-//		assertFalse(result.getAllFreelancers().isEmpty());
-//		assertTrue(result.getAllFreelancers().contains(freelancer));
-//		assertTrue(result.getAllFreelancers().contains(freelancer2));
-//	}
-//	
+	@Test
+	public void testGetFreelancersEmpty() {
+		FreelancerRoster result = ServerInterface.getFreelancers();
+		assertTrue(result.getAllFreelancers().isEmpty());
+	}
+	
+	@Test
+	public void testGetMultipleFreelancers() {
+		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+		Freelancer freelancer = new Freelancer("Larry", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+
+		ServerInterface.addFreelancer(freelancer);
+		
+		String[] skills2 =  {"Ruby", "Go", "Swift", "HTML", "CSS"};
+		Freelancer freelancer2 = new Freelancer("David", "Moderate Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+
+		ServerInterface.addFreelancer(freelancer2);
+		FreelancerRoster result = ServerInterface.getFreelancers();
+		
+		assertFalse(result.getAllFreelancers().isEmpty());
+		assertTrue(result.getAllFreelancers().get(0).getUserName().equals("Larry"));
+		assertTrue(result.getAllFreelancers().get(1).getUserName().equals("David"));
+	}
+	
 }

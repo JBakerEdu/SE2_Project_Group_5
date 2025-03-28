@@ -7,7 +7,6 @@ from src.model.user import User
 from src.server import constants
 from src.model.message import Message
 from src.model.freelanceer_roster import FreelancerRoster
-from jinja2.nodes import For
 
 class ServerResourceHandler:
     def __init__(self):

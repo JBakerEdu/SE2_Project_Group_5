@@ -175,7 +175,6 @@ public class ServerInterface {
 		request.put(Constants.REQ_TYPE, Constants.REQ_GET_FREELANCERS);
 		
 		String response = ServerCommunicator.sendRequestToServer(request);
-		System.out.println("RESPONSE" + response);
 		JSONObject responseJSON = new JSONObject(response);
 		String successCode = responseJSON.getString(Constants.SUCCESS_CODE);
 		
@@ -188,7 +187,7 @@ public class ServerInterface {
                 String userName = freelancerJSON.getString(Constants.REQ_USERNAME);
                 String bio = freelancerJSON.getString(Constants.REQ_BIO);
                 JSONArray skillsArray = freelancerJSON.getJSONArray(Constants.REQ_SKILLS);
-                JSONArray categoriesArray = freelancerJSON.getJSONArray(Constants.REQ_CATAGORIES);
+                JSONArray categoriesArray = freelancerJSON.getJSONArray(Constants.REQ_CATEGORIES);
                 
                 List<String> skills = new ArrayList<>();
                 for (int j = 0; j < skillsArray.length(); j++) {
@@ -224,7 +223,7 @@ public class ServerInterface {
 		request.put(Constants.REQ_PASSWORD, "");
 		request.put(Constants.REQ_BIO, freelancer.getBio());
 		request.put(Constants.REQ_SKILLS, freelancer.getSkills());
-		request.put(Constants.REQ_CATAGORIES, freelancer.getCategory());
+		request.put(Constants.REQ_CATEGORIES, freelancer.getCategory());
 		
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject jsonObject = new JSONObject(response);
