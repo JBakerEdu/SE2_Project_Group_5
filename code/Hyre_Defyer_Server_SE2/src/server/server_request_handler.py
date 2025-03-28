@@ -5,6 +5,7 @@ Created on Mar 10, 2025
 '''
 from src.server import constants
 from src.model.message import Message
+from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
 
 class ServerRequestHandler:
@@ -122,16 +123,36 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
-    def _getFreelancers(self, request):
+    def _getFreelancers(self):
         '''
             Returns all freelancers
         '''
+    
         response = {}
+        
         freelancers = self._serverResourceHandler.getFreelancers()
         
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         response[constants.REP_FREELANCERS] = freelancers
         
+        return response
+    
+    def _addFreelancer(self, request):
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        password = request.get(constants.REQ_PASSWORD)
+        bio = request.get(constants.REQ_BIO)
+        skills = request.get(constants.REQ_SKILLS)
+        catagories = request.get(constants.REQ_CATAGORIES)
+        
+        freelancer = Freelancer(userName,password)
+        freelancer.setBio(bio)
+        freelancer._skills = skills
+        freelancer._categories = catagories
+        
+        self._serverResourceHandler.addFreelancerToRoster(freelancer)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
     def handleRequest(self, request):
@@ -145,6 +166,8 @@ class ServerRequestHandler:
                 login
                 get messageable users
                 add messageable user
+                get freelancers
+                add freelancer
                 
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
@@ -170,7 +193,10 @@ class ServerRequestHandler:
             response = self._addMessageableUser(request)
             
         elif req_type == constants.REQ_GET_FREELANCERS:
-            response = self._getFreelancers(request)
+            response = self._getFreelancers()
+        
+        elif req_type == constants.REQ_ADD_FREELANCER:
+            response = self._addFreelancer(request)
         
         return response
         

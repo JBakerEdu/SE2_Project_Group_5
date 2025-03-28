@@ -3,6 +3,7 @@ from src.server import constants
 from src.server.server_request_handler import ServerRequestHandler
 from src.model.message import Message
 from src.model.user import User
+from src.model.freelancer import Freelancer
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -106,15 +107,66 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertEqual(messages[1].getReceiver().getUserName(), "username")
         
     def test_getFreelancers_empty_list(self):
-        self.serverRequestHandler._serverResourceHandler.getFreelancers.return_value = []
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
         expected_response = {
             constants.SUCCESS_CODE: constants.REP_SUCCESS,
             constants.REP_FREELANCERS: []
         }
-
-        response = self.api._getFreelancers(request=None)
         self.assertEqual(response, expected_response)
-
+        
+    def test_addFreelancer(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATAGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_getFreelancersNotEmpty(self):
+        freelancer = Freelancer("user", "pass");
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: [freelancer]
+        }
+        self.assertEqual(response, expected_response)
+    
+    def test_getMultipleFreelancers(self):
+        freelancer1 = Freelancer("user1", "pass1")
+        freelancer2 = Freelancer("user2", "pass2")
+        freelancer3 = Freelancer("user3", "pass3")
+    
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer1)
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer2)
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer3)
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+    
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: [freelancer1, freelancer2, freelancer3]
+        }
+        self.assertEqual(response, expected_response)
 
 if __name__ == "__main__":
     unittest.main()

@@ -16,6 +16,8 @@ public class Constants {
     public static final String REQ_USERNAME = "username";
     public static final String REQ_PASSWORD = "password";
     public static final String REQ_BIO = "bio";
+    public static final String REQ_SKILLS = "skills";
+    public static final String REQ_CATAGORIES = "catagories";
     public static final String REQ_SENDER = "sender";
     public static final String REQ_RECEIVER = "receiver";
     public static final String REQ_TEXT = "text";
@@ -34,6 +36,7 @@ public class Constants {
     public static final String REP_ERROR_DESCRIPTION = "error description";
     public static final String REP_MESSAGES = "messages";
     public static final String REP_USERS = "users";
+    public static final String REP_FREELANCERS = "freelancers";
 
     public static final String SUCCESS_CODE = "success code";
 }

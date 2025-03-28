@@ -7,6 +7,7 @@ from src.model.user import User
 from src.server import constants
 from src.model.message import Message
 from src.model.freelanceer_roster import FreelancerRoster
+from jinja2.nodes import For
 
 class ServerResourceHandler:
     def __init__(self):
@@ -149,7 +150,7 @@ class ServerResourceHandler:
             
             @param freelancer: the freelancer being added to the roster
         '''
-        self.freelancers.add_freelancer(freelancer)
+        return self.freelancers.add_freelancer(freelancer)
         
     def getFreelancers(self):
         '''
@@ -158,4 +159,4 @@ class ServerResourceHandler:
             @precondition none
             @postcondition none 
         '''
-        return self.freelancers
+        return self.freelancers.freelancers

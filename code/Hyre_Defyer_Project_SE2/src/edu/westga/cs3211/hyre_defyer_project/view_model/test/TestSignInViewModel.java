@@ -25,7 +25,7 @@ public class TestSignInViewModel {
 	@Test
 	public void testCreateAccountSuccess() {
 		SignInViewModel vm = new SignInViewModel();
-		assertTrue(vm.createAccount("user1", "1234567", "1234567"));
+		assertTrue(vm.createAccount("user10", "1234567", "1234567"));
 	}
 	
 	@Test

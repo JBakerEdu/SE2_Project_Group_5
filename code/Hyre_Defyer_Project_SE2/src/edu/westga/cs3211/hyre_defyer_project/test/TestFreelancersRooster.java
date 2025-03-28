@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,6 +20,73 @@ private FreelancerRoster roster;
     @BeforeEach
     public void setUp() {
         roster = new FreelancerRoster();
+        roster.addFreelancer(new Freelancer("Alice1", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob1", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie1", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice2", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob2", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie2", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice3", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob3", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie3", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice4", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob4", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie4", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice5", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob5", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie5", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice6", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob6", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie6", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice7", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob7", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie7", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice8", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob8", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie8", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice9", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob9", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie9", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+
+        roster.addFreelancer(new Freelancer("Alice10", "Experienced Accountant", Categories.BUSINESS_AND_FINANCE, new String[]{"Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"}));
+        roster.addFreelancer(new Freelancer("Bob10", "Investment Consultant", Categories.BUSINESS_AND_FINANCE, new String[]{"Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"}));
+        roster.addFreelancer(new Freelancer("Charlie10", "Financial Analyst", Categories.BUSINESS_AND_FINANCE, new String[]{"Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"}));
+        
+        roster.addFreelancer(new Freelancer("Dana", "Graphic Designer", Categories.DESIGN_AND_CREATIVE, new String[]{"Photoshop", "Illustrator", "Branding", "UI/UX", "Typography"}));
+        roster.addFreelancer(new Freelancer("Eli", "Illustrator", Categories.DESIGN_AND_CREATIVE, new String[]{"Digital Art", "Comics", "Concept Art", "Vector Graphics", "Sketching"}));
+        roster.addFreelancer(new Freelancer("Fay", "Animator", Categories.DESIGN_AND_CREATIVE, new String[]{"2D Animation", "3D Animation", "After Effects", "Storyboarding", "Motion Graphics"}));
+        
+        roster.addFreelancer(new Freelancer("George", "Java Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"Java", "Spring", "SQL", "Git", "REST APIs"}));
+        roster.addFreelancer(new Freelancer("Hannah", "Web Developer", Categories.DEVELOPMENT_AND_IT, new String[]{"HTML", "CSS", "JavaScript", "React", "Node.js"}));
+        roster.addFreelancer(new Freelancer("Ian", "Data Scientist", Categories.DEVELOPMENT_AND_IT, new String[]{"Python", "Machine Learning", "Pandas", "NumPy", "Deep Learning"}));
+        
+        roster.addFreelancer(new Freelancer("Jack", "Mechanical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"SolidWorks", "AutoCAD", "Finite Element Analysis", "Thermodynamics", "CAD Design"}));
+        roster.addFreelancer(new Freelancer("Karen", "Biomedical Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Medical Devices", "Biomaterials", "3D Printing", "Regulatory Compliance", "Clinical Trials"}));
+        roster.addFreelancer(new Freelancer("Leo", "Aerospace Engineer", Categories.ENGINEERING_AND_SCIENCE, new String[]{"Aerodynamics", "Propulsion", "Satellite Systems", "Orbital Mechanics", "Composites"}));
+        
+        roster.addFreelancer(new Freelancer("Mia", "Marketing Specialist", Categories.MARKETING_AND_SALES, new String[]{"SEO", "Social Media", "Content Marketing", "Google Ads", "Email Campaigns"}));
+        roster.addFreelancer(new Freelancer("Noah", "Sales Consultant", Categories.MARKETING_AND_SALES, new String[]{"B2B Sales", "CRM", "Negotiation", "Cold Calling", "Sales Funnels"}));
+        roster.addFreelancer(new Freelancer("Olivia", "Digital Advertiser", Categories.MARKETING_AND_SALES, new String[]{"Facebook Ads", "PPC", "Conversion Optimization", "Market Research", "Copywriting"}));
+        
+        roster.addFreelancer(new Freelancer("Paul", "Music Producer", Categories.MUSIC_AND_AUDIO, new String[]{"Mixing", "Mastering", "Ableton Live", "Logic Pro", "Music Composition"}));
+        roster.addFreelancer(new Freelancer("Quinn", "Sound Designer", Categories.MUSIC_AND_AUDIO, new String[]{"Foley", "Game Audio", "Synthesizers", "Film Scoring", "Podcast Editing"}));
+        roster.addFreelancer(new Freelancer("Ryan", "Voice Actor", Categories.MUSIC_AND_AUDIO, new String[]{"Narration", "Character Voices", "Commercials", "E-Learning", "Dubbing"}));
+        
+        roster.addFreelancer(new Freelancer("Sarah", "Carpenter", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Woodworking", "Cabinet Making", "Blueprint Reading", "Furniture Design", "Framing"}));
+        roster.addFreelancer(new Freelancer("Tom", "Plumber", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Pipe Fitting", "Drain Cleaning", "Fixture Installation", "Water Heaters", "Soldering"}));
+        roster.addFreelancer(new Freelancer("Uma", "Electrician", Categories.TRADES_AND_SKILLED_LABOR, new String[]{"Wiring", "Troubleshooting", "Panel Upgrades", "Lighting Design", "Circuitry"}));
+        
+        roster.addFreelancer(new Freelancer("Victor", "Copywriter", Categories.WRITING_AND_TRANSLATION, new String[]{"SEO Writing", "Blogging", "Technical Writing", "Ad Copy", "Editing"}));
+        roster.addFreelancer(new Freelancer("Wendy", "Translator", Categories.WRITING_AND_TRANSLATION, new String[]{"Spanish", "French", "German", "Mandarin", "Localization"}));
+        roster.addFreelancer(new Freelancer("Xander", "Fiction Writer", Categories.WRITING_AND_TRANSLATION, new String[]{"Creative Writing", "Screenwriting", "Storytelling", "Character Development", "Editing"}));
     }
     
     @Test
@@ -57,6 +125,13 @@ private FreelancerRoster roster;
     @Test
     public void testSearchBySkill() {
         List<Freelancer> javaExperts = roster.getFreelancersBySkill("Java");
+        assertNotNull(javaExperts);
+        assertFalse(javaExperts.isEmpty());
+    }
+    
+    @Test
+    public void testSearchBySkillFound() {
+        List<Freelancer> javaExperts = roster.getFreelancersBySkill("Accounting");
         assertNotNull(javaExperts);
         assertFalse(javaExperts.isEmpty());
     }

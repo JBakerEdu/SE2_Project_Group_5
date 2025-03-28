@@ -45,7 +45,7 @@ class TestServerResourceHandler(unittest.TestCase):
     def test_add_freelancer(self):
         self.freelancer = Freelancer("New", "Freelancer")
         self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
-        self.assertTrue(self.serverResourceHandler.getFreelancers().contains(self.freelancer.getUserName()))
+        self.assertTrue(self.freelancer in self.serverResourceHandler.getFreelancers())
 
 if __name__ == "__main__":
     unittest.main()

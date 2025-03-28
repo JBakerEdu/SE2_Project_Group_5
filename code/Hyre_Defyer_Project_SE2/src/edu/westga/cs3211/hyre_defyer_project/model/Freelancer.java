@@ -1,6 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,37 +11,89 @@ import java.util.Objects;
  * @version Spring 2025
  */
 public class Freelancer extends User {
-
-	private static final int NUM_OF_SKILLS = 5;
-	private static final String SKILLS_ARRAY_MUST_BE_OF_SIZE_5 = "Skills array must be of size " + NUM_OF_SKILLS + ".";
-	private static final String INDEX_MUST_BE_BETWEEN_0_AND_4 = "Index must be between 0 and 4.";
-	private static final String SKILL_CANNOT_BE_NULL = "Skill cannot be null.";
-	private static final String OLD_SKILL_NOT_FOUND = "Old skill not found.";
-	private static final String CATEGORY_CANNOT_BE_NULL = "Category cannot be null.";
 	
-	private Categories category;
-    private String[] skills;
+	private static final String SKILL_CANNOT_BE_NULL = "Skill cannot be null.";
+	private static final String SKILLS_CANNOT_BE_NULL = "Skills cannot be null.";
+	private static final String OLD_SKILL_NOT_FOUND = "Old skill not found.";
+	private static final String CATEGORIES_CANNOT_BE_NULL = "Categories cannot be null.";
+	
+	private List<Categories> categories;
+    private List<String> skills;
 	
     /**
-     * Creates a freelancer with a username, password, biography, and category.
+     * Creates a freelancer with a username, password, biography, and categories.
      *
-     * @precondition userName != null && !userName.isBlank() && userBio != null && category != null
-     * @postcondition userName, userBio, and category are set; skills is initialized as an empty array of size 5
+     * @precondition userName != null && !userName.isBlank() && userBio != null && categories != null
+     * @postcondition userName, userBio, and categories are set; skills is initialized as an empty list
      *
      * @param userName The freelancer's name
      * @param userBio The freelancer's biography
-     * @param category The freelancer's category
+     * @param categories The freelancer's categories
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, Categories category) {
-    	this(userName, userBio, category, new String[NUM_OF_SKILLS]);
+    public Freelancer(String userName, String userBio, List<Categories> categories) {
+    	this(userName, userBio, categories, new ArrayList<String>());
     }
     
     /**
      * Creates a freelancer with a username, password, biography, category, and skills.
      *
-     * @precondition userName != null && !userName.isBlank() && userBio != null && category != null && skills.length == 5
-     * @postcondition userName, userBio, category, and skills are set
+     * @precondition userName != null && !userName.isBlank() && userBio != null && categories != null 
+     * @postcondition userName, userBio, categories, and skills are set
+     *
+     * @param userName The freelancer's name
+     * @param userBio The freelancer's biography
+     * @param category The freelancer's category
+     * @param skills The freelancer's skills
+     * @throws IllegalArgumentException if any precondition is violated
+     */
+    public Freelancer(String userName, String userBio, Categories category) {
+    	this(userName, userBio, new ArrayList<Categories>());
+    	this.categories.add(category);
+    }
+    
+    /**
+     * Creates a freelancer with a username, password, biography, categories, and skills.
+     *
+     * @precondition userName != null && !userName.isBlank() && userBio != null && categories != null 
+     * @postcondition userName, userBio, categories, and skills are set
+     *
+     * @param userName The freelancer's name
+     * @param userBio The freelancer's biography
+     * @param categories The freelancer's categories
+     * @param skills The freelancer's skills
+     * @throws IllegalArgumentException if any precondition is violated
+     */
+    public Freelancer(String userName, String userBio, List<Categories> categories, List<String> skills) {
+        super(userName, userBio);
+        this.setCategories(categories);
+        this.setAllSkills(skills);
+    }
+    
+    /**
+     * Creates a freelancer with a username, password, biography, category, and skills.
+     *
+     * @precondition userName != null && !userName.isBlank() && userBio != null && categories != null 
+     * @postcondition userName, userBio, categories, and skills are set
+     *
+     * @param userName The freelancer's name
+     * @param userBio The freelancer's biography
+     * @param category The freelancer's category
+     * @param skills The freelancer's skills
+     * @throws IllegalArgumentException if any precondition is violated
+     */
+    public Freelancer(String userName, String userBio, Categories category, List<String> skills) {
+        super(userName, userBio);
+        this.categories = new ArrayList<Categories>();
+        this.categories.add(category);
+        this.setAllSkills(skills);
+    }
+    
+    /**
+     * Creates a freelancer with a username, password, biography, category, and skills.
+     *
+     * @precondition userName != null && !userName.isBlank() && userBio != null && categories != null 
+     * @postcondition userName, userBio, categories, and skills are set
      *
      * @param userName The freelancer's name
      * @param userBio The freelancer's biography
@@ -50,12 +103,25 @@ public class Freelancer extends User {
      */
     public Freelancer(String userName, String userBio, Categories category, String[] skills) {
         super(userName, userBio);
-        this.setCategory(category);
+        this.categories = new ArrayList<Categories>();
+        this.categories.add(category);
         this.setAllSkills(skills);
     }
     
     /**
-     * Gets the freelancer's category.
+     * Gets the freelancer's categories.
+     * 
+     * @precondition none
+     * @postcondition none
+     *
+     * @return the freelancer's categories
+     */
+    public List<Categories> getCategories() {
+        return this.categories;
+    }
+    
+    /**
+     * Gets the first freelancer's category.
      * 
      * @precondition none
      * @postcondition none
@@ -63,23 +129,39 @@ public class Freelancer extends User {
      * @return the freelancer's category
      */
     public Categories getCategory() {
-        return this.category;
+        return this.categories.get(0);
     }
     
     /**
-     * Sets the freelancer's category.
+     * Sets the freelancer's categories.
      *
-     * @precondition category != null
-     * @postcondition this.category is set
+     * @precondition categories != null
+     * @postcondition this.categories is set
      *
-     * @param category The freelancer's category
+     * @param categories The freelancer's categories
+     * @throws IllegalArgumentException if category is null
+     */
+    public void setCategories(List<Categories> categories) {
+        if (categories == null) {
+            throw new IllegalArgumentException(CATEGORIES_CANNOT_BE_NULL);
+        }
+        this.categories = categories;
+    }
+    
+    /**
+     * Sets the freelancer's categories.
+     *
+     * @precondition categories != null
+     * @postcondition this.categories is set
+     *
+     * @param categories The freelancer's categories
      * @throws IllegalArgumentException if category is null
      */
     public void setCategory(Categories category) {
         if (category == null) {
-            throw new IllegalArgumentException(CATEGORY_CANNOT_BE_NULL);
+            throw new IllegalArgumentException(CATEGORIES_CANNOT_BE_NULL);
         }
-        this.category = category;
+        this.categories.set(0, category);
     }
     
     /**
@@ -88,46 +170,45 @@ public class Freelancer extends User {
      * @precondition none
      * @postcondition none
      *
-     * @return an array of the freelancer's skills
+     * @return a list of the freelancer's skills
      */
-    public String[] getSkills() {
-        return this.skills.clone();
+    public List<String> getSkills() {
+        return this.skills;
     }
     
     /**
      * Sets all skills to the specified skills.
      *
-     * @precondition skill != null && index >= 0 && index < 5
+     * @precondition skills != null
      * @postcondition the skill is set to the skills
      *
      * @param skills being set
-     * @throws IllegalArgumentException if skill is null, or if index is out of bounds
+     * @throws IllegalArgumentException if skills are null
      */
-    public void setAllSkills(String[] skills) {
-    	if (skills == null || skills.length != NUM_OF_SKILLS) {
-            throw new IllegalArgumentException(SKILLS_ARRAY_MUST_BE_OF_SIZE_5);
+    public void setAllSkills(List<String> skills) {
+    	if (skills == null) {
+            throw new IllegalArgumentException(SKILLS_CANNOT_BE_NULL);
         }
-        this.skills = skills.clone();
+        this.skills = skills;
     }
     
     /**
-     * Sets a skill at a specific index.
+     * Sets all skills to the specified skills.
      *
-     * @precondition skill != null && index >= 0 && index < 5
-     * @postcondition the skill is set at the given index
+     * @precondition skills != null || skill is null
+     * @postcondition the skill is set to the skills
      *
-     * @param index The index to set the skill at
-     * @param skill The skill to set
-     * @throws IllegalArgumentException if skill is null, or if index is out of bounds
+     * @param skills being set
+     * @throws IllegalArgumentException if skills are null
      */
-    public void setSkill(int index, String skill) {
-        if (skill == null) {
-            throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
+    public void setAllSkills(String[] skills) {
+    	this.skills = new ArrayList<String>();
+    	for (int i = 0; i < skills.length; i++) {
+    		 if (skills[i] == null) {
+    			 throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
+    		 }
+    		 this.skills.add(skills[i]);
         }
-        if (index < 0 || index >= NUM_OF_SKILLS) {
-            throw new IllegalArgumentException(INDEX_MUST_BE_BETWEEN_0_AND_4);
-        }
-        this.skills[index] = skill;
     }
     
     /**
@@ -144,9 +225,9 @@ public class Freelancer extends User {
         if (oldSkill == null || newSkill == null) {
             throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
         }
-        for (int i = 0; i < this.skills.length; i++) {
-            if (this.skills[i].equals(oldSkill)) {
-                this.skills[i] = newSkill;
+        for (int i = 0; i < skills.size(); i++) {
+            if (skills.get(i).equals(oldSkill)) {
+                skills.set(i, newSkill); 
                 return;
             }
         }
@@ -179,8 +260,8 @@ public class Freelancer extends User {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(this.skills);
-		result = prime * result + Objects.hash(this.category);
+		result = prime * result + Objects.hash(this.skills);
+		result = prime * result + Objects.hash(this.categories);
 		return result;
 	}
 
@@ -198,7 +279,7 @@ public class Freelancer extends User {
 			return false;
 		}
 		Freelancer other = (Freelancer) obj;
-		return (this.category == other.category) && (Arrays.equals(this.skills, other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())));
+		return (this.categories.equals(other.categories)) && (this.skills.equals(other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())));
 	} 
     
 }
