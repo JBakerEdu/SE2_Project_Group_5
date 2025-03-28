@@ -6,14 +6,15 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-
-public class TempServerTest {
+public class TestServerInterface {
 	@Test
 	public void testCreateAccount() {
         ServerInterface.createAccount("user1", "password1");
@@ -53,6 +54,8 @@ public class TempServerTest {
         Message message1 = new Message("World", user1, user2);
         handler.sendMessage(message);
         handler.sendMessage(message1);
+        assertEquals(message.toString(), "Connor: Hello");
+        assertEquals(user1.toString(), "Connor");
         assertEquals("Hello", handler.getFullMessageLog().get(0).getMessage());
         assertEquals("World", handler.getFullMessageLog().get(1).getMessage());
     }
@@ -73,4 +76,16 @@ public class TempServerTest {
 
 	}
 	
+	@Test
+	public void testGetMessageableUsers() {
+		ServerInterface.createAccount("Alec", "password");
+		ServerInterface.createAccount("Edgar", "password");
+		User user1 = ServerInterface.login("Alec", "password");
+        User user2 = ServerInterface.login("Edgar", "password");
+        ServerInterface.addMessageableUser(user1, user2);
+        List<User> users = ServerInterface.getMessagableUsers(user1);
+        assertNotNull(users);
+        assertTrue(users.get(0).getUserName().equals("Edgar"));
+		
+	}
 }

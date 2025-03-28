@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 public class ServerCommunicator {
 
+	private static int port = Constants.PORT;
 	/**
 	 * Sends a request to the server and returns the servers response.
 	 * 
@@ -35,5 +36,14 @@ public class ServerCommunicator {
 	        context.term();
 	    }
 		return "ERROR";
+	}
+	
+	/**
+	 * Changes the port to force exception for 100% coverage
+	 * 
+	 * @param newPort the new port
+	 */
+	public static void changePortForCoverage(int newPort) {
+		port = newPort;
 	}
 }
