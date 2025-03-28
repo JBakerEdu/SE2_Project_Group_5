@@ -38,7 +38,7 @@ public class GUIHelper {
 			stage.setTitle(Main.getWindowTitle());
 			stage.setScene(scene);
 		} catch (IOException error) {
-			displayError("Display Switch Error", "Failed to switch views");
+			displayError("Display Switch Error", error.getMessage().substring(50));
 		}
 	}
 	
@@ -52,23 +52,5 @@ public class GUIHelper {
 		alert.setHeaderText(headerTxt);
 		alert.setContentText(contextTxt);
 		alert.showAndWait();
-	}
-	
-	/**
-	 * Display a confirmation modal window
-	 *  @param headerTxt the text you want for the header of the window
-	 * @param contextTxt the text you want in the main window
-	 * @return true if the user confirms their choice
-	 * 				 false if the user doesn't confirm their choice
-	 */
-	public static boolean displayConfirmation(String headerTxt, String contextTxt) {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setHeaderText(headerTxt);
-		alert.setContentText(contextTxt);
-		alert.showAndWait();
-		if (alert.showAndWait().get() == ButtonType.OK) {
-			return true;
-		}
-		return false;
 	}
 }

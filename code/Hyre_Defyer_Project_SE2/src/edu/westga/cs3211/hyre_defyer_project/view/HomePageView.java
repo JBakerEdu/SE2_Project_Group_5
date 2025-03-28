@@ -3,6 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -22,7 +23,7 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class HomePageView {
-	CategoryViewModel categoryViewModel;
+		private CategoryViewModel categoryViewModel;
 
 	@FXML
     private ImageView accountBioImage;

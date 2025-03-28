@@ -119,34 +119,27 @@ public class DirectMessageView {
     		this.accountLabel.textProperty().setValue("Account");
     	}
     	
-    	//DELETE LATER
-    	ServerInterface.addMessageableUser(SignInViewModel.getCurrentUser(), new User("User1"));
-    	//DELETE LATER
-    	
     	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
     	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
     	this.contactListView.setItems(observableListUsers);
+    	this.chatSettingsMenu.disableProperty().set(true);
     	
-    	this.bindElements();
     	this.setUpListeners();
     }
 
 		private void setUpListeners() {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				if (newValue != null) {
+					this.chatSettingsMenu.disableProperty().setValue(false);
+				}
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
     		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
     		this.updateDisplayedMessages();		
     	});
 			
 			this.deleteChat.setOnAction((event) -> {
-				if (GUIHelper.displayConfirmation("Delete Chat", "Are you sure you'd like to delete your chat with " + this.contactListView.getSelectionModel().getSelectedItem().getUserName())) {
-					this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
-				}
+				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
 			});
-		}
-		
-		private void bindElements() {
-			this.chatSettingsMenu.disableProperty().bind(this.contactListView.getSelectionModel().selectedItemProperty().isNotNull());
 		}
 
 	private void updateDisplayedMessages() {
