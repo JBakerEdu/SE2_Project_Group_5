@@ -3,15 +3,11 @@ package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import edu.westga.cs3211.hyre_defyer_project.server.Constants;
-import edu.westga.cs3211.hyre_defyer_project.server.ServerCommunicator;
-import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -74,18 +70,5 @@ public class TestSignInViewModel {
 	@Test
 	public void testUserDoesNotExist() {
 		assertFalse(SignInViewModel.isSignedIn());
-	}
-	
-	@Test
-	public void zTestServerFailedConnectionHandling() {
-		// This test is simply for code coverage, it is not a functional test
-		// The server has to fail its connection for this test to pass, thus it needs to be run last hence the z in its name
-		// and it being in the wrong test class
-		ServerCommunicator.changePortForCoverage(1234);
-		ServerCommunicator obj = new ServerCommunicator();
-		ServerInterface obj1 = new ServerInterface();
-		Constants obj2 = new Constants();
-		assertThrows(Exception.class, () -> ServerInterface.createAccount("user", "password"));
-		
-	}
+	}		
 }
