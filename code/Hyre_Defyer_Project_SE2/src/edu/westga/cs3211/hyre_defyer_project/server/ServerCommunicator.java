@@ -8,13 +8,14 @@ import java.net.Socket;
 
 public class ServerCommunicator {
 
+	private static int port = Constants.PORT;
 	/**
 	 * Sends a request to the server and returns the servers response.
 	 * 
 	 * @param request the request
 	 */
 	public static String sendRequestToServer(JSONObject request) {
-		try (Socket clientSocket = new Socket(Constants.IP_ADDRESS, Constants.PORT);
+		try (Socket clientSocket = new Socket(Constants.IP_ADDRESS, port);
 			     DataOutputStream dataOutputStream = new DataOutputStream(clientSocket.getOutputStream());
 			     DataInputStream dataInputStream = new DataInputStream(clientSocket.getInputStream())) {
 
@@ -31,9 +32,18 @@ public class ServerCommunicator {
 
 	            return new String(responseBytes, "UTF-8");
 	        } catch (IOException e) {
-	            System.err.println("❌ Failed to connect to the server.");
+	            System.err.println("Failed to connect to the server.");
 	            e.printStackTrace();
 	        }
 		return "ERROR";
+	}
+	
+	/**
+	 * Changes the port to force exception for 100% coverage
+	 * 
+	 * @param newPort the new port
+	 */
+	public static void changePortForCoverage(int newPort) {
+		port = newPort;
 	}
 }
