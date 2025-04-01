@@ -19,6 +19,7 @@ REQ_LOGIN = "login"
 REQ_GET_MESSAGES = "get messages"
 REQ_GET_MESSAGEABLE_USERS = "get messageable users"
 REQ_ADD_MESSAGEABLE_USER = "add messageable user"
+REQ_DELETE_CHAT = "delete chat"
 
 REP_SUCCESS = "success"
 REP_FAIL = "fail"

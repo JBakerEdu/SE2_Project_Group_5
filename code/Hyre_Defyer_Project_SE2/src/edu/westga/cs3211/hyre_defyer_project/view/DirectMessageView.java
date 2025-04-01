@@ -8,6 +8,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -118,12 +119,8 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-    	
-    	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
-    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
-    	this.contactListView.setItems(observableListUsers);
     	this.chatSettingsMenu.disableProperty().set(true);
-    	
+    	this.contactListView.itemsProperty().bindBidirectional(this.directMessageHandler.getContactList());
     	this.setUpListeners();
     }
 
@@ -131,10 +128,13 @@ public class DirectMessageView {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				if (newValue != null) {
 					this.chatSettingsMenu.disableProperty().setValue(false);
+	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+				} else {
+					this.chatSettingsMenu.disableProperty().setValue(true);
+	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
-    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
-    		this.updateDisplayedMessages();		
+    		this.updateDisplayedMessages();
     	});
 			
 			this.deleteChat.setOnAction((event) -> {

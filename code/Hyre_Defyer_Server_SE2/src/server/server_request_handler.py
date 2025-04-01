@@ -169,6 +169,9 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
             response = self._addMessageableUser(request)
+            
+        elif req_type == constants.REQ_DELETE_CHAT:
+            response = self._deleteChat(request)
         
         return response
         
