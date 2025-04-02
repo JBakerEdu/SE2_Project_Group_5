@@ -3,7 +3,6 @@ package edu.westga.cs3211.hyre_defyer_project.view_model.test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 
@@ -11,6 +10,7 @@ class AccountPageViewModelTest {
 
     @BeforeEach
     void setUp() {
+    	new AccountPageViewModel();
         AccountPageViewModel.setUserSelectedToView(null);
     }
 

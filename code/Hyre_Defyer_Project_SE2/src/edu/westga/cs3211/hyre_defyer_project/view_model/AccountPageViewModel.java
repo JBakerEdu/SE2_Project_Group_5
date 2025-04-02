@@ -1,33 +1,63 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 
 /**
- * This is the View Model for the Account Page helping with some base information
+ * This is the ViewModel for the Account Page helping with some base information.
  * 
  * @author Jacob Baker
  * @version Spring 2025
  */
 public class AccountPageViewModel {
-	
-	private static User userSelectedToView;
+    
+    private static User userSelectedToView;
+
+    private static FreelancerRoster freelancerRoster = new FreelancerRoster();
 
     /**
-	 * gets the user that was last set which will allow view to know what user is needed to be viewed
-	 * 
-	 * @return User that is the account that will be viewed
-	 */
+     * Gets the user that was last set, which will allow the view to know what user is needed to be viewed.
+     * 
+     * @return User that is the account that will be viewed
+     */
     public static User getUserSelectedToView() {
         return userSelectedToView;
     }
+    
+    /**
+     * Gets the FreelancerRoster that is being added to throughout the application.
+     * 
+     * @return FreelancerRoster that is the list of freelancers
+     */
+    public static FreelancerRoster getRoster() {
+        return freelancerRoster;
+    }
 
     /**
-     * Sets the user that will need to be viewed once able 
+     * Sets the user that will need to be viewed once able.
      * 
      * @param user the user that is being passed in
      */
     public static void setUserSelectedToView(User user) {
         userSelectedToView = user;
+    }
+
+    /**
+     * Checks if the selected user is a freelancer by checking the FreelancerRoster.
+     * 
+     * @return true if the selected user is a freelancer, false otherwise
+     */
+    public static boolean isSelectedUserFreelancer() {
+        if (userSelectedToView != null && userSelectedToView.getUserName() != null) {
+            // Iterate through the freelancer roster and check if any freelancer matches the selected user's username
+            for (Freelancer freelancer : freelancerRoster.getAllFreelancers()) {
+                if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

@@ -181,8 +181,17 @@ public class CategoryPageView {
 
     @FXML
     void handlePeopleClick(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        int buttonIndex = this.peopleButtons.indexOf(clickedButton);
+        int freelancerIndex = (this.currentPage - 1) * this.pageSize + buttonIndex;
 
+        if (freelancerIndex < this.freelancers.size()) {
+            Freelancer selectedFreelancer = this.freelancers.get(freelancerIndex);
+            AccountPageViewModel.setUserSelectedToView(selectedFreelancer);
+        }
+        GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
+
     
     @FXML
     void handleNextPageClick(ActionEvent event) {
