@@ -138,61 +138,34 @@ public class AccountPageView {
     	//TODO start message with user and take to dm page in the tab to talk to the person
     }
     
-//    @FXML
-//    void handleBecomeFreelancerButtonClick(ActionEvent event) {
-//        User currentUser = SignInViewModel.getCurrentUser();
-//        if (currentUser == null) return;
-//
-//        Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.Undetermined);
-//        //SignInViewModel.setCurrentUser(newFreelancer);
-//        AccountPageViewModel.setUserSelectedToView(newFreelancer);
-//        FreelancerRoster roster = AccountPageViewModel.getRoster();
-//        roster.addFreelancer(newFreelancer);
-//        this.initialize();
-//    }
-    
-    
     @FXML
     void handleBecomeFreelancerButtonClick(ActionEvent event) {
         User currentUser = SignInViewModel.getCurrentUser();
         if (currentUser == null) return;
 
+        Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.Undetermined);
+        AccountPageViewModel.setUserSelectedToView(newFreelancer);
         FreelancerRoster roster = AccountPageViewModel.getRoster();
-
-        // Check if this user is already a freelancer
-        if (AccountPageViewModel.isSelectedUserFreelancer()) {
-            Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.Undetermined);
-            roster.addFreelancer(newFreelancer);
-        }
-
-        // Ensure the system recognizes this user as a freelancer
-        AccountPageViewModel.setUserSelectedToView(this.getFreelancerByUsername(currentUser.getUserName()));
-
-        this.initialize();
+        roster.addFreelancer(newFreelancer);
+        GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
-
-
     
     @FXML
     void handleSaveClick(ActionEvent event) {
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         if (selectedUser == null) return;
-
-        // Update the user's bio
-        selectedUser.setBio(this.descriptionTextBox.getText());
-
         if (selectedUser instanceof Freelancer freelancer) {
+        	freelancer.setBio("It worked ig");
             freelancer.setCategory(this.catergoryComboBox.getValue());
-
-            // Update skills
             TextArea[] skillFields = { skill1TextArea, skill2TextArea, skill3TextArea, skill4TextArea, skill5TextArea };
             for (int i = 0; i < skillFields.length; i++) {
-                freelancer.setSkill(i, skillFields[i].getText());
+                String skillText = (skillFields[i].getText() != null) ? skillFields[i].getText().trim() : "";
+                freelancer.setSkill(i, skillText);
             }
-
-            // Ensure roster updates with changes
             FreelancerRoster roster = AccountPageViewModel.getRoster();
             roster.addFreelancer(freelancer);
+        } else {
+        	selectedUser.setBio(this.descriptionTextBox.getText());
         }
 
         this.toggleEditMode(false);
@@ -204,26 +177,6 @@ public class AccountPageView {
     void handleHyreClick(MouseEvent event) {
     	//???
     }
-
-//    @FXML
-//    void handleSaveClick(ActionEvent event) {
-//        User selectedUser = AccountPageViewModel.getUserSelectedToView();
-//        if (selectedUser == null) {
-//            return;
-//        }
-//        selectedUser.setBio(this.descriptionTextBox.getText());
-//        if (selectedUser instanceof Freelancer) {
-//            Freelancer freelancer = (Freelancer) selectedUser;
-//            freelancer.setCategory(this.catergoryComboBox.getValue());
-//            List<TextArea> skillFields = Arrays.asList(this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea);
-//            for (int index = 0; index < skillFields.size(); index++) {
-//                String skillText = skillFields.get(index).getText();
-//                freelancer.setSkill(index, skillText);
-//            }
-//        }
-//        this.toggleEditMode(false);
-//        this.updateDataShown();
-//    }
 
     @FXML
     void handleCancleClick(ActionEvent event) {
@@ -237,47 +190,21 @@ public class AccountPageView {
     	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
     
-//    @FXML
-//    void initialize() {
-//        this.catergoryComboBox.getItems().addAll(Categories.values());
-//        User currentUser = SignInViewModel.getCurrentUser();
-//        User selectedUser = AccountPageViewModel.getUserSelectedToView();
-//        this.accountLabel.setText(currentUser != null ? currentUser.getUserName() : "Account");
-//        this.userLabel.setText(selectedUser != null ? selectedUser.getUserName() : "Account");
-//        boolean isViewingOwnProfile = currentUser != null && currentUser.equals(selectedUser);
-//        this.isFreelancer = AccountPageViewModel.isSelectedUserFreelancer();
-//        this.toggleEditMode(false);
-//        this.categoryTextFeild.setEditable(false);
-//        this.hyreButton.setVisible(this.isFreelancer && !isViewingOwnProfile);
-//        this.signOutButton.setVisible(isViewingOwnProfile);
-//        this.editButton.setVisible(isViewingOwnProfile);
-//        this.updateDataShown();
-//        this.setIsFreelancerView();
-//    }
-    
-    
     @FXML
     void initialize() {
         this.catergoryComboBox.getItems().addAll(Categories.values());
-
         User currentUser = SignInViewModel.getCurrentUser();
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         FreelancerRoster roster = AccountPageViewModel.getRoster();
-
         this.accountLabel.setText(currentUser != null ? currentUser.getUserName() : "Account");
         this.userLabel.setText(selectedUser != null ? selectedUser.getUserName() : "Account");
-
         boolean isViewingOwnProfile = currentUser != null && selectedUser != null && currentUser.getUserName().equals(selectedUser.getUserName());
-
-        // Check if the selected user exists in the FreelancerRoster
         this.isFreelancer = selectedUser != null && AccountPageViewModel.isSelectedUserFreelancer();
-
         this.toggleEditMode(false);
         this.categoryTextFeild.setEditable(false);
         this.hyreButton.setVisible(this.isFreelancer && !isViewingOwnProfile);
         this.signOutButton.setVisible(isViewingOwnProfile);
         this.editButton.setVisible(isViewingOwnProfile);
-
         this.updateDataShown();
         this.setIsFreelancerView();
     }
@@ -310,60 +237,29 @@ public class AccountPageView {
         this.skillsLabel.setVisible(this.isFreelancer);
     }
     
-//    private void updateDataShown() {
-//    	this.descriptionTextBox.setText(AccountPageViewModel.getUserSelectedToView().getBio());
-//    	if (this.isFreelancer) {
-//    		Freelancer freelancer = (Freelancer) AccountPageViewModel.getUserSelectedToView();
-//            this.categoryTextFeild.setText(freelancer.getCategory().toString());
-//            List<String> skills = Arrays.asList(freelancer.getSkills());
-//            if (!skills.isEmpty()) {
-//                this.skill1TextArea.setText(skills.size() > 0 ? skills.get(0) : "");
-//                this.skill2TextArea.setText(skills.size() > 1 ? skills.get(1) : "");
-//                this.skill3TextArea.setText(skills.size() > 2 ? skills.get(2) : "");
-//                this.skill4TextArea.setText(skills.size() > 2 ? skills.get(3) : "");
-//                this.skill5TextArea.setText(skills.size() > 2 ? skills.get(4) : "");
-//            }
-//    	}
-//    }
-    
-    
     private void updateDataShown() {
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         if (selectedUser == null) return;
-
         this.descriptionTextBox.setText(selectedUser.getBio());
-
         FreelancerRoster roster = AccountPageViewModel.getRoster();
         Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
-
         if (freelancer != null) {
+        	this.catergoryComboBox.setValue(freelancer.getCategory());
             this.categoryTextFeild.setText(freelancer.getCategory().toString());
-
             List<String> skills = Arrays.asList(freelancer.getSkills());
             TextArea[] skillFields = { skill1TextArea, skill2TextArea, skill3TextArea, skill4TextArea, skill5TextArea };
-
             for (int i = 0; i < skillFields.length; i++) {
                 skillFields[i].setText(i < skills.size() ? skills.get(i) : "");
             }
         }
     }
     
-    public Freelancer getFreelancerByUsername(String username) {
+    private Freelancer getFreelancerByUsername(String username) {
         for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
             if (freelancer.getUserName().equals(username)) {
                 return freelancer;
             }
         }
         return null;
-    }
-
-
-    
-    
-    
+    }   
 }
-
-
-
-
-//hereeeee
