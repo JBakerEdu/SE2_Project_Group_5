@@ -186,6 +186,49 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         self.assertEqual(response, expected_response)
         
+    def test_deleteFreelancer(self):
+        first_request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        self.serverRequestHandler.handleRequest(first_request)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_REMOVE_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_deleteFreelancerNotExist(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_REMOVE_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_FAIL,
+            constants.REP_ERROR_DESCRIPTION: "Freelancer not found in roster."
+        }
+        self.assertEqual(response, expected_response)
+        
     def test_getFreelancersNotEmpty(self):
         freelancer = Freelancer("user", "pass");
         self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer)

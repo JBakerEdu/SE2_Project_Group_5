@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -80,6 +81,15 @@ public class TempServerTest {
 	}
 	
 	@Test
+    public void testAddNullFreelancer() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.addFreelancer(null);
+        });
+
+        assertEquals("freelancer to add can not be null.",exception.getMessage());
+    }
+	
+	@Test
 	public void testAddFreelancer() {
 		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
 		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
@@ -112,5 +122,36 @@ public class TempServerTest {
 		assertTrue(result.getAllFreelancers().get(0).getUserName().equals("Larry"));
 		assertTrue(result.getAllFreelancers().get(1).getUserName().equals("David"));
 	}
+	
+	@Test
+	public void testRemoveFreelancer() {
+		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+		ServerInterface.addFreelancer(freelancer);
+		Boolean response = ServerInterface.removeFreelancer(freelancer);
+		
+		assertTrue(response);
+	}
+	
+	@Test
+    public void testRemoveFreelancerThrowsException() {
+        String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+        Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.removeFreelancer(freelancer);
+        });
+
+        assertEquals("Freelancer not found in roster.",exception.getMessage());
+    }
+	
+	@Test
+    public void testRemoveNullFreelancer() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.removeFreelancer(null);
+        });
+
+        assertEquals("freelancer to remove can not be null.",exception.getMessage());
+    }
 	
 }

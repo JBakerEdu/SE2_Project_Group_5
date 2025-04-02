@@ -61,6 +61,20 @@ class TestServerResourceHandler(unittest.TestCase):
         self.freelancer = Freelancer("New", "Freelancer")
         self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
         self.assertTrue(self.freelancer in self.serverResourceHandler.getFreelancers())
+        
+    def test_remove_freelancer(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
+        self.assertTrue(self.freelancer in self.serverResourceHandler.getFreelancers())
+        self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
+        self.assertFalse(self.freelancer in self.serverResourceHandler.getFreelancers())
+        
+    def test_remove_freelancer_not_found(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.assertFalse(self.freelancer in self.serverResourceHandler.getFreelancers())
+        with self.assertRaises(ValueError) as context:
+            self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
+        self.assertEqual(str(context.exception), "Freelancer not found in roster.")
 
 if __name__ == "__main__":
     unittest.main()

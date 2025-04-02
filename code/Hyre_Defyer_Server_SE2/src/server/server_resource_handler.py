@@ -1,12 +1,13 @@
 '''
 Created on Mar 10, 2025
 
-@author: alecx
+@author: alecx and Kate Anglin
 '''
 from src.model.user import User
 from src.server import constants
 from src.model.message import Message
 from src.model.freelanceer_roster import FreelancerRoster
+from os import removedirs
 
 class ServerResourceHandler:
     def __init__(self):
@@ -159,3 +160,16 @@ class ServerResourceHandler:
             @postcondition none 
         '''
         return self.freelancers.freelancers
+    
+    def removeFreelancerFromRoster(self, freelancer):
+        '''
+            Removes the freelancer from the rooster
+            
+            @precondition freelancer != null && freelancer.Class == Freelancer
+            @postcondition freelancer is removed
+            
+            @param freelancer: The Freelancer object to remove.
+            @raises ValueError: If freelancer is not in the roster.
+        '''
+        
+        return self.freelancers.remove_freelancer(freelancer)

@@ -15,11 +15,14 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 /**
  * Acts as a temporary interactive server for the application
  * 
- * @author Alec Neal
+ * @author Alec Neal and Kate Anglin
  * @version Spring 2025
  */
 public class ServerInterface {
 	
+	private static final String FREELANCER_TO_ADD_CAN_NOT_BE_NULL = "freelancer to add can not be null.";
+	private static final String FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL = "freelancer to remove can not be null.";
+
 	/**
 	 * Gets the messages between two users
 	 * 
@@ -168,6 +171,13 @@ public class ServerInterface {
 		
 	}
 	
+	/**
+	 * Gets the freelancers from the server
+	 * 
+	 * @precondition none
+	 * @postcondition none 
+	 * 
+	 */
 	public static FreelancerRoster getFreelancers() {
 		FreelancerRoster roster = new FreelancerRoster();
 		
@@ -216,7 +226,17 @@ public class ServerInterface {
 		return null;
 	}
 	
+	/**
+	 * Adds a freelancer to the server
+	 * 
+	 * @precondition freelancer != null
+	 * @postcondition freelancer is added to the server
+	 * 
+	 */
 	public static Boolean addFreelancer(Freelancer freelancer) {
+		if (freelancer == null) {
+			throw new IllegalArgumentException(FREELANCER_TO_ADD_CAN_NOT_BE_NULL);
+		}
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_ADD_FREELANCER);
 		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
@@ -229,6 +249,37 @@ public class ServerInterface {
 		JSONObject jsonObject = new JSONObject(response);
 		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
 		return successCode.equals(Constants.REP_SUCCESS);
-		
 	}
+	
+	/**
+	 * Removes a freelancer from the server
+	 * 
+	 * @precondition freelancer != null
+	 * @postcondition freelancer is removed from the server
+	 * 
+	 */
+	public static Boolean removeFreelancer(Freelancer freelancer) {
+		if (freelancer == null) {
+			throw new IllegalArgumentException(FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL);
+		}
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_REMOVE_FREELANCER);
+		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
+		request.put(Constants.REQ_PASSWORD, "");
+		request.put(Constants.REQ_BIO, freelancer.getBio());
+		request.put(Constants.REQ_SKILLS, freelancer.getSkills());
+		request.put(Constants.REQ_CATEGORIES, freelancer.getCategory());
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+			return true;
+		} else {
+			String error = jsonObject.getString(Constants.REP_ERROR_DESCRIPTION);
+			throw new IllegalArgumentException(error);
+		}
+	}
+	
 }

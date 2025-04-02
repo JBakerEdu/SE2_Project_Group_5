@@ -1,7 +1,7 @@
 '''
 Created on Mar 10, 2025
 
-@author: alecx
+@author: alecx and Kate Anglin
 '''
 from src.server import constants
 from src.model.message import Message
@@ -137,6 +137,9 @@ class ServerRequestHandler:
         return response
     
     def _addFreelancer(self, request):
+        '''
+            adds a freelancer
+        '''
         response = {}
         userName = request.get(constants.REQ_USERNAME)
         password = request.get(constants.REQ_PASSWORD)
@@ -152,6 +155,31 @@ class ServerRequestHandler:
         self._serverResourceHandler.addFreelancerToRoster(freelancer)
         
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response
+    
+    def _removeFreelancer(self, request):
+        '''
+            removes a freelancer
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        password = request.get(constants.REQ_PASSWORD)
+        bio = request.get(constants.REQ_BIO)
+        skills = request.get(constants.REQ_SKILLS)
+        categories = request.get(constants.REQ_CATEGORIES)
+        
+        freelancer = Freelancer(userName,password)
+        freelancer.setBio(bio)
+        freelancer._skills = set(skills) if isinstance(skills, list) else {skills}
+        freelancer._categories = set(categories) if isinstance(categories, list) else {categories}
+        
+        try:
+            self._serverResourceHandler.removeFreelancerFromRoster(freelancer)
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        except ValueError as e:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            response[constants.REP_ERROR_DESCRIPTION] = str(e)
+
         return response
     
     def handleRequest(self, request):
@@ -196,6 +224,9 @@ class ServerRequestHandler:
         
         elif req_type == constants.REQ_ADD_FREELANCER:
             response = self._addFreelancer(request)
+            
+        elif req_type == constants.REQ_REMOVE_FREELANCER:
+            response = self._removeFreelancer(request)
         
         return response
         
