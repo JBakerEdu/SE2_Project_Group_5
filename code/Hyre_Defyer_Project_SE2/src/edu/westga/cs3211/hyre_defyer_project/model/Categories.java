@@ -10,7 +10,7 @@ public enum Categories {
 	MUSIC_AND_AUDIO,
 	TRADES_AND_SKILLED_LABOR,
 	WRITING_AND_TRANSLATION,
-	Undetermined;
+	UNDETERMINED;
 
 	
 	@Override

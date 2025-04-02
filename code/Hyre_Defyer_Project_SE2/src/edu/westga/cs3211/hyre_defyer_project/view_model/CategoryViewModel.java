@@ -2,6 +2,7 @@ package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
+import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class CategoryViewModel {
     
     public static Categories selectedCategory;
-    public static FreelancerRoster freelancerRoster = new FreelancerRoster();
+    public static FreelancerRoster freelancerRoster = GUIHelper.getFreelancerRoster();
     private List<Freelancer> freelancers;
 
     /**

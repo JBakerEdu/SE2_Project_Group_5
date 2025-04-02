@@ -1,6 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 
@@ -14,7 +15,7 @@ public class AccountPageViewModel {
     
     private static User userSelectedToView;
 
-    private static FreelancerRoster freelancerRoster = new FreelancerRoster();
+    private static FreelancerRoster freelancerRoster = GUIHelper.getFreelancerRoster();
 
     /**
      * Gets the user that was last set, which will allow the view to know what user is needed to be viewed.
@@ -50,7 +51,6 @@ public class AccountPageViewModel {
      */
     public static boolean isSelectedUserFreelancer() {
         if (userSelectedToView != null && userSelectedToView.getUserName() != null) {
-            // Iterate through the freelancer roster and check if any freelancer matches the selected user's username
             for (Freelancer freelancer : freelancerRoster.getAllFreelancers()) {
                 if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
                     return true;
