@@ -1,6 +1,13 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.Arrays;
+import java.util.List;
+
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
+import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,68 +21,97 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
- * This is the code for Account Page 
+ * This is the View for the Account page
  * 
- * @author Jacob Baker & Myles Debro & Kate Anglin
+ * @author Jacob Baker
  * @version Spring 2025
  */
 public class AccountPageView {
+	
+	private boolean isFreelancer = false;
 
-    @FXML
-    private Button signOutButton;
-
-    @FXML
+	@FXML
     private ImageView accountBioImage;
-    
-    @FXML
-    private TextArea accountBio;
 
     @FXML
     private Label accountLabel;
 
     @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private Button becomeFreelancerButton;
+
+    @FXML
+    private Button cancelButton;
+
+    @FXML
+    private Label categoryLabel;
+
+    @FXML
+    private TextField categoryTextFeild;
+
+    @FXML
     private ComboBox<Categories> catergoryComboBox;
+
+    @FXML
+    private TextArea descriptionTextBox;
 
     @FXML
     private Label dmLabel;
 
     @FXML
+    private Button editButton;
+
+    @FXML
     private Label homeLabel;
+
+    @FXML
+    private Button hyreButton;
 
     @FXML
     private Label hyreLabel;
 
     @FXML
-    private Button editButton;
+    private Button saveButton;
 
     @FXML
-    private TextField skill1TextFeild;
+    private Button signOutButton;
 
     @FXML
-    private TextField skill2TextFeild;
+    private TextArea skill1TextArea;
 
     @FXML
-    private TextField skill3TextFeild;
+    private TextArea skill2TextArea;
 
     @FXML
-    private TextField skill4TextFeild;
+    private TextArea skill3TextArea;
 
     @FXML
-    private TextField skill5TextFeild;
-    
+    private TextArea skill4TextArea;
+
     @FXML
-    private AnchorPane anchorPane;
-    
+    private TextArea skill5TextArea;
+
+    @FXML
+    private Label skillsLabel;
+
     @FXML
     private Label userLabel;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
     	}
+    }
+
+    @FXML
+    void handleCategorySelected(ActionEvent event) {
+    	this.categoryTextFeild.setText(this.catergoryComboBox.getValue().toString());
     }
 
     @FXML
@@ -88,13 +124,65 @@ public class AccountPageView {
     }
 
     @FXML
+    void handleEditClick(ActionEvent event) {
+    	this.toggleEditMode(true);
+    }
+
+    @FXML
     void handleHomeClick(MouseEvent event) {
 			GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
+    void handleHyreButtonClick(ActionEvent event) {
+    	//TODO start message with user and take to dm page in the tab to talk to the person
+    }
+    
+    @FXML
+    void handleBecomeFreelancerButtonClick(ActionEvent event) {
+        User currentUser = SignInViewModel.getCurrentUser();
+        if (currentUser == null) {
+        	return;
+        }
+        Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.UNDETERMINED);
+        AccountPageViewModel.setUserSelectedToView(newFreelancer);
+        FreelancerRoster roster = AccountPageViewModel.getRoster();
+        roster.addFreelancer(newFreelancer);
+        GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
+    }
+    
+    @FXML
+    void handleSaveClick(ActionEvent event) {
+        User selectedUser = AccountPageViewModel.getUserSelectedToView();
+        if (selectedUser == null) {
+        	return;
+        }
+        if (AccountPageViewModel.isSelectedUserFreelancer()) {
+        	Freelancer theFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
+        	theFreelancer.setBio(this.descriptionTextBox.getText());
+        	theFreelancer.setCategory(this.catergoryComboBox.getValue());
+            TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
+            for (int index = 0; index < skillFields.length; index++) {
+                String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
+                theFreelancer.setSkill(index, skillText);
+            }
+        } else {
+        	selectedUser.setBio(this.descriptionTextBox.getText());
+        }
 
+        this.toggleEditMode(false);
+        this.updateDataShown();
+    }
+
+    @FXML
+    void handleHyreClick(MouseEvent event) {
+    	//???
+    }
+
+    @FXML
+    void handleCancleClick(ActionEvent event) {
+    	this.toggleEditMode(false);
+    	this.updateDataShown();
     }
 
     @FXML
@@ -102,24 +190,79 @@ public class AccountPageView {
     	SignInViewModel.signOut();
     	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
-
-    @FXML
-    void handleEditClick(ActionEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		SignInViewModel.getCurrentUser().setBio(this.accountBio.textProperty().get());
-    	}
-    }
     
     @FXML
     void initialize() {
-    	this.catergoryComboBox.getItems().addAll(Categories.values());
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    		this.userLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
-    	} else {
-    		this.accountLabel.textProperty().setValue("Account");
-    		this.userLabel.textProperty().setValue("Account");
-    	}
+        this.catergoryComboBox.getItems().addAll(Categories.values());
+        User currentUser = SignInViewModel.getCurrentUser();
+        User selectedUser = AccountPageViewModel.getUserSelectedToView();
+        this.accountLabel.setText(currentUser != null ? currentUser.getUserName() : "Account");
+        this.userLabel.setText(selectedUser != null ? selectedUser.getUserName() : "Account");
+        boolean isViewingOwnProfile = currentUser != null && selectedUser != null && currentUser.getUserName().equals(selectedUser.getUserName());
+        this.isFreelancer = selectedUser != null && AccountPageViewModel.isSelectedUserFreelancer();
+        this.toggleEditMode(false);
+        this.categoryTextFeild.setEditable(false);
+        this.hyreButton.setVisible(this.isFreelancer && !isViewingOwnProfile);
+        this.signOutButton.setVisible(isViewingOwnProfile);
+        this.editButton.setVisible(isViewingOwnProfile);
+        this.becomeFreelancerButton.setVisible(isViewingOwnProfile && !this.isFreelancer);
+        this.updateDataShown();
+        this.setIsFreelancerView();
     }
 
+    private void toggleEditMode(boolean isEditing) {
+    	this.saveButton.setVisible(isEditing);
+    	this.cancelButton.setVisible(isEditing);
+    	this.editButton.setVisible(!isEditing);
+    	this.descriptionTextBox.setEditable(isEditing);
+    	if (this.isFreelancer) {
+    		this.catergoryComboBox.setVisible(isEditing);
+            this.categoryTextFeild.setVisible(!isEditing);
+            this.skill1TextArea.setEditable(isEditing);
+            this.skill2TextArea.setEditable(isEditing);
+            this.skill3TextArea.setEditable(isEditing);
+            this.skill4TextArea.setEditable(isEditing);
+            this.skill5TextArea.setEditable(isEditing);
+    	}
+    }
+    
+    private void setIsFreelancerView() {
+    	this.catergoryComboBox.setVisible(this.isFreelancer);
+        this.categoryTextFeild.setVisible(this.isFreelancer);
+        this.skill1TextArea.setVisible(this.isFreelancer);
+        this.skill2TextArea.setVisible(this.isFreelancer);
+        this.skill3TextArea.setVisible(this.isFreelancer);
+        this.skill4TextArea.setVisible(this.isFreelancer);
+        this.skill5TextArea.setVisible(this.isFreelancer);
+        this.categoryLabel.setVisible(this.isFreelancer);
+        this.skillsLabel.setVisible(this.isFreelancer);
+    }
+    
+    private void updateDataShown() {
+        User selectedUser = AccountPageViewModel.getUserSelectedToView();
+        if (selectedUser == null) {
+        	return;
+        }
+        this.descriptionTextBox.setText(selectedUser.getBio());
+        Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
+        if (freelancer != null) {
+        	this.descriptionTextBox.setText(freelancer.getBio());
+        	this.catergoryComboBox.setValue(freelancer.getCategory());
+            this.categoryTextFeild.setText(freelancer.getCategory().toString());
+            List<String> skills = Arrays.asList(freelancer.getSkills());
+            TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
+            for (int index = 0; index < skillFields.length; index++) {
+                skillFields[index].setText(index < skills.size() ? skills.get(index) : "");
+            }
+        }
+    }
+    
+    private Freelancer getFreelancerByUsername(String username) {
+        for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
+            if (freelancer.getUserName().equals(username)) {
+                return freelancer;
+            }
+        }
+        return null;
+    }   
 }

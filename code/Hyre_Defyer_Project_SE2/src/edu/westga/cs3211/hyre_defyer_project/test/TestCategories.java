@@ -18,6 +18,7 @@ class TestCategories {
         assertEquals("ENGINEERING AND SCIENCE", Categories.ENGINEERING_AND_SCIENCE.toString());
         assertEquals("MUSIC AND AUDIO", Categories.MUSIC_AND_AUDIO.toString());
         assertEquals("TRADES AND SKILLED LABOR", Categories.TRADES_AND_SKILLED_LABOR.toString());
+        assertEquals("UNDETERMINED", Categories.UNDETERMINED.toString());
     }
 
 }
