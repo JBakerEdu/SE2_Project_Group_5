@@ -22,8 +22,6 @@ public class DirectMessageHandler {
 	private User sender;
 	private User receiver;
 	private ArrayList<Message> messageLog;
-	private ListProperty<User> contactList;
-	private ObservableList<User> observableContactList;
 
 	/** Creates a user with ​
 	  *​
@@ -37,9 +35,6 @@ public class DirectMessageHandler {
         this.sender = sender;
         this.receiver = receiver;
         this.updateMessageLog();
-        this.contactList = new SimpleListProperty<User>();
-        this.observableContactList = FXCollections.observableArrayList(ServerInterface.getMessagableUsers(this.sender));
-        this.contactList.setValue(this.observableContactList);
     }
 
 	private void updateMessageLog() {
@@ -78,19 +73,5 @@ public class DirectMessageHandler {
 	public void deleteChat(User user1, User user2) {
 		ServerInterface.deleteChat(user1, user2);
 		this.updateMessageLog();
-		this.updateContactList();
-	}
-	
-	/** Get the List Property contact list for binding
-	 * 
-	 * @return list property contact list
-	 */
-	public ListProperty<User> getContactList() {
-		return this.contactList;
-	}
-	
-	private void updateContactList() {
-		this.contactList.clear();
-		this.contactList.addAll(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
 	}
 }

@@ -120,7 +120,7 @@ public class DirectMessageView {
     		this.accountLabel.textProperty().setValue("Account");
     	}
     	this.chatSettingsMenu.disableProperty().set(true);
-    	this.contactListView.itemsProperty().bindBidirectional(this.directMessageHandler.getContactList());
+    	this.updateContactList();
     	this.setUpListeners();
     }
 
@@ -139,11 +139,16 @@ public class DirectMessageView {
 			
 			this.deleteChat.setOnAction((event) -> {
 				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+				this.updateContactList();
 			});
 		}
 
 	private void updateDisplayedMessages() {
 		this.messageListView.setItems(FXCollections.observableArrayList(this.directMessageHandler.getFullMessageLog()));
+	}
+	
+	private void updateContactList() {
+		this.contactListView.setItems(FXCollections.observableArrayList(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())));
 	}
 
 }
