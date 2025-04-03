@@ -3,6 +3,8 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.io.IOException;
 
 import edu.westga.cs3211.hyre_defyer_project.Main;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,7 +19,15 @@ import javafx.stage.Stage;
  * @author Myles Debro and Jacob Baker
  * @version Spring 2025
  */
-public class GUIHelper {
+public class GUIHelper {	
+	/**
+	 * get the roster that is static and saved here for all the UI to be able to get the same roster list
+	 * 
+	 * @return freelancerRoster which is the roster that is saved in the GUIHelper
+	 */
+	public static FreelancerRoster getFreelancerRoster() {
+		return ServerInterface.getFreelancers();
+	}
 	
 	/**
 	 * Switch the current view to a different one

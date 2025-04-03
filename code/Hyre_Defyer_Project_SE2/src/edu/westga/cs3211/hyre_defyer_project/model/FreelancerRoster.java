@@ -143,6 +143,5 @@ public class FreelancerRoster {
      */
     public List<Freelancer> getAllFreelancers() {
         return this.freelancers;
-    }
-    
+    }   
 }

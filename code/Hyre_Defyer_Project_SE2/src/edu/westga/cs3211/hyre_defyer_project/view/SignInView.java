@@ -2,6 +2,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 
 import java.io.IOException;
 
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,6 +68,7 @@ public class SignInView {
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);

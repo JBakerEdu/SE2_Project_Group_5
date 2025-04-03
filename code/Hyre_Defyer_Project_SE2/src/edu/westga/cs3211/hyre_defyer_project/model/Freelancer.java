@@ -280,6 +280,15 @@ public class Freelancer extends User {
 		}
 		Freelancer other = (Freelancer) obj;
 		return (this.categories.equals(other.categories)) && (this.skills.equals(other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())));
+	}
+
+	public void setSkill(int index, String skillText) {
+		if (this.skills.size() <= index) {
+			this.skills.add(skillText);
+			return;
+		}
+		this.skills.set(index, skillText);
+		
 	} 
     
 }
