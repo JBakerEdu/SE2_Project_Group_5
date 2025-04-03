@@ -107,8 +107,7 @@ public class TestServerInterface {
 		Constants obj2 = new Constants();
 		assertTrue(ServerCommunicator.sendRequestToServer(null).equals("ERROR"));
 	}
-	
-	
+
 	
 	@Test
     public void testAddNullFreelancer() {
@@ -183,4 +182,5 @@ public class TestServerInterface {
 
         assertEquals("freelancer to remove can not be null.",exception.getMessage());
     }
+  
 }
