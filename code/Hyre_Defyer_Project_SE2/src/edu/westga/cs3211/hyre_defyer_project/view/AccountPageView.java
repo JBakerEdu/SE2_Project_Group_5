@@ -6,6 +6,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -134,7 +135,10 @@ public class AccountPageView {
 
     @FXML
     void handleHyreButtonClick(ActionEvent event) {
-    	//TODO start message with user and take to dm page in the tab to talk to the person
+    	User currentUser = SignInViewModel.getCurrentUser();
+    	User selectedUser = AccountPageViewModel.getUserSelectedToView();
+    	ServerInterface.addMessageableUser(currentUser, selectedUser);
+    	GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
     
     @FXML
