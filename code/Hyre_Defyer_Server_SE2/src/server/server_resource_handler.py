@@ -7,7 +7,7 @@ from src.model.user import User
 from src.server import constants
 from src.model.message import Message
 from src.model.freelanceer_roster import FreelancerRoster
-from os import removedirs
+from src.model.freelancer import Freelancer
 
 class ServerResourceHandler:
     def __init__(self):
@@ -17,6 +17,46 @@ class ServerResourceHandler:
         self._users = {}
         self._godMessageLog: list[list[Message]] = []
         self.freelancers = FreelancerRoster()
+        self.createAccount("admin", "1234567")
+        self._populateUsers()
+        
+    def _populateUsers(self):
+        freelancers_data = [
+            ("Alice", "Experienced Accountant", "BUSINESS AND FINANCE", ["Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"]),
+            ("Bob", "Investment Consultant", "BUSINESS AND FINANCE", ["Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"]),
+            ("Charlie", "Financial Analyst", "BUSINESS AND FINANCE", ["Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"]),
+            ("Dana", "Graphic Designer", "DESIGN AND CREATIVE", ["Photoshop", "Illustrator", "Branding", "UI/UX", "Typography"]),
+            ("Eli", "Illustrator", "DESIGN AND CREATIVE", ["Digital Art", "Comics", "Concept Art", "Vector Graphics", "Sketching"]),
+            ("Fay", "Animator", "DESIGN AND CREATIVE", ["2D Animation", "3D Animation", "After Effects", "Storyboarding", "Motion Graphics"]),
+            ("George", "Java Developer", "DEVELOPMENT AND IT", ["Java", "Spring", "SQL", "Git", "REST APIs"]),
+            ("Hannah", "Web Developer", "DEVELOPMENT AND IT", ["HTML", "CSS", "JavaScript", "React", "Node.js"]),
+            ("Ian", "Data Scientist", "DEVELOPMENT AND IT", ["Python", "Machine Learning", "Pandas", "NumPy", "Deep Learning"]),
+            ("Jack", "Mechanical Engineer", "ENGINEERING AND SCIENCE", ["SolidWorks", "AutoCAD", "Finite Element Analysis", "Thermodynamics", "CAD Design"]),
+            ("Karen", "Biomedical Engineer", "ENGINEERING AND SCIENCE", ["Medical Devices", "Biomaterials", "3D Printing", "Regulatory Compliance", "Clinical Trials"]),
+            ("Leo", "Aerospace Engineer", "ENGINEERING AND SCIENCE", ["Aerodynamics", "Propulsion", "Satellite Systems", "Orbital Mechanics", "Composites"]),
+            ("Mia", "Marketing Specialist", "MARKETING AND SALES", ["SEO", "Social Media", "Content Marketing", "Google Ads", "Email Campaigns"]),
+            ("Noah", "Sales Consultant", "MARKETING AND SALES", ["B2B Sales", "CRM", "Negotiation", "Cold Calling", "Sales Funnels"]),
+            ("Olivia", "Digital Advertiser", "MARKETING AND SALES", ["Facebook Ads", "PPC", "Conversion Optimization", "Market Research", "Copywriting"]),
+            ("Paul", "Music Producer", "MUSIC AND AUDIO", ["Mixing", "Mastering", "Ableton Live", "Logic Pro", "Music Composition"]),
+            ("Quinn", "Sound Designer", "MUSIC AND AUDIO", ["Foley", "Game Audio", "Synthesizers", "Film Scoring", "Podcast Editing"]),
+            ("Ryan", "Voice Actor", "MUSIC AND AUDIO", ["Narration", "Character Voices", "Commercials", "E-Learning", "Dubbing"]),
+            ("Sarah", "Carpenter", "TRADES AND SKILLED LABOR", ["Woodworking", "Cabinet Making", "Blueprint Reading", "Furniture Design", "Framing"]),
+            ("Tom", "Plumber", "TRADES AND SKILLED LABOR", ["Pipe Fitting", "Drain Cleaning", "Fixture Installation", "Water Heaters", "Soldering"]),
+            ("Uma", "Electrician", "TRADES AND SKILLED LABOR", ["Wiring", "Troubleshooting", "Panel Upgrades", "Lighting Design", "Circuitry"]),
+            ("Victor", "Copywriter", "WRITING AND TRANSLATION", ["SEO Writing", "Blogging", "Technical Writing", "Ad Copy", "Editing"]),
+            ("Wendy", "Translator", "WRITING AND TRANSLATION", ["Spanish", "French", "German", "Mandarin", "Localization"]),
+            ("Xander", "Fiction Writer", "WRITING AND TRANSLATION", ["Creative Writing", "Screenwriting", "Storytelling", "Character Development", "Editing"]),
+        ]
+
+        for username, bio, category, skills in freelancers_data:
+            self.createAccount(username, "password")
+            user = self.getUser(username)
+            user.setBio(bio)
+            freelancer = Freelancer(username, "password")
+            freelancer.setBio(bio)
+            freelancer._skills = set(skills)
+            freelancer._categories.add(category)
+            self.addFreelancerToRoster(freelancer)
     
     def createAccount(self, userName, password):
         '''
@@ -34,6 +74,7 @@ class ServerResourceHandler:
             return False
         
         self._users[userName] = User(userName, password)
+        self.addUserToDMList(userName, "admin")
         return True
     
     def login(self, userName, password):

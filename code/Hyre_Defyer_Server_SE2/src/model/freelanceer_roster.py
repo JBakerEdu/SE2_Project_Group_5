@@ -19,6 +19,7 @@ class FreelancerRoster:
             @postcondition none
         """
         self.freelancers = []
+        
 
     def add_freelancer(self, freelancer: Freelancer):
         """
