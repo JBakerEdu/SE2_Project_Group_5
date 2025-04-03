@@ -1,4 +1,4 @@
-package edu.westga.cs3211.hyre_defyer_project.view_model.test;
+package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for the CategoryViewModel class.
  */
-public class CategoryViewModelTest {
+public class TestCategoryViewModel {
     
     private CategoryViewModel categoryViewModel;
     private Freelancer freelancer1;

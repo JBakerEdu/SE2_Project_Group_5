@@ -1,4 +1,4 @@
-package edu.westga.cs3211.hyre_defyer_project.view_model.test;
+package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
