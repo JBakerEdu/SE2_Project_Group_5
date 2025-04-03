@@ -59,5 +59,4 @@ public class AccountPageViewModel {
         }
         return false;
     }
-
 }

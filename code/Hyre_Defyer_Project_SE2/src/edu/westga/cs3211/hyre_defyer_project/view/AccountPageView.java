@@ -157,7 +157,8 @@ public class AccountPageView {
         if (selectedUser == null) {
         	return;
         }
-        if (selectedUser instanceof Freelancer theFreelancer) {
+        if (AccountPageViewModel.isSelectedUserFreelancer()) {
+        	Freelancer theFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         	theFreelancer.setBio(this.descriptionTextBox.getText());
         	theFreelancer.setCategory(this.catergoryComboBox.getValue());
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
@@ -165,8 +166,6 @@ public class AccountPageView {
                 String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
                 theFreelancer.setSkill(index, skillText);
             }
-            FreelancerRoster roster = AccountPageViewModel.getRoster();
-            roster.addFreelancer(theFreelancer);
         } else {
         	selectedUser.setBio(this.descriptionTextBox.getText());
         }
