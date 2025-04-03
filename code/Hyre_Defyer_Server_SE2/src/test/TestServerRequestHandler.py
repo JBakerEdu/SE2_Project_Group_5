@@ -3,6 +3,7 @@ from src.server import constants
 from src.server.server_request_handler import ServerRequestHandler
 from src.model.message import Message
 from src.model.user import User
+from src.model.freelancer import Freelancer
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -16,8 +17,60 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_null_account(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: None
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid username or password")
 
-
+    def test_invalid_login(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_LOGIN,
+            constants.REQ_USERNAME: None
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid username or password")
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_LOGIN,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "wrongpassword"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        self.assertEqual(response[constants.REP_ERROR_DESCRIPTION], "Invalid credentials")
+        
+        
+    def test_messagable_users(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_MESSAGEABLE_USERS,
+            constants.REQ_USERNAME: "username"
+        }
+        
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        self.assertEqual(response[constants.REP_USERS], [])
+            
+        
     def test_login_success(self):
         create_request = {
             constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
@@ -104,6 +157,141 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertEqual(messages[1].getMessage(), "message2")
         self.assertEqual(messages[1].getSender().getUserName(), "username2")
         self.assertEqual(messages[1].getReceiver().getUserName(), "username")
+        
+    def test_getFreelancers_empty_list(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: []
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_addFreelancer(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_deleteFreelancer(self):
+        first_request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        self.serverRequestHandler.handleRequest(first_request)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_REMOVE_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_deleteFreelancerNotExist(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_REMOVE_FREELANCER,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_FAIL,
+            constants.REP_ERROR_DESCRIPTION: "Freelancer not found in roster."
+        }
+        self.assertEqual(response, expected_response)
+        
+    def test_getFreelancersNotEmpty(self):
+        freelancer = Freelancer("user", "pass");
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: [freelancer.to_dict()]
+        }
+        self.assertEqual(response, expected_response)
+    
+    def test_getMultipleFreelancers(self):
+        freelancer1 = Freelancer("user1", "pass1")
+        freelancer2 = Freelancer("user2", "pass2")
+        freelancer3 = Freelancer("user3", "pass3")
+    
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer1)
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer2)
+        self.serverRequestHandler._serverResourceHandler.addFreelancerToRoster(freelancer3)
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_FREELANCERS,
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+    
+        expected_response = {
+            constants.SUCCESS_CODE: constants.REP_SUCCESS,
+            constants.REP_FREELANCERS: [freelancer1.to_dict(), freelancer2.to_dict(), freelancer3.to_dict()]
+        }
+        self.assertEqual(response, expected_response)
+
+    def test_equalMessage(self):
+        msg1 = Message("Hello", User("Alice", ""), User("Bob", ""))
+        msg2 = Message("Hello", User("Alice", ""), User("Bob", ""))
+        msg3 = Message("Hi", User("Alice", ""), User("Bob", ""))
+        
+        self.assertTrue(msg1 == msg2)
+        self.assertFalse(msg1 == msg3)
+        self.assertFalse("bingo" == msg3)
+        
+    def test_add_messageable_user(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username2",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
+            constants.REQ_SENDER: "username",
+            constants.REQ_RECEIVER: "username2"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,11 +1,13 @@
 '''
 Created on Mar 10, 2025
 
-@author: alecx
+@author: alecx and Kate Anglin
 '''
 from src.model.user import User
 from src.server import constants
 from src.model.message import Message
+from src.model.freelanceer_roster import FreelancerRoster
+from src.model.freelancer import Freelancer
 
 class ServerResourceHandler:
     def __init__(self):
@@ -14,6 +16,47 @@ class ServerResourceHandler:
         '''
         self._users = {}
         self._godMessageLog: list[list[Message]] = []
+        self.freelancers = FreelancerRoster()
+        self.createAccount("admin", "1234567")
+        self._populateUsers()
+        
+    def _populateUsers(self):
+        freelancers_data = [
+            ("Alice", "Experienced Accountant", "BUSINESS_AND_FINANCE", ["Accounting", "Tax Filing", "QuickBooks", "Financial Analysis", "Excel"]),
+            ("Bob", "Investment Consultant", "BUSINESS_AND_FINANCE", ["Investing", "Portfolio Management", "Stocks", "Bonds", "Risk Analysis"]),
+            ("Charlie", "Financial Analyst", "BUSINESS_AND_FINANCE", ["Financial Modeling", "Forecasting", "Data Analysis", "Budgeting", "Valuation"]),
+            ("Dana", "Graphic Designer", "DESIGN_AND_CREATIVE", ["Photoshop", "Illustrator", "Branding", "UI/UX", "Typography"]),
+            ("Eli", "Illustrator", "DESIGN_AND_CREATIVE", ["Digital Art", "Comics", "Concept Art", "Vector Graphics", "Sketching"]),
+            ("Fay", "Animator", "DESIGN_AND_CREATIVE", ["2D Animation", "3D Animation", "After Effects", "Storyboarding", "Motion Graphics"]),
+            ("George", "Java Developer", "DEVELOPMENT_AND_IT", ["Java", "Spring", "SQL", "Git", "REST APIs"]),
+            ("Hannah", "Web Developer", "DEVELOPMENT_AND_IT", ["HTML", "CSS", "JavaScript", "React", "Node.js"]),
+            ("Ian", "Data Scientist", "DEVELOPMENT_AND_IT", ["Python", "Machine Learning", "Pandas", "NumPy", "Deep Learning"]),
+            ("Jack", "Mechanical Engineer", "ENGINEERING_AND_SCIENCE", ["SolidWorks", "AutoCAD", "Finite Element Analysis", "Thermodynamics", "CAD Design"]),
+            ("Karen", "Biomedical Engineer", "ENGINEERING_AND_SCIENCE", ["Medical Devices", "Biomaterials", "3D Printing", "Regulatory Compliance", "Clinical Trials"]),
+            ("Leo", "Aerospace Engineer", "ENGINEERING_AND_SCIENCE", ["Aerodynamics", "Propulsion", "Satellite Systems", "Orbital Mechanics", "Composites"]),
+            ("Mia", "Marketing Specialist", "MARKETING_AND_SALES", ["SEO", "Social Media", "Content Marketing", "Google Ads", "Email Campaigns"]),
+            ("Noah", "Sales Consultant", "MARKETING_AND_SALES", ["B2B Sales", "CRM", "Negotiation", "Cold Calling", "Sales Funnels"]),
+            ("Olivia", "Digital Advertiser", "MARKETING_AND_SALES", ["Facebook Ads", "PPC", "Conversion Optimization", "Market Research", "Copywriting"]),
+            ("Paul", "Music Producer", "MUSIC_AND_AUDIO", ["Mixing", "Mastering", "Ableton Live", "Logic Pro", "Music Composition"]),
+            ("Quinn", "Sound Designer", "MUSIC_AND_AUDIO", ["Foley", "Game Audio", "Synthesizers", "Film Scoring", "Podcast Editing"]),
+            ("Ryan", "Voice Actor", "MUSIC_AND_AUDIO", ["Narration", "Character Voices", "Commercials", "E-Learning", "Dubbing"]),
+            ("Sarah", "Carpenter", "TRADES_AND_SKILLED_LABOR", ["Woodworking", "Cabinet Making", "Blueprint Reading", "Furniture Design", "Framing"]),
+            ("Tom", "Plumber", "TRADES_AND_SKILLED_LABOR", ["Pipe Fitting", "Drain Cleaning", "Fixture Installation", "Water Heaters", "Soldering"]),
+            ("Uma", "Electrician", "TRADES_AND_SKILLED_LABOR", ["Wiring", "Troubleshooting", "Panel Upgrades", "Lighting Design", "Circuitry"]),
+            ("Victor", "Copywriter", "WRITING_AND_TRANSLATION", ["SEO Writing", "Blogging", "Technical Writing", "Ad Copy", "Editing"]),
+            ("Wendy", "Translator", "WRITING_AND_TRANSLATION", ["Spanish", "French", "German", "Mandarin", "Localization"]),
+            ("Xander", "Fiction Writer", "WRITING_AND_TRANSLATION", ["Creative Writing", "Screenwriting", "Storytelling", "Character Development", "Editing"]),
+        ]
+
+        for username, bio, category, skills in freelancers_data:
+            self.createAccount(username, "password")
+            user = self.getUser(username)
+            user.setBio(bio)
+            freelancer = Freelancer(username, "password")
+            freelancer.setBio(bio)
+            freelancer._skills = set(skills)
+            freelancer._categories.add(category)
+            self.addFreelancerToRoster(freelancer)
     
     def createAccount(self, userName, password):
         '''
@@ -31,6 +74,7 @@ class ServerResourceHandler:
             return False
         
         self._users[userName] = User(userName, password)
+        self.addUserToDMList(userName, "admin")
         return True
     
     def login(self, userName, password):
@@ -137,3 +181,36 @@ class ServerResourceHandler:
         user2 = self.getUser(otherUser)
         user1.removeMessageableUser(otherUser)
         user2.removeMessageableUser(user)
+        
+    def addFreelancerToRoster(self, freelancer):
+        '''
+            Adds the freelancer to the roster
+            
+            @precondition freelancer != null && username cannot already exist
+            @postcondition freelancer is added
+            
+            @param freelancer: the freelancer being added to the roster
+        '''
+        return self.freelancers.add_freelancer(freelancer)
+        
+    def getFreelancers(self):
+        '''
+            gets the freelancers 
+            
+            @precondition none
+            @postcondition none 
+        '''
+        return self.freelancers.freelancers
+    
+    def removeFreelancerFromRoster(self, freelancer):
+        '''
+            Removes the freelancer from the rooster
+            
+            @precondition freelancer != null && freelancer.Class == Freelancer
+            @postcondition freelancer is removed
+            
+            @param freelancer: The Freelancer object to remove.
+            @raises ValueError: If freelancer is not in the roster.
+        '''
+        
+        return self.freelancers.remove_freelancer(freelancer)

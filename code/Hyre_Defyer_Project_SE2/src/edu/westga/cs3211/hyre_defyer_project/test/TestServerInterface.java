@@ -5,12 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.Constants;
@@ -103,4 +107,80 @@ public class TestServerInterface {
 		Constants obj2 = new Constants();
 		assertTrue(ServerCommunicator.sendRequestToServer(null).equals("ERROR"));
 	}
+
+	
+	@Test
+    public void testAddNullFreelancer() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.addFreelancer(null);
+        });
+
+        assertEquals("freelancer to add can not be null.",exception.getMessage());
+    }
+	
+	@Test
+	public void testAddFreelancer() {
+		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+		
+		Boolean response = ServerInterface.addFreelancer(freelancer);
+		
+		assertTrue(response);
+	}
+	
+	@Test
+	public void testGetFreelancersEmpty() {
+		FreelancerRoster result = ServerInterface.getFreelancers();
+		assertTrue(result.getAllFreelancers().isEmpty());
+	}
+	
+	@Test
+	public void testGetMultipleFreelancers() {
+		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+		Freelancer freelancer = new Freelancer("Larry", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+
+		ServerInterface.addFreelancer(freelancer);
+		
+		String[] skills2 =  {"Ruby", "Go", "Swift", "HTML", "CSS"};
+		Freelancer freelancer2 = new Freelancer("David", "Moderate Developer", Categories.DEVELOPMENT_AND_IT, skills2);
+
+		ServerInterface.addFreelancer(freelancer2);
+		FreelancerRoster result = ServerInterface.getFreelancers();
+		
+		assertFalse(result.getAllFreelancers().isEmpty());
+		assertTrue(result.getAllFreelancers().get(0).getUserName().equals("Larry"));
+		assertTrue(result.getAllFreelancers().get(1).getUserName().equals("David"));
+	}
+	
+	@Test
+	public void testRemoveFreelancer() {
+		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+		ServerInterface.addFreelancer(freelancer);
+		Boolean response = ServerInterface.removeFreelancer(freelancer);
+		
+		assertTrue(response);
+	}
+	
+	@Test
+    public void testRemoveFreelancerThrowsException() {
+        String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
+        Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
+        
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.removeFreelancer(freelancer);
+        });
+
+        assertEquals("Freelancer not found in roster.",exception.getMessage());
+    }
+	
+	@Test
+    public void testRemoveNullFreelancer() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ServerInterface.removeFreelancer(null);
+        });
+
+        assertEquals("freelancer to remove can not be null.",exception.getMessage());
+    }
+  
 }

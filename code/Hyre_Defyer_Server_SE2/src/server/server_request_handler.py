@@ -1,10 +1,11 @@
 '''
 Created on Mar 10, 2025
 
-@author: alecx
+@author: alecx and Kate Anglin
 '''
 from src.server import constants
 from src.model.message import Message
+from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
 
 class ServerRequestHandler:
@@ -92,7 +93,6 @@ class ServerRequestHandler:
         response = {}
         userName = request.get(constants.REQ_USERNAME)
         password = request.get(constants.REQ_PASSWORD)
-        
         if not userName or not password:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
             response[constants.REP_ERROR_DESCRIPTION] = "Invalid username or password"
@@ -122,6 +122,66 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
+    def _getFreelancers(self):
+        '''
+            Returns all freelancers
+        '''
+    
+        response = {}
+        
+        freelancers = self._serverResourceHandler.getFreelancers()
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        response[constants.REP_FREELANCERS] = [freelancer.to_dict() for freelancer in freelancers]
+        
+        return response
+    
+    def _addFreelancer(self, request):
+        '''
+            adds a freelancer
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        password = request.get(constants.REQ_PASSWORD)
+        bio = request.get(constants.REQ_BIO)
+        skills = request.get(constants.REQ_SKILLS)
+        categories = request.get(constants.REQ_CATEGORIES)
+        
+        freelancer = Freelancer(userName,password)
+        freelancer.setBio(bio)
+        freelancer._skills = set(skills) if isinstance(skills, list) else {skills}
+        freelancer._categories = set(categories) if isinstance(categories, list) else {categories}
+        
+        self._serverResourceHandler.addFreelancerToRoster(freelancer)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response
+    
+    def _removeFreelancer(self, request):
+        '''
+            removes a freelancer
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        password = request.get(constants.REQ_PASSWORD)
+        bio = request.get(constants.REQ_BIO)
+        skills = request.get(constants.REQ_SKILLS)
+        categories = request.get(constants.REQ_CATEGORIES)
+        
+        freelancer = Freelancer(userName,password)
+        freelancer.setBio(bio)
+        freelancer._skills = set(skills) if isinstance(skills, list) else {skills}
+        freelancer._categories = set(categories) if isinstance(categories, list) else {categories}
+        
+        try:
+            self._serverResourceHandler.removeFreelancerFromRoster(freelancer)
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        except ValueError as e:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            response[constants.REP_ERROR_DESCRIPTION] = str(e)
+
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.
@@ -133,6 +193,8 @@ class ServerRequestHandler:
                 login
                 get messageable users
                 add messageable user
+                get freelancers
+                add freelancer
                 
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
@@ -156,6 +218,15 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
             response = self._addMessageableUser(request)
+            
+        elif req_type == constants.REQ_GET_FREELANCERS:
+            response = self._getFreelancers()
+        
+        elif req_type == constants.REQ_ADD_FREELANCER:
+            response = self._addFreelancer(request)
+            
+        elif req_type == constants.REQ_REMOVE_FREELANCER:
+            response = self._removeFreelancer(request)
         
         return response
         

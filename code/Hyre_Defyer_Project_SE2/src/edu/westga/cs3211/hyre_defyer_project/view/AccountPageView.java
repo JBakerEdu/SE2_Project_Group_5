@@ -1,6 +1,5 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
-import java.util.Arrays;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
@@ -249,7 +248,7 @@ public class AccountPageView {
         	this.descriptionTextBox.setText(freelancer.getBio());
         	this.catergoryComboBox.setValue(freelancer.getCategory());
             this.categoryTextFeild.setText(freelancer.getCategory().toString());
-            List<String> skills = Arrays.asList(freelancer.getSkills());
+            List<String> skills = freelancer.getSkills();
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {
                 skillFields[index].setText(index < skills.size() ? skills.get(index) : "");
