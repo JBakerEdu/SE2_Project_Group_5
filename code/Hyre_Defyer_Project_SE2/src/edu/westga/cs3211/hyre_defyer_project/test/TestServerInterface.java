@@ -7,7 +7,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.json.JSONObject;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
@@ -19,8 +20,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.Constants;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerCommunicator;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-
-public class TempServerTest {
+public class TestServerInterface {
 	@Test
 	public void testCreateAccount() {
         ServerInterface.createAccount("user1", "password1");
@@ -60,6 +60,8 @@ public class TempServerTest {
         Message message1 = new Message("World", user1, user2);
         handler.sendMessage(message);
         handler.sendMessage(message1);
+        assertEquals(message.toString(), "Connor: Hello");
+        assertEquals(user1.toString(), "Connor");
         assertEquals("Hello", handler.getFullMessageLog().get(0).getMessage());
         assertEquals("World", handler.getFullMessageLog().get(1).getMessage());
     }
@@ -79,6 +81,34 @@ public class TempServerTest {
         assertNull(ServerInterface.login("jacob", "notpassword"));
 
 	}
+	
+	@Test
+	public void testGetMessageableUsers() {
+		ServerInterface.createAccount("Alec", "password");
+		ServerInterface.createAccount("Edgar", "password");
+		User user1 = ServerInterface.login("Alec", "password");
+        User user2 = ServerInterface.login("Edgar", "password");
+        ServerInterface.addMessageableUser(user1, user2);
+        List<User> users = ServerInterface.getMessagableUsers(user1);
+        assertNotNull(users);
+        assertTrue(users.get(0).getUserName().equals("Edgar"));
+	}
+	
+	@SuppressWarnings("unused")
+	@Test
+	public void testForCodeCoverage() {
+		/* This test is simply for code coverage, it is not a functional test
+		   These are only accessed statically, but code coverage requires instantiation 
+		   on everything for some reason (Even a constants class. Also the 
+		   last line forces an error to cover the exception block
+		*/
+		ServerCommunicator obj = new ServerCommunicator();
+		ServerInterface obj1 = new ServerInterface();
+		Constants obj2 = new Constants();
+		assertTrue(ServerCommunicator.sendRequestToServer(null).equals("ERROR"));
+	}
+	
+	
 	
 	@Test
     public void testAddNullFreelancer() {
@@ -153,5 +183,4 @@ public class TempServerTest {
 
         assertEquals("freelancer to remove can not be null.",exception.getMessage());
     }
-	
 }
