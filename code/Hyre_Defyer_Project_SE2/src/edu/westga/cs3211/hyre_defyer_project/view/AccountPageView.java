@@ -68,6 +68,9 @@ public class AccountPageView {
 
     @FXML
     private Button hyreButton;
+    
+    @FXML
+    private Label hyreMsgErrorLabel;
 
     @FXML
     private Label hyreLabel;
@@ -258,7 +261,19 @@ public class AccountPageView {
                 skillFields[index].setText(index < skills.size() ? skills.get(index) : "");
             }
         }
+        this.updateHyreButtonAndErrorLabel();
     }
+
+	private void updateHyreButtonAndErrorLabel() {
+		User currentUser = SignInViewModel.getCurrentUser();
+        if (currentUser == null) {
+        	this.hyreButton.disableProperty().set(true);
+        	this.hyreMsgErrorLabel.setVisible(true);
+        } else {
+        	this.hyreButton.disableProperty().set(false);
+        	this.hyreMsgErrorLabel.setVisible(false);
+        }
+	}
     
     private Freelancer getFreelancerByUsername(String username) {
         for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
