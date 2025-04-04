@@ -75,7 +75,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label fx:id="SignInLabel" alignment="CENTER" layoutX="135.0" layoutY="470.0" prefHeight="45.0" prefWidth="646.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Sign In or Create an Account to begin ">
+      <Label fx:id="signInLabel" alignment="CENTER" layoutX="135.0" layoutY="470.0" prefHeight="45.0" prefWidth="646.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Sign In or Create an Account to begin ">
          <font>
             <Font size="20.0" />
          </font>

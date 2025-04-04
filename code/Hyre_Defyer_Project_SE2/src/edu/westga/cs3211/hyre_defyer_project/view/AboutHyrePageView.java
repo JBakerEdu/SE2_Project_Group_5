@@ -40,7 +40,7 @@ public class AboutHyrePageView {
     private Button signInButton;
     
     @FXML
-    private Label SignInLabel;
+    private Label signInLabel;
     
     @FXML
     private Line signInBar;
@@ -71,7 +71,7 @@ public class AboutHyrePageView {
 
     @FXML
     void handleAboutHyreClick(MouseEvent event) {
-    	GUIHelper.switchView(anchorPane, Views.ABOUT_HYRE);
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
@@ -85,7 +85,7 @@ public class AboutHyrePageView {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     		this.signInButton.setVisible(false);
     		this.signInBar.setVisible(false);
-    		this.SignInLabel.setVisible(false);
+    		this.signInLabel.setVisible(false);
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}

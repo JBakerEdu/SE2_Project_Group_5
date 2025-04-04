@@ -10,9 +10,6 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class AccountPageViewModelTest {
 
     private User testUser;

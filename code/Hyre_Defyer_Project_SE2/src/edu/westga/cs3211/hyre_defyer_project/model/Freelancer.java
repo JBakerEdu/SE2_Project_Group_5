@@ -44,7 +44,6 @@ public class Freelancer extends User {
      * @param userName The freelancer's name
      * @param userBio The freelancer's biography
      * @param category The freelancer's category
-     * @param skills The freelancer's skills
      * @throws IllegalArgumentException if any precondition is violated
      */
     public Freelancer(String userName, String userBio, Categories category) {
@@ -154,7 +153,7 @@ public class Freelancer extends User {
      * @precondition categories != null
      * @postcondition this.categories is set
      *
-     * @param categories The freelancer's categories
+     * @param category The freelancer's categories
      * @throws IllegalArgumentException if category is null
      */
     public void setCategory(Categories category) {
@@ -203,11 +202,11 @@ public class Freelancer extends User {
      */
     public void setAllSkills(String[] skills) {
     	this.skills = new ArrayList<String>();
-    	for (int i = 0; i < skills.length; i++) {
-    		 if (skills[i] == null) {
+    	for (int index = 0; index < skills.length; index++) {
+    		 if (skills[index] == null) {
     			 throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
     		 }
-    		 this.skills.add(skills[i]);
+    		 this.skills.add(skills[index]);
         }
     }
     
@@ -225,9 +224,9 @@ public class Freelancer extends User {
         if (oldSkill == null || newSkill == null) {
             throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
         }
-        for (int i = 0; i < skills.size(); i++) {
-            if (skills.get(i).equals(oldSkill)) {
-                skills.set(i, newSkill); 
+        for (int index = 0; index < this.skills.size(); index++) {
+            if (this.skills.get(index).equals(oldSkill)) {
+                this.skills.set(index, newSkill); 
                 return;
             }
         }
@@ -282,6 +281,12 @@ public class Freelancer extends User {
 		return (this.categories.equals(other.categories)) && (this.skills.equals(other.skills)) && (other.getBio().equals(this.getBio()) && (other.getUserName().equals(this.getUserName())));
 	}
 
+	/**
+	 * Sets the freelancers skill at the specific index
+	 * 
+	 * @param index the index
+	 * @param skillText the skill
+	 */
 	public void setSkill(int index, String skillText) {
 		if (this.skills.size() <= index) {
 			this.skills.add(skillText);

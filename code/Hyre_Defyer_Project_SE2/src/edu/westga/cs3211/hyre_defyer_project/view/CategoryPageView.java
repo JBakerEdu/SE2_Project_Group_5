@@ -175,7 +175,7 @@ public class CategoryPageView {
 
     @FXML
     void handleAboutHyreClick(MouseEvent event) {
-    	GUIHelper.switchView(anchorPane, Views.ABOUT_HYRE);
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML

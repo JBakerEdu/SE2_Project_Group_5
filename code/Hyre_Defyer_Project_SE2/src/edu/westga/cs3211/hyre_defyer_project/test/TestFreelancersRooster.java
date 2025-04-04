@@ -1,14 +1,10 @@
 package edu.westga.cs3211.hyre_defyer_project.test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
