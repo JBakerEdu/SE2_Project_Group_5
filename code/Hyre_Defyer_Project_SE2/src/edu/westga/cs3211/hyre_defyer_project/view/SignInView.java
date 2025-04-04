@@ -46,7 +46,7 @@ public class SignInView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private TextField passwordCreateAccountTextFeild;
@@ -102,8 +102,8 @@ public class SignInView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML

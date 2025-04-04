@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * This is the View for the Account page
  * 
- * @author Jacob Baker
+ * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
 public class AccountPageView {
@@ -73,7 +73,7 @@ public class AccountPageView {
     private Label hyreMsgErrorLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Button saveButton;
@@ -181,8 +181,8 @@ public class AccountPageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-    	//???
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML

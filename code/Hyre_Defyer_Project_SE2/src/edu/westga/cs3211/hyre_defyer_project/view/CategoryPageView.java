@@ -60,7 +60,7 @@ public class CategoryPageView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Button peopleButton1;
@@ -174,8 +174,8 @@ public class CategoryPageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
