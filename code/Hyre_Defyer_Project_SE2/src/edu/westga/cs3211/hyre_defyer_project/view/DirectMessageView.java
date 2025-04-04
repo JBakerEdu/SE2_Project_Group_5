@@ -120,8 +120,21 @@ public class DirectMessageView {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
     		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
     		updateDisplayedMessages();
-    		
     	});
+    	
+    	User selectedUser = AccountPageViewModel.getUserSelectedToView();
+		if (selectedUser != null) {
+			User userToSelect = null;
+			for (User user : users) {
+				if (user.getUserName().equals(selectedUser.getUserName())) {
+					userToSelect = user;
+					break;
+				}
+			}
+			this.contactListView.getSelectionModel().select(userToSelect);
+		} else {
+			this.contactListView.getSelectionModel().select(0);
+		}
     }
 
 	private void updateDisplayedMessages() {

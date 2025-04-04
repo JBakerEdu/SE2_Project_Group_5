@@ -6,6 +6,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -67,6 +68,9 @@ public class AccountPageView {
 
     @FXML
     private Button hyreButton;
+    
+    @FXML
+    private Label hyreMsgErrorLabel;
 
     @FXML
     private Label hyreLabel;
@@ -134,7 +138,10 @@ public class AccountPageView {
 
     @FXML
     void handleHyreButtonClick(ActionEvent event) {
-    	//TODO start message with user and take to dm page in the tab to talk to the person
+    	User currentUser = SignInViewModel.getCurrentUser();
+    	User selectedUser = AccountPageViewModel.getUserSelectedToView();
+    	ServerInterface.addMessageableUser(currentUser, selectedUser);
+    	GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
     
     @FXML
@@ -254,7 +261,19 @@ public class AccountPageView {
                 skillFields[index].setText(index < skills.size() ? skills.get(index) : "");
             }
         }
+        this.updateHyreButtonAndErrorLabel();
     }
+
+	private void updateHyreButtonAndErrorLabel() {
+		User currentUser = SignInViewModel.getCurrentUser();
+        if (currentUser == null) {
+        	this.hyreButton.disableProperty().set(true);
+        	this.hyreMsgErrorLabel.setVisible(true);
+        } else {
+        	this.hyreButton.disableProperty().set(false);
+        	this.hyreMsgErrorLabel.setVisible(false);
+        }
+	}
     
     private Freelancer getFreelancerByUsername(String username) {
         for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
