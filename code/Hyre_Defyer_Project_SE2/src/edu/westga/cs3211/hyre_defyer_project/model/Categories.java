@@ -1,5 +1,11 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
+/**
+ * The Category enums that we can use for category
+ * 
+ * @author Kate Anglin and Jacob Baker
+ * @version Spring 2025
+ */
 public enum Categories {
 	
 	BUSINESS_AND_FINANCE,
@@ -12,7 +18,6 @@ public enum Categories {
 	WRITING_AND_TRANSLATION,
 	UNDETERMINED;
 
-	
 	@Override
     public String toString() {
         return this.name().replace("_", " ");

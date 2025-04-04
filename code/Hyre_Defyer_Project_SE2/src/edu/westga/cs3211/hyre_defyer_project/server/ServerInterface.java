@@ -50,8 +50,8 @@ public class ServerInterface {
 
             JSONArray messagesArray = jsonResponse.getJSONArray(Constants.REP_MESSAGES);
             
-            for (int i = 0; i < messagesArray.length(); i++) {
-                JSONObject messageObj = messagesArray.getJSONObject(i);
+            for (int index = 0; index < messagesArray.length(); index++) {
+                JSONObject messageObj = messagesArray.getJSONObject(index);
                 
                 String senderUserName = messageObj.getString(Constants.REQ_SENDER);
                 String receiverUserName = messageObj.getString(Constants.REQ_RECEIVER);
@@ -91,7 +91,6 @@ public class ServerInterface {
 		return null; 
 	}
 
-	
 	/**
 	 * Creates an account
 	 * 
@@ -135,6 +134,15 @@ public class ServerInterface {
 		ServerCommunicator.sendRequestToServer(request);
     }
 	
+	/**
+	 * Get users I can message from server
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param user the person logged in
+	 * @return user you can or have messaged
+	 */
 	public static List<User> getMessagableUsers(User user) {
 		List<User> users = new ArrayList<User>();
 		
@@ -150,8 +158,8 @@ public class ServerInterface {
 
             JSONArray usersArray = responseJSON.getJSONArray(Constants.REP_USERS);
             
-            for (int i = 0; i < usersArray.length(); i++) {
-                String userName = usersArray.getString(i);
+            for (int index = 0; index < usersArray.length(); index++) {
+                String userName = usersArray.getString(index);
                 
                 User newUser = new User(userName);
                 
@@ -161,6 +169,12 @@ public class ServerInterface {
 		return users;
 	}
 
+	/**
+	 * Adds a user to your dm list
+	 * 
+	 * @param user1 user one is the user logged in 
+	 * @param user2 user two is the user attempting to be messaged
+	 */
 	public static void addMessageableUser(User user1, User user2) {
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_ADD_MESSAGEABLE_USER);
@@ -177,6 +191,7 @@ public class ServerInterface {
 	 * @precondition none
 	 * @postcondition none 
 	 * 
+	 * @return FreelancerRoster which is the roster of freelancers 
 	 */
 	public static FreelancerRoster getFreelancers() {
 		FreelancerRoster roster = new FreelancerRoster();
@@ -192,26 +207,26 @@ public class ServerInterface {
 
             JSONArray freelancersArray = responseJSON.getJSONArray(Constants.REP_FREELANCERS);
             
-            for (int i = 0; i < freelancersArray.length(); i++) {
-            	JSONObject freelancerJSON = freelancersArray.getJSONObject(i);
+            for (int index = 0; index < freelancersArray.length(); index++) {
+            	JSONObject freelancerJSON = freelancersArray.getJSONObject(index);
                 String userName = freelancerJSON.getString(Constants.REQ_USERNAME);
                 String bio = freelancerJSON.getString(Constants.REQ_BIO);
                 JSONArray skillsArray = freelancerJSON.getJSONArray(Constants.REQ_SKILLS);
                 JSONArray categoriesArray = freelancerJSON.getJSONArray(Constants.REQ_CATEGORIES);
                 
                 List<String> skills = new ArrayList<>();
-                for (int j = 0; j < skillsArray.length(); j++) {
-                    skills.add(skillsArray.getString(j));
+                for (int indexJ = 0; indexJ < skillsArray.length(); indexJ++) {
+                    skills.add(skillsArray.getString(indexJ));
                 }
                 
                 List<Categories> categories = new ArrayList<>();
-                for (int j = 0; j < categoriesArray.length(); j++) {
-                    String categoryString = categoriesArray.getString(j);
+                for (int indexJ = 0; indexJ < categoriesArray.length(); indexJ++) {
+                    String categoryString = categoriesArray.getString(indexJ);
                     
                     try {
                         Categories category = Categories.valueOf(categoryString); 
                         categories.add(category);
-                    } catch (IllegalArgumentException e) {
+                    } catch (IllegalArgumentException ex) {
                         System.out.println("Invalid category: " + categoryString);
                     }
                 }
@@ -232,6 +247,8 @@ public class ServerInterface {
 	 * @precondition freelancer != null
 	 * @postcondition freelancer is added to the server
 	 * 
+	 * @param freelancer a freelancer object to add
+	 * @return boolean of true if added and false if not add to freelancers
 	 */
 	public static Boolean addFreelancer(Freelancer freelancer) {
 		if (freelancer == null) {
@@ -257,6 +274,8 @@ public class ServerInterface {
 	 * @precondition freelancer != null
 	 * @postcondition freelancer is removed from the server
 	 * 
+	 * @param freelancer a freelancer object to remove
+	 * @return boolean of true if removed and false if not removed to freelancers
 	 */
 	public static Boolean removeFreelancer(Freelancer freelancer) {
 		if (freelancer == null) {

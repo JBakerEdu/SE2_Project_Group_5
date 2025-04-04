@@ -25,7 +25,6 @@ public class User {
 		this.setBio(userBio);
 	}
 	
-	
 	/** 
 	 * Creates a user​
 	 *​
@@ -49,9 +48,9 @@ public class User {
 	 */
 	public String getUserName() {
 		return this.userName;
-  }
+	}
 
-	 /* Sets the user's name.
+	/** Sets the user's name.
 	 *
 	 * @precondition userName != null && !userName.isBlank()
 	 * @postcondition this.userName is set

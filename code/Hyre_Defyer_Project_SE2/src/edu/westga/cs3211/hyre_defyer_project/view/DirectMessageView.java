@@ -48,7 +48,7 @@ public class DirectMessageView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Label otherPersonUserNameLbel;
@@ -90,8 +90,8 @@ public class DirectMessageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
@@ -119,7 +119,7 @@ public class DirectMessageView {
     	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
     		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
     		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
-    		updateDisplayedMessages();
+    		this.updateDisplayedMessages();
     	});
     	
     	User selectedUser = AccountPageViewModel.getUserSelectedToView();
