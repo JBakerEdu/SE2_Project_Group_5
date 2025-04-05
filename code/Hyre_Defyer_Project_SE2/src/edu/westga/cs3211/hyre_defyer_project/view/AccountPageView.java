@@ -165,8 +165,11 @@ public class AccountPageView {
     @FXML
     void handleDeleteAccountButtonClick(ActionEvent event) {
     	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
+    	if (this.isFreelancer) {
+    		ServerInterface.removeFreelancer(this.getFreelancerByUsername(SignInViewModel.getCurrentUser().getUserName()));
+    	}
     	SignInViewModel.signOut();
-    	GUIHelper.switchView(anchorPane, Views.HOMEPAGE);
+    	GUIHelper.switchView(anchorPane, Views.HOMEPAGE);	    
     }
     
     @FXML
