@@ -25,6 +25,7 @@ REQ_DELETE_CHAT = "delete chat"
 REQ_GET_FREELANCERS = "get freelancers"
 REQ_ADD_FREELANCER = "add freelancer"
 REQ_REMOVE_FREELANCER= "remove freelancer"
+REQ_DELETE_USER_FROM_SERVER = "delete user from server"
 
 REP_SUCCESS = "success"
 REP_FAIL = "fail"
