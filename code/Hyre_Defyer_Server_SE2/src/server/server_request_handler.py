@@ -182,6 +182,22 @@ class ServerRequestHandler:
 
         return response
     
+    def _deleteUserFromServer(self, request):
+        '''
+        Deletes a user from the server
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        
+        try:
+            self._serverResourceHandler.deleteUserFromServer(userName)
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        except ValueError as e:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            response[constants.REP_ERROR_DESCRIPTION] = str(e)
+
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.
@@ -195,6 +211,7 @@ class ServerRequestHandler:
                 add messageable user
                 get freelancers
                 add freelancer
+                delete user from server
                 
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
@@ -228,5 +245,7 @@ class ServerRequestHandler:
         elif req_type == constants.REQ_REMOVE_FREELANCER:
             response = self._removeFreelancer(request)
         
+        elif req_type == constants.REQ_DELETE_USER_FROM_SERVER:
+            response = self._deleteUserFromServer(request)
         return response
         

@@ -32,6 +32,12 @@ public class TestServerInterface {
     }
 	
 	@Test
+	public void testDeleteUser() {
+		ServerInterface.createAccount("dummy account", "pass");
+		assertTrue(ServerInterface.deleteUser("dummy account"));
+	}
+	
+	@Test
 	public void testSendMessage() {
         ServerInterface.createAccount("paul", "password1");
         ServerInterface.createAccount("todd", "password2");

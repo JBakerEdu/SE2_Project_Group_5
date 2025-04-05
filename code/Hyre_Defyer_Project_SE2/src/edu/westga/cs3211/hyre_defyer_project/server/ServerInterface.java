@@ -112,6 +112,22 @@ public class ServerInterface {
 		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
 		return successCode.equals(Constants.REP_SUCCESS);
 	}
+	
+	/** 
+	 * Deletes a user from the server
+	 * @param userName the username
+	 * @return true if deleted successfully
+	 * 				 false if not deleted successfully
+	 */
+	public static boolean deleteUser(String userName) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_DELETE_USER_FROM_SERVER);
+		request.put(Constants.REQ_USERNAME, userName);
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		return successCode.equals(Constants.REP_SUCCESS);
+	}
 
 	/**
 	 * Sends a message
