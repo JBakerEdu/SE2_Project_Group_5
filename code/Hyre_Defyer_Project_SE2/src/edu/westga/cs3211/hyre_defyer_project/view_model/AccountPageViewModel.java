@@ -2,6 +2,7 @@ package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
+import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 
@@ -14,8 +15,6 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 public class AccountPageViewModel {
     
     private static User userSelectedToView;
-
-    private static FreelancerRoster freelancerRoster = GUIHelper.getFreelancerRoster();
 
     /**
      * Gets the user that was last set, which will allow the view to know what user is needed to be viewed.
@@ -32,7 +31,8 @@ public class AccountPageViewModel {
      * @return FreelancerRoster that is the list of freelancers
      */
     public static FreelancerRoster getRoster() {
-        return freelancerRoster;
+    	GUIRosterHelper helper = new GUIRosterHelper();
+        return helper.getFreelancerRoster();
     }
 
     /**
@@ -51,7 +51,8 @@ public class AccountPageViewModel {
      */
     public static boolean isSelectedUserFreelancer() {
         if (userSelectedToView != null && userSelectedToView.getUserName() != null) {
-            for (Freelancer freelancer : freelancerRoster.getAllFreelancers()) {
+        	GUIRosterHelper helper = new GUIRosterHelper();
+            for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
                 if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
                     return true;
                 }
