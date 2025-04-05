@@ -7,6 +7,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -57,7 +58,7 @@ public class DirectMessageView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Label otherPersonUserNameLbel;
@@ -76,6 +77,7 @@ public class DirectMessageView {
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -98,8 +100,8 @@ public class DirectMessageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
@@ -119,9 +121,35 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
+
     	this.chatSettingsMenu.disableProperty().set(true);
     	this.updateContactList();
     	this.setUpListeners();
+
+    	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
+
+    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
+    	this.contactListView.setItems(observableListUsers);
+    	
+    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+    		this.updateDisplayedMessages();
+    	});
+    	
+    	User selectedUser = AccountPageViewModel.getUserSelectedToView();
+    	if (selectedUser != null) {
+    		User userToSelect = null;
+    		for (User user : users) {
+    			if (user.getUserName().equals(selectedUser.getUserName())) {
+    				userToSelect = user;
+    				break;
+    			}
+    		}
+    		this.contactListView.getSelectionModel().select(userToSelect);
+    	} else {
+    		this.contactListView.getSelectionModel().select(0);
+    	}
     }
 
 		private void setUpListeners() {

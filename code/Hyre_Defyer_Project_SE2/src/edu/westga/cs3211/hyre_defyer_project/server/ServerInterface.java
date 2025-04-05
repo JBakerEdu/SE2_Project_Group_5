@@ -6,17 +6,23 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 
 /**
  * Acts as a temporary interactive server for the application
  * 
- * @author Alec Neal
+ * @author Alec Neal and Kate Anglin
  * @version Spring 2025
  */
 public class ServerInterface {
 	
+	private static final String FREELANCER_TO_ADD_CAN_NOT_BE_NULL = "freelancer to add can not be null.";
+	private static final String FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL = "freelancer to remove can not be null.";
+
 	/**
 	 * Gets the messages between two users
 	 * 
@@ -44,8 +50,8 @@ public class ServerInterface {
 
             JSONArray messagesArray = jsonResponse.getJSONArray(Constants.REP_MESSAGES);
             
-            for (int i = 0; i < messagesArray.length(); i++) {
-                JSONObject messageObj = messagesArray.getJSONObject(i);
+            for (int index = 0; index < messagesArray.length(); index++) {
+                JSONObject messageObj = messagesArray.getJSONObject(index);
                 
                 String senderUserName = messageObj.getString(Constants.REQ_SENDER);
                 String receiverUserName = messageObj.getString(Constants.REQ_RECEIVER);
@@ -85,7 +91,6 @@ public class ServerInterface {
 		return null; 
 	}
 
-	
 	/**
 	 * Creates an account
 	 * 
@@ -129,6 +134,15 @@ public class ServerInterface {
 		ServerCommunicator.sendRequestToServer(request);
     }
 	
+	/**
+	 * Get users I can message from server
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @param user the person logged in
+	 * @return user you can or have messaged
+	 */
 	public static List<User> getMessagableUsers(User user) {
 		List<User> users = new ArrayList<User>();
 		
@@ -144,8 +158,8 @@ public class ServerInterface {
 
             JSONArray usersArray = responseJSON.getJSONArray(Constants.REP_USERS);
             
-            for (int i = 0; i < usersArray.length(); i++) {
-                String userName = usersArray.getString(i);
+            for (int index = 0; index < usersArray.length(); index++) {
+                String userName = usersArray.getString(index);
                 
                 User newUser = new User(userName);
                 
@@ -155,6 +169,12 @@ public class ServerInterface {
 		return users;
 	}
 
+	/**
+	 * Adds a user to your dm list
+	 * 
+	 * @param user1 user one is the user logged in 
+	 * @param user2 user two is the user attempting to be messaged
+	 */
 	public static void addMessageableUser(User user1, User user2) {
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_ADD_MESSAGEABLE_USER);
@@ -166,6 +186,7 @@ public class ServerInterface {
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Delete the chat between two users
 	 * @param user1 the current user
 	 * @param user2 the user associated with the chat the current user wants to delete
@@ -177,5 +198,120 @@ public class ServerInterface {
 		request.put(Constants.REQ_RECEIVER, user2.getUserName());
 		
 		ServerCommunicator.sendRequestToServer(request);
+	}
+
+	 /** Gets the freelancers from the server
+	 * 
+	 * @precondition none
+	 * @postcondition none 
+	 * 
+	 * @return FreelancerRoster which is the roster of freelancers 
+	 */
+	public static FreelancerRoster getFreelancers() {
+		FreelancerRoster roster = new FreelancerRoster();
+		
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_GET_FREELANCERS);
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject responseJSON = new JSONObject(response);
+		String successCode = responseJSON.getString(Constants.SUCCESS_CODE);
+		
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+
+            JSONArray freelancersArray = responseJSON.getJSONArray(Constants.REP_FREELANCERS);
+            
+            for (int index = 0; index < freelancersArray.length(); index++) {
+            	JSONObject freelancerJSON = freelancersArray.getJSONObject(index);
+                String userName = freelancerJSON.getString(Constants.REQ_USERNAME);
+                String bio = freelancerJSON.getString(Constants.REQ_BIO);
+                JSONArray skillsArray = freelancerJSON.getJSONArray(Constants.REQ_SKILLS);
+                JSONArray categoriesArray = freelancerJSON.getJSONArray(Constants.REQ_CATEGORIES);
+                
+                List<String> skills = new ArrayList<>();
+                for (int indexJ = 0; indexJ < skillsArray.length(); indexJ++) {
+                    skills.add(skillsArray.getString(indexJ));
+                }
+                
+                List<Categories> categories = new ArrayList<>();
+                for (int indexJ = 0; indexJ < categoriesArray.length(); indexJ++) {
+                    String categoryString = categoriesArray.getString(indexJ);
+                    
+                    try {
+                        Categories category = Categories.valueOf(categoryString); 
+                        categories.add(category);
+                    } catch (IllegalArgumentException ex) {
+                        System.out.println("Invalid category: " + categoryString);
+                    }
+                }
+                
+                Freelancer freelancer = new Freelancer(userName, bio, categories, skills);
+                
+                roster.addFreelancer(freelancer);
+            }
+            return roster;
+        }
+		
+		return null;
+	}
+	
+	/**
+	 * Adds a freelancer to the server
+	 * 
+	 * @precondition freelancer != null
+	 * @postcondition freelancer is added to the server
+	 * 
+	 * @param freelancer a freelancer object to add
+	 * @return boolean of true if added and false if not add to freelancers
+	 */
+	public static Boolean addFreelancer(Freelancer freelancer) {
+		if (freelancer == null) {
+			throw new IllegalArgumentException(FREELANCER_TO_ADD_CAN_NOT_BE_NULL);
+		}
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_ADD_FREELANCER);
+		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
+		request.put(Constants.REQ_PASSWORD, "");
+		request.put(Constants.REQ_BIO, freelancer.getBio());
+		request.put(Constants.REQ_SKILLS, freelancer.getSkills());
+		request.put(Constants.REQ_CATEGORIES, freelancer.getCategory());
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		return successCode.equals(Constants.REP_SUCCESS);
+	}
+	
+	/**
+	 * Removes a freelancer from the server
+	 * 
+	 * @precondition freelancer != null
+	 * @postcondition freelancer is removed from the server
+	 * 
+	 * @param freelancer a freelancer object to remove
+	 * @return boolean of true if removed and false if not removed to freelancers
+	 */
+	public static Boolean removeFreelancer(Freelancer freelancer) {
+		if (freelancer == null) {
+			throw new IllegalArgumentException(FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL);
+		}
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_REMOVE_FREELANCER);
+		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
+		request.put(Constants.REQ_PASSWORD, "");
+		request.put(Constants.REQ_BIO, freelancer.getBio());
+		request.put(Constants.REQ_SKILLS, freelancer.getSkills());
+		request.put(Constants.REQ_CATEGORIES, freelancer.getCategory());
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+			return true;
+		} else {
+			String error = jsonObject.getString(Constants.REP_ERROR_DESCRIPTION);
+			throw new IllegalArgumentException(error);
+		}
 	}
 }

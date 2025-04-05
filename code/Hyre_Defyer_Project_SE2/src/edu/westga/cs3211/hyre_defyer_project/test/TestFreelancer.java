@@ -2,6 +2,10 @@ package edu.westga.cs3211.hyre_defyer_project.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +40,7 @@ class TestFreelancer {
         assertEquals("JohnDoe", freelancer.getUserName());
         assertEquals("Experienced Developer", freelancer.getBio());
         assertEquals(Categories.DEVELOPMENT_AND_IT, freelancer.getCategory());
-        assertArrayEquals(new String[]{null, null, null, null, null}, freelancer.getSkills());
+        assertEquals(new ArrayList<String>(), freelancer.getSkills());
     }
 
     @Test
@@ -44,7 +48,119 @@ class TestFreelancer {
         assertEquals("JohnDoe", freelancer.getUserName());
         assertEquals("Experienced Developer", freelancer.getBio());
         assertEquals(Categories.DEVELOPMENT_AND_IT, freelancer.getCategory());
-        assertArrayEquals(new String[]{"Java", "Python", "C++", "JavaScript", "SQL"}, freelancer.getSkills());
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("Java");
+        list.add("Python");
+        list.add("C++");
+        list.add("JavaScript");
+        list.add("SQL");
+        assertEquals(list, freelancer.getSkills());
+    }
+    
+    @Test
+    public void testNewConstructor() {
+    	String userName = "johnDoe";
+    	String userBio = "Experienced developer";
+        Categories category = Categories.DEVELOPMENT_AND_IT;
+        List<String> skills = Arrays.asList("Java", "Python", "SQL");
+        
+    	Freelancer freelancer5 = new Freelancer(userName, userBio, category, skills);
+
+        assertNotNull(freelancer5);
+        assertEquals(userName, freelancer5.getUserName());
+        assertEquals(userBio, freelancer5.getBio());
+        assertEquals(1, freelancer5.getCategories().size());
+        assertEquals(category, freelancer5.getCategories().get(0));
+        assertTrue(freelancer5.getSkills().containsAll(skills));
+    }
+    
+    @Test
+    public void testSetCategoriesValid() {
+    	List<Categories> validCategories = Arrays.asList(Categories.DESIGN_AND_CREATIVE, Categories.DEVELOPMENT_AND_IT); 
+        freelancer = new Freelancer("johnDoe", "Experienced developer", Categories.DEVELOPMENT_AND_IT, Arrays.asList("Java", "Python"));
+        freelancer.setCategories(validCategories);
+        assertEquals(validCategories, freelancer.getCategories());
+    }
+
+    @Test
+    public void testSetCategoriesNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            freelancer.setCategories(null);
+        });
+    }
+
+    @Test
+    public void testSetCategoriesEmptyList() {
+    	freelancer.setCategories(Arrays.asList());
+        assertTrue(freelancer.getCategories().isEmpty());
+    }
+
+    @Test
+    public void testSetCategoriesWithOneCategory() {
+    	freelancer = new Freelancer("johnDoe", "Experienced developer", Categories.DEVELOPMENT_AND_IT, Arrays.asList("Java", "Python"));
+        freelancer.setCategories(Arrays.asList(Categories.DEVELOPMENT_AND_IT));
+        assertEquals(1, freelancer.getCategories().size());
+        assertTrue(freelancer.getCategories().contains(Categories.DEVELOPMENT_AND_IT));
+    }
+    
+    @Test
+    public void testSetAllSkillsWithListValid() {
+    	List<String> validSkills = Arrays.asList("Java", "Python", "SQL");
+        freelancer.setAllSkills(validSkills);
+        assertEquals(validSkills, freelancer.getSkills());
+    }
+
+    @Test
+    public void testSetAllSkillsWithListNull() {
+    	List<String> nullSkills = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            freelancer.setAllSkills(nullSkills);
+        });
+    }
+
+    @Test
+    public void testSetAllSkillsWithEmptyList() {
+    	List<String> emptySkills = Arrays.asList();
+        freelancer.setAllSkills(emptySkills);
+        assertTrue(freelancer.getSkills().isEmpty());
+    }
+
+    @Test
+    public void testSetAllSkillsWithArrayValid() {
+    	String[] validSkillsArray = new String[] {"Java", "Python", "SQL"};
+        freelancer.setAllSkills(validSkillsArray);
+        assertTrue(freelancer.getSkills().containsAll(Arrays.asList(validSkillsArray)));
+    }
+
+    @Test
+    public void testSetAllSkillsWithListNull1() {
+    	List<String> nullSkills = null;
+        assertThrows(IllegalArgumentException.class, () -> {
+            freelancer.setAllSkills(nullSkills);
+        });
+    }
+    
+    @Test
+    public void testSetAllSkillsWithArrayNull() {
+    	String[] nullSkillsArray = new String[] {null, null, null};
+        assertThrows(IllegalArgumentException.class, () -> {
+            freelancer.setAllSkills(nullSkillsArray);
+        });
+    }
+    
+    @Test
+    public void testSetAllSkillsWithArrayContainsNull() {
+        String[] skillsWithNull = new String[] {"Java", null, "Python"};
+        assertThrows(IllegalArgumentException.class, () -> {
+            freelancer.setAllSkills(skillsWithNull);
+        });
+    }
+
+    @Test
+    public void testSetAllSkillsWithEmptyArray() {
+    	String[]  emptySkillsArray = new String[] {};
+        freelancer.setAllSkills(emptySkillsArray);
+        assertTrue(freelancer.getSkills().isEmpty());
     }
 
     @Test
@@ -107,53 +223,7 @@ class TestFreelancer {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             freelancer.setCategory(null);
         });
-        assertEquals("Category cannot be null.", exception.getMessage());
-    }
-
-    @Test
-    public void testSetSkillValid() {
-        freelancer.setSkill(2, "Go");
-        assertTrue(freelancer.containsSkill("Go"));
-    }
-
-    @Test
-    public void testSetSkillInvalidIndex() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            freelancer.setSkill(5, "Go");
-        });
-        assertEquals("Index must be between 0 and 4.", exception.getMessage());
-    }
-    
-    @Test
-    public void testSetSkillNegativeIndex() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            freelancer.setSkill(-1, "Go");
-        });
-        assertEquals("Index must be between 0 and 4.", exception.getMessage());
-    }
-    
-    @Test
-    public void testSetNullSkill() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            freelancer.setSkill(0, null);
-        });
-        assertEquals("Skill cannot be null.", exception.getMessage());
-    }
-    
-    @Test
-    public void testSetAllSkillsInvalidNull() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            freelancer.setAllSkills(null);
-        });
-        assertEquals("Skills array must be of size 5.", exception.getMessage());
-    }
-    
-    @Test
-    public void testSetAllSkillsInvalidIndex() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            freelancer.setAllSkills(new String[4]);
-        });
-        assertEquals("Skills array must be of size 5.", exception.getMessage());
+        assertEquals("Categories cannot be null.", exception.getMessage());
     }
     
     @Test
@@ -226,6 +296,5 @@ class TestFreelancer {
     public void testHashCode_DifferentValues() {
         assertNotEquals(freelancer1.hashCode(), freelancer3.hashCode(), "Hash codes should be different for non-equal objects.");
     }
-
 
 }

@@ -90,5 +90,37 @@
         "success_code": "success"|"fail",
         “error description”:<error message> #only if fail
     }
-
+//Get Freelancers request
+	{
+		"type" : "get freelancers",
+	}    
+//Get Freelancers response
+    {
+        "success_code": "success"|"fail",
+        "freeelancers" : [
+            {
+                "userName" : <username>,
+                "bio" : <bio>,
+                "skills" : <skills>,
+                "catagories" : <catagories>
+            },
+            {
+                "userName" : <username>,
+                "bio" : <bio>,
+                "skills" : <skills>,
+                "catagories" : <catagories>
+            }
+        ],
+        “error description”:<error message> #only if fail
+    }
+//Add Freelancer request
+	{
+		"type" : "add freelancer",
+		
+	}
+//Add Freelancer response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
     

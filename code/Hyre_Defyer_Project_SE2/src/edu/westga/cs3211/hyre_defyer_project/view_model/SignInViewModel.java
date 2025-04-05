@@ -16,7 +16,6 @@ public class SignInViewModel {
 	 * Creates new SignInViewModel object
 	 */
 	public SignInViewModel() {
-		ServerInterface.createAccount("admin", "1234567");
 	}
 	
 	/**

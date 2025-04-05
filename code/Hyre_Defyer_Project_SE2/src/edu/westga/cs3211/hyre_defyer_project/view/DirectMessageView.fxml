@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.DirectMessageView">
+<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.DirectMessageView">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="HONEYDEW" height="58.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <Label fx:id="otherPersonUserNameLbel" alignment="CENTER" layoutX="416.0" layoutY="73.0" prefHeight="45.0" prefWidth="302.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Other Person User Name">
@@ -51,7 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label fx:id="hyreLabel" layoutX="436.0" layoutY="15.0" onMouseClicked="#handleHyreClick" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Hyre">
+      <Label fx:id="aboutLabel" layoutX="436.0" layoutY="15.0" onMouseClicked="#handleAboutHyreClick" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="About">
          <font>
             <Font size="16.0" />
          </font>

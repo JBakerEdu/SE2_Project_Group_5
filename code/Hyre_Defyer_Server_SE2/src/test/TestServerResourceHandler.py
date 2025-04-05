@@ -3,6 +3,7 @@ import unittest
 from src.server import constants
 from src.server.server_resource_handler import ServerResourceHandler
 from src.model.message import Message
+from src.model.freelancer import Freelancer
 
 class TestServerResourceHandler(unittest.TestCase):
     def setUp(self):
@@ -19,6 +20,10 @@ class TestServerResourceHandler(unittest.TestCase):
             constants.REQ_USERNAME: "username",
             constants.REQ_BIO: ""
         })
+    def test_failLogin(self):
+        self.serverResourceHandler.createAccount("username", "password")
+        user = self.serverResourceHandler.login("username", "wrongpassword")
+        self.assertIsNone(user)
         
     def test_duplicate_accounts(self):
         self.assertTrue(self.serverResourceHandler.createAccount("username", "password"))
@@ -40,6 +45,36 @@ class TestServerResourceHandler(unittest.TestCase):
         messageLog = self.serverResourceHandler.getMessagesBetween(sender, receiver)
         
         self.assertEqual(messageLog, [message, message2])
+        
+    def test_messagableUsersSystem(self):
+        self.serverResourceHandler.createAccount("username", "password")
+        self.serverResourceHandler.createAccount("friend", "password")
+       
+        self.serverResourceHandler.addUserToDMList("username", "friend")
+        user = self.serverResourceHandler.getUser("username")
+        self.assertIn("friend", user.getMessageableUsers())
+        self.serverResourceHandler.removeUserFromDMList("username", "friend")
+        self.assertNotIn("friend", user.getMessageableUsers())
+
+        
+    def test_add_freelancer(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
+        self.assertTrue(self.freelancer in self.serverResourceHandler.getFreelancers())
+        
+    def test_remove_freelancer(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
+        self.assertTrue(self.freelancer in self.serverResourceHandler.getFreelancers())
+        self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
+        self.assertFalse(self.freelancer in self.serverResourceHandler.getFreelancers())
+        
+    def test_remove_freelancer_not_found(self):
+        self.freelancer = Freelancer("New", "Freelancer")
+        self.assertFalse(self.freelancer in self.serverResourceHandler.getFreelancers())
+        with self.assertRaises(ValueError) as context:
+            self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
+        self.assertEqual(str(context.exception), "Freelancer not found in roster.")
 
 if __name__ == "__main__":
     unittest.main()

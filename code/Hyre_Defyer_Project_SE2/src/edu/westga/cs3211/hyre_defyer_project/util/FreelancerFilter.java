@@ -22,9 +22,10 @@ public class FreelancerFilter {
      *
      * @param freelancers The list of freelancers to sort
      * @param selectedCategories the list of categories to show
+     * @return List of freelancers filtered by categories 
      * @throws IllegalArgumentException if freelancers is null || selectedCategories is null
      */
-    public static List<Freelancer> filterByCategories(List<Freelancer> freelancers, List<Categories> selectedCategories) {
+	public static List<Freelancer> filterByCategories(List<Freelancer> freelancers, List<Categories> selectedCategories) {
         if (freelancers == null) {
             throw new IllegalArgumentException("Freelancers list cannot be null.");
         }

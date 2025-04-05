@@ -3,7 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
-import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -23,6 +23,7 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class HomePageView {
+
 		private CategoryViewModel categoryViewModel;
 
 	@FXML
@@ -68,7 +69,7 @@ public class HomePageView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Pane otherCategoryPane;
@@ -82,6 +83,7 @@ public class HomePageView {
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -98,14 +100,13 @@ public class HomePageView {
                 selectedCategory = Categories.valueOf(buttonText.replace(" ", "_").toUpperCase());
                 this.categoryViewModel.setSelectedCategory(selectedCategory);
 
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException ex) {
                 System.err.println("Invalid category selected: " + buttonText);
                 return;
             }
             GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
         }
     }
-
 
     @FXML
     void handleCloseClick(ActionEvent event) {
@@ -127,8 +128,8 @@ public class HomePageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-    	
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
@@ -151,14 +152,14 @@ public class HomePageView {
     	}
     	this.categoryViewModel = new CategoryViewModel();
     	this.otherCategoryPane.setVisible(false);
-    	List<Button> buttons = List.of(categoryButton1, categoryButton2, categoryButton3, categoryButton4, categoryButton5, categoryButton6);
+    	List<Button> buttons = List.of(this.categoryButton1, this.categoryButton2, this.categoryButton3, this.categoryButton4, this.categoryButton5, this.categoryButton6);
         Categories[] categories = Categories.values();
-        for (int i = 0; i < buttons.size(); i++) {
-            if (i < categories.length) {
-                buttons.get(i).setText(categories[i].toString());
-                buttons.get(i).setVisible(true);
+        for (int index = 0; index < buttons.size(); index++) {
+            if (index < categories.length) {
+                buttons.get(index).setText(categories[index].toString());
+                buttons.get(index).setVisible(true);
             } else {
-                buttons.get(i).setVisible(false);
+                buttons.get(index).setVisible(false);
             }
         }
         this.categoryListView.getItems().setAll(Categories.values());
@@ -166,8 +167,8 @@ public class HomePageView {
     }
     
     private void bindUIAndListeners() {
-        categoryListView.setOnMouseClicked(event -> {
-            Object selectedItem = categoryListView.getSelectionModel().getSelectedItem();
+        this.categoryListView.setOnMouseClicked(event -> {
+            Object selectedItem = this.categoryListView.getSelectionModel().getSelectedItem();
 
             if (selectedItem != null) {
                 String categoryName = selectedItem.toString();
@@ -175,7 +176,7 @@ public class HomePageView {
                     Categories selectedCategory = Categories.valueOf(categoryName.replace(" ", "_").toUpperCase());
                     this.categoryViewModel.setSelectedCategory(selectedCategory);
                     GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
-                } catch (IllegalArgumentException e) {
+                } catch (IllegalArgumentException ex) {
                     System.err.println("Invalid category selected: " + categoryName);
                 }
             } else {
@@ -183,6 +184,4 @@ public class HomePageView {
             }
         });
     }
-
-
 }

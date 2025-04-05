@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
@@ -59,7 +61,7 @@ public class CategoryPageView {
     private Label homeLabel;
 
     @FXML
-    private Label hyreLabel;
+    private Label aboutLabel;
 
     @FXML
     private Button peopleButton1;
@@ -148,10 +150,10 @@ public class CategoryPageView {
     @FXML
     private Pane row4PeoplePane;
 
-
     @FXML
     void handleAccountClick(MouseEvent event) {
     	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -173,19 +175,27 @@ public class CategoryPageView {
     }
 
     @FXML
-    void handleHyreClick(MouseEvent event) {
-
+    void handleAboutHyreClick(MouseEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
     @FXML
     void handlePeopleClick(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        int buttonIndex = this.peopleButtons.indexOf(clickedButton);
+        int freelancerIndex = (this.currentPage - 1) * this.pageSize + buttonIndex;
 
+        if (freelancerIndex < this.freelancers.size()) {
+            Freelancer selectedFreelancer = this.freelancers.get(freelancerIndex);
+            AccountPageViewModel.setUserSelectedToView(selectedFreelancer);
+        }
+        GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
-    
+
     @FXML
     void handleNextPageClick(ActionEvent event) {
         if ((this.currentPage * this.pageSize) < this.freelancers.size()) {
-            currentPage++;
+            this.currentPage++;
             this.pageNumber.setText("Page: " + this.currentPage);
             this.updatePeopleButtons();
         }
@@ -208,7 +218,8 @@ public class CategoryPageView {
 
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
-            this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            //this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
         } else {
             this.categoryName.setText("No category selected");
         }
@@ -222,7 +233,9 @@ public class CategoryPageView {
         this.updatePeopleButtons();
     }
 
-    
+    /**
+     * Makes all freelancers into buttons with their data on them
+     */
     private void initializeFreelancerButtons() {
         this.peopleButtons = Arrays.asList(this.peopleButton1, this.peopleButton2, this.peopleButton3, this.peopleButton4, this.peopleButton5, this.peopleButton6, this.peopleButton7, this.peopleButton8, this.peopleButton9, this.peopleButton10, this.peopleButton11, this.peopleButton12, this.peopleButton13, this.peopleButton14, this.peopleButton15, this.peopleButton16, this.peopleButton17, this.peopleButton18, this.peopleButton19, this.peopleButton20, this.peopleButton21, this.peopleButton22, this.peopleButton23, this.peopleButton24);
         for (Button button : this.peopleButtons) {
@@ -237,12 +250,12 @@ public class CategoryPageView {
      */
     private void updatePeopleButtons() {
         int startIndex = (this.currentPage - 1) * this.pageSize;
-        for (int i = 0; i < this.peopleButtons.size(); i++) {
-            if (i + startIndex < this.freelancers.size()) {
-            	this.peopleButtons.get(i).setText(this.freelancers.get(i + startIndex).getUserName());
-            	this.peopleButtons.get(i).setVisible(true);
+        for (int index = 0; index < this.peopleButtons.size(); index++) {
+            if (index + startIndex < this.freelancers.size()) {
+            	this.peopleButtons.get(index).setText(this.freelancers.get(index + startIndex).getUserName());
+            	this.peopleButtons.get(index).setVisible(true);
             } else {
-            	this.peopleButtons.get(i).setVisible(false);
+            	this.peopleButtons.get(index).setVisible(false);
             }
         }
         this.previousPageButton.setDisable(this.currentPage == 1);
