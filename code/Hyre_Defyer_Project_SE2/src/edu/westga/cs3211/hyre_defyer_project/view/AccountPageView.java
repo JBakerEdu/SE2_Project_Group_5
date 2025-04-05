@@ -45,6 +45,9 @@ public class AccountPageView {
 
     @FXML
     private Button cancelButton;
+    
+    @FXML
+    private Button deleteAccountButton;
 
     @FXML
     private Label categoryLabel;
@@ -160,6 +163,13 @@ public class AccountPageView {
     }
     
     @FXML
+    void handleDeleteAccountButtonClick(ActionEvent event) {
+    	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
+    	SignInViewModel.signOut();
+    	GUIHelper.switchView(anchorPane, Views.HOMEPAGE);
+    }
+    
+    @FXML
     void handleSaveClick(ActionEvent event) {
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         if (selectedUser == null) {
@@ -223,6 +233,7 @@ public class AccountPageView {
     private void toggleEditMode(boolean isEditing) {
     	this.saveButton.setVisible(isEditing);
     	this.cancelButton.setVisible(isEditing);
+    	this.deleteAccountButton.setVisible(isEditing);
     	this.editButton.setVisible(!isEditing);
     	this.descriptionTextBox.setEditable(isEditing);
     	if (this.isFreelancer) {
