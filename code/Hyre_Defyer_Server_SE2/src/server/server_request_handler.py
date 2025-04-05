@@ -7,6 +7,7 @@ from src.server import constants
 from src.model.message import Message
 from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
+from pip._vendor.urllib3 import response
 
 class ServerRequestHandler:
 
@@ -122,6 +123,17 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
+
+    def _deleteChat(self, request):
+        '''
+            Deletes a user from the list of users that can be messaged
+        '''
+        current_user = request.get(constants.REQ_SENDER)
+        other_user = request.get(constants.REQ_RECEIVER)
+        
+        self._serverResourceHandler.removeUserFromDMList(current_user, other_user)
+        
+
     def _getFreelancers(self):
         '''
             Returns all freelancers
@@ -236,6 +248,9 @@ class ServerRequestHandler:
         elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
             response = self._addMessageableUser(request)
             
+        elif req_type == constants.REQ_DELETE_CHAT:
+            response = self._deleteChat(request)
+
         elif req_type == constants.REQ_GET_FREELANCERS:
             response = self._getFreelancers()
         

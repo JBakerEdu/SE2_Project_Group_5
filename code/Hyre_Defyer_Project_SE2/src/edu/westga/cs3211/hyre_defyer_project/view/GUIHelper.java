@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -37,7 +38,7 @@ public class GUIHelper {
 			stage.setTitle(Main.getWindowTitle());
 			stage.setScene(scene);
 		} catch (IOException error) {
-			displayError("Display Switch Error", error.getMessage());
+			displayError("Display Switch Error", error.getMessage().substring(50));
 		}
 	}
 	
@@ -52,5 +53,4 @@ public class GUIHelper {
 		alert.setContentText(contextTxt);
 		alert.showAndWait();
 	}
-
 }

@@ -27,6 +27,7 @@ public class Constants {
     public static final String REQ_GET_MESSAGES = "get messages";
     public static final String REQ_GET_MESSAGEABLE_USERS = "get messageable users";
     public static final String REQ_ADD_MESSAGEABLE_USER = "add messageable user";
+    public static final String REQ_DELETE_CHAT = "delete chat";
     public static final String REQ_GET_FREELANCERS = "get freelancers";
     public static final String REQ_ADD_FREELANCER = "add freelancer";
     public static final String REQ_REMOVE_FREELANCER = "remove freelancer";
