@@ -128,7 +128,6 @@ class ServerRequestHandler:
         '''
             Deletes a user from the list of users that can be messaged
         '''
-        response = {}
         current_user = request.get(constants.REQ_SENDER)
         other_user = request.get(constants.REQ_RECEIVER)
         

@@ -125,22 +125,11 @@ public class DirectMessageView {
     	this.chatSettingsMenu.disableProperty().set(true);
     	this.updateContactList();
     	this.setUpListeners();
-
-    	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
-
-    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
-    	this.contactListView.setItems(observableListUsers);
-    	
-    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
-    		this.updateDisplayedMessages();
-    	});
     	
     	User selectedUser = AccountPageViewModel.getUserSelectedToView();
     	if (selectedUser != null) {
     		User userToSelect = null;
-    		for (User user : users) {
+    		for (User user : ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())) {
     			if (user.getUserName().equals(selectedUser.getUserName())) {
     				userToSelect = user;
     				break;
