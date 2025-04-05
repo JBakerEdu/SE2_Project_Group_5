@@ -11,8 +11,8 @@ import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -53,9 +53,6 @@ public class CategoryPageView {
 
     @FXML
     private Label dmLabel;
-
-    @FXML
-    private ComboBox<?> filter;
 
     @FXML
     private Label homeLabel;
@@ -149,6 +146,20 @@ public class CategoryPageView {
 
     @FXML
     private Pane row4PeoplePane;
+    
+    @FXML
+    private Button applyFiterButton;
+    
+    @FXML
+    private TextField nameTextBox;
+    
+    @FXML
+    private TextField skillTextBox;
+    
+    @FXML
+    void handleApplyFilterButtonClick(ActionEvent event) {
+
+    }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -218,7 +229,6 @@ public class CategoryPageView {
 
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
-            //this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
             this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
         } else {
             this.categoryName.setText("No category selected");
