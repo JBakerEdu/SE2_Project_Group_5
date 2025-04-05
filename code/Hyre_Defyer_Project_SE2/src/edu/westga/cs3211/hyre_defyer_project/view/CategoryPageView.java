@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
@@ -217,7 +218,8 @@ public class CategoryPageView {
 
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
-            this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            //this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
         } else {
             this.categoryName.setText("No category selected");
         }

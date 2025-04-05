@@ -29,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 public class AccountPageView {
 	
 	private boolean isFreelancer = false;
+	private GUIRosterHelper helper = new GUIRosterHelper();
 
 	@FXML
     private ImageView accountBioImage;
@@ -152,8 +153,9 @@ public class AccountPageView {
         }
         Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.UNDETERMINED);
         AccountPageViewModel.setUserSelectedToView(newFreelancer);
-        FreelancerRoster roster = AccountPageViewModel.getRoster();
+        FreelancerRoster roster = this.helper.getFreelancerRoster();
         roster.addFreelancer(newFreelancer);
+        this.helper.addFreelancerToServer(newFreelancer);
         GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
     
@@ -164,7 +166,8 @@ public class AccountPageView {
         	return;
         }
         if (AccountPageViewModel.isSelectedUserFreelancer()) {
-        	Freelancer theFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
+        	Freelancer tempFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
+        	Freelancer theFreelancer = new Freelancer(selectedUser.getUserName(), "", Categories.UNDETERMINED);
         	theFreelancer.setBio(this.descriptionTextBox.getText());
         	theFreelancer.setCategory(this.catergoryComboBox.getValue());
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
@@ -172,6 +175,7 @@ public class AccountPageView {
                 String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
                 theFreelancer.setSkill(index, skillText);
             }
+            this.helper.editFreelancerToServer(tempFreelancer, theFreelancer);
         } else {
         	selectedUser.setBio(this.descriptionTextBox.getText());
         }

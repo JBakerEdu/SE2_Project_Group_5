@@ -7,7 +7,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
-import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
+import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 
 class AccountPageViewModelTest {
@@ -24,7 +24,8 @@ class AccountPageViewModelTest {
         testUser = new User("testUser", "This Is the bio");
         testFreelancer = new Freelancer("testUser", "This Is the bio", Categories.BUSINESS_AND_FINANCE);
 
-        freelancerRoster = GUIHelper.getFreelancerRoster();
+        GUIRosterHelper helper = new GUIRosterHelper();
+        freelancerRoster = helper.getFreelancerRoster();
         freelancerRoster.addFreelancer(testFreelancer);
     }
 
