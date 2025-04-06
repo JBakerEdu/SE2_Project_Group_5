@@ -124,6 +124,31 @@
                </effect>
             </Button>
             <Label fx:id="hyreMsgErrorLabel" alignment="CENTER" layoutX="263.0" layoutY="415.0" prefHeight="25.0" prefWidth="161.0" text="Must be logged in to Hyre" textFill="RED" />
+            <Button fx:id="createCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleCreateCategoryClick" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create New Category">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="addNewCategoryPane" layoutX="543.0" layoutY="386.0" prefHeight="214.0" prefWidth="357.0" style="-fx-background-color: #f0fff0; -fx-border-color: #000;">
+         <children>
+            <Button fx:id="cancelNewCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleCancelNewCategoryClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #DCDCDCDC; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Cancel">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
+            <Label alignment="CENTER" layoutX="6.0" layoutY="19.0" prefHeight="36.0" prefWidth="345.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="What is the new Category you would like to add?">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="createCategoryTextFeild" layoutX="28.0" layoutY="82.0" prefHeight="25.0" prefWidth="302.0" promptText="Category" />
+            <Button fx:id="addCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAddCategoryClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #DCDCDCDC; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create Category ">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
          </children>
       </Pane>
    </children>

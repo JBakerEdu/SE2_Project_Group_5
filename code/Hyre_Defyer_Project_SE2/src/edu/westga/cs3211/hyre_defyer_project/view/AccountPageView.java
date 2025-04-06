@@ -8,6 +8,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * This is the View for the Account page
@@ -32,10 +34,16 @@ public class AccountPageView {
 	private GUIRosterHelper helper = new GUIRosterHelper();
 
 	@FXML
+    private Label aboutLabel;
+
+    @FXML
     private ImageView accountBioImage;
 
     @FXML
     private Label accountLabel;
+
+    @FXML
+    private Button addCategoryButton;
 
     @FXML
     private AnchorPane anchorPane;
@@ -47,6 +55,9 @@ public class AccountPageView {
     private Button cancelButton;
 
     @FXML
+    private Button cancelNewCategoryButton;
+
+    @FXML
     private Label categoryLabel;
 
     @FXML
@@ -54,6 +65,12 @@ public class AccountPageView {
 
     @FXML
     private ComboBox<String> catergoryComboBox;
+
+    @FXML
+    private Button createCategoryButton;
+
+    @FXML
+    private TextField createCategoryTextFeild;
 
     @FXML
     private TextArea descriptionTextBox;
@@ -69,12 +86,12 @@ public class AccountPageView {
 
     @FXML
     private Button hyreButton;
-    
+
     @FXML
     private Label hyreMsgErrorLabel;
 
     @FXML
-    private Label aboutLabel;
+    private Pane addNewCategoryPane;
 
     @FXML
     private Button saveButton;
@@ -102,6 +119,22 @@ public class AccountPageView {
 
     @FXML
     private Label userLabel;
+    
+    @FXML
+    void handleAddCategoryClick(ActionEvent event) {
+    	
+    }
+    
+    @FXML
+    void handleCancelNewCategoryClick(ActionEvent event) {
+    	this.createCategoryTextFeild.setText("");
+    	this.addNewCategoryPane.setVisible(false);
+    }
+    
+    @FXML
+    void handleCreateCategoryClick(ActionEvent event) {
+    	this.addNewCategoryPane.setVisible(true);
+    }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -212,6 +245,8 @@ public class AccountPageView {
         this.isFreelancer = selectedUser != null && AccountPageViewModel.isSelectedUserFreelancer();
         this.toggleEditMode(false);
         this.categoryTextFeild.setEditable(false);
+        this.addNewCategoryPane.setVisible(false);
+        this.createCategoryButton.setVisible(false);
         this.hyreButton.setVisible(this.isFreelancer && !isViewingOwnProfile);
         this.signOutButton.setVisible(isViewingOwnProfile);
         this.editButton.setVisible(isViewingOwnProfile);
@@ -226,6 +261,7 @@ public class AccountPageView {
     	this.editButton.setVisible(!isEditing);
     	this.descriptionTextBox.setEditable(isEditing);
     	if (this.isFreelancer) {
+    		this.createCategoryButton.setVisible(isEditing);
     		this.catergoryComboBox.setVisible(isEditing);
             this.categoryTextFeild.setVisible(!isEditing);
             this.skill1TextArea.setEditable(isEditing);
