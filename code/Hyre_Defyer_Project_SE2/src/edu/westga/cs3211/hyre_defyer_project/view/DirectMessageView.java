@@ -9,6 +9,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,6 +37,13 @@ public class DirectMessageView {
 
     @FXML
     private Label accountLabel;
+    
+
+    @FXML
+    private MenuButton chatSettingsMenu;
+
+    @FXML
+    private MenuItem deleteChat;
 
     @FXML
     private ListView<User> contactListView;
@@ -111,34 +121,51 @@ public class DirectMessageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-    	List<User> users = new ArrayList<>(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()));
 
-    	ObservableList<User> observableListUsers = FXCollections.observableArrayList(users);
-    	this.contactListView.setItems(observableListUsers);
-    	
-    	this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
-    		this.updateDisplayedMessages();
-    	});
+    	this.chatSettingsMenu.disableProperty().set(true);
+    	this.updateContactList();
+    	this.setUpListeners();
     	
     	User selectedUser = AccountPageViewModel.getUserSelectedToView();
-		if (selectedUser != null) {
-			User userToSelect = null;
-			for (User user : users) {
-				if (user.getUserName().equals(selectedUser.getUserName())) {
-					userToSelect = user;
-					break;
-				}
-			}
-			this.contactListView.getSelectionModel().select(userToSelect);
-		} else {
-			this.contactListView.getSelectionModel().select(0);
-		}
+    	if (selectedUser != null) {
+    		User userToSelect = null;
+    		for (User user : ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())) {
+    			if (user.getUserName().equals(selectedUser.getUserName())) {
+    				userToSelect = user;
+    				break;
+    			}
+    		}
+    		this.contactListView.getSelectionModel().select(userToSelect);
+    	} else {
+    		this.contactListView.getSelectionModel().select(0);
+    	}
     }
+
+		private void setUpListeners() {
+			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+				if (newValue != null) {
+					this.chatSettingsMenu.disableProperty().setValue(false);
+	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+				} else {
+					this.chatSettingsMenu.disableProperty().setValue(true);
+	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
+				}
+    		this.updateDisplayedMessages();
+    	});
+			
+			this.deleteChat.setOnAction((event) -> {
+				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+				this.updateContactList();
+			});
+		}
 
 	private void updateDisplayedMessages() {
 		this.messageListView.setItems(FXCollections.observableArrayList(this.directMessageHandler.getFullMessageLog()));
+	}
+	
+	private void updateContactList() {
+		this.contactListView.setItems(FXCollections.observableArrayList(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())));
 	}
 
 }

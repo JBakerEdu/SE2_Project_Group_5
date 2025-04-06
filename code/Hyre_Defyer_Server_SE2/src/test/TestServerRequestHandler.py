@@ -292,6 +292,20 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_delete_user_from_server(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "username",
+            constants.REQ_PASSWORD: "password"
+        }
+        self.serverRequestHandler.handleRequest(request)
+        request = {
+            constants.REQ_TYPE: constants.REQ_DELETE_USER_FROM_SERVER,
+            constants.REQ_USERNAME: "username"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
 
 if __name__ == "__main__":
     unittest.main()
