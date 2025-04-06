@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * This is the View for the Account page
@@ -32,10 +33,16 @@ public class AccountPageView {
 	private GUIRosterHelper helper = new GUIRosterHelper();
 
 	@FXML
+    private Label aboutLabel;
+
+    @FXML
     private ImageView accountBioImage;
 
     @FXML
     private Label accountLabel;
+
+    @FXML
+    private Button addCategoryButton;
 
     @FXML
     private AnchorPane anchorPane;
@@ -50,13 +57,22 @@ public class AccountPageView {
     private Button deleteAccountButton;
 
     @FXML
+    private Button cancelNewCategoryButton;
+
+    @FXML
     private Label categoryLabel;
 
     @FXML
     private TextField categoryTextFeild;
 
     @FXML
-    private ComboBox<Categories> catergoryComboBox;
+    private ComboBox<String> catergoryComboBox;
+
+    @FXML
+    private Button createCategoryButton;
+
+    @FXML
+    private TextField createCategoryTextFeild;
 
     @FXML
     private TextArea descriptionTextBox;
@@ -72,12 +88,12 @@ public class AccountPageView {
 
     @FXML
     private Button hyreButton;
-    
+
     @FXML
     private Label hyreMsgErrorLabel;
 
     @FXML
-    private Label aboutLabel;
+    private Pane addNewCategoryPane;
 
     @FXML
     private Button saveButton;
@@ -105,6 +121,30 @@ public class AccountPageView {
 
     @FXML
     private Label userLabel;
+    
+    @FXML
+    void handleAddCategoryClick(ActionEvent event) {
+    	String newCategory = this.createCategoryTextFeild.getText().trim();
+
+        if (!newCategory.isEmpty() && !this.catergoryComboBox.getItems().contains(newCategory)) {
+            this.catergoryComboBox.getItems().add(newCategory);
+            this.catergoryComboBox.setValue(newCategory);
+        }
+
+        this.createCategoryTextFeild.clear();
+        this.addNewCategoryPane.setVisible(false);
+    }
+    
+    @FXML
+    void handleCancelNewCategoryClick(ActionEvent event) {
+    	this.createCategoryTextFeild.setText("");
+    	this.addNewCategoryPane.setVisible(false);
+    }
+    
+    @FXML
+    void handleCreateCategoryClick(ActionEvent event) {
+    	this.addNewCategoryPane.setVisible(true);
+    }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -164,10 +204,10 @@ public class AccountPageView {
     
     @FXML
     void handleDeleteAccountButtonClick(ActionEvent event) {
-    	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
     	if (this.isFreelancer) {
     		ServerInterface.removeFreelancer(this.getFreelancerByUsername(SignInViewModel.getCurrentUser().getUserName()));
     	}
+    	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
     	SignInViewModel.signOut();
     	GUIHelper.switchView(anchorPane, Views.HOMEPAGE);	    
     }
@@ -182,7 +222,7 @@ public class AccountPageView {
         	Freelancer tempFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         	Freelancer theFreelancer = new Freelancer(selectedUser.getUserName(), "", Categories.UNDETERMINED);
         	theFreelancer.setBio(this.descriptionTextBox.getText());
-        	theFreelancer.setCategory(this.catergoryComboBox.getValue());
+        	theFreelancer.setCategory(this.catergoryComboBox.getValue().toUpperCase().replace(" ", "_"));
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {
                 String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
@@ -216,7 +256,7 @@ public class AccountPageView {
     
     @FXML
     void initialize() {
-        this.catergoryComboBox.getItems().addAll(Categories.values());
+    	this.catergoryComboBox.getItems().addAll(Categories.values());
         User currentUser = SignInViewModel.getCurrentUser();
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         this.accountLabel.setText(currentUser != null ? currentUser.getUserName() : "Account");
@@ -225,6 +265,8 @@ public class AccountPageView {
         this.isFreelancer = selectedUser != null && AccountPageViewModel.isSelectedUserFreelancer();
         this.toggleEditMode(false);
         this.categoryTextFeild.setEditable(false);
+        this.addNewCategoryPane.setVisible(false);
+        this.createCategoryButton.setVisible(false);
         this.hyreButton.setVisible(this.isFreelancer && !isViewingOwnProfile);
         this.signOutButton.setVisible(isViewingOwnProfile);
         this.editButton.setVisible(isViewingOwnProfile);
@@ -240,6 +282,7 @@ public class AccountPageView {
     	this.editButton.setVisible(!isEditing);
     	this.descriptionTextBox.setEditable(isEditing);
     	if (this.isFreelancer) {
+    		this.createCategoryButton.setVisible(isEditing);
     		this.catergoryComboBox.setVisible(isEditing);
             this.categoryTextFeild.setVisible(!isEditing);
             this.skill1TextArea.setEditable(isEditing);
@@ -272,7 +315,7 @@ public class AccountPageView {
         if (freelancer != null) {
         	this.descriptionTextBox.setText(freelancer.getBio());
         	this.catergoryComboBox.setValue(freelancer.getCategory());
-            this.categoryTextFeild.setText(freelancer.getCategory().toString());
+            this.categoryTextFeild.setText(freelancer.getCategory().toUpperCase().replace("_", " "));
             List<String> skills = freelancer.getSkills();
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {

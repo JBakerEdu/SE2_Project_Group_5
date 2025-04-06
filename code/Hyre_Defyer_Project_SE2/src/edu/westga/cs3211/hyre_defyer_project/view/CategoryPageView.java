@@ -217,8 +217,7 @@ public class CategoryPageView {
         this.nextPageButton.setDisable(true);
 
         if (CategoryViewModel.selectedCategory != null) {
-            this.categoryName.setText(CategoryViewModel.selectedCategory.toString());
-            //this.freelancers = CategoryViewModel.freelancerRoster.getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            this.categoryName.setText(CategoryViewModel.selectedCategory.toString().toUpperCase().replace("_", " "));
             this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
         } else {
             this.categoryName.setText("No category selected");

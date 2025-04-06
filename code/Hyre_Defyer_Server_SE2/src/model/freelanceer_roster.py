@@ -5,7 +5,6 @@ Created on Mar 26, 2025
 '''
 from typing import List
 from src.model.freelancer import Freelancer
-from src.server import constants
  
 class FreelancerRoster:
     """

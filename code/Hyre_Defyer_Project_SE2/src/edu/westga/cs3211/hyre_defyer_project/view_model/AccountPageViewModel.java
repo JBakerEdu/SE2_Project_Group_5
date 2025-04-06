@@ -1,7 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
-import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
 import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
@@ -51,7 +50,6 @@ public class AccountPageViewModel {
      */
     public static boolean isSelectedUserFreelancer() {
         if (userSelectedToView != null && userSelectedToView.getUserName() != null) {
-        	GUIRosterHelper helper = new GUIRosterHelper();
             for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
                 if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
                     return true;

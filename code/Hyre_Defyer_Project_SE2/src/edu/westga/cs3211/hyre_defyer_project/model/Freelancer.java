@@ -17,7 +17,7 @@ public class Freelancer extends User {
 	private static final String OLD_SKILL_NOT_FOUND = "Old skill not found.";
 	private static final String CATEGORIES_CANNOT_BE_NULL = "Categories cannot be null.";
 	
-	private List<Categories> categories;
+	private List<String> categories;
     private List<String> skills;
 	
     /**
@@ -31,7 +31,7 @@ public class Freelancer extends User {
      * @param categories The freelancer's categories
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, List<Categories> categories) {
+    public Freelancer(String userName, String userBio, List<String> categories) {
     	this(userName, userBio, categories, new ArrayList<String>());
     }
     
@@ -46,8 +46,8 @@ public class Freelancer extends User {
      * @param category The freelancer's category
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, Categories category) {
-    	this(userName, userBio, new ArrayList<Categories>());
+    public Freelancer(String userName, String userBio, String category) {
+    	this(userName, userBio, new ArrayList<String>());
     	this.categories.add(category);
     }
     
@@ -63,7 +63,7 @@ public class Freelancer extends User {
      * @param skills The freelancer's skills
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, List<Categories> categories, List<String> skills) {
+    public Freelancer(String userName, String userBio, List<String> categories, List<String> skills) {
         super(userName, userBio);
         this.setCategories(categories);
         this.setAllSkills(skills);
@@ -81,9 +81,9 @@ public class Freelancer extends User {
      * @param skills The freelancer's skills
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, Categories category, List<String> skills) {
+    public Freelancer(String userName, String userBio, String category, List<String> skills) {
         super(userName, userBio);
-        this.categories = new ArrayList<Categories>();
+        this.categories = new ArrayList<String>();
         this.categories.add(category);
         this.setAllSkills(skills);
     }
@@ -100,9 +100,9 @@ public class Freelancer extends User {
      * @param skills The freelancer's skills
      * @throws IllegalArgumentException if any precondition is violated
      */
-    public Freelancer(String userName, String userBio, Categories category, String[] skills) {
+    public Freelancer(String userName, String userBio, String category, String[] skills) {
         super(userName, userBio);
-        this.categories = new ArrayList<Categories>();
+        this.categories = new ArrayList<String>();
         this.categories.add(category);
         this.setAllSkills(skills);
     }
@@ -115,7 +115,7 @@ public class Freelancer extends User {
      *
      * @return the freelancer's categories
      */
-    public List<Categories> getCategories() {
+    public List<String> getCategories() {
         return this.categories;
     }
     
@@ -127,7 +127,7 @@ public class Freelancer extends User {
      *
      * @return the freelancer's category
      */
-    public Categories getCategory() {
+    public String getCategory() {
         return this.categories.get(0);
     }
     
@@ -140,7 +140,7 @@ public class Freelancer extends User {
      * @param categories The freelancer's categories
      * @throws IllegalArgumentException if category is null
      */
-    public void setCategories(List<Categories> categories) {
+    public void setCategories(List<String> categories) {
         if (categories == null) {
             throw new IllegalArgumentException(CATEGORIES_CANNOT_BE_NULL);
         }
@@ -156,7 +156,7 @@ public class Freelancer extends User {
      * @param category The freelancer's categories
      * @throws IllegalArgumentException if category is null
      */
-    public void setCategory(Categories category) {
+    public void setCategory(String category) {
         if (category == null) {
             throw new IllegalArgumentException(CATEGORIES_CANNOT_BE_NULL);
         }
