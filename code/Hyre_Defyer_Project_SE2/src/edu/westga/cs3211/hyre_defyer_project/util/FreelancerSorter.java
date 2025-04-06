@@ -28,6 +28,6 @@ public class FreelancerSorter {
             throw new IllegalArgumentException("Freelancers list cannot be null.");
         }
         
-        Collections.sort(freelancers, Comparator.comparing(f -> f.getCategory().name(), String.CASE_INSENSITIVE_ORDER));
+        Collections.sort(freelancers, Comparator.comparing(f -> f.getCategory(), String.CASE_INSENSITIVE_ORDER));
     }
 }

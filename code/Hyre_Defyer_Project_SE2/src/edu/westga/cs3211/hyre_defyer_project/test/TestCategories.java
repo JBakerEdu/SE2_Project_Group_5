@@ -2,6 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
@@ -19,6 +21,18 @@ class TestCategories {
         assertEquals("MUSIC AND AUDIO", Categories.MUSIC_AND_AUDIO.toString());
         assertEquals("TRADES AND SKILLED LABOR", Categories.TRADES_AND_SKILLED_LABOR.toString());
         assertEquals("UNDETERMINED", Categories.UNDETERMINED.toString());
+    }
+	
+	@Test
+    public void testValues() {
+		new Categories();
+        List<String> categories = Categories.values();
+
+        assertNotNull(categories);
+        assertEquals(8, categories.size());
+        assertTrue(categories.contains(Categories.BUSINESS_AND_FINANCE));
+        assertTrue(categories.contains(Categories.DESIGN_AND_CREATIVE));
+        assertTrue(categories.contains(Categories.MUSIC_AND_AUDIO));
     }
 
 }

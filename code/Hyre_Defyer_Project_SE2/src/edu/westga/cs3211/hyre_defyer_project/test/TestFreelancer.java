@@ -61,7 +61,7 @@ class TestFreelancer {
     public void testNewConstructor() {
     	String userName = "johnDoe";
     	String userBio = "Experienced developer";
-        Categories category = Categories.DEVELOPMENT_AND_IT;
+        String category = Categories.DEVELOPMENT_AND_IT;
         List<String> skills = Arrays.asList("Java", "Python", "SQL");
         
     	Freelancer freelancer5 = new Freelancer(userName, userBio, category, skills);
@@ -76,7 +76,7 @@ class TestFreelancer {
     
     @Test
     public void testSetCategoriesValid() {
-    	List<Categories> validCategories = Arrays.asList(Categories.DESIGN_AND_CREATIVE, Categories.DEVELOPMENT_AND_IT); 
+    	List<String> validCategories = Arrays.asList(Categories.DESIGN_AND_CREATIVE, Categories.DEVELOPMENT_AND_IT); 
         freelancer = new Freelancer("johnDoe", "Experienced developer", Categories.DEVELOPMENT_AND_IT, Arrays.asList("Java", "Python"));
         freelancer.setCategories(validCategories);
         assertEquals(validCategories, freelancer.getCategories());
