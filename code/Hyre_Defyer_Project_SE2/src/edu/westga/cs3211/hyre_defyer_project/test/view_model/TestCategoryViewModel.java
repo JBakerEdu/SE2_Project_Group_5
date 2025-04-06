@@ -36,7 +36,7 @@ public class TestCategoryViewModel {
     @Test
     void testSetSelectedCategory() {
         categoryViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
-        assertEquals(Categories.DEVELOPMENT_AND_IT, categoryViewModel.getSelectedCategory(), "Selected category should be set correctly.");
+        assertEquals(Categories.DEVELOPMENT_AND_IT.toUpperCase().replace(" ", "_"), categoryViewModel.getSelectedCategory(), "Selected category should be set correctly.");
     }
 
     @Test

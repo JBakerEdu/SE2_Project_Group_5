@@ -79,6 +79,20 @@ class TestServerResourceHandler(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
         self.assertEqual(str(context.exception), "Freelancer not found in roster.")
+        
+    def test_remove_all_from_category(self):
+        self.freelancer = Freelancer("HELLO", "password")
+        self.freelancer.addCategory("NEW")
+        categories = self.serverResourceHandler.getCategories()
+        size = len(categories)
+        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
+        afterCat = self.serverResourceHandler.getCategories()
+        
+        self.assertTrue(size < len(afterCat))
+        self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
+        afterRemove = self.serverResourceHandler.getCategories()
+        self.assertTrue(size == len(afterRemove))
+        
 
 if __name__ == "__main__":
     unittest.main()

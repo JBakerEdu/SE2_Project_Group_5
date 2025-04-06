@@ -6,7 +6,6 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
@@ -248,16 +247,10 @@ public class ServerInterface {
                     skills.add(skillsArray.getString(indexJ));
                 }
                 
-                List<Categories> categories = new ArrayList<>();
+                List<String> categories = new ArrayList<>();
                 for (int indexJ = 0; indexJ < categoriesArray.length(); indexJ++) {
                     String categoryString = categoriesArray.getString(indexJ);
-                    
-                    try {
-                        Categories category = Categories.valueOf(categoryString); 
-                        categories.add(category);
-                    } catch (IllegalArgumentException ex) {
-                        System.out.println("Invalid category: " + categoryString);
-                    }
+                    categories.add(categoryString);
                 }
                 
                 Freelancer freelancer = new Freelancer(userName, bio, categories, skills);
@@ -328,5 +321,34 @@ public class ServerInterface {
 			String error = jsonObject.getString(Constants.REP_ERROR_DESCRIPTION);
 			throw new IllegalArgumentException(error);
 		}
+	}
+
+	/**
+	 * Gets the categories from the server
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the categories
+	 */
+	public static List<String> getCategories() {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_GET_CATEGORIES);
+
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject responseJSON = new JSONObject(response);
+		String successCode = responseJSON.getString(Constants.SUCCESS_CODE);
+
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+	        JSONArray categoriesArray = responseJSON.getJSONArray(Constants.REP_CATEGORIES);
+
+	        List<String> categoriesList = new ArrayList<>();
+	        for (int index = 0; index < categoriesArray.length(); index++) {
+	            String category = categoriesArray.getString(index); 
+	            categoriesList.add(category.toUpperCase().replace("_", " "));
+	        }
+	        return categoriesList;
+	    }
+		return null;
 	}
 }

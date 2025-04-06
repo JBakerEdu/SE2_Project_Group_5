@@ -7,7 +7,6 @@ from src.server import constants
 from src.model.message import Message
 from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
-from pip._vendor.urllib3 import response
 
 class ServerRequestHandler:
 
@@ -194,6 +193,17 @@ class ServerRequestHandler:
 
         return response
     
+    def _getCategories(self, request):
+        '''
+            gets the categories
+        '''
+        response = {}
+        categories = self._serverResourceHandler.getCategories()
+        response[constants.REP_CATEGORIES] = list(categories)
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        
+        return response
+        
     def _deleteUserFromServer(self, request):
         '''
         Deletes a user from the server
@@ -207,7 +217,6 @@ class ServerRequestHandler:
         except ValueError as e:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
             response[constants.REP_ERROR_DESCRIPTION] = str(e)
-
         return response
     
     def handleRequest(self, request):
@@ -223,8 +232,8 @@ class ServerRequestHandler:
                 add messageable user
                 get freelancers
                 add freelancer
+                get categories
                 delete user from server
-                
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
         
@@ -260,7 +269,11 @@ class ServerRequestHandler:
         elif req_type == constants.REQ_REMOVE_FREELANCER:
             response = self._removeFreelancer(request)
         
+        elif req_type == constants.REQ_GET_CATEGORIES:
+            response = self._getCategories(request);
+            
         elif req_type == constants.REQ_DELETE_USER_FROM_SERVER:
             response = self._deleteUserFromServer(request)
+            
         return response
         

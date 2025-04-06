@@ -1,8 +1,5 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
-import edu.westga.cs3211.hyre_defyer_project.model.Categories;
-import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
-import edu.westga.cs3211.hyre_defyer_project.view.GUIHelper;
 import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import java.util.ArrayList;
@@ -17,17 +14,12 @@ import java.util.List;
  * @version Spring 2025
  */
 public class CategoryViewModel {
-    
-    public static Categories selectedCategory;
-
-    private GUIRosterHelper helper = new GUIRosterHelper();
-
-    public GUIRosterHelper getHelper() {
-		return helper;
-	}
-
+	
+	public static String selectedCategory;
+	
+	private GUIRosterHelper helper = new GUIRosterHelper();
 	private List<Freelancer> freelancers;
-
+	
     /**
      * Initializes the CategoryViewModel with an empty list of freelancers.
      */
@@ -36,12 +28,22 @@ public class CategoryViewModel {
     }
 
     /**
+     * The GUI Roster Helper
+     * 
+     * @return the helper
+     */
+    public GUIRosterHelper getHelper() {
+		return this.helper;
+	}
+
+    /**
      * Sets the selected category.
      * 
      * @param category the category to be set
      */
-    public void setSelectedCategory(Categories category) {
-        selectedCategory = category;
+    public void setSelectedCategory(String category) {
+    	String normalizedCategory = category.trim().toUpperCase().replace(" ", "_");
+        selectedCategory = normalizedCategory;
     }
 
     /**
@@ -49,7 +51,7 @@ public class CategoryViewModel {
      * 
      * @return the selected category
      */
-    public Categories getSelectedCategory() {
+    public String getSelectedCategory() {
         return selectedCategory;
     }
 
