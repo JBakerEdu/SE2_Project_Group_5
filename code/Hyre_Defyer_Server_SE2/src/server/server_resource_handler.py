@@ -218,7 +218,18 @@ class ServerResourceHandler:
             @raises ValueError: If freelancer is not in the roster.
         '''
         
-        return self.freelancers.remove_freelancer(freelancer)
+        result = self.freelancers.remove_freelancer(freelancer)
+        
+        for category in freelancer.getCategories():
+            still_exists = any(
+                category in other.getCategories()
+                for other in self.freelancers.freelancers
+                )
+
+            if not still_exists:
+                self._categories.discard(category)
+
+        return result
     
     def getCategories(self):
         '''

@@ -116,11 +116,40 @@
 //Add Freelancer request
 	{
 		"type" : "add freelancer",
-		
+		"freeelancer" : [
+            {
+                "userName" : <username>,
+                "bio" : <bio>,
+                "skills" : <skills>,
+                "catagories" : <catagories>
+            }
 	}
 //Add Freelancer response
     {
         "success_code": "success"|"fail",
         “error description”:<error message> #only if fail
     }
-    
+//Remove Freelancer request
+	{
+		"type" : "remove freelancer",
+		"freeelancer" : [
+            {
+                "userName" : <username>,
+                "bio" : <bio>,
+                "skills" : <skills>,
+                "catagories" : <catagories>
+            }
+	}
+//Remove Freelancer response
+    {
+        "success_code": "success"|"fail",
+        “error description”:<error message> #only if fail
+    }
+//Get Categories request
+	{
+		"type" : "get categories"
+	}
+//Get Categories response
+	{
+		"categories" : ["BUSINESS_AND_FINANCE", "OTHER_CATEGORIES"]
+	}

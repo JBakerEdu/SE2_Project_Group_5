@@ -206,6 +206,7 @@ class ServerRequestHandler:
                 add messageable user
                 get freelancers
                 add freelancer
+                get categories
                 
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
