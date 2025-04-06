@@ -292,6 +292,16 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_get_categories(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_GET_CATEGORIES
+            }
+    
+        response = self.serverRequestHandler.handleRequest(request)
+    
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        self.assertNotEqual(response[constants.REP_CATEGORIES].empty())
 
 if __name__ == "__main__":
     unittest.main()

@@ -84,17 +84,17 @@ public class FreelancerRoster {
      * @precondition category != null
      * @postcondition none
      *
-     * @param category The category to filter by
+     * @param catagory The category to filter by
      * @return a list of freelancers in the given category
      * @throws IllegalArgumentException if category is null
      */
-    public List<Freelancer> getFreelancersByCategory(Categories category) {
-        if (category == null) {
+    public List<Freelancer> getFreelancersByCategory(String catagory) {
+        if (catagory == null) {
             throw new IllegalArgumentException(CATEGORY_CANNOT_BE_NULL);
         }
         List<Freelancer> result = new ArrayList<>();
         for (Freelancer freelancer : this.freelancers) {
-            if (freelancer.getCategory().equals(category)) {
+            if (freelancer.getCategory().equals(catagory)) {
                 result.add(freelancer);
             }
         }

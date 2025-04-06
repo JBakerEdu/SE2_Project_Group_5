@@ -15,6 +15,7 @@ class ServerResourceHandler:
             Stores and manages all of the resources for the server
         '''
         self._users = {}
+        self._categories = set()
         self._godMessageLog: list[list[Message]] = []
         self.freelancers = FreelancerRoster()
         self.createAccount("admin", "1234567")
@@ -187,10 +188,14 @@ class ServerResourceHandler:
             Adds the freelancer to the roster
             
             @precondition freelancer != null && username cannot already exist
-            @postcondition freelancer is added
+            @postcondition freelancer is added and categories is updated if new category
             
             @param freelancer: the freelancer being added to the roster
         '''
+        if freelancer.getCategories():
+            for category in freelancer.getCategories():
+                if category not in self.getCategories():
+                    self._categories.add(category)
         return self.freelancers.add_freelancer(freelancer)
         
     def getFreelancers(self):
@@ -214,3 +219,14 @@ class ServerResourceHandler:
         '''
         
         return self.freelancers.remove_freelancer(freelancer)
+    
+    def getCategories(self):
+        '''
+            Gets the categories
+            
+            @precondition none
+            @postcondition none
+        '''
+        
+        return self._categories
+        

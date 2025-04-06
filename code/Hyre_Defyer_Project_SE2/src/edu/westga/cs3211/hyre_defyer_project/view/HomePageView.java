@@ -53,7 +53,7 @@ public class HomePageView {
     private Button categoryButton6;
 
     @FXML
-    private ListView<Categories> categoryListView;
+    private ListView<String> categoryListView;
 
     @FXML
     private Pane catergoryPane;
@@ -94,11 +94,8 @@ public class HomePageView {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button) event.getSource();
             String buttonText = clickedButton.getText();
-            Categories selectedCategory = null;
             try {
-                selectedCategory = Categories.valueOf(buttonText.replace(" ", "_").toUpperCase());
-                this.categoryViewModel.setSelectedCategory(selectedCategory);
-
+                this.categoryViewModel.setSelectedCategory(buttonText);
             } catch (IllegalArgumentException ex) {
                 System.err.println("Invalid category selected: " + buttonText);
                 return;
@@ -152,15 +149,16 @@ public class HomePageView {
     	this.categoryViewModel = new CategoryViewModel();
     	this.otherCategoryPane.setVisible(false);
     	List<Button> buttons = List.of(this.categoryButton1, this.categoryButton2, this.categoryButton3, this.categoryButton4, this.categoryButton5, this.categoryButton6);
-        Categories[] categories = Categories.values();
+        List<String> categories = Categories.values();
         for (int index = 0; index < buttons.size(); index++) {
-            if (index < categories.length) {
-                buttons.get(index).setText(categories[index].toString());
+            if (index < categories.size()) {
+                buttons.get(index).setText(categories.get(index));
                 buttons.get(index).setVisible(true);
             } else {
                 buttons.get(index).setVisible(false);
             }
         }
+        
         this.categoryListView.getItems().setAll(Categories.values());
         this.bindUIAndListeners();
     }
@@ -172,8 +170,7 @@ public class HomePageView {
             if (selectedItem != null) {
                 String categoryName = selectedItem.toString();
                 try {
-                    Categories selectedCategory = Categories.valueOf(categoryName.replace(" ", "_").toUpperCase());
-                    this.categoryViewModel.setSelectedCategory(selectedCategory);
+                    this.categoryViewModel.setSelectedCategory(categoryName);
                     GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
                 } catch (IllegalArgumentException ex) {
                     System.err.println("Invalid category selected: " + categoryName);

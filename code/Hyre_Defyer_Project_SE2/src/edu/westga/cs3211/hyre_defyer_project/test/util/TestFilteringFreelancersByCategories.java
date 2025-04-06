@@ -17,7 +17,7 @@ class TestFilteringFreelancersByCategories {
 	    public void testFilterByCategoryWithNoFreelancers() {
 	        List<Freelancer> freelancers = new ArrayList<>();
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        
 	        List<Freelancer> result = FreelancerFilter.filterByCategories(freelancers, catList);
 	        assertTrue(result.isEmpty());
@@ -33,7 +33,7 @@ class TestFilteringFreelancersByCategories {
 		    freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        
 	        List<Freelancer> result = FreelancerFilter.filterByCategories(freelancers, catList);
 	        assertTrue(result.isEmpty());
@@ -49,7 +49,7 @@ class TestFilteringFreelancersByCategories {
 		    freelancers.add(new Freelancer("Charlie", "Bio C", Categories.DEVELOPMENT_AND_IT,
 		            new String[]{"Java", "C++", "Python", "JavaScript", "SQL"}));
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        catList.add(Categories.DESIGN_AND_CREATIVE);
 	        
 	        List<Freelancer> result = FreelancerFilter.filterByCategories(freelancers, catList);
@@ -67,7 +67,7 @@ class TestFilteringFreelancersByCategories {
 		            new String[]{"Sales", "Negotiation", "Networking", "Public Speaking", "Strategy"}));
 		    freelancers.add(charlie);
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        catList.add(Categories.DEVELOPMENT_AND_IT);
 	        
 	        List<Freelancer> result = FreelancerFilter.filterByCategories(freelancers, catList);
@@ -87,7 +87,7 @@ class TestFilteringFreelancersByCategories {
 	        freelancers.add(bob);
 		    freelancers.add(charlie);
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        catList.add(Categories.MARKETING_AND_SALES);
 	        
 	        List<Freelancer> result = FreelancerFilter.filterByCategories(freelancers, catList);
@@ -108,7 +108,7 @@ class TestFilteringFreelancersByCategories {
 	        freelancers.add(bob);
 		    freelancers.add(charlie);
 
-	        List<Categories> catList = new ArrayList<>();
+	        List<String> catList = new ArrayList<>();
 	        catList.add(Categories.MARKETING_AND_SALES);
 	        catList.add(Categories.DEVELOPMENT_AND_IT);
 	        
@@ -121,7 +121,7 @@ class TestFilteringFreelancersByCategories {
 	    @Test
 	    public void testFilterByCategoryWithEmptyList() {
 	        List<Freelancer> emptyList = new ArrayList<>();
-	        List<Categories> emptyCatList = new ArrayList<>();
+	        List<String> emptyCatList = new ArrayList<>();
 	        List<Freelancer> result;
 	        result = FreelancerFilter.filterByCategories(emptyList, emptyCatList);
 	        assertTrue(result.isEmpty());

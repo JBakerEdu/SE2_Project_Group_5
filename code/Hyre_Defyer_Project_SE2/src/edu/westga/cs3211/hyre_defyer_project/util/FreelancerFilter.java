@@ -3,7 +3,6 @@ package edu.westga.cs3211.hyre_defyer_project.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 
 /**
@@ -25,7 +24,7 @@ public class FreelancerFilter {
      * @return List of freelancers filtered by categories 
      * @throws IllegalArgumentException if freelancers is null || selectedCategories is null
      */
-	public static List<Freelancer> filterByCategories(List<Freelancer> freelancers, List<Categories> selectedCategories) {
+	public static List<Freelancer> filterByCategories(List<Freelancer> freelancers, List<String> selectedCategories) {
         if (freelancers == null) {
             throw new IllegalArgumentException("Freelancers list cannot be null.");
         }

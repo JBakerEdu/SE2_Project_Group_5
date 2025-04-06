@@ -53,7 +53,7 @@ public class AccountPageView {
     private TextField categoryTextFeild;
 
     @FXML
-    private ComboBox<Categories> catergoryComboBox;
+    private ComboBox<String> catergoryComboBox;
 
     @FXML
     private TextArea descriptionTextBox;
@@ -169,7 +169,7 @@ public class AccountPageView {
         	Freelancer tempFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         	Freelancer theFreelancer = new Freelancer(selectedUser.getUserName(), "", Categories.UNDETERMINED);
         	theFreelancer.setBio(this.descriptionTextBox.getText());
-        	theFreelancer.setCategory(this.catergoryComboBox.getValue());
+        	theFreelancer.setCategory(this.catergoryComboBox.getValue().toUpperCase().replace(" ", "_"));
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {
                 String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
@@ -203,7 +203,7 @@ public class AccountPageView {
     
     @FXML
     void initialize() {
-        this.catergoryComboBox.getItems().addAll(Categories.values());
+    	this.catergoryComboBox.getItems().addAll(Categories.values());
         User currentUser = SignInViewModel.getCurrentUser();
         User selectedUser = AccountPageViewModel.getUserSelectedToView();
         this.accountLabel.setText(currentUser != null ? currentUser.getUserName() : "Account");
@@ -258,7 +258,7 @@ public class AccountPageView {
         if (freelancer != null) {
         	this.descriptionTextBox.setText(freelancer.getBio());
         	this.catergoryComboBox.setValue(freelancer.getCategory());
-            this.categoryTextFeild.setText(freelancer.getCategory().toString());
+            this.categoryTextFeild.setText(freelancer.getCategory().toUpperCase().replace("_", " "));
             List<String> skills = freelancer.getSkills();
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {

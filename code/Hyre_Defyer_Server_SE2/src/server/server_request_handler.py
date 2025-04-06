@@ -182,6 +182,17 @@ class ServerRequestHandler:
 
         return response
     
+    def _getCategories(self, request):
+        '''
+            gets the categories
+        '''
+        response = {}
+        categories = self._serverResourceHandler.getCategories()
+        response[constants.REP_CATEGORIES] = list(categories)
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        
+        return response
+    
     def handleRequest(self, request):
         '''
             Handles and distributes requests and returns with their appropriate responses.
@@ -228,5 +239,8 @@ class ServerRequestHandler:
         elif req_type == constants.REQ_REMOVE_FREELANCER:
             response = self._removeFreelancer(request)
         
+        elif req_type == constants.REQ_GET_CATEGORIES:
+            response = self._getCategories(request);
+            
         return response
         
