@@ -8,7 +8,6 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
-import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,7 +121,15 @@ public class AccountPageView {
     
     @FXML
     void handleAddCategoryClick(ActionEvent event) {
-    	
+    	String newCategory = this.createCategoryTextFeild.getText().trim();
+
+        if (!newCategory.isEmpty() && !this.catergoryComboBox.getItems().contains(newCategory)) {
+            this.catergoryComboBox.getItems().add(newCategory);
+            this.catergoryComboBox.setValue(newCategory);
+        }
+
+        this.createCategoryTextFeild.clear();
+        this.addNewCategoryPane.setVisible(false);
     }
     
     @FXML
