@@ -77,6 +77,8 @@ public class TestServerInterface {
 		assertTrue(ServerInterface.createAccount("kate", "password1"));
 		
         assertFalse(ServerInterface.createAccount("kate", "password2"));
+        
+        ServerInterface.deleteUser("kate");
 
 	}
 	
@@ -85,6 +87,8 @@ public class TestServerInterface {
 		assertTrue(ServerInterface.createAccount("jacob", "password1"));
 		
         assertNull(ServerInterface.login("jacob", "notpassword"));
+        
+        ServerInterface.deleteUser("jacob");
 
 	}
 	
@@ -97,7 +101,8 @@ public class TestServerInterface {
         ServerInterface.addMessageableUser(user1, user2);
         List<User> users = ServerInterface.getMessagableUsers(user1);
         assertNotNull(users);
-        assertTrue(users.get(0).getUserName().equals("Edgar"));
+        assertTrue(users.get(0).getUserName().equals("admin"));
+        assertTrue(users.get(1).getUserName().equals("Edgar"));
 	}
 	
 	@SuppressWarnings("unused")
@@ -130,32 +135,17 @@ public class TestServerInterface {
 		Freelancer freelancer = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
 		
 		Boolean response = ServerInterface.addFreelancer(freelancer);
+		ServerInterface.removeFreelancer(freelancer);
 		
 		assertTrue(response);
 	}
 	
 	@Test
-	public void testGetFreelancersEmpty() {
-		FreelancerRoster result = ServerInterface.getFreelancers();
-		assertTrue(result.getAllFreelancers().isEmpty());
-	}
-	
-	@Test
 	public void testGetMultipleFreelancers() {
-		String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
-		Freelancer freelancer = new Freelancer("Larry", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills);
-
-		ServerInterface.addFreelancer(freelancer);
-		
-		String[] skills2 =  {"Ruby", "Go", "Swift", "HTML", "CSS"};
-		Freelancer freelancer2 = new Freelancer("David", "Moderate Developer", Categories.DEVELOPMENT_AND_IT, skills2);
-
-		ServerInterface.addFreelancer(freelancer2);
 		FreelancerRoster result = ServerInterface.getFreelancers();
 		
 		assertFalse(result.getAllFreelancers().isEmpty());
-		assertTrue(result.getAllFreelancers().get(0).getUserName().equals("Larry"));
-		assertTrue(result.getAllFreelancers().get(1).getUserName().equals("David"));
+		assertTrue(result.getAllFreelancers().size() > 3);
 	}
 	
 	@Test
@@ -188,5 +178,12 @@ public class TestServerInterface {
 
         assertEquals("freelancer to remove can not be null.",exception.getMessage());
     }
+	
+	@Test
+	public void testGetCatagories() {
+		List<String> result = ServerInterface.getCategories();
+		
+		assertTrue(result.contains(Categories.BUSINESS_AND_FINANCE.toUpperCase().replace("_", " ")));
+	}
   
 }

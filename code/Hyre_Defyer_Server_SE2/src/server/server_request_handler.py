@@ -7,7 +7,6 @@ from src.server import constants
 from src.model.message import Message
 from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
-from pip._vendor.urllib3 import response
 
 class ServerRequestHandler:
 
@@ -202,6 +201,8 @@ class ServerRequestHandler:
         categories = self._serverResourceHandler.getCategories()
         response[constants.REP_CATEGORIES] = list(categories)
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        
+        return response
         
     def _deleteUserFromServer(self, request):
         '''

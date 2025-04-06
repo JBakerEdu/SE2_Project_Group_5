@@ -261,9 +261,10 @@ class TestServerRequestHandler(unittest.TestCase):
     def test_get_categories(self):
         request = {
             constants.REQ_TYPE: constants.REQ_GET_CATEGORIES
-            }
-    
+        }
+        
         response = self.serverRequestHandler.handleRequest(request)
+        self.assertIsNotNone(response)
     
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
         self.assertTrue(len(response[constants.REP_CATEGORIES]) > 0)

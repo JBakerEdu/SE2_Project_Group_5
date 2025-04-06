@@ -76,7 +76,7 @@
                </effect>
             </Button>
             <TextArea fx:id="descriptionTextBox" layoutX="130.0" layoutY="94.0" prefHeight="130.0" prefWidth="513.0" wrapText="true" />
-            <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
+            <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
                <effect>
                   <Bloom />
                </effect>
@@ -107,7 +107,7 @@
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="hyreButton" alignment="CENTER" contentDisplay="CENTER" layoutX="283.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleHyreButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Hyre">
+            <Button fx:id="hyreButton" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleHyreButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Hyre">
                <effect>
                   <Bloom />
                </effect>
@@ -118,12 +118,12 @@
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="becomeFreelancerButton" alignment="CENTER" contentDisplay="CENTER" layoutX="263.0" layoutY="336.0" mnemonicParsing="false" onAction="#handleBecomeFreelancerButtonClick" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Become Freelancer">
+            <Button fx:id="becomeFreelancerButton" alignment="CENTER" contentDisplay="CENTER" layoutX="277.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleBecomeFreelancerButtonClick" prefHeight="30.0" prefWidth="161.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Become Freelancer">
                <effect>
                   <Bloom />
                </effect>
             </Button>
-            <Label fx:id="hyreMsgErrorLabel" alignment="CENTER" layoutX="263.0" layoutY="415.0" prefHeight="25.0" prefWidth="161.0" text="Must be logged in to Hyre" textFill="RED" />
+            <Label fx:id="hyreMsgErrorLabel" alignment="CENTER" layoutX="442.0" layoutY="415.0" prefHeight="25.0" prefWidth="161.0" text="Must be logged in to Hyre" textFill="RED" />
             <Button fx:id="createCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleCreateCategoryClick" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create New Category">
                <effect>
                   <Bloom />
