@@ -167,6 +167,17 @@ class ServerResourceHandler:
             @return the user
         '''
         return self._users.get(userName)
+    
+    def deleteUserFromServer(self, userName):
+        '''
+            Remove's a user from the server
+            
+            @precondition: none
+            @postcondition: none
+            
+            @param userName: the users name
+        '''
+        del self._users[userName]
         
     def removeUserFromDMList(self, user, otherUser):
         '''

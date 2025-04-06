@@ -7,6 +7,7 @@ from src.server import constants
 from src.model.message import Message
 from src.model.freelancer import Freelancer
 from src.server.server_resource_handler import ServerResourceHandler
+from pip._vendor.urllib3 import response
 
 class ServerRequestHandler:
 
@@ -122,6 +123,17 @@ class ServerRequestHandler:
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         return response
     
+
+    def _deleteChat(self, request):
+        '''
+            Deletes a user from the list of users that can be messaged
+        '''
+        current_user = request.get(constants.REQ_SENDER)
+        other_user = request.get(constants.REQ_RECEIVER)
+        
+        self._serverResourceHandler.removeUserFromDMList(current_user, other_user)
+        
+
     def _getFreelancers(self):
         '''
             Returns all freelancers
@@ -191,6 +203,19 @@ class ServerRequestHandler:
         response[constants.REP_CATEGORIES] = list(categories)
         response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
         
+    def _deleteUserFromServer(self, request):
+        '''
+        Deletes a user from the server
+        '''
+        response = {}
+        userName = request.get(constants.REQ_USERNAME)
+        
+        try:
+            self._serverResourceHandler.deleteUserFromServer(userName)
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        except ValueError as e:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            response[constants.REP_ERROR_DESCRIPTION] = str(e)
         return response
     
     def handleRequest(self, request):
@@ -207,7 +232,7 @@ class ServerRequestHandler:
                 get freelancers
                 add freelancer
                 get categories
-                
+                delete user from server
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
         
@@ -231,6 +256,9 @@ class ServerRequestHandler:
         elif req_type == constants.REQ_ADD_MESSAGEABLE_USER:
             response = self._addMessageableUser(request)
             
+        elif req_type == constants.REQ_DELETE_CHAT:
+            response = self._deleteChat(request)
+
         elif req_type == constants.REQ_GET_FREELANCERS:
             response = self._getFreelancers()
         
@@ -242,6 +270,9 @@ class ServerRequestHandler:
         
         elif req_type == constants.REQ_GET_CATEGORIES:
             response = self._getCategories(request);
+            
+        elif req_type == constants.REQ_DELETE_USER_FROM_SERVER:
+            response = self._deleteUserFromServer(request)
             
         return response
         

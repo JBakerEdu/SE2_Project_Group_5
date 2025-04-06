@@ -129,6 +129,11 @@
                   <Bloom />
                </effect>
             </Button>
+            <Button fx:id="deleteAccountButton" alignment="CENTER" contentDisplay="CENTER" layoutX="130.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleDeleteAccountButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Delete Account">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
          </children>
       </Pane>
       <Pane fx:id="addNewCategoryPane" layoutX="543.0" layoutY="386.0" prefHeight="214.0" prefWidth="357.0" style="-fx-background-color: #f0fff0; -fx-border-color: #000;">
@@ -144,8 +149,8 @@
                </font>
             </Label>
             <TextField fx:id="createCategoryTextFeild" layoutX="28.0" layoutY="82.0" prefHeight="25.0" prefWidth="302.0" promptText="Category" />
-            <Button fx:id="addCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAddCategoryClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #DCDCDCDC; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create Category ">
-               <effect>
+            <Button fx:id="addCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="191.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleAddCategoryClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #DCDCDCDC; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create Category">
+            <effect>
                   <Bloom />
                </effect>
             </Button>
