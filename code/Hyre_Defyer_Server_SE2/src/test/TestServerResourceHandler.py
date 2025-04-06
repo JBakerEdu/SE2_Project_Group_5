@@ -56,7 +56,11 @@ class TestServerResourceHandler(unittest.TestCase):
         self.serverResourceHandler.removeUserFromDMList("username", "friend")
         self.assertNotIn("friend", user.getMessageableUsers())
 
-        
+    def test_removeUserFromServer(self):
+        self.serverResourceHandler.createAccount("dummy account", "pass")
+        self.serverResourceHandler.deleteUserFromServer("dummy account")
+        self.assertIsNone(self.serverResourceHandler.getUser("dummy account"))
+                
     def test_add_freelancer(self):
         self.freelancer = Freelancer("New", "Freelancer")
         self.serverResourceHandler.addFreelancerToRoster(self.freelancer)

@@ -23,7 +23,8 @@ import javafx.scene.layout.Pane;
  * @version Spring 2025
  */
 public class HomePageView {
-	private CategoryViewModel categoryViewModel;
+
+		private CategoryViewModel categoryViewModel;
 
 	@FXML
     private ImageView accountBioImage;
