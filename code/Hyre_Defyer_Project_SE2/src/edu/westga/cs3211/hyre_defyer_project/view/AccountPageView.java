@@ -222,6 +222,7 @@ public class AccountPageView {
         	Freelancer tempFreelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         	Freelancer theFreelancer = new Freelancer(selectedUser.getUserName(), "", Categories.UNDETERMINED);
         	theFreelancer.setBio(this.descriptionTextBox.getText());
+//        	ServerInterface.setUserBio(theFreelancer, this.descriptionTextBox.getText());
         	theFreelancer.setCategory(this.catergoryComboBox.getValue().toUpperCase().replace(" ", "_"));
             TextArea[] skillFields = { this.skill1TextArea, this.skill2TextArea, this.skill3TextArea, this.skill4TextArea, this.skill5TextArea };
             for (int index = 0; index < skillFields.length; index++) {
@@ -229,10 +230,9 @@ public class AccountPageView {
                 theFreelancer.setSkill(index, skillText);
             }
             this.helper.editFreelancerToServer(tempFreelancer, theFreelancer);
-        } else {
-        	ServerInterface.setUserBio(selectedUser, this.descriptionTextBox.getText());
         }
-
+        
+        ServerInterface.setUserBio(selectedUser, this.descriptionTextBox.getText());
         this.toggleEditMode(false);
         this.updateDataShown();
     }

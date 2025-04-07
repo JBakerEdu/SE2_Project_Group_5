@@ -37,7 +37,11 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject jsonObject = new JSONObject(response);
 		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
-		return successCode.equals(Constants.REP_SUCCESS);
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+			user.setBio(bio);
+			return true;
+		}
+		return false;
 	}
 	
 	/**
