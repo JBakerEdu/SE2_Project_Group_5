@@ -9,6 +9,15 @@ class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
         self.serverRequestHandler = ServerRequestHandler()
 
+    def test_setBio(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_SET_USER_BIO,
+            constants.REQ_USERNAME: "Alice",
+            constants.REQ_BIO: "Bio"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+    
     def test_create_account(self):
         request = {
             constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,

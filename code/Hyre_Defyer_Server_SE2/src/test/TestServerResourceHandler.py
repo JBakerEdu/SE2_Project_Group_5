@@ -9,6 +9,10 @@ class TestServerResourceHandler(unittest.TestCase):
     def setUp(self):
         self.serverResourceHandler = ServerResourceHandler()
 
+    def test_setBio(self):
+        self.serverResourceHandler.setUserBio("Alice", "Bio")
+        self.assertEquals("Bio", self.serverResourceHandler.getUser("Alice").getBio())
+
     def test_create_account(self):
         self.assertTrue(self.serverResourceHandler.createAccount("username", "password"))
 

@@ -230,7 +230,7 @@ public class AccountPageView {
             }
             this.helper.editFreelancerToServer(tempFreelancer, theFreelancer);
         } else {
-        	selectedUser.setBio(this.descriptionTextBox.getText());
+        	ServerInterface.setUserBio(selectedUser, this.descriptionTextBox.getText());
         }
 
         this.toggleEditMode(false);

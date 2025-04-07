@@ -13,6 +13,19 @@ class ServerRequestHandler:
     def __init__(self):
 
         self._serverResourceHandler = ServerResourceHandler()
+        
+    def _setUserBio(self, request):
+        '''
+            Sets the bio of the User
+        '''
+        response = {}
+        bio = request.get(constants.REQ_BIO)
+        username = request.get(constants.REQ_USERNAME)
+        
+        self._serverResourceHandler.setUserBio(username, bio)
+        
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response    
             
     def _sendMessage(self, request):
         '''
@@ -274,6 +287,8 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_DELETE_USER_FROM_SERVER:
             response = self._deleteUserFromServer(request)
-            
+        
+        elif req_type == constants.REQ_SET_USER_BIO:
+            response = self._setUserBio(request)    
         return response
         

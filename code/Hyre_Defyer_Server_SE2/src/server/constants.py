@@ -27,6 +27,7 @@ REQ_ADD_FREELANCER = "add freelancer"
 REQ_REMOVE_FREELANCER = "remove freelancer"
 REQ_GET_CATEGORIES = "get categories"
 REQ_DELETE_USER_FROM_SERVER = "delete user from server"
+REQ_SET_USER_BIO = "set user bio"
 
 REP_SUCCESS = "success"
 REP_FAIL = "fail"
