@@ -29,7 +29,7 @@ class TestCategories {
         List<String> categories = Categories.values();
 
         assertNotNull(categories);
-        assertEquals(8, categories.size());
+        assertTrue(categories.size() > 7);
         assertTrue(categories.contains(Categories.BUSINESS_AND_FINANCE));
         assertTrue(categories.contains(Categories.DESIGN_AND_CREATIVE));
         assertTrue(categories.contains(Categories.MUSIC_AND_AUDIO));

@@ -1,13 +1,17 @@
 package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
-import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 
 class AccountPageViewModelTest {
@@ -24,9 +28,14 @@ class AccountPageViewModelTest {
         testUser = new User("testUser", "This Is the bio");
         testFreelancer = new Freelancer("testUser", "This Is the bio", Categories.BUSINESS_AND_FINANCE);
 
-        GUIRosterHelper helper = new GUIRosterHelper();
-        freelancerRoster = helper.getFreelancerRoster();
-        freelancerRoster.addFreelancer(testFreelancer);
+        RosterHelper.addFreelancerToServer(testFreelancer);
+        freelancerRoster = RosterHelper.getFreelancerRoster();
+        
+    }
+    
+    @AfterEach
+    void tearDown() {
+    	RosterHelper.removeFreelancerFromServer(testFreelancer);
     }
 
     @Test
@@ -51,7 +60,15 @@ class AccountPageViewModelTest {
 
     @Test
     void testGetRoster() {
-        assertEquals(freelancerRoster, AccountPageViewModel.getRoster(), "The retrieved roster should match the expected roster.");
+    	FreelancerRoster actualRoster = AccountPageViewModel.getRoster();
+    	
+    	List<Freelancer> expectedFreelancers = freelancerRoster.getAllFreelancers();
+        List<Freelancer> actualFreelancers = actualRoster.getAllFreelancers();
+
+        assertEquals(expectedFreelancers.size(), actualFreelancers.size(), "The number of freelancers should match.");
+
+        assertTrue(actualFreelancers.containsAll(expectedFreelancers), "The actual roster should contain all expected freelancers.");
+        assertTrue(expectedFreelancers.containsAll(actualFreelancers), "The expected roster should contain all actual freelancers.");
     }
 
     @Test

@@ -4,15 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
-import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +20,7 @@ import javafx.scene.layout.Pane;
 /**
  * Codebehind for Category Page View
  * 
- * @author Jacob Baker
+ * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
 public class CategoryPageView {
@@ -53,9 +52,6 @@ public class CategoryPageView {
 
     @FXML
     private Label dmLabel;
-
-    @FXML
-    private ComboBox<?> filter;
 
     @FXML
     private Label homeLabel;
@@ -149,6 +145,21 @@ public class CategoryPageView {
 
     @FXML
     private Pane row4PeoplePane;
+    
+    @FXML
+    private Button applyFiterButton;
+    
+    @FXML
+    private TextField nameTextBox;
+    
+    @FXML
+    private TextField skillTextBox;
+    
+    @FXML
+    void handleApplyFilterButtonClick(ActionEvent event) {
+    	this.freelancers = CategoryViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
+    	this.updatePeopleButtons();
+    }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -218,7 +229,7 @@ public class CategoryPageView {
 
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString().toUpperCase().replace("_", " "));
-            this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            this.freelancers = CategoryViewModel.getFreelancers();
         } else {
             this.categoryName.setText("No category selected");
         }
