@@ -14,8 +14,6 @@ public class FreelancerRoster {
 	private static final String FREELANCER_LIST_CANNOT_BE_NULL = "Freelancer list cannot be null.";
 	private static final String FREELANCER_CANNOT_BE_NULL = "Freelancer cannot be null.";
 	private static final String CATEGORY_CANNOT_BE_NULL = "Category cannot be null.";
-	private static final String SKILL_CANNOT_BE_BLANK = "Skill cannot be blank.";
-	private static final String SKILL_CANNOT_BE_NULL = "Skill cannot be null.";
 	
 	private List<Freelancer> freelancers;
     
@@ -104,18 +102,15 @@ public class FreelancerRoster {
     /**
      * Retrieves a list of freelancers who have a specific skill, ignoring case and allowing partial matches.
      *
-     * @precondition skill != null && !skill.isBlank()
+     * @precondition none
      * @postcondition none
      *
      * @param skill The skill to filter by
      * @return a list of freelancers with the given skill
-     * @throws IllegalArgumentException if skill is null
      */
     public List<Freelancer> getFreelancersBySkill(String skill) {
-        if (skill == null) {
-            throw new IllegalArgumentException(SKILL_CANNOT_BE_NULL);
-        } else if (skill.isBlank()) {
-        	throw new IllegalArgumentException(SKILL_CANNOT_BE_BLANK);
+        if ((skill == null) || (skill.isBlank())) {
+        	return this.getAllFreelancers();
         }
         
         List<Freelancer> result = new ArrayList<>();
@@ -134,6 +129,50 @@ public class FreelancerRoster {
     }
     
     /**
+     * Gets the freelancers with the specified name
+     * 
+     * @param name the name to search by
+     * @return the freelancers matching the name
+     */
+    public List<Freelancer> getFreelancersByName(String name) {
+        if ((name == null) || (name.isBlank())) {
+        	return this.getAllFreelancers();
+        }
+        
+        List<Freelancer> result = new ArrayList<>();
+        String nameLower = name.toLowerCase();
+        
+        for (Freelancer freelancer : this.freelancers) {
+        	if (freelancer.getUserName().toLowerCase().contains(nameLower)) {
+        	    result.add(freelancer);
+        	}
+        }
+        
+        return result;
+    }
+    
+    /**
+     * Gets the freelancers with the name and skill
+     * 
+     * @param name the name to search by
+     * @param skill the skill to search by
+     * @return the freelancers matching the name and skill
+     */
+    public List<Freelancer> getFreelancersByNameAndSkill(String name, String skill) {
+    	List<Freelancer> freelancersByName = this.getFreelancersByName(name);
+    	List<Freelancer> freelancersBySkill = this.getFreelancersBySkill(skill);
+        List<Freelancer> result = new ArrayList<>();
+        
+        for (Freelancer freelancer : freelancersByName) {
+        	if (freelancersBySkill.contains(freelancer)) {
+        		result.add(freelancer);
+        	}
+        }
+        
+        return result;
+	}
+    
+    /**
      * Retrieves all freelancers in the roster.
      *
      * @precondition none
@@ -143,5 +182,6 @@ public class FreelancerRoster {
      */
     public List<Freelancer> getAllFreelancers() {
         return this.freelancers;
-    }   
+    }
+
 }

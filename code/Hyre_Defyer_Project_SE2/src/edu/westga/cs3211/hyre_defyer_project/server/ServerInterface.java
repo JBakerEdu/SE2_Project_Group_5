@@ -214,7 +214,7 @@ public class ServerInterface {
 		ServerCommunicator.sendRequestToServer(request);
 	}
 
-	 /** Gets the freelancers from the server
+	/** Gets the freelancers from the server
 	 * 
 	 * @precondition none
 	 * @postcondition none 

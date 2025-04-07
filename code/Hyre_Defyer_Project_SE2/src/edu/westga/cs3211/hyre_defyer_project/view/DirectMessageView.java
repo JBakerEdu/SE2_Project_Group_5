@@ -1,17 +1,12 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,7 +33,6 @@ public class DirectMessageView {
     @FXML
     private Label accountLabel;
     
-
     @FXML
     private MenuButton chatSettingsMenu;
 

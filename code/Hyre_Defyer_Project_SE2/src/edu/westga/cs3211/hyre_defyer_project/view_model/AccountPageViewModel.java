@@ -1,14 +1,14 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
-import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 
 /**
  * This is the ViewModel for the Account Page helping with some base information.
  * 
- * @author Jacob Baker
+ * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
 public class AccountPageViewModel {
@@ -30,8 +30,7 @@ public class AccountPageViewModel {
      * @return FreelancerRoster that is the list of freelancers
      */
     public static FreelancerRoster getRoster() {
-    	GUIRosterHelper helper = new GUIRosterHelper();
-        return helper.getFreelancerRoster();
+        return RosterHelper.getFreelancerRoster();
     }
 
     /**
@@ -49,7 +48,7 @@ public class AccountPageViewModel {
      * @return true if the selected user is a freelancer, false otherwise
      */
     public static boolean isSelectedUserFreelancer() {
-        if (userSelectedToView != null && userSelectedToView.getUserName() != null) {
+        if (userSelectedToView != null) {
             for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
                 if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
                     return true;

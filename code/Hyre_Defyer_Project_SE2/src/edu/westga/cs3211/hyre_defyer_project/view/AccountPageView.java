@@ -5,6 +5,7 @@ import java.util.List;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
@@ -30,7 +31,6 @@ import javafx.scene.layout.Pane;
 public class AccountPageView {
 	
 	private boolean isFreelancer = false;
-	private GUIRosterHelper helper = new GUIRosterHelper();
 
 	@FXML
     private Label aboutLabel;
@@ -196,9 +196,9 @@ public class AccountPageView {
         }
         Freelancer newFreelancer = new Freelancer(currentUser.getUserName(), currentUser.getBio(), Categories.UNDETERMINED);
         AccountPageViewModel.setUserSelectedToView(newFreelancer);
-        FreelancerRoster roster = this.helper.getFreelancerRoster();
+        FreelancerRoster roster = RosterHelper.getFreelancerRoster();
         roster.addFreelancer(newFreelancer);
-        this.helper.addFreelancerToServer(newFreelancer);
+        RosterHelper.addFreelancerToServer(newFreelancer);
         GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     }
     
@@ -209,7 +209,7 @@ public class AccountPageView {
     	}
     	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
     	SignInViewModel.signOut();
-    	GUIHelper.switchView(anchorPane, Views.HOMEPAGE);	    
+    	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);	    
     }
     
     @FXML
@@ -228,7 +228,7 @@ public class AccountPageView {
                 String skillText = (skillFields[index].getText() != null) ? skillFields[index].getText().trim() : "";
                 theFreelancer.setSkill(index, skillText);
             }
-            this.helper.editFreelancerToServer(tempFreelancer, theFreelancer);
+            RosterHelper.editFreelancerToServer(tempFreelancer, theFreelancer);
         } else {
         	selectedUser.setBio(this.descriptionTextBox.getText());
         }

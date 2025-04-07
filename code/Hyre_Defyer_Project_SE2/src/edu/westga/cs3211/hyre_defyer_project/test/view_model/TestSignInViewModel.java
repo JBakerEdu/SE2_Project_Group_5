@@ -8,6 +8,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -33,6 +34,8 @@ public class TestSignInViewModel {
 	public void testCreateAccountSuccess() {
 		SignInViewModel vm = new SignInViewModel();
 		assertTrue(vm.createAccount("user13", "1234567", "1234567"));
+		
+		ServerInterface.deleteUser("user13");
 	}
 	
 	@Test
@@ -40,6 +43,8 @@ public class TestSignInViewModel {
 		SignInViewModel vm = new SignInViewModel();
 		assertTrue(vm.createAccount("new user", "other password", "other password"));
 		assertFalse(vm.createAccount("new user", "password", "password"));
+		
+		ServerInterface.deleteUser("new user");
 	}
 	
 	@Test

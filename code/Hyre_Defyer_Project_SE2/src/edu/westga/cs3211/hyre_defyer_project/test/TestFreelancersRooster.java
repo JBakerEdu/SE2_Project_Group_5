@@ -155,22 +155,6 @@ private FreelancerRoster roster;
         });
         assertEquals("Category cannot be null.", exception.getMessage());
     }
-
-    @Test
-    public void testSearchBySkillThrowsExceptionIfNull() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            roster.getFreelancersBySkill(null);
-        });
-        assertEquals("Skill cannot be null.", exception.getMessage());
-    }
-    
-    @Test
-    public void testSearchBySkillThrowsExceptionIfBlank() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            roster.getFreelancersBySkill("  ");
-        });
-        assertEquals("Skill cannot be blank.", exception.getMessage());
-    }
     
     @Test
     public void testRosterInitializesWithExampleFreelancers() {
@@ -242,6 +226,22 @@ private FreelancerRoster roster;
     }
     
     @Test
+    public void testFindFreelancersByNullSkill() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersBySkill(null);
+        assertNotNull(javaDevelopers);
+        assertFalse(javaDevelopers.isEmpty());
+        assertTrue(roster.getAllFreelancers().containsAll(javaDevelopers));
+    }
+    
+    @Test
+    public void testFindFreelancersByEmptySkill() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersBySkill("");
+        assertNotNull(javaDevelopers);
+        assertFalse(javaDevelopers.isEmpty());
+        assertTrue(roster.getAllFreelancers().containsAll(javaDevelopers));
+    }
+    
+    @Test
     public void testGetFreelancersBySkillCaseInsensitive() {
         List<Freelancer> javaExperts = roster.getFreelancersBySkill("java");
         assertNotNull(javaExperts);
@@ -260,6 +260,107 @@ private FreelancerRoster roster;
         List<Freelancer> javaDevelopers = roster.getFreelancersBySkill("NOT A SKILL");
         assertNotNull(javaDevelopers);
         assertTrue(javaDevelopers.isEmpty());
+    }
+    
+    @Test
+    public void testFindFreelancersByName() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersByName("Wendy");
+        assertNotNull(javaDevelopers);
+        assertFalse(javaDevelopers.isEmpty());
+        boolean foundJava = false;
+        for (Freelancer f : javaDevelopers) {
+            if (f.getUserName().contains("Wendy")) {
+                foundJava = true;
+            }
+        }
+        assertTrue(foundJava);
+    }
+    
+    @Test
+    public void testFindFreelancersByNullName() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersByName(null);
+        assertNotNull(javaDevelopers);
+        assertFalse(javaDevelopers.isEmpty());
+        assertTrue(roster.getAllFreelancers().containsAll(javaDevelopers));
+    }
+    
+    @Test
+    public void testFindFreelancersByEmptyName() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersByName("");
+        assertNotNull(javaDevelopers);
+        assertFalse(javaDevelopers.isEmpty());
+        assertTrue(roster.getAllFreelancers().containsAll(javaDevelopers));
+    }
+    
+    @Test
+    public void testGetFreelancersByNameCaseInsensitive() {
+        List<Freelancer> javaExperts = roster.getFreelancersByName("wEnDY");
+        assertNotNull(javaExperts);
+        assertFalse(javaExperts.isEmpty());
+    }
+
+    @Test
+    public void testGetFreelancersByNamePartialMatch() {
+        List<Freelancer> sqlExperts = roster.getFreelancersByName("nd");
+        assertNotNull(sqlExperts);
+        assertFalse(sqlExperts.isEmpty());
+    }
+    
+    @Test
+    public void testFindFreelancersByNameNotFound() {
+        List<Freelancer> javaDevelopers = roster.getFreelancersByName("NOT A NAME");
+        assertNotNull(javaDevelopers);
+        assertTrue(javaDevelopers.isEmpty());
+    }
+    
+    @Test
+    public void testMatchByNameAndSkill() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("ia", "con");
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    public void testNoOverlapInNameAndSkill() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("li", "React");
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testOnlyOneMatchesBoth() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("Xander", "writing");
+        assertEquals(1, result.size());
+        assertEquals("Xander", result.get(0).getUserName());
+    }
+
+    @Test
+    public void testNullNameReturnsAllNameMatches() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill(null, "Java");
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    public void testBlankNameReturnsAllNameMatches() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("", "Spring");
+        assertEquals(1, result.size());
+        assertEquals("George", result.get(0).getUserName());
+    }
+
+    @Test
+    public void testNullSkillReturnsAllSkillMatches() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("ia", null);
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    public void testBlankSkillReturnsAllSkillMatches() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("ia", " ");
+        assertEquals(3, result.size());
+    }
+
+    @Test
+    public void testNoMatchesAtAll() {
+        List<Freelancer> result = roster.getFreelancersByNameAndSkill("Z", "Everything");
+        assertTrue(result.isEmpty());
     }
 
 }
