@@ -26,7 +26,8 @@ public class ServerInterface {
 	 * Sets the bio of the user
 	 * @param user the user
 	 * @param bio the new bio
-	 * @return
+	 * @return true if set successfully
+	 * 				 false if not set successfully
 	 */
 	public static boolean setUserBio(User user, String bio) {
 		JSONObject request = new JSONObject();
