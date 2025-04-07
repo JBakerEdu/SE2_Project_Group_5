@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
-import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
@@ -21,7 +20,7 @@ import javafx.scene.layout.Pane;
 /**
  * Codebehind for Category Page View
  * 
- * @author Jacob Baker
+ * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
 public class CategoryPageView {
@@ -158,7 +157,8 @@ public class CategoryPageView {
     
     @FXML
     void handleApplyFilterButtonClick(ActionEvent event) {
-
+    	this.freelancers = CategoryViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
+    	this.updatePeopleButtons();
     }
 
     @FXML
@@ -229,7 +229,7 @@ public class CategoryPageView {
 
         if (CategoryViewModel.selectedCategory != null) {
             this.categoryName.setText(CategoryViewModel.selectedCategory.toString().toUpperCase().replace("_", " "));
-            this.freelancers = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryViewModel.selectedCategory);
+            this.freelancers = CategoryViewModel.getFreelancers();
         } else {
             this.categoryName.setText("No category selected");
         }

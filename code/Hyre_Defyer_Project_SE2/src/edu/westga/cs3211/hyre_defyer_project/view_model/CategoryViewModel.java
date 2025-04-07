@@ -1,8 +1,9 @@
 package edu.westga.cs3211.hyre_defyer_project.view_model;
 
-import edu.westga.cs3211.hyre_defyer_project.view.GUIRosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
-import java.util.ArrayList;
+import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+
 import java.util.List;
 
 /**
@@ -10,31 +11,12 @@ import java.util.List;
  * 
  * Currently, this class stores the selected category and the freelancers associated with it.
  * 
- * @author Jacob Baker
+ * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
 public class CategoryViewModel {
 	
 	public static String selectedCategory;
-	
-	private GUIRosterHelper helper = new GUIRosterHelper();
-	private List<Freelancer> freelancers;
-	
-    /**
-     * Initializes the CategoryViewModel with an empty list of freelancers.
-     */
-    public CategoryViewModel() {
-        this.freelancers = new ArrayList<>();
-    }
-
-    /**
-     * The GUI Roster Helper
-     * 
-     * @return the helper
-     */
-    public GUIRosterHelper getHelper() {
-		return this.helper;
-	}
 
     /**
      * Sets the selected category.
@@ -54,17 +36,27 @@ public class CategoryViewModel {
     public String getSelectedCategory() {
         return selectedCategory;
     }
-
+    
     /**
-     * Adds a freelancer to the current category.
+     * Gets the freelancers with the correct category
      * 
-     * @param freelancer the freelancer to be added
+     * @return the freelancers with the selected category
      */
-    public void addPersonToCategory(Freelancer freelancer) {
-        if (freelancer.getCategory() == selectedCategory) {
-        	this.freelancers.add(freelancer);
-        } else {
-            throw new IllegalArgumentException(freelancer.getUserName() + " does not belong to this category.");
-        }
+    public static List<Freelancer> getFreelancers() {
+    	return ServerInterface.getFreelancers().getFreelancersByCategory(selectedCategory);
+    }
+    
+    /**
+     * Gets the freelancers that matches the name and skill specified
+     * 
+     * @param name the name searching by
+     * @param skill the skill searching by
+     * @return the freelancers that match
+     */
+    public static List<Freelancer> getFreelancersWithNameAndSkill(String name, String skill) {
+    	List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(selectedCategory);
+    	FreelancerRoster roster = new FreelancerRoster(searched);
+    	List<Freelancer> result = roster.getFreelancersByNameAndSkill(name, skill);
+    	return result;
     }
 }

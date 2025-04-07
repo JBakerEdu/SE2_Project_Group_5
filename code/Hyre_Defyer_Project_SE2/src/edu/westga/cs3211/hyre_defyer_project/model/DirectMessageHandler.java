@@ -1,17 +1,8 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
-import javafx.beans.binding.ListBinding;
-import javafx.beans.binding.ListExpression;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /** Handles and stores direct message information between two users​
  *​

@@ -1,22 +1,20 @@
-package edu.westga.cs3211.hyre_defyer_project.view;
+package edu.westga.cs3211.hyre_defyer_project.model;
 
-import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
-import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 
 /**
- * Helper class for methods that all the codebehind classes will need
+ * Helper class for methods that the roster will need
  * 
  * @author Myles Debro and Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
-public class GUIRosterHelper {	
+public class RosterHelper {	
 	/**
 	 * get the roster that is static and saved here for all the UI to be able to get the same roster list
 	 * 
 	 * @return freelancerRoster which is the roster that is saved in the GUIHelper
 	 */
-	public FreelancerRoster getFreelancerRoster() {
+	public static FreelancerRoster getFreelancerRoster() {
 		return ServerInterface.getFreelancers();
 	}
 	
@@ -26,7 +24,7 @@ public class GUIRosterHelper {
 	 * @param freelancer the freelancer added
 	 * @return true if added; false otherwise
 	 */
-	public boolean addFreelancerToServer(Freelancer freelancer) {
+	public static boolean addFreelancerToServer(Freelancer freelancer) {
 		return ServerInterface.addFreelancer(freelancer);
 	}
 	
@@ -36,8 +34,18 @@ public class GUIRosterHelper {
 	 * @param before the freelancer before
 	 * @param after the freelancer after
 	 */
-	public void editFreelancerToServer(Freelancer before, Freelancer after) {
+	public static void editFreelancerToServer(Freelancer before, Freelancer after) {
 		ServerInterface.removeFreelancer(before);
 		ServerInterface.addFreelancer(after);
+	}
+	
+	/**
+	 * Removes the freelancer from the server
+	 * 
+	 * @param freelancer to be removed
+	 * @return true if removed; false otherwise
+	 */
+	public static boolean removeFreelancerFromServer(Freelancer freelancer) {
+		return ServerInterface.removeFreelancer(freelancer);
 	}
 }
