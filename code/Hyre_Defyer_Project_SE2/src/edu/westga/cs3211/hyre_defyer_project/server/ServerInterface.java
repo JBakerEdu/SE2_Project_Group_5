@@ -23,6 +23,29 @@ public class ServerInterface {
 	private static final String FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL = "freelancer to remove can not be null.";
 
 	/**
+	 * Sets the bio of the user
+	 * @param user the user
+	 * @param bio the new bio
+	 * @return true if set successfully
+	 * 				 false if not set successfully
+	 */
+	public static boolean setUserBio(User user, String bio) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_SET_USER_BIO);
+		request.put(Constants.REQ_USERNAME, user.getUserName());
+		request.put(Constants.REQ_BIO, bio);
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject jsonObject = new JSONObject(response);
+		String successCode = jsonObject.getString(Constants.SUCCESS_CODE);
+		if (successCode.equals(Constants.REP_SUCCESS)) {
+			user.setBio(bio);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Gets the messages between two users
 	 * 
 	 * @precondition none

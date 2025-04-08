@@ -32,6 +32,13 @@ public class TestServerInterface {
     }
 	
 	@Test
+	public void testSetUserBio() {
+		User user = ServerInterface.login("Alice", "password");
+		ServerInterface.setUserBio(user, "Bio");
+		assertEquals("Bio", user.getBio());
+	}
+	
+	@Test
 	public void testDeleteUser() {
 		ServerInterface.createAccount("dummy account", "pass");
 		assertTrue(ServerInterface.deleteUser("dummy account"));

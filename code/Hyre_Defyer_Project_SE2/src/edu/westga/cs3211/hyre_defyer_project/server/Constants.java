@@ -33,6 +33,7 @@ public class Constants {
     public static final String REQ_REMOVE_FREELANCER = "remove freelancer";
     public static final String REQ_GET_CATEGORIES = "get categories";
     public static final String REQ_DELETE_USER_FROM_SERVER = "delete user from server";
+    public static final String REQ_SET_USER_BIO = "set user bio";
 
     public static final String REP_SUCCESS = "success";
     public static final String REP_FAIL = "fail";

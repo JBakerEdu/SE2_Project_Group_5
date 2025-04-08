@@ -232,7 +232,8 @@ public class AccountPageView {
         } else {
         	selectedUser.setBio(this.descriptionTextBox.getText());
         }
-
+        
+        ServerInterface.setUserBio(selectedUser, this.descriptionTextBox.getText());
         this.toggleEditMode(false);
         this.updateDataShown();
     }

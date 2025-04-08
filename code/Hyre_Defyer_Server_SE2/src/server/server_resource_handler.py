@@ -59,6 +59,18 @@ class ServerResourceHandler:
             freelancer._categories.add(category)
             self.addFreelancerToRoster(freelancer)
     
+    def setUserBio(self, userName, bio):
+        '''
+            Sets the bio of the provided user
+            
+            @precondition: none
+            @postcondition: user.getBio() = bio
+            
+            @param userName: the name of the user
+            @param bio: the new bio to set the user to
+        '''
+        self.getUser(userName).setBio(bio)
+    
     def createAccount(self, userName, password):
         '''
             Creates a new account with the provided username and password
