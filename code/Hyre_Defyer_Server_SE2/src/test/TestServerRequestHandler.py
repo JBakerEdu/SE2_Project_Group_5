@@ -17,6 +17,15 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_setBioForNonExistentUser(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_SET_USER_BIO,
+            constants.REQ_USERNAME: "user doesnt exist",
+            constants.REQ_BIO: "Bio"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
     
     def test_create_account(self):
         request = {
@@ -277,6 +286,36 @@ class TestServerRequestHandler(unittest.TestCase):
     
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
         self.assertTrue(len(response[constants.REP_CATEGORIES]) > 0)
+        
+    def test_deleteChat(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "dummy1",
+            constants.REQ_PASSWORD: "password"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "dummy3",
+            constants.REQ_PASSWORD: "password"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
+            constants.REQ_SENDER: "dummy1",
+            constants.REQ_RECEIVER: "dummy3"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_DELETE_CHAT,
+            constants.REQ_SENDER: "dummy1",
+            constants.REQ_RECEIVER: "dummy3"
+        }
+        self.serverRequestHandler.handleRequest(request)
 
     def test_delete_user_from_server(self):
         request = {

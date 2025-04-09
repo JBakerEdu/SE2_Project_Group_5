@@ -34,14 +34,29 @@ public class TestServerInterface {
 	@Test
 	public void testSetUserBio() {
 		User user = ServerInterface.login("Alice", "password");
-		ServerInterface.setUserBio(user, "Bio");
+		assertTrue(ServerInterface.setUserBio(user, "Bio"));
 		assertEquals("Bio", user.getBio());
+	}
+	
+	@Test
+	public void testSetUserBioForNonExistentUser() {
+		User user1 = new User("ddummyy", "pass");
+		assertFalse(ServerInterface.setUserBio(user1, "lol"));
 	}
 	
 	@Test
 	public void testDeleteUser() {
 		ServerInterface.createAccount("dummy account", "pass");
 		assertTrue(ServerInterface.deleteUser("dummy account"));
+	}
+	
+	@Test
+	public void testDeleteChat() {
+		ServerInterface.createAccount("dummy account", "pass");
+		User user1 = new User("dummy account", "bio");
+		User user2 = new User("Alice", "bio");
+		ServerInterface.addMessageableUser(user1, user2);
+		ServerInterface.deleteChat(user1, user2);
 	}
 	
 	@Test
