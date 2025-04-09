@@ -19,6 +19,7 @@ class TestFreelancer {
 	private Freelancer freelancer1;
 	private Freelancer freelancer2;
 	private Freelancer freelancer3;
+	private Freelancer freelancer4;
 	
 	private String[] skills = {"Java", "Python", "C++", "JavaScript", "SQL"};
 	private String[] skills1 = {"Java", "Python", "C++", "JavaScript", "SQL"};
@@ -32,6 +33,8 @@ class TestFreelancer {
         freelancer1 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills1);
         freelancer2 = new Freelancer("JohnDoe", "Experienced Developer", Categories.DEVELOPMENT_AND_IT, skills2);
         freelancer3 = new Freelancer("JaneDoe",  "Experienced Developer", Categories.BUSINESS_AND_FINANCE, skills3);
+        
+        freelancer4 = new Freelancer("Bob", "Experienced Developer", Categories.DESIGN_AND_CREATIVE);
     }
 	
 	@Test
@@ -295,6 +298,33 @@ class TestFreelancer {
     @Test
     public void testHashCode_DifferentValues() {
         assertNotEquals(freelancer1.hashCode(), freelancer3.hashCode(), "Hash codes should be different for non-equal objects.");
+    }
+    
+    @Test
+    public void testSetSkill_AddsNewSkillIfIndexIsOutOfBounds() {
+        freelancer4.setSkill(0, "Java");
+
+        List<String> skills = freelancer4.getSkills();
+        assertEquals("Java", skills.get(0));
+    }
+
+    @Test
+    public void testSetSkill_ReplacesSkillAtExistingIndex() {
+        freelancer4.setSkill(0, "Java");
+        freelancer4.setSkill(0, "Python");
+
+        List<String> skills = freelancer4.getSkills();
+        assertEquals("Python", skills.get(0));
+    }
+
+    @Test
+    public void testSetSkill_AtSecondIndex() {
+        freelancer4.setSkill(0, "Java");
+        freelancer4.setSkill(1, "C++");
+
+        List<String> skills = freelancer4.getSkills();
+        assertEquals("Java", skills.get(0));
+        assertEquals("C++", skills.get(1));
     }
 
 }
