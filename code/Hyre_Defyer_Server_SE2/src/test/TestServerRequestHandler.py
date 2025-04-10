@@ -331,5 +331,13 @@ class TestServerRequestHandler(unittest.TestCase):
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
 
+    def test_delete_nonexistent_user_from_server(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_DELETE_USER_FROM_SERVER,
+            constants.REQ_USERNAME: "user not in server"
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+        
 if __name__ == "__main__":
     unittest.main()

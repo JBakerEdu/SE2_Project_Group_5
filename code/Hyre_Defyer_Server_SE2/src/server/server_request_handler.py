@@ -230,7 +230,7 @@ class ServerRequestHandler:
         try:
             self._serverResourceHandler.deleteUserFromServer(userName)
             response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        except ValueError as e:
+        except KeyError as e:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
             response[constants.REP_ERROR_DESCRIPTION] = str(e)
         return response
