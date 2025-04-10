@@ -59,6 +59,18 @@ class TestServerResourceHandler(unittest.TestCase):
         self.assertIn("friend", user.getMessageableUsers())
         self.serverResourceHandler.removeUserFromDMList("username", "friend")
         self.assertNotIn("friend", user.getMessageableUsers())
+    
+    def test_removeUserFromDMList(self):
+        self.serverResourceHandler.createAccount("dummy", "pass")
+        self.serverResourceHandler.createAccount("dummy2", "pass")
+        self.serverResourceHandler.addUserToDMList("dummy", "dummy2")
+        
+        user1 = self.serverResourceHandler.getUser("dummy")
+        user2 = self.serverResourceHandler.getUser("dummy2")
+        self.serverResourceHandler.removeUserFromDMList("dummy", "dummy2")
+        
+        self.assertNotIn("dummy2", user1.getMessageableUsers())
+        self.assertNotIn("dummy", user2.getMessageableUsers())
 
     def test_removeUserFromServer(self):
         self.serverResourceHandler.createAccount("dummy account", "pass")

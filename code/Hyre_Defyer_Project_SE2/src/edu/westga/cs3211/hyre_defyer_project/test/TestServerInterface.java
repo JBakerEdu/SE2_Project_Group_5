@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -34,14 +35,32 @@ public class TestServerInterface {
 	@Test
 	public void testSetUserBio() {
 		User user = ServerInterface.login("Alice", "password");
-		ServerInterface.setUserBio(user, "Bio");
+		assertTrue(ServerInterface.setUserBio(user, "Bio"));
 		assertEquals("Bio", user.getBio());
+	}
+	
+	@Test
+	public void testSetUserBioForNonExistentUser() {
+		User user1 = new User("ddummyy", "pass");
+		assertFalse(ServerInterface.setUserBio(user1, "lol"));
 	}
 	
 	@Test
 	public void testDeleteUser() {
 		ServerInterface.createAccount("dummy account", "pass");
 		assertTrue(ServerInterface.deleteUser("dummy account"));
+	}
+	
+	@Test
+	public void testDeleteChat() {
+		ServerInterface.createAccount("dummy account", "pass");
+		User user1 = new User("dummy account", "bio");
+		User user2 = new User("Alice", "bio");
+		ServerInterface.addMessageableUser(user1, user2);
+		DirectMessageHandler handler = new DirectMessageHandler(user1, user2);
+		handler.deleteChat(user1, user2);
+		assertFalse(ServerInterface.getMessagableUsers(user1).contains(user2));
+		assertFalse(ServerInterface.getMessagableUsers(user2).contains(user1));
 	}
 	
 	@Test

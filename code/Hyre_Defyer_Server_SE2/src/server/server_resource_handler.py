@@ -69,7 +69,10 @@ class ServerResourceHandler:
             @param userName: the name of the user
             @param bio: the new bio to set the user to
         '''
-        self.getUser(userName).setBio(bio)
+        if userName in self._users:
+            self.getUser(userName).setBio(bio)
+            return True
+        return False
     
     def createAccount(self, userName, password):
         '''

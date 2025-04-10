@@ -22,10 +22,13 @@ class ServerRequestHandler:
         bio = request.get(constants.REQ_BIO)
         username = request.get(constants.REQ_USERNAME)
         
-        self._serverResourceHandler.setUserBio(username, bio)
+        if self._serverResourceHandler.setUserBio(username, bio):
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        else:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            response[constants.REP_ERROR_DESCRIPTION] = "User does not exist"
         
-        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        return response    
+        return response   
             
     def _sendMessage(self, request):
         '''
@@ -227,7 +230,7 @@ class ServerRequestHandler:
         try:
             self._serverResourceHandler.deleteUserFromServer(userName)
             response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-        except ValueError as e:
+        except KeyError as e:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
             response[constants.REP_ERROR_DESCRIPTION] = str(e)
         return response
