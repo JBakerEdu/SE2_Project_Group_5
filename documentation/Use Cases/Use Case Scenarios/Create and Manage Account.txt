@@ -1,0 +1,23 @@
+Use Case 1: Create and View Account
+
+
+Actor: User
+Pre-condition: The user has not created an account yet.
+
+Description: 
+	A user can create an account by entering details like a username and password. 
+	Once created, they can manage their profile, update personal information, and change their password as either a freelancer or employer.
+
+Basic Flow:
+	User navigates to the Sign In or Create Account page.
+	User enters personal details and submits the form.
+	System validates the data and creates the account.
+	User can manage their account via the account page.
+
+Alternative Flow – Invalid Input:
+	If data is missing or incorrect:
+		The system displays appropriate error messages (e.g., "Username already in use", "Password don't match").
+		The user corrects the errors and resubmits the form.
+
+Post-condition: 
+	The user has an active account and can access platform features.

@@ -1,0 +1,1560 @@
+commit 02607d45a20cfb747baa65c77ba89074835bc798
+Merge: 5734c84 fb82a86
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 10 17:17:10 2025 -0400
+
+    Merge pull request #45 from JBakerEdu/Fix-Test-Coverage_Set-Bio_Delete-Chat
+    
+    Fixed Test Coverage for setBio and deleteChat
+
+commit fb82a86da63c98339526e99bc7a1fbeb60cbb0f6
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 10 15:41:00 2025 -0400
+
+    Improved test coverage
+    
+    1) server_request_handler class is 100% covered
+    2) deleteChat, deleteUser, and setUserBio are 100% covered in ServerInterface
+    3) deleteChat is 100% covered in DirectMessageHandler
+
+commit f6ce1d765ca37235b501b3cd3a2185eb2d2f9a1a
+Merge: 98702e4 5734c84
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 9 22:12:08 2025 -0400
+
+    Fixed merge conflicts
+
+commit 5734c84e8ef60a59f928ef4cde17f59af627ac43
+Merge: 561c840 09b2a3d
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Wed Apr 9 19:41:45 2025 -0400
+
+    Merge pull request #44 from Jeature-TestFreelancer
+    
+    Tested Freelancer, the class is now at 100% test coverage
+
+commit 98702e474cbade7bc06c023dea746887f6ff0332
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 9 19:35:31 2025 -0400
+
+    Fixed Code Coverage for setBio and deleteChat
+
+commit 561c840e5f3ea45d3b4c0abd121dd8bfe3305946
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Apr 9 19:22:26 2025 -0400
+
+    Update README.md
+
+commit 09b2a3d3a9f9c2ec4d824e87b55329178bf9af08
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Apr 9 18:42:58 2025 -0400
+
+    Tested Freelancer
+    
+    I had missed one test in freelancer. I completed the testing for freelancer.
+    freelancer now has 100 percent code coverage.
+
+commit 3a946ab2de982e16f5c2f446f7dd0ee37edb882a
+Merge: 494e0ac 869e2e5
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Apr 8 10:38:03 2025 -0400
+
+    Merge pull request #42 from JBakerEdu/Server-Storing_User_Bio
+    
+    Server Setting User Bio
+
+commit 869e2e5d33a06e89193ce5d13336abfeb1a5170b
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 7 19:17:14 2025 -0400
+
+    Fixed Checkstyle Error
+
+commit b9490724d5f632d7a285ef84fc48b916a05dd0a2
+Merge: 030bebd 494e0ac
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 7 13:46:25 2025 -0400
+
+    Fixed merge conflicts
+
+commit 030bebda86a1ecb2914e000a645e9381a631681a
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 7 11:39:26 2025 -0400
+
+    Fixed BUG where only Freelancer bio's were updated
+
+commit 494e0ac5494c8dd9c7e6f0f880478172f7204632
+Merge: 84580dc a866bfd
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 7 11:20:11 2025 -0400
+
+    Merge pull request #43 from JBakerEdu/feature-FinishSearching
+    
+    Completed Searching And fixed testing
+
+commit a866bfd510c8321d047b475daf18e3ab4a7a5cfc
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sun Apr 6 23:59:26 2025 -0400
+
+    Completed Searching And fixed testing
+    
+    Completed the seaching implementation for searching by name and skill.
+    I fixed all of the testing issues that we were encountering and got mostly
+    done with fixing code coverage.
+
+commit a36394f811a85e21a4a0a7ca92bb7612076de3dc
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sun Apr 6 22:48:17 2025 -0400
+
+    Implement Setting Bio with Server
+    
+    1) When users edit their bio it now saves to the server.
+    2) All green testing
+    3) Updated the editing for bio to use the new ServerInterface method
+
+commit 84580dc8201a125b2cb1aace4144b2d71d5e4b3f
+Merge: 497c6c9 c4b37dc
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sun Apr 6 16:33:38 2025 -0400
+
+    Merge pull request #41 from JBakerEdu/feature-ImplmentSearchBar
+    
+    Feature implment search bar UI
+
+commit c4b37dca8119aae04177322d705d12bf67863e92
+Merge: c0c0199 497c6c9
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Apr 6 16:15:25 2025 -0400
+
+    Merged the updted branch into my branch
+    
+    Main was somehow behind even after pulling, but fixed now
+    
+    Merge branch 'main' into feature-ImplmentSearchBar
+
+commit c0c0199121675d6d9bc9feacf1eeff771d87d278
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Apr 6 16:12:02 2025 -0400
+
+    Merging main into my branch
+    
+    Merged I think?
+
+commit 2668b0d7bd51d40ea4bcc9167f9b4201084af3d7
+Merge: 0cfbf5c 42de860
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Apr 6 16:09:35 2025 -0400
+
+    Merging main in since nbehind a few commits
+    
+    merging main into this brnch with is pretty much just a ui
+    
+    Merge branch 'main' into feature-ImplmentSearchBar
+
+commit b3cc6bad54c886649c5e6118cd488e5d0b18351f
+Merge: 1407d32 497c6c9
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sun Apr 6 16:04:39 2025 -0400
+
+    Fixing merge conflicts in machine repo
+
+commit 497c6c9501e21a2a2bebb092b889a1b0ff290951
+Merge: 42de860 521c05d
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Sun Apr 6 16:02:42 2025 -0400
+
+    Merge pull request #40 feature-MoreCatagories
+    
+    Feature more catagories
+    Freelancer can create a new category that shows up throughout the server
+
+commit 521c05d6af7c99045fd45e30a9bef8aa172b1ae7
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sun Apr 6 14:34:19 2025 -0400
+
+    Fixed Bug for not seeing categories
+    
+    Fixed the bug for not seeing categories and fixed some testing issues.
+
+commit 1407d327bd5c299e520827d0a7d29b3f0ccec3db
+Merge: 8a5df9b 42de860
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sun Apr 6 12:10:37 2025 -0400
+
+    Fixed merge conflicts on machine
+
+commit 0bcf3e2e435421926a51df14a017168d10969a1e
+Merge: 7ca4f81 42de860
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Apr 6 01:33:30 2025 -0400
+
+    Fixed all merge conflicts:
+    
+    Fixed several merge conflicts and moved some UI around to look better and to be more user freindly
+    
+    Merge branch 'main' into feature-MoreCatagories
+
+commit 7ca4f819df7cc751f2a9104f0aee3a50e0b3ab69
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Apr 6 01:12:13 2025 -0400
+
+    Added the adding category to UI
+    
+    Added the adding of a category to a user call that
+     can be done and sent to server to save, updates
+     through catgories as well.
+    
+    Lost mind trying to get the category page to open
+     just to open scence builder move a block up a pixel
+     and it work....
+
+commit 9640ecaed2aba9847aa3549015d48e546a7d2de4
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sat Apr 5 23:34:16 2025 -0400
+
+    Fixed removing categories
+    
+    If a freelancer gets removed and it was the last one in a category it will remove
+    the category from the list of categories. Also fixed the server tests so the server
+    is fully tested.
+
+commit f156a5ee23c050841b792c9d3c1344ea30484b4d
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 5 21:44:03 2025 -0400
+
+    Created the UI for add a new category
+    
+    Created the Ui and made sure is shown under the correct circumastance.
+
+commit 878b135b608df4130408d08c3ce24ca5ca595805
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sat Apr 5 20:17:01 2025 -0400
+
+    Added Categories Server side
+    
+    If a category does not exist when a freelancer is created it will
+    add the category to the category list. I also made the category enum
+    into strings so that we can now make additional categories.
+
+commit 42de8607257de7789c111f30d3b532d3e226765f
+Merge: 22c1a44 c44c18f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 5 19:59:24 2025 -0400
+
+    Merge pull request #38 from JBakerEdu/Bind_Users_to_Server
+    
+    Delete User from Server
+
+commit c44c18ff0fad230bdea1d3003d27d4463887e381
+Merge: 9c1555c 22c1a44
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 19:45:52 2025 -0400
+
+    Fixed merge conflicts
+
+commit 9c1555c1aebb65ada802840c5550d2a47047cce0
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 19:41:10 2025 -0400
+
+    Added freelancer check
+    
+    1) If the user is a freelancer it also removes their freelancer account from the server,
+
+commit 22c1a44c14fb3caebf9c683860f4d1a02432c2ef
+Merge: e258e55 b01ba57
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 5 19:37:29 2025 -0400
+
+    Merge pull request #39 from JBakerEdu/Feature-Remove_User_from_DMs
+    
+    Delete Chat between Users
+
+commit b01ba5726a1c17145f7997dee3830ff86e568ee4
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 18:34:45 2025 -0400
+
+    Resolving merge conflicts and deleting redundant code
+
+commit 0b389238acb03bbc3d94360fc5adc6210249e850
+Merge: ef2df34 e258e55
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 18:27:32 2025 -0400
+
+    Resolving merge conflicts
+
+commit 3748c988f533872f651079f18ace507a7836f2ad
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 18:13:22 2025 -0400
+
+    Implemented Front-end
+    
+    1) Users can now delete their account via a button they can use when editing their account.
+
+commit 8a5df9b4411ca5054dd09ff642d3d773a3197de7
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 17:47:35 2025 -0400
+
+    Committing to checkout to another branch
+
+commit 0cfbf5cd7dba6712e9adb03252cacc8aab7ee71e
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 5 17:30:56 2025 -0400
+
+    Edited the UI of catgories for filtering
+    
+    Made a double search bar inspried off indeed for search based of two different filters, a skill and a name filter bar and then apply
+
+commit c21c12a2c63be1a77bc8b935c9e6885018ceb093
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Apr 5 17:05:17 2025 -0400
+
+    Implemented backend for deleting a user
+    
+    1) Implemented backend for deleting a user in the server and ServerInterface. Currently still testing the ServerInterface, the server related classes in the server all pass
+
+commit e258e55f71fa6245f385e26175642b4e4fd918e9
+Merge: a52a479 d50efe9
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Fri Apr 4 22:16:52 2025 -0400
+
+    Merge pull request #37 feature-saveFreelancerToServer
+    
+    Implementing freelancer data to server
+
+commit d50efe9388a211f1348cf878e6fdbf18535989e4
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Fri Apr 4 21:16:01 2025 -0400
+
+    Implementing freelancer data to server
+    
+    Kate and Jacob extremed programmed this. We got the server
+    functioning with only freelancers not users. The user updating
+    to the server is not this task. Tests are not implemented to work
+    well with the server but through manual testing it works correctly.
+
+commit a52a47927df67f84886fa08cc17508f96d0a5566
+Merge: 41632d1 675227c
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Fri Apr 4 18:52:26 2025 -0400
+
+    Merge pull request #36 from JBakerEdu/feature-AlterHyreNavFunction
+    
+    Feature alter hyre nav function
+
+commit 675227cc8d4a642f1f3c21118b6576991ddf5264
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Fri Apr 4 18:44:43 2025 -0400
+
+    Fixed minior bugs and fixed Checkstyle
+    
+    Fixed checkstyle for whole system and fixed the minor bugs that was left with About Hyre Page View.
+
+commit d9e769ee77dba1c257da18ee740d62c185c610c5
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Fri Apr 4 18:02:23 2025 -0400
+
+    Create the Hyre About Page
+    
+    Implmented the page and edit each nav bar in the system to have the about call and made sure all we called correctly.
+
+commit 41632d19531b250d40b71c199e8ee7b1ab152170
+Merge: 06e76dd fc90b0f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Fri Apr 4 17:29:25 2025 -0400
+
+    Merge pull request #34 from JBakerEdu/feature-ImplementHyreDmButton
+    
+    Implemented Hyer button to switch to direct message view
+
+commit fc90b0f91ec7de8273553cca47a31e06a332768c
+Merge: 9edee3f 5fbc28e
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Fri Apr 4 17:12:13 2025 -0400
+
+    Merge pull request #35 from JBakerEdu/feature-ImplementHyreDMButton
+    
+    Disabled Byre button
+
+commit 5fbc28ec36591c865e88d75293d7bf51f24bddf0
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Fri Apr 4 17:01:59 2025 -0400
+
+    Disabled Byre button
+    
+    I disabled the hyre button when not logged in and displayed the error message to inform the
+    user why you cannot hyre someone when you are not logged in.
+
+commit ef2df342793dc4391d6e358b324cb14d0c17ff26
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 3 17:42:19 2025 -0400
+
+    Fixed BUG
+    
+    1) The contact list now updates correctly when a chat is deleted.
+    2) Contact list view is no longer binded to the DMHandler, now just updates when neeeded.
+
+commit 9edee3f2da422dd2cbd3d4ec342573fa5ea7abe9
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 16:58:24 2025 -0400
+
+    Implemented Hyer button to switch to direct message view
+
+commit 06e76ddcda19bdd158ec29f07a236bb3e2ccdc97
+Merge: 4a50eaf 7a7a2ac
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 16:33:36 2025 -0400
+
+    Merge pull request #32 from JBakerEdu/feature-AddFreelancersToServer
+    
+    I handled the merging, had to modify a few outdated things but all is well now.
+
+commit 7a7a2aca35261a309c98cb3872ecd319ce48a558
+Merge: 7f4f2f7 5e9cc41
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 16:31:39 2025 -0400
+
+    Merged branch conflicts
+
+commit 7f4f2f7cd1623f98e1eb8b4270ea316283ef0851
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 16:07:39 2025 -0400
+
+    Java properly retrieves freelancer data from the pythohn server now
+
+commit 788222f058e5cd48c8dc5126fdd1d0f836dff04d
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 15:57:02 2025 -0400
+
+    Moved user list population over to python
+
+commit 4a50eaf9548e18d034911e4dcd45e65be7b99ffd
+Merge: 04f79e2 5e9cc41
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Thu Apr 3 10:53:30 2025 -0400
+
+    Merge pull request #33 from JBakerEdu/feature-AccountPageImplmentation
+
+commit 238412521068d2dd353efff5b08ec5337d088841
+Merge: 9c41fb8 04f79e2
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 3 00:22:22 2025 -0400
+
+    Merge branch 'main' into feature-AddFreelancersToServer
+
+commit 9c41fb8cf32c10fedb8a66a26ec3f4ae02a16311
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 3 00:15:06 2025 -0400
+
+    Resolve merge conflict for TempServerTest
+
+commit 87c590c5ad72e7e1e960a5957e46164cded8b480
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 3 00:05:46 2025 -0400
+
+    Resolve merge conflict for TestSignInViewModel
+
+commit 5e9cc4138580e1c622e0a6175fe2eb9113e91101
+Merge: ce2c7a6 04f79e2
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 2 23:45:10 2025 -0400
+
+    Merge branch 'main' of https://github.com/JBakerEdu/SE2_Project_Group_5 into feature-AccountPageImplmentation
+
+commit ce2c7a67a8a07caeccb692651712cd85ca9c87fe
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 2 23:34:25 2025 -0400
+
+    Tested AccountViewModel class & fixed minor bugs
+    
+    I fixed some bugs that appeared after some testing of the UI such as saving would added the freelancer to the category multiple times. Also tested the AccountPageViewModel class to 100% coverage
+
+commit 27c815a55dc6ae792d2586ef0b100c717e59f294
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 2 16:37:49 2025 -0400
+
+    Implmented and cleaned the Account View
+    
+    Made the account react to what type of user is being viewed(if personal account or someone elses && if the user is a base user or a freelancer). The based on this changes what the viewer is able to see and edit.
+
+commit 2a426d33d37291e94a94d259c2fd0eca78f70d0b
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 2 15:12:23 2025 -0400
+
+    Implmented the switching between user/freelancer
+    
+    A user can now switch to a freelancer if they selected the button within account to do so. Next I need to clean the account page hiding buttons as needed and need to make sure when a user switch to a new category, they can be found in the categories category on the category page.
+
+commit 2a30d0b22c89208d6115de0fadd3f8d1ccb1f539
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 2 02:54:32 2025 -0400
+
+    Attempting to implment the User to Freelancer
+    
+    Added some inof to the ccount page and noticed that we have no way of switching from a user to a freelancer, so attempting to implment that. Currently everything is broken and I have been working to long so I am getting off for tonight and will try to pick it up again once I recharge.
+
+commit 439108a6fc969733ee8329b331b627b5524aeb4b
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Apr 2 02:14:02 2025 -0400
+
+    Added the removing freelancer to server
+    
+    Added the removing of a freelancer to the server. I could not figure out how to use the existing roster class we had client side to
+    update continuously along side the server.
+
+commit 357a067c2237171636e661a9bc8fd994f9c5a2c9
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 1 17:30:57 2025 -0400
+
+    Finished Server Implementation and Testing (in-progress)
+    
+    1) Finished implementing the needed request and response needed in the server that I forgot.
+    2) Implemented a test in TestDirectMessageHandler to test the delete chat method. Currently passing.
+    3) BUG: Currently unable to switch to the DMView after logging in
+
+commit 04f79e2227dbe8d418846a88eff467ba300c32a4
+Merge: 7dbe6b6 f8a1ccf
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Mon Mar 31 12:31:24 2025 -0400
+
+    Merge pull request #31 from JBakerEdu/Fix-ZMQ
+    
+    Converted server to use ZMQ
+
+commit 7dbe6b6e58f095d30c40c94498982da1ed581e75
+Merge: c85a7f0 f942287
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Mon Mar 31 12:16:34 2025 -0400
+
+    Merge pull request #30 from JBakerEdu/fix-Tests
+    
+    Fixed broken tests and fulfilled 100% test coverage in java
+
+commit 945722214bff0e54e4c08f454d408fda2f7f6b2f
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Fri Mar 28 17:38:22 2025 -0400
+
+    Tested Delete Chat with UI
+    
+    1) The chat settings menu successfully only shows when a DM is selected.
+    2) Chats are not getting deleted properly. Chat's are still visible after pressing delete chat.
+    3) Decided to remove the confirmation modal window because it would be a hard mistake to make.
+
+commit f8a1ccf212d30bfce611e3b08963e5b54d0bbb90
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 15:16:16 2025 -0400
+
+    Removed unused imports and excess code
+
+commit b7760cc94d0ff17be0b204790564e42b5781b172
+Merge: 94cd479 f942287
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 14:55:22 2025 -0400
+
+    Tests Merge to fix conflict
+
+commit 94cd479e54e8fe39886b36db8d9e7579ec03379f
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 14:40:00 2025 -0400
+
+    Added dependencies jar
+
+commit f1a689d4760a949506d343c049a42d41513841ae
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 14:32:16 2025 -0400
+
+    Converted server communication to ZMQ architecture
+
+commit ee9b6fa1603aaf7e09d10764203c76f294b81d40
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 12:57:03 2025 -0400
+
+    Completed server_resource_handler and server_request_handlercode coverage tests
+
+commit c78938a7d1ef744dc5481c0c6228fd250d790608
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 12:10:28 2025 -0400
+
+    Fixed freelancer to_dict error in python and fixed related tests
+
+commit f9422878dd3693c79a7554acc3e010cb07011a50
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 28 10:46:43 2025 -0400
+
+    Fixed broken tests and fufilled 100% test coverage in java
+
+commit 8a1590240522a33fcdbcb39b738c63f633d4eb97
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Mar 27 21:57:01 2025 -0400
+
+    Added Functionality Everwhere
+    
+    I still cant figure out why my json objects are crashing the server. I redid the
+    freelancer to be able to store more categories and more skills. I also made all the test
+    work again for all those things. I am still very much stuck on the server communication.
+    Spent 8 hours on this commit alone. Alec please help.
+
+commit 501c60cdc856c51034bed512f440364de437624f
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Mar 27 00:06:10 2025 -0400
+
+    Adding Communication for getting freelancers
+    
+    Started to add the communication for how to get the freelancers from the server.
+    The server currently stores the freelancers but there is no way of comunicating to get
+    the freelancers from the server to the client.
+
+commit 1af48335558a2bf97874582dafeb2d2e73347a42
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Mar 26 19:32:04 2025 -0400
+
+    Tested User, Freelancer, and Roster
+    
+    All of these have been tested completely. Added functionality to the freelancer to know if it
+    contains a spefic catagory and a specific skill. Added functionality to the roster to remove a
+    freelancer from the list.
+
+commit 138d78972e023ff740d8730ec14cf5755e910104
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Mar 26 17:02:41 2025 -0400
+
+    Mostly Finished Business Logic and UI
+    
+    1) Created a Settings menu in the DM view to be able to delete chats.
+    2) Finished code-behind logic for said chat and menu.
+    3) Added a confirmation modal view before it deletes the chat between users, considering removing that option since the ability to delete the chat is in its settings. Meaning it isn't an option that can easily be an accident by users.
+    4) NOT TESTED YET**
+
+commit 149a01493af6d7ca0edba3ff46aa4022d33e7e43
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Mar 26 13:18:33 2025 -0400
+
+    Created Freelancer And Roster Server-Side
+    
+    Have basic implementation in for a freelancer and the freelancer roster. Still need to complete testing and add more functionality.
+
+commit 7ac87df1b60ddc34f405f666e753baac1cb25fa1
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 26 00:44:26 2025 -0400
+
+    Implmented most of Account Page View Model
+    
+    Made the view now seperated based on if you are viewing, editing, and also based on if you are looking at your personal / someone elses account. Implmented a static way to set the user selected, and will need to bind the category page to accounts page next.
+
+commit 027ac12f1428ef33a88d1631513ec695b64a9043
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Mar 25 21:14:22 2025 -0400
+
+    Added most Business Logid for Deleting Chats
+    
+    1) Added business logic to DirectMessageHandler and ServerInterface
+    2) Added a request for it in server_request_handler
+    3) Added needed constant in Constants
+
+commit c85a7f0ad2cddafbaa34fb73f880e0a4003f3ef6
+Merge: acf875b 4e3e4f7
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Tue Mar 25 20:19:27 2025 -0400
+
+    Merge pull request #29 from feature-DirectMessagingServer
+    
+    Direct Messaging now moved to python server storage
+
+commit 4e3e4f7739a2c1949901c9102294ed4d28803336
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Mar 25 19:02:41 2025 -0400
+
+    Added required Json jar
+
+commit acf875b288af90ffb9e4ba1f8c26a286657824f8
+Merge: 477d452 5f3f9aa
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Sat Mar 15 19:47:12 2025 -0400
+
+    Merge pull request #28 DirectMessagingServer
+    
+    Feature direct messaging server
+
+commit 5f3f9aa0f3ccafcb5e0be54d63856a889fc712f3
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 17:17:30 2025 -0400
+
+    Fixed small error
+
+commit 6455591410d85d6c34a2306575c38717cf95f923
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 17:15:17 2025 -0400
+
+    Traveled through the depths of hell to implement the direct messaging between java and python, the DM page works too
+
+commit 5ff880defb4aec0664b4a6f6ace058a1c4e20973
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 14:26:19 2025 -0400
+
+    Implemented sendMessage() and getMessages() in server_request_handler
+
+commit 6f473dab77789fa01b40c319d4d78294fab95613
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 13:51:45 2025 -0400
+
+    Converted sending and getting messages between uses in server resource handler
+
+commit fd5b89158705d7f212c37a772c31d7841a6e68cf
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 12:37:25 2025 -0400
+
+    Created message model file and updated user fields
+
+commit 477d4527851eaa8df376681a1a73112683b5a30c
+Merge: 0b6cdff 5674018
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Sat Mar 15 12:03:47 2025 -0400
+
+    Merge pull request #27
+    
+    Fixed bugs resulting from merge
+
+commit 567401841c9086ab28e2d1c58623fb222fed8183
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 11:59:32 2025 -0400
+
+    Fixed bugs resulting from merge
+
+commit 0b6cdff900bda569fd3e59aa768201f25ffc06ff
+Merge: 274c509 d6b0697
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Sat Mar 15 11:43:23 2025 -0400
+
+    Merge pull request #26 from branch python-server
+    
+    Python server
+
+commit d6b0697613792def6d483d5a2e870598d7dff059
+Merge: ef7aeef 274c509
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 11:40:41 2025 -0400
+
+    Merge branch 'main' into python-server
+
+commit 274c5099a94e3b4f7048530273aebea627a308a4
+Merge: 7ebf8ea 7e2808a
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 11:17:45 2025 -0400
+
+    Merge pull request #25 from JBakerEdu/Feature-Requirements_for_Sign-in
+    
+    Redid Errors for Sign in
+
+commit 7ebf8ea6c0310a21a64cb7f036a48c20fe4553d6
+Merge: e448e91 1092284
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Sat Mar 15 11:17:23 2025 -0400
+
+    Merge pull request #24 from JBakerEdu/feature-AddFreelancersToCategoryPage
+    
+    Feature add freelancers to category page
+
+commit ef7aeef0cbe9c926c6c924df5868bc52df55840c
+Merge: bfc5d96 e448e91
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 13:18:35 2025 -0400
+
+    Merge branch 'main' into python-server
+
+commit bfc5d969f5482e2859ca547bb7027250339febc3
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 12:56:34 2025 -0400
+
+    Refactored User to no longer store password, and updated all tests
+
+commit d6cded05ffd86ff73fda535cd2721b71e3069445
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 12:40:17 2025 -0400
+
+    Implemented Login between client/server
+
+commit e5a5a613224ae52fcdea849288600ff935f48820
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 12:33:58 2025 -0400
+
+    Implemented and tested Create Account across client/server
+
+commit f07e97548de388c244ab59c4629486df857c0f15
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 12:14:51 2025 -0400
+
+    Renamed ServerActor to ServerInterface
+
+commit 0d5de6fac751ac16f0a9bbaa898e8dae92fdc9c8
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Fri Mar 14 12:12:15 2025 -0400
+
+    Reworked python server and java client to use DataOutputStream instead of tcp ZMQ server library
+
+commit 7e2808a964146ce7bc17d6b24778b2c3014c8591
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Mar 13 14:06:18 2025 -0400
+
+    Redid errors for Sign in
+    
+    1) System no longer tells the user if the username or password are incorrect. Only tells the user that one or the other has caused the error.
+
+commit a223407cf514d3705c1b34011b02fd6f48eb08f5
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Mar 13 13:41:48 2025 -0400
+
+    Created ServerCommunicator to begin server refactoring process
+
+commit c27ddfb9e460ecbe64ac7716263b225e797ccfeb
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Mar 13 13:08:29 2025 -0400
+
+    Moved ServerActor to seperate server package
+
+commit bbe32c1059e77d3ff528d5d2acc2cd311064879d
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Mar 13 12:49:22 2025 -0400
+
+    Fixed static tests
+
+commit b8d5ab0035b0cbc30645a8fbb526d99ebc5689ba
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Mar 13 12:32:06 2025 -0400
+
+    Added communication protocol
+
+commit 33fe576caf7355b23337248d263e47d10e9905e1
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Mar 13 12:24:09 2025 -0400
+
+    Implemented structure for server files and added tests
+
+commit 1092284d5546af55b12011087ffca39515294241
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 12 23:10:32 2025 -0400
+
+    Implmneted the Next and Previous Buttons
+    
+    Implemented Next and Previous buttons with dynamic page
+     handling. The number of people shown per page is set in
+     batches of 24. The buttons navigate through the batches,
+     and a page counter tracks the current page.
+
+commit 1a8c838de9921f607e11783fff145baa3cea93de
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 12 22:38:42 2025 -0400
+
+    Implemented previous/next buttons for Category UI.
+    
+    Created buttons and a page indicator to handle viewing people,
+    displaying 24 names per screen with support for more than 24 in the future.
+    Added 30 freelancers to the system.
+
+commit 7131da4502c0138d61dad36d47d42258871d9560
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 12 22:20:39 2025 -0400
+
+    Implemented functionality to add freelancers to the CategoryPage.
+    
+    Freelancers are now displayed as buttons with their names.
+    This can easily be changed to containers holding more information in the future if needed.
+
+commit e448e9161656e0c907a991901673e2b7cde3543e
+Merge: 716c9d0 7552237
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 12 20:58:38 2025 -0400
+
+    Merge pull request #23 from JBakerEdu/feature-createFreelancersData
+    
+    Freelancer Rooster Implementation
+
+commit 716c9d0486375d02f0df26630def7294cf285e32
+Merge: f430e70 acf7c9c
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 12 20:54:57 2025 -0400
+
+    Merge pull request #22 from JBakerEdu/Feature-Requirements_for_Sign-in
+    
+    Feature requirements for Sign In and Create Account
+
+commit 755223798216e69524c5e1f4592ab16bd785f58d
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Mar 12 17:33:45 2025 -0400
+
+    Freelancer Roster Implementation
+    
+    The FreelancerRoster class is designed to manage a list of freelancers. It maintains a list of Freelancer
+    objects and provides methods to interact with and filter the roster. The class has two constructors:
+    a default constructor that initializes the roster with example freelancers spanning various categories
+    and an overloaded constructor that allows initializing the roster with a custom list of freelancers while
+    ensuring the provided list is not null. The Overloaded constructor will be used once the server implementations
+    for freelancers is done. The rooster also contains methods like addFreelancer, removeFreelancer,
+    getFreelancersByCategory, getFreelancersBySkill, and getAllFreelancers.  The addFreelancer method enables
+    adding a new freelancer, enforcing that the provided freelancer is not null. The removeFreelancer method
+    removes a freelancer if they exist in the roster and returns a boolean indicating success. The
+    getFreelancersByCategory method filters freelancers based on their category, ensuring that the provided category
+    is not null. Another key method, getFreelancersBySkill, allows retrieving freelancers with a specific skill,
+    supporting case-insensitive and partial matches while ensuring the skill input is neither null nor blank. Finally,
+    the getAllFreelancers method returns the complete list of freelancers in the roster. I also had to update the
+    Freelancers class to contain an isEqual method that compares the freelancers based on attributes rather than
+    memory location. The Code is 100 percent tested and no checkstyle errors.
+
+commit acf7c9cfb97fe0269ebec0e4184d170e5e35b42c
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Mar 12 15:47:07 2025 -0400
+
+    Fixed New Failing Tests in SignInVM
+    
+    1) Fixed some tests to work with the server that was recently changed to static typing.
+    2) Added test code for new userExists method in SignInVM.
+
+commit 2950b0ec22f3b59e6bbcb2d5d45a825885e84033
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Mar 12 15:11:59 2025 -0400
+
+    Added Meaningful Error Messages for Sign-in
+    
+    1) Errors now display specific to the one encountered. If a user tries to sign in to a nonexistant account they will get an error that will tell them the account doesn't exist and prompt them to make an account. If the user inputs the wrong password to an account they will get an error that tells them the password was incorrect.
+
+commit 896ac077a60d1f58f41f98cec0fd510dae037b06
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Mar 12 15:01:00 2025 -0400
+
+    Implemented Meaningful Errors for Create Account
+    
+    1) User is now unable to use the Create Account button unless all fields have input and the password matches the confirmation password field. A label indidcating that displays when the passwords don't match.
+    2) Create Account now displays an error that tells the username has been taken if they input a duplicate user name. This is now the only error the method can encounter.
+
+commit ee97a7e17ab105b721ae333428984c04709fcd73
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Mar 11 17:37:57 2025 -0400
+
+    Implemented Required Fields for Sign in
+    
+    1) The sign in button will be disabled until required fields are input.
+
+commit 6621a87a809c6fde34582cd49b69c756f457156c
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Mar 11 17:32:27 2025 -0400
+
+    Added Asterisks to SigninView
+    
+    1) Required fields now have an asterisk next to indicate that.
+    2) Added a new label that tells the user that the asterisks indicate required fields.
+
+commit 5f0b060eb47f062308532336f8211785a0a5d991
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Mar 11 16:38:00 2025 -0400
+
+    Implemented Requirements for Create Account
+    
+    1) The create account button will be disabled until all required fields have input.
+    2) Still need to add asterisks to said required fields.
+
+commit f430e70a50833d75d99150031fdd9fc93ff181f3
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Mar 6 20:24:01 2025 -0500
+
+    Updated Sprint Backlog and Burndown
+    
+    Updated the documentation for sprint backlog and burndown.
+
+commit b99ec250b4aac2cb746e721064e82198847c0574
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Thu Mar 6 13:18:39 2025 -0500
+
+    Updated my Sprint Backlog hours
+
+commit 265ef8b30cee03bdedf810435d30ee3518d1ae02
+Merge: d6a308a 77bee8a
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 15:11:36 2025 -0500
+
+    Merge pull request #19 from JBakerEdu/direct_messaging_branch
+    
+    Direct messaging branch
+
+commit 77bee8a6e008cc1f69ec5c7cbd22ecfbefba2833
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 15:09:58 2025 -0500
+
+    Fixed Account page error
+
+commit 6cc7c90c61f4ec74c01f70635d471392245ab4fd
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 15:05:11 2025 -0500
+
+    Refactored DM code to properly use DirectMessageHandler instead of directly through ServerActor
+
+commit 05a0f7a412da66db1b7ed1ca008339252ee6d92f
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 14:37:49 2025 -0500
+
+    Ensured proper updating and displaying of messages between users
+
+commit 2f6fe44dcfa2c8223158cb4029ae494be2fc2ec5
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 14:15:57 2025 -0500
+
+    Made all ServerActor methods and calls static
+
+commit e74f1ad5609e4bdb0d123b869d4c8777d385625c
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:57:08 2025 -0500
+
+    Fixed static instantiation
+
+commit 9a9e245fb27d5b40c0d8560bdc87b01fe20940b5
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:56:20 2025 -0500
+
+    Implemented list view for account dm message viewing
+
+commit 2eb3c6104aa55d154c3163dcb009eb17ef8c4b03
+Merge: f3999f7 d6a308a
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:46:05 2025 -0500
+
+    Merge branch 'main' of https://github.com/JBakerEdu/SE2_Project_Group_5 into direct_messaging_branch
+
+commit f3999f767f707c4a1a9ef0b719966b64efdc5058
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:45:57 2025 -0500
+
+    Made DM list view properly show users available to DM
+
+commit d6a308a36226d14a4fb3c7a6cf86d9793d5ab6a3
+Merge: ef32b41 aaf6548
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:43:18 2025 -0500
+
+    Merge pull request #18 from JBakerEdu/feature-BindCategoryDropDrow
+    
+    Feature bind category drop drow
+
+commit bbd38769cae71c22f6b2ff580db814c106343d9b
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:27:24 2025 -0500
+
+    Made server actor fields static as there only one instance will be storing users
+
+commit 0fa9ff4f2bc7e662b44c7058c289bb5973a564c1
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:24:12 2025 -0500
+
+    Made server actor static as there will only be one server
+
+commit 8ce497a3248f55ce98417e522ec9fd60551d6365
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Mar 5 13:20:53 2025 -0500
+
+    Merged main into this branch for furtheer development
+
+commit ef32b41a2363fdaff7c21ff0a7e63921bf8255e1
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 02:44:43 2025 -0500
+
+    Added updated burndown
+    
+    Added new burndown as of 3/5/2025 2:45AM
+
+commit 9d8d13257bb9abc9d7b3eebe9906bc797136b0fb
+Merge: 646c5ab e0258a1
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 02:30:34 2025 -0500
+
+    Merge pull request #16 from JBakerEdu/feature-filterByCategories
+    
+    Implement Freelancer Filter
+
+commit aaf6548d9afe322ba68f2834b55c9eed6448280f
+Merge: f405e37 646c5ab
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 02:24:50 2025 -0500
+
+    Merge branch 'main' into feature-BindCategoryDropDrow
+
+commit f405e37af98b47d8f51083f9d205d3af3681abf5
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 02:19:02 2025 -0500
+
+    Finished Implmenting Category In UI
+    
+    The UI now flows great together with the addition of the category drop
+     down fully implmented and the category buttons are implmented. Also created
+     a class to help with the Category in the view model.
+
+commit 039191b9ee2056b8cf63e335bad31cf830c72994
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Mar 5 00:13:25 2025 -0500
+
+    Added Category Conrtoller for view model
+    
+    Added a way to control the catergory to added and help with
+     flow of pages, and help making a list of freelancers in a
+     category once people are created.
+
+commit 646c5ab1d829ac2cc6b9cab01a533b1924c25b4e
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Mar 5 00:11:21 2025 -0500
+
+    Added Creating Bio
+    
+    Added the Creating Bio Functionality to the account page. You can now change your bio informaion.
+
+commit 070139f96781b2329ed40c8b6edb44fac56d9a71
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Mar 4 23:46:25 2025 -0500
+
+    Added Drop Down For Category
+    
+    The drop down is added and will give you a vlaue of category if selected,
+     also will do so if a category button is selected. Now going to added a
+     category ViewModel since it is needed for the next page.
+
+commit e0258a153233c425f9287d4c266ef229436cf0a2
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Mar 4 23:05:22 2025 -0500
+
+    Implement Freelancer Filter
+    
+    The FreelancerFilter class provides a method, filterByCategories, which filters a list of freelancers based on selected categories,
+    returning a new list containing only those whose category matches any in the provided list. It throws an IllegalArgumentException
+    if either input list is null. The accompanying test cases validate various scenarios: handling an empty freelancer list or category
+    list (both returning empty results), filtering with categories not present in the list (also returning empty results), and ensuring
+    correct filtering when matching categories are provided. Additionally, edge cases such as filtering an empty list with an empty
+    category list and passing null arguments (resulting in exceptions) are tested. The implementation uses a straightforward iteration
+    with a contains() check, ensuring that the original list remains unmodified.
+
+commit 209a118384639c88ca1ece9622fbc503f2e3ee97
+Merge: 72b5aa8 4bd9057
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Mar 4 22:21:38 2025 -0500
+
+    Merge pull request #15 from JBakerEdu/Implement_Sign-in
+    
+    Implement sign in
+
+commit 4bd90574e7e121ffc25d23459adc86612b9894fa
+Merge: 5a50a5a 72b5aa8
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Mar 4 22:12:18 2025 -0500
+
+    Merge branch 'main' into Implement_Sign-in
+
+commit 72b5aa8210315def7d45f19463c3f1906d5101cd
+Merge: 258008a 98e5616
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Mar 4 20:26:07 2025 -0500
+
+    Merge pull request #13 from JBakerEdu/feature-categoryPageUI
+    
+    Implmented the Category UI
+
+commit 258008a5475234fc04a7ce5b3fa1dbfc9edc5e7e
+Merge: d51f398 379276b
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Mar 4 20:13:10 2025 -0500
+
+    Merge pull request #14 from JBakerEdu/feture-moreCategoryDropDown
+    
+    Added category pop up
+
+commit d51f398807b4742cad34645fd952f50f71155ff4
+Merge: ad41ab2 5999597
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Mar 4 18:03:13 2025 -0500
+
+    Merge pull request #12 from JBakerEdu/feature-sorting_freelancers
+    
+    Feature sorting freelancers
+
+commit 5a50a5a11a6d439b879050bff2088b5c81f3313f
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Mar 3 19:03:25 2025 -0500
+
+    Update Documentation
+    
+    1. Updated documentation
+    2. Corrected checkstyle errors
+
+commit 3fb5d94ee88da7aa24e042dcaf2111d10d971b87
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Mar 3 18:58:11 2025 -0500
+
+    Implement Sign Out Functionality
+    
+    1. Added functionality to the sign out buttons.
+    2. Added Views enum to hold the file location names.
+    3. Refactored the switchViews method to be more efficient.
+    4. Added functionality to header buttons
+    5. Bound the account label to the current users name if there is a current user.
+
+commit f7155b905030a4f05ca22f0b11579f032f6f697e
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Mar 3 16:55:45 2025 -0500
+
+    Created Sign Out Option
+    
+    1. Implemented methods in SignInViewModel to support signing out. Added needed test cases, all green.
+
+commit be928b3fc286567d911aaf38ca5070846abbc5cb
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Mar 1 17:19:47 2025 -0500
+
+    Implemented Sign in and Create Account
+    
+    1. Created and Implemented methods in SignInViewModel to sign in users and create accounts. With all green tests.
+    2. Implemented sign in and create account functionality in SignInView's codebehind.
+    3. Added functionality in HomePageView to display the users username once signed in.
+
+commit a18011ad89b79a613aa6aa9d052839ef959204ac
+Merge: ad41ab2 3ff397e
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sat Mar 1 15:53:55 2025 -0500
+
+    Merge branch 'Implement_Sign-in' of https://github.com/JBakerEdu/SE2_Project_Group_5 into Implement_Sign-in
+
+commit 379276bda2cda5af71c51309e053aff7616c93d6
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Feb 26 22:35:04 2025 -0500
+
+    Added catgory pop up
+    
+    Added a pane that will appear if the user selects to see more categories, the user will be able to close or select a category to go to
+
+commit 98e561602dd41a35f123a65d03b611437ff9b4ec
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Feb 26 22:17:22 2025 -0500
+
+    Implmented the Category UI
+    
+    Created the filter and the Category Page for the users to appear under a specific category
+
+commit 599959765d748671b184b3805dcd5f0b8297e810
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Feb 26 20:32:02 2025 -0500
+
+    Code Coverage
+    
+    Disregaurd the previous statement. There is now 100 percent code coverage.
+
+commit 77959bdf86ec57bfb29e52320a216987df4a3a25
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Feb 26 20:23:32 2025 -0500
+
+    Sorting Freelancers by Categories
+    
+    I made a FreelancerSorter class that has a static method that accepts a list and modifys the list
+    to be in the order based on their category in alphabetical order. If the list is passed in as null
+    it will throw an IllegalArgumentException to prevent error. I tested the sorter by testing a null
+    list, empty list, single freelancer list, multiple freelancer list, and presorted list, along with
+    all the variations of the multiple freelancer list. There is 100 percent code coverage and no
+    checkstyle errors.
+
+commit ad41ab25bd11f55bf8d3a7b8a44269606a21a599
+Merge: ea22223 991c077
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Feb 26 20:04:39 2025 -0500
+
+    Merge pull request #11 from JBakerEdu/Feature-Bind_UI
+    
+    Created GUIHelper Class
+
+commit 991c077333784dc4c21f0aca973863492c2ce023
+Merge: 8e24489 ea22223
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Feb 25 17:30:53 2025 -0500
+
+    Merge branch 'main' of https://github.com/JBakerEdu/SE2_Project_Group_5 into Feature-Bind_UI
+
+commit 8e244897ed12cac4c63f2509f2e95ed0fe270d4d
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Feb 25 17:20:35 2025 -0500
+
+    Created GUIHelper Class
+    
+    1. Created GUIHelper class with methods to switch views and display errors.
+    2. Added functionality to Sign In button in HomePageView. It now successfully switches to the Sign In page.
+    3. Added AnchorPane fx:id to HomePageView class
+
+commit f915145550bd5b0b49b726456c95386958d927cb
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Feb 25 16:12:57 2025 -0500
+
+    Initializing local repo
+
+commit ea22223e105bb435dc5d4c9b7014161bff7904d5
+Merge: 1f8f05a aafcaf3
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Mon Feb 24 13:02:55 2025 -0500
+
+    Merge direct_messaging_branch
+    
+    Merge direct_messaging_branch to main branch.
+
+commit aafcaf35db66daca99898c8e3426eec8128b9f49
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Mon Feb 24 12:38:47 2025 -0500
+
+    Fixed Failing Test
+    
+     There was a failing test in TempServerTest, TestCreateAccount is failing because you expect it to
+     return "Bio" for the users bio but it's empty when not given. This happened when merging Kate's
+     User class to Alec's User class. Everything should be good to merge now.
+
+commit 1f8f05a4b7c85c6690454659dc7c8eea3aa58633
+Merge: ef7e4a1 37cc7d7
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Mon Feb 24 10:39:17 2025 -0500
+
+    Merge pull request #9 from JBakerEdu/feature-ImplementDirectMessageUI
+    
+    Implemented the UI for the direct message
+
+commit 3ff397e00e0b29d1649155aaceeeec04a0d2f6f7
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Feb 19 22:07:51 2025 -0500
+
+    Implement Sign-in
+    
+    1) Added funtionality to sign in button in SignInView.
+    2) Created SignInViewModel class.
+    3) Implemented sign in method in said class that currently only allows the admin to sign in. Will need more functionality in the future.
+    4) Green lit testing for said sign in method.
+
+commit a63267c30a6645b7b33a65790f0f6af5057acbff
+Merge: c2b8f2f 2704842
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Feb 19 11:59:04 2025 -0500
+
+    Merge branch 'direct_messaging_branch' of https://github.com/JBakerEdu/SE2_Project_Group_5 into direct_messaging_branch
+
+commit c2b8f2f9ce55d3811878dfc33a642ee177906aad
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Feb 19 11:58:40 2025 -0500
+
+    Completed 100% code coverage
+
+commit 2704842ec27e83cb59b53d003add0cefcefddb4f
+Merge: 74f0b65 ef7e4a1
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Tue Feb 18 21:24:35 2025 -0500
+
+    Merge branch 'main' into direct_messaging_branch
+
+commit 37cc7d7388da32774f275551a6b7784c7cece2da
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 18 21:14:08 2025 -0500
+
+    Implmented the UI for the direct message
+    
+    Added the fxml and java file for the UI for the Direct Messages to be sent.
+
+commit 74f0b65f4387454274a051b6a60fd98a0caa76c1
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Feb 18 21:04:00 2025 -0500
+
+    Finished distinct user to user direct messaging and a temp test for thee server
+
+commit ef7e4a14fa95be93f471dcff5b5fb72397a5ecba
+Merge: 3e9cc26 45452a8
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 18 19:47:23 2025 -0500
+
+    Merge pull request #8 from JBakerEdu/feature-CreateFreelancer
+    
+    Created the Freelancer
+
+commit 45452a83473ad42e328abc4a8a6889e740c512f9
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Feb 18 19:20:32 2025 -0500
+
+    Created the Freelancer
+    
+    Created the Freelancer class to extend the User, adding a Categories Enum and a skills array of size 5.
+    Added constructors to initialize freelancers with required atributes, including the option to set skills
+    at creation. Implemented methods for setting and replacing skills at creation. Implemented methods for
+    setting and replacing skills, validating input, and checking if the freelancer contains a specific skill.
+    Developed a test class with 100 percent test coverage. And no checkstyle errors.
+
+commit 3e9cc26b00118559a581eade4256695c9366d828
+Merge: e4a1703 90b0d52
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Feb 13 18:17:03 2025 -0500
+
+    Merge pull request #7 from JBakerEdu/feature-UserClassImplementation
+    
+    Modified User Class
+
+commit e4a170390f3e130944dc5626ecc57231ed1e8fac
+Merge: 3c2d393 5858149
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Feb 13 15:15:50 2025 -0500
+
+    Merge pull request #5 from JBakerEdu/feature-AccountPageUI
+    
+    Feature account page UI
+
+commit 90b0d5246d6720460dd48cc7dcd04a3845a8616a
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Feb 13 14:35:33 2025 -0500
+
+    Added User Class
+    
+    Added Alec's User class then I add more methods to the class.
+    I added set methods and did only the excpetion checking for null and empty.
+    The User Class has 100% test coverage and no checkstyle errors.
+
+commit 3c2d3931f5ed5aae68e3f36b8fd9fc7964832661
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Feb 13 12:43:49 2025 -0500
+
+    Uploaded some documents
+    
+    Uploaded the 7 use cases, product backlog, and sprint burndown
+
+commit 80d3c06ad45b2cdb237e369ce45e13b77bb789b1
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Feb 12 20:48:21 2025 -0500
+
+    Fixed SOC in different classes and implemented duplicate user checking
+
+commit c0045844d4c7ad8264ddc6839b81ecd3ef1302c2
+Merge: 1e9f3a5 57c8d10
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Feb 12 00:07:15 2025 -0500
+
+    Merge pull request #6 from JBakerEdu/feature-ImplementCategories
+    
+    Created Categories
+
+commit 57c8d10676d00ae5fe6048895398e99cbd39f942
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Feb 12 00:00:15 2025 -0500
+
+    Created Categories
+    
+    Created an enum class for categories. It has a simple to string method.
+    It has been tested and has 100% code coverage. No checkstyle errors.
+
+commit 1e9f3a5bc4609328f1b2a25a5c08305697fa3ef4
+Merge: 56dc51b 96df559
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Feb 11 23:19:05 2025 -0500
+
+    Merge pull request #3 from JBakerEdu/feature-SingInPageUI
+    
+    Created SignIn Page Ui
+
+commit 5858149cf1855ef7cdd36ad0d781a107fe5d474f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 23:18:44 2025 -0500
+
+    Added more detailed feature to the account page
+    
+    Added s catergory combo box and some labels for the skills, and re arraged some of the UI... appearing different than the wireframe.
+
+commit 56dc51b0c9eed1943ded2717a30c5506d8c90f54
+Merge: 565f37d 284d57d
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 23:16:51 2025 -0500
+
+    Merge pull request #4 from JBakerEdu/feature-CreateUserClass
+    
+    Made A Simple User Class
+
+commit 284d57da46ec8ca763cd9bd5ed1b51a91e96bed0
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Feb 11 22:42:43 2025 -0500
+
+    Made A Simple User Class
+    
+    Made a simple user class that just has a logged in boolean. For the default constructor
+    it sets the logged in value to be false by default. There is an Overridden constructor as
+    well to set the value at initialization. It has 100% test coverage. And no checkstyle errors.
+    When we implement the account information we will update the logged in boolean to be true.
+    And when we implement the sign out we will make set the value to false;
+
+commit 96df559f9e8cb076cfef4100f93589747379467d
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 22:23:18 2025 -0500
+
+    Update SignInView.java
+    
+    Added for checkstyle missing doc comment
+
+commit 7acbb530d9fc93f5dd79ccdc194f35dc225abe15
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Feb 11 21:30:08 2025 -0500
+
+    Adds classes relating to direct messaging feature
+
+commit d65c01779d0bc9b08b4787797ec8a1b002bf0ddd
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Feb 11 21:29:23 2025 -0500
+
+    Adds classes relating to direct messaging feature
+
+commit 9c7f993c7ed8da2a0c60364eecc8448c93d6fe9f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 20:30:23 2025 -0500
+
+    Created AccountPage UI
+    
+    Made the account ui and am still tinkering with the way we want to do skills, thinking about combo boxes that will become labels once selected.
+
+commit 918a3ab53b9b800da80dae22e792a9093e73a314
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 19:34:07 2025 -0500
+
+    Created SignIn Page Ui
+    
+    I created the Sign in page which also doubles as the create an account ui since both are on the same Ui page
+
+commit 565f37dc7ac0b1e92ab12c6b955b38617397d6b5
+Merge: 3948b8e 7f064ae
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Feb 11 18:02:05 2025 -0500
+
+    Merge pull request #2 from JBakerEdu/feature-HomePageUI
+    
+    Created the UI for the HomePage
+
+commit 7f064ae7b66b4ef38d46b31a2248d1574b7b3a11
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Feb 11 17:51:18 2025 -0500
+
+    Created the UI for the HomePage
+    
+    Created the UI for the UI with some css styling.
+
+commit 3948b8e8a81096d098807e06cb4842f00476bdbd
+Merge: 15c993a 40ac5a0
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Mon Feb 10 18:14:41 2025 -0500
+
+    Merge pull request #1 from JBakerEdu/initialize-project
+    
+    Added the base project
+
+commit 40ac5a081ec33f5b767c5a973c19377112c2eff7
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sun Feb 9 00:38:19 2025 -0500
+
+    Added the base project
+    
+    Initialized project structure with a main file displaying a blank demo window.
+    This serves as the base for the Hyre Defyer Project (SE2, Group 5) and will be expanded further.
+
+commit 15c993affd32802dc03cc76c9b7f31cdc5127884
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Feb 8 00:33:25 2025 -0500
+
+    Update README.md
+    
+    Added an Overview and some of the features that will be available
+
+commit ad047cfa559751df738ccfc38bed8ab609cbae9c
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Feb 5 19:24:45 2025 -0500
+
+    Initial commit

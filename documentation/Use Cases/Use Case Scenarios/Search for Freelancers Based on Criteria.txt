@@ -1,0 +1,29 @@
+Use Case 3: Search for Freelancers Based on Criteria
+
+
+Actor: User, Freelancer, Employer
+Pre-condition: None
+
+Description:
+	Users can search for freelancers using filters such as name and skill. 
+	The system performs a case-insensitive search and displays freelancers that match the input string(s). 
+	Users can enter a name, a skill, or both.
+
+Basic Flow:
+	The user navigates to the search interface.
+	The user can enter:
+	A name in the name search box, and/or
+	A skill in the skill text box.
+	The system performs the following logic:
+	If a name is entered: 
+		shows freelancers whose names contain the entered string (case-insensitive).
+	If a skill is entered: 
+		shows freelancers who have at least one skill that contains the entered string (case-insensitive).
+	If both fields are filled: 
+		only shows freelancers who match both conditions.
+	The user can view matching freelancer profiles or refine their search.
+
+Alternative Flow – No Matches:
+	The system displays no freelancers
+
+Post-condition: The user sees a list of freelancers who match the entered name and/or skill criteria.

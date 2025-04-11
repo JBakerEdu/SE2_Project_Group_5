@@ -1,0 +1,30 @@
+Use Case 5: Post Freelancer Job Skills
+
+
+Actor: Freelancer
+Pre-condition: The freelancer is logged in.
+
+Description:
+	Freelancers can manage their profiles by updating job skills, writing or editing their bio, and managing their category placement. 
+	They can select from existing categories or create a new one if needed. 
+	Additionally, freelancers have the option to delete their account entirely.
+
+Basic Flow:
+	The freelancer navigates to their account/profile page.
+	The freelancer clicks the "Edit" button.
+	Updates or adds job skills.
+	Writes or edits their bio.
+	Selects an existing category or enters a personal category.
+	If a personal category is entered:
+		The system creates the category and assigns the freelancer as the first member.
+	The freelancer clicks "Save."
+	The system updates the freelancer’s profile with the new information.
+
+Additional Flow – Delete Account:
+	The freelancer clicks the "Delete Account" option in settings.
+	Upon confirmation, the system permanently deletes the freelancer’s account and associated data.
+
+Alternative Flows:
+	Unconfirmed Deletion: If the freelancer cancels the confirmation prompt, no data is deleted.
+
+Post-condition: The freelancer’s profile is updated with new or modified skills, bio, and category — or the account is successfully deleted, depending on the action taken.

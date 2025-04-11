@@ -1,0 +1,32 @@
+Use Case 7: Communicate with Other Users
+
+Actors:
+	Freelancer
+	Employer
+
+Pre-condition:
+	The user is logged in.
+	The employer has selected the "Hyre" button on the freelancer’s profile.
+
+Description:
+	This use case describes how an employer initiates communication with a freelancer by clicking the "Hyre" button. 
+	Once initiated, the freelancer can view and respond to the message through the platform's direct messaging system.
+
+Employer Flow
+Basic Flow:
+	The employer navigates to a freelancer's profile.
+	The employer clicks the "Hyre" button to initiate a direct message.
+	The system creates a new conversation thread.
+	The message appears in both the employer's and freelancer's message inboxes.
+
+Post-condition:
+	A new conversation is successfully created, and the freelancer is notified of the message.
+
+Freelancer Flow
+Basic Flow:
+	The freelancer navigates to the "Direct Messages" section.
+	The freelancer opens the conversation thread started by the employer.
+	The freelancer responds using the messaging UI.
+
+Post-condition:
+	The freelancer successfully opens the conversation and can reply to the employer.

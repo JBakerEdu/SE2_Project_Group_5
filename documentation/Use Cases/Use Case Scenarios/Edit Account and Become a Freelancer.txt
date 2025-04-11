@@ -1,0 +1,30 @@
+Use Case 8: Edit Account and Become a Freelancer
+
+Actor: User (Basic Account)
+Pre-condition: The user is logged in with a basic account (non-freelancer).
+
+Description:
+A basic user can update their account bio and choose to become a freelancer. Once they opt to become a freelancer, the system updates their role and reveals additional profile fields for them to complete, including skills and category selection. Upon completion, the user is publicly visible in the selected category and can be "Hyred" by employers.
+
+Basic Flow – Edit Bio (Basic User):
+	User navigates to their account settings.
+	User updates their bio.
+	User clicks "Save."
+	System validates and applies the update.
+
+Basic Flow – Become a Freelancer:
+	User clicks the "Become a Freelancer" button in their account settings.
+	System updates their role and displays additional profile fields:
+		Skills
+		Category selection or creation
+	User fills in their skills and selects an existing category or adds a new personal category.
+	If a new category is added, the system creates it and places the user as the first listed freelancer.
+	User clicks "Save."
+	System saves the information and makes the freelancer profile publicly visible:
+	The user now appears in search results and category listings.
+	Employers can view the profile and Hyre the freelancer.
+
+Alternative Flow – Missing Info:
+	If the freelancer form is submitted with missing or invalid fields, the system displays an error and prompts the user to correct it.
+
+Post-condition: The user's account is updated. && If they become a freelancer, their profile includes skills and category, and they are now visible to others as a freelancer available for hire.

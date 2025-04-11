@@ -1,0 +1,15 @@
+Use Case 2: View Categories of Freelancers
+
+
+Actor: User, Freelancer, Employer
+Pre-condition: None
+
+Description: 
+	Users can browse categories to find freelancers by field (e.g., programming, writing).
+
+Basic Flow:
+	User selects a category from the Home Page to view
+	System switched to category page and displays a list of freelancers within the category selected.
+	User clicks a freelancer to view 
+
+Post-condition: The user can view a list of freelancer categories.

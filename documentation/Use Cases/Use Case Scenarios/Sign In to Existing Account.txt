@@ -1,0 +1,26 @@
+Use Case 9: Sign In to Existing Account
+
+
+Actor: User (Freelancer or Employer)
+Pre-condition: The user already has an account registered on the platform.
+
+Description:
+	A user can sign into their existing account through the sign-in page. 
+	If the credentials are valid, the system retrieves their account data and grants them access to the platform. 
+	If authentication fails, the user is notified and asked to try again.
+
+Basic Flow:
+	The user navigates to the Sign In page.
+	The user enters their username/email and password.
+	The user clicks "Sign In."
+	The system verifies the credentials:
+	If valid:
+		The system retrieves the user’s account data (profile info, settings, messages, etc.).
+		The user is redirected to the main platform dashboard and can begin using the program.
+	If invalid:
+		The system displays an error message such as "Incorrect username or password. Please try again."
+
+Alternative Flow – Authentication Failure:
+	The system allows multiple retry attempts.
+
+Post-condition: The user is either signed into the platform and granted access, or informed that login failed and prompted to retry.
