@@ -3,9 +3,9 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.List;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
-import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
-import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryViewModel;
-import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.CategorySelectionHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -24,7 +24,7 @@ import javafx.scene.layout.Pane;
  */
 public class HomePageView {
 
-		private CategoryViewModel categoryViewModel;
+		private CategorySelectionHelper categoryViewModel;
 
 	@FXML
     private ImageView accountBioImage;
@@ -82,8 +82,8 @@ public class HomePageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -112,7 +112,7 @@ public class HomePageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
+    	if (UserSignInHelper.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -141,13 +141,13 @@ public class HomePageView {
     
     @FXML
     void initialize() {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
     		this.signInButton.setVisible(false);
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-    	this.categoryViewModel = new CategoryViewModel();
+    	this.categoryViewModel = new CategorySelectionHelper();
     	this.otherCategoryPane.setVisible(false);
     	List<Button> buttons = List.of(this.categoryButton1, this.categoryButton2, this.categoryButton3, this.categoryButton4, this.categoryButton5, this.categoryButton6);
         List<String> categories = Categories.values();

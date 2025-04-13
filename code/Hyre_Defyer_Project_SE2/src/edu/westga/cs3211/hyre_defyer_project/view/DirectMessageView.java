@@ -4,8 +4,8 @@ import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
-import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,8 +70,8 @@ public class DirectMessageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -80,7 +80,7 @@ public class DirectMessageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
+    	if (UserSignInHelper.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -102,7 +102,7 @@ public class DirectMessageView {
     void handleSendMessageClick(ActionEvent event) {
     	String message = this.draftMessageTextArea.getText();
     	User otherPerson = this.contactListView.getSelectionModel().getSelectedItem();
-    	User currentUser = SignInViewModel.getCurrentUser();
+    	User currentUser = UserSignInHelper.getCurrentUser();
     	
     	this.directMessageHandler.sendMessage(new Message(message, currentUser, otherPerson));
     	this.updateDisplayedMessages();
@@ -110,8 +110,8 @@ public class DirectMessageView {
     
     @FXML
     void initialize() {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
@@ -120,10 +120,10 @@ public class DirectMessageView {
     	this.updateContactList();
     	this.setUpListeners();
     	
-    	User selectedUser = AccountPageViewModel.getUserSelectedToView();
+    	User selectedUser = ViewedUserHelper.getUserSelectedToView();
     	if (selectedUser != null) {
     		User userToSelect = null;
-    		for (User user : ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())) {
+    		for (User user : ServerInterface.getMessagableUsers(UserSignInHelper.getCurrentUser())) {
     			if (user.getUserName().equals(selectedUser.getUserName())) {
     				userToSelect = user;
     				break;
@@ -140,7 +140,7 @@ public class DirectMessageView {
 				if (newValue != null) {
 					this.chatSettingsMenu.disableProperty().setValue(false);
 	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+	    		this.directMessageHandler = new DirectMessageHandler(UserSignInHelper.getCurrentUser(), newValue);
 				} else {
 					this.chatSettingsMenu.disableProperty().setValue(true);
 	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
@@ -149,7 +149,7 @@ public class DirectMessageView {
     	});
 			
 			this.deleteChat.setOnAction((event) -> {
-				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+				this.directMessageHandler.deleteChat(UserSignInHelper.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
 				this.updateContactList();
 			});
 		}
@@ -159,7 +159,7 @@ public class DirectMessageView {
 	}
 	
 	private void updateContactList() {
-		this.contactListView.setItems(FXCollections.observableArrayList(ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser())));
+		this.contactListView.setItems(FXCollections.observableArrayList(ServerInterface.getMessagableUsers(UserSignInHelper.getCurrentUser())));
 	}
 
 }

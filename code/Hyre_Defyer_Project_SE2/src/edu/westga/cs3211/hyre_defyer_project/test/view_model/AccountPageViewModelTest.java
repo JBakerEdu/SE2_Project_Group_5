@@ -8,11 +8,11 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
 
 class AccountPageViewModelTest {
 
@@ -22,8 +22,8 @@ class AccountPageViewModelTest {
 
     @BeforeEach
     void setUp() {
-        new AccountPageViewModel();
-        AccountPageViewModel.setUserSelectedToView(null);
+        new ViewedUserHelper();
+        ViewedUserHelper.setUserSelectedToView(null);
 
         testUser = new User("testUser", "This Is the bio");
         testFreelancer = new Freelancer("testUser", "This Is the bio", Categories.BUSINESS_AND_FINANCE);
@@ -40,27 +40,27 @@ class AccountPageViewModelTest {
 
     @Test
     void testSetAndGetUserSelectedToView() {
-        AccountPageViewModel.setUserSelectedToView(testUser);
-        assertEquals(testUser, AccountPageViewModel.getUserSelectedToView(), "The retrieved user should be the same as the one set.");
+        ViewedUserHelper.setUserSelectedToView(testUser);
+        assertEquals(testUser, ViewedUserHelper.getUserSelectedToView(), "The retrieved user should be the same as the one set.");
     }
 
     @Test
     void testUserSelectedToViewInitiallyNull() {
-        assertNull(AccountPageViewModel.getUserSelectedToView(), "Initially, the selected user should be null.");
+        assertNull(ViewedUserHelper.getUserSelectedToView(), "Initially, the selected user should be null.");
     }
 
     @Test
     void testSetUserSelectedToViewToNull() {
-        AccountPageViewModel.setUserSelectedToView(testUser);
-        assertNotNull(AccountPageViewModel.getUserSelectedToView(), "User should not be null after being set.");
+        ViewedUserHelper.setUserSelectedToView(testUser);
+        assertNotNull(ViewedUserHelper.getUserSelectedToView(), "User should not be null after being set.");
 
-        AccountPageViewModel.setUserSelectedToView(null);
-        assertNull(AccountPageViewModel.getUserSelectedToView(), "User should be null after being explicitly set to null.");
+        ViewedUserHelper.setUserSelectedToView(null);
+        assertNull(ViewedUserHelper.getUserSelectedToView(), "User should be null after being explicitly set to null.");
     }
 
     @Test
     void testGetRoster() {
-    	FreelancerRoster actualRoster = AccountPageViewModel.getRoster();
+    	FreelancerRoster actualRoster = ViewedUserHelper.getRoster();
     	
     	List<Freelancer> expectedFreelancers = freelancerRoster.getAllFreelancers();
         List<Freelancer> actualFreelancers = actualRoster.getAllFreelancers();
@@ -73,20 +73,20 @@ class AccountPageViewModelTest {
 
     @Test
     void testIsSelectedUserFreelancerWhenUserIsFreelancer() {
-        AccountPageViewModel.setUserSelectedToView(testUser);
-        assertTrue(AccountPageViewModel.isSelectedUserFreelancer(), "User should be identified as a freelancer.");
+        ViewedUserHelper.setUserSelectedToView(testUser);
+        assertTrue(ViewedUserHelper.isSelectedUserFreelancer(), "User should be identified as a freelancer.");
     }
 
     @Test
     void testIsSelectedUserFreelancerWhenUserIsNotFreelancer() {
         User nonFreelancerUser = new User("nonFreelancer", "Another bio");
-        AccountPageViewModel.setUserSelectedToView(nonFreelancerUser);
-        assertFalse(AccountPageViewModel.isSelectedUserFreelancer(), "User should not be identified as a freelancer.");
+        ViewedUserHelper.setUserSelectedToView(nonFreelancerUser);
+        assertFalse(ViewedUserHelper.isSelectedUserFreelancer(), "User should not be identified as a freelancer.");
     }
 
     @Test
     void testIsSelectedUserFreelancerWhenNoUserIsSelected() {
-        AccountPageViewModel.setUserSelectedToView(null);
-        assertFalse(AccountPageViewModel.isSelectedUserFreelancer(), "No user selected should return false for freelancer check.");
+        ViewedUserHelper.setUserSelectedToView(null);
+        assertFalse(ViewedUserHelper.isSelectedUserFreelancer(), "No user selected should return false for freelancer check.");
     }
 }
