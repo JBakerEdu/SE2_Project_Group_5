@@ -9,30 +9,30 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestSignInViewModel {
 
 	@Test
 	public void testSigninSuccess() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		vm.createAccount("new account", "password", "password");
 		assertTrue(vm.signIn("new account", "password"));
-		SignInViewModel.signOut();
+		UserSignInHelper.signOut();
 	}
 	
 	@Test
 	public void testSigninFail() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		vm.createAccount("user", "password", "password");
 		assertFalse(vm.signIn("not user", "password"));
-		SignInViewModel.signOut();
+		UserSignInHelper.signOut();
 	}
 	
 	@Test
 	public void testCreateAccountSuccess() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		assertTrue(vm.createAccount("user13", "1234567", "1234567"));
 		
 		ServerInterface.deleteUser("user13");
@@ -40,7 +40,7 @@ public class TestSignInViewModel {
 	
 	@Test
 	public void testCreateAccountDuplicateUser() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		assertTrue(vm.createAccount("new user", "other password", "other password"));
 		assertFalse(vm.createAccount("new user", "password", "password"));
 		
@@ -49,31 +49,31 @@ public class TestSignInViewModel {
 	
 	@Test
 	public void testSignOut() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		vm.signIn("user", "password");
-		assertTrue(SignInViewModel.signOut());
+		assertTrue(UserSignInHelper.signOut());
 	}
 	
 	@Test
 	public void testIsSignedIn() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		vm.createAccount("user", "password", "password");
 		vm.signIn("user", "password");
-		assertTrue(SignInViewModel.isSignedIn());
-		assertEquals("user", SignInViewModel.getCurrentUser().getUserName());
-		SignInViewModel.signOut();
+		assertTrue(UserSignInHelper.isSignedIn());
+		assertEquals("user", UserSignInHelper.getCurrentUser().getUserName());
+		UserSignInHelper.signOut();
 	}
 	
 	@Test
 	public void testIsNotSignedIn() {
-		SignInViewModel vm = new SignInViewModel();
+		UserSignInHelper vm = new UserSignInHelper();
 		vm.signIn("user", "password");
-		SignInViewModel.signOut();
-		assertFalse(SignInViewModel.isSignedIn());
+		UserSignInHelper.signOut();
+		assertFalse(UserSignInHelper.isSignedIn());
 	}
 	
 	@Test
 	public void testUserDoesNotExist() {
-		assertFalse(SignInViewModel.isSignedIn());
+		assertFalse(UserSignInHelper.isSignedIn());
 	}		
 }

@@ -11,6 +11,7 @@ public enum Views {
 	HOMEPAGE("view/HomePageView.fxml"),
 	DMS("view/DirectMessageView.fxml"),
 	ACCOUNT("view/AccountPageView.fxml"),
+	FREELANCER_POST("view/FreelancerPostPageView.fxml"),
 	ABOUT_HYRE("view/AboutHyrePageView.fxml"),
 	CATEGORY("view/CategoryPageView.fxml");
 	

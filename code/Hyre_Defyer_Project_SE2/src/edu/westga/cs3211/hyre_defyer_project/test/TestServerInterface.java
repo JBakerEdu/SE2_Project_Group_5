@@ -6,12 +6,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
-
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
@@ -21,6 +17,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.Constants;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerCommunicator;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
+
 public class TestServerInterface {
 	@Test
 	public void testCreateAccount() {

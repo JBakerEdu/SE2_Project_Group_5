@@ -1,4 +1,4 @@
-package edu.westga.cs3211.hyre_defyer_project.view_model;
+package edu.westga.cs3211.hyre_defyer_project.view_helpers;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
@@ -11,7 +11,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
  * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
-public class AccountPageViewModel {
+public class ViewedUserHelper {
     
     private static User userSelectedToView;
 
@@ -49,7 +49,7 @@ public class AccountPageViewModel {
      */
     public static boolean isSelectedUserFreelancer() {
         if (userSelectedToView != null) {
-            for (Freelancer freelancer : AccountPageViewModel.getRoster().getAllFreelancers()) {
+            for (Freelancer freelancer : ViewedUserHelper.getRoster().getAllFreelancers()) {
                 if (freelancer.getUserName().equals(userSelectedToView.getUserName())) {
                     return true;
                 }

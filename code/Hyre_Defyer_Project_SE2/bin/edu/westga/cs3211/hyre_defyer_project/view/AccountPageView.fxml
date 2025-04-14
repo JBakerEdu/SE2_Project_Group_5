@@ -75,7 +75,7 @@
                   <Bloom />
                </effect>
             </Button>
-            <TextArea fx:id="descriptionTextBox" layoutX="130.0" layoutY="94.0" prefHeight="130.0" prefWidth="513.0" wrapText="true" />
+            <TextArea fx:id="descriptionTextBox" layoutX="129.0" layoutY="94.0" prefHeight="130.0" prefWidth="513.0" wrapText="true" />
             <Button fx:id="signOutButton" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleSignOutClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Sign Out">
                <effect>
                   <Bloom />
@@ -107,11 +107,6 @@
                   <Bloom />
                </effect>
             </Button>
-            <Button fx:id="hyreButton" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleHyreButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Hyre">
-               <effect>
-                  <Bloom />
-               </effect>
-            </Button>
             <TextField fx:id="categoryTextFeild" layoutX="129.0" layoutY="310.0" prefHeight="25.0" prefWidth="302.0" promptText="Category" />
             <Button fx:id="cancelButton" alignment="CENTER" contentDisplay="CENTER" layoutX="411.0" layoutY="23.0" mnemonicParsing="false" onAction="#handleCancleClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Cancel">
                <effect>
@@ -123,7 +118,6 @@
                   <Bloom />
                </effect>
             </Button>
-            <Label fx:id="hyreMsgErrorLabel" alignment="CENTER" layoutX="442.0" layoutY="415.0" prefHeight="25.0" prefWidth="161.0" text="Must be logged in to Hyre" textFill="RED" />
             <Button fx:id="createCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="440.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleCreateCategoryClick" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Create New Category">
                <effect>
                   <Bloom />

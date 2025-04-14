@@ -1,7 +1,7 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
-import edu.westga.cs3211.hyre_defyer_project.view_model.AccountPageViewModel;
-import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -47,8 +47,8 @@ public class AboutHyrePageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		AccountPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -57,7 +57,7 @@ public class AboutHyrePageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (SignInViewModel.getCurrentUser() != null) {
+    	if (UserSignInHelper.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -81,8 +81,8 @@ public class AboutHyrePageView {
     
     @FXML
     void initialize() {
-    	if (SignInViewModel.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
+    	if (UserSignInHelper.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
     		this.signInButton.setVisible(false);
     		this.signInBar.setVisible(false);
     		this.signInLabel.setVisible(false);
