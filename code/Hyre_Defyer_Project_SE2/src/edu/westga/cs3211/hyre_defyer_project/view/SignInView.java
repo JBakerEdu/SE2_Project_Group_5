@@ -2,8 +2,8 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 
 import java.io.IOException;
 
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -63,12 +63,12 @@ public class SignInView {
     @FXML
     private TextField userNameSignInTextFeild;
     
-    private UserSignInHelper vm;
+    private SignInViewModel vm;
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
-    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -89,7 +89,7 @@ public class SignInView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
+    	if (SignInViewModel.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -121,9 +121,9 @@ public class SignInView {
     void initialize() {
     	this.setElements();
     	this.setListeners();
-    	this.vm = new UserSignInHelper();
-    	if (UserSignInHelper.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
+    	this.vm = new SignInViewModel();
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}

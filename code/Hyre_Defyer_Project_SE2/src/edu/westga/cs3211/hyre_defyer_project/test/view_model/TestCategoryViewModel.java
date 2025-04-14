@@ -3,7 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.CategorySelectionHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,14 +19,14 @@ import org.junit.jupiter.api.AfterEach;
  */
 public class TestCategoryViewModel {
     
-    private CategorySelectionHelper categoryViewModel;
+    private CategoryPageViewModel categoryViewModel;
     private Freelancer freelancer1;
     private Freelancer freelancer2;
     private Freelancer freelancer3;
 
     @BeforeEach
     void setUp() {
-        categoryViewModel = new CategorySelectionHelper();
+        categoryViewModel = new CategoryPageViewModel();
         freelancer1 = new Freelancer("Ben Dover", "Bio", Categories.BUSINESS_AND_FINANCE);
         freelancer2 = new Freelancer("Jane Smith", "Bio", Categories.BUSINESS_AND_FINANCE);
         freelancer3 = new Freelancer("Mike Jones", "Bio", Categories.BUSINESS_AND_FINANCE);
@@ -50,8 +50,8 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersReturnsCorrectList() {
-    	CategorySelectionHelper.selectedCategory = Categories.BUSINESS_AND_FINANCE;
-    	List<Freelancer> roster = CategorySelectionHelper.getFreelancers();
+    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancers();
     	assertTrue(roster.contains(freelancer1));
     	assertTrue(roster.contains(freelancer2));
     	assertTrue(roster.contains(freelancer3));
@@ -59,8 +59,8 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersWithNameAndSkillReturnsCorrectList() {
-    	CategorySelectionHelper.selectedCategory = Categories.BUSINESS_AND_FINANCE;
-    	List<Freelancer> roster = CategorySelectionHelper.getFreelancersWithNameAndSkill(" ", null);
+    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill(" ", null);
     	assertTrue(roster.contains(freelancer1));
     	assertTrue(roster.contains(freelancer2));
     	assertTrue(roster.contains(freelancer3));
@@ -68,8 +68,8 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersWithNameAndSkillEmptyResult() {
-    	CategorySelectionHelper.selectedCategory = Categories.BUSINESS_AND_FINANCE;
-    	List<Freelancer> roster = CategorySelectionHelper.getFreelancersWithNameAndSkill("Someone", "Something");
+    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill("Someone", "Something");
     	assertFalse(roster.contains(freelancer1));
     	assertFalse(roster.contains(freelancer2));
     	assertFalse(roster.contains(freelancer3));

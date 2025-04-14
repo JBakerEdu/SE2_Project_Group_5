@@ -8,8 +8,8 @@ import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -141,8 +141,8 @@ public class AccountPageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
-    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		AccountViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -156,7 +156,7 @@ public class AccountPageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
+    	if (SignInViewModel.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -175,7 +175,7 @@ public class AccountPageView {
     
     @FXML
     void handleBecomeFreelancerButtonClick(ActionEvent event) {
-        User currentUser = UserSignInHelper.getCurrentUser();
+        User currentUser = SignInViewModel.getCurrentUser();
         if (currentUser == null) {
         	return;
         }
@@ -189,20 +189,20 @@ public class AccountPageView {
     @FXML
     void handleDeleteAccountButtonClick(ActionEvent event) {
     	if (this.isFreelancer) {
-    		ServerInterface.removeFreelancer(this.getFreelancerByUsername(UserSignInHelper.getCurrentUser().getUserName()));
+    		ServerInterface.removeFreelancer(this.getFreelancerByUsername(SignInViewModel.getCurrentUser().getUserName()));
     	}
-    	ServerInterface.deleteUser(UserSignInHelper.getCurrentUser().getUserName());
-    	UserSignInHelper.signOut();
+    	ServerInterface.deleteUser(SignInViewModel.getCurrentUser().getUserName());
+    	SignInViewModel.signOut();
     	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);	    
     }
     
     @FXML
     void handleSaveClick(ActionEvent event) {
-    	User current = UserSignInHelper.getCurrentUser();
+    	User current = SignInViewModel.getCurrentUser();
         if (current == null) {
         	return;
         }
-        if (ViewedUserHelper.isSelectedUserFreelancer()) {
+        if (AccountViewModel.isSelectedUserFreelancer()) {
         	Freelancer tempFreelancer = this.getFreelancerByUsername(current.getUserName());
         	Freelancer theFreelancer = new Freelancer(current.getUserName(), "", Categories.UNDETERMINED);
         	theFreelancer.setBio(this.descriptionTextBox.getText());
@@ -242,14 +242,14 @@ public class AccountPageView {
 
     @FXML
     void handleSignOutClick(ActionEvent event) {
-    	UserSignInHelper.signOut();
+    	SignInViewModel.signOut();
     	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
     
     @FXML
     void initialize() {
         this.catergoryComboBox.getItems().addAll(Categories.values());
-        User current = UserSignInHelper.getCurrentUser();
+        User current = SignInViewModel.getCurrentUser();
         if (current == null) {
             GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
             return;
@@ -300,7 +300,7 @@ public class AccountPageView {
     }
     
     private void updateDataShown() {
-    	User current = UserSignInHelper.getCurrentUser();
+    	User current = SignInViewModel.getCurrentUser();
         this.descriptionTextBox.setText(current.getBio());
 
         if (this.isFreelancer) {
@@ -326,7 +326,7 @@ public class AccountPageView {
     }
 
     private Freelancer getFreelancerByUsername(String username) {
-        for (Freelancer freelancer : ViewedUserHelper.getRoster().getAllFreelancers()) {
+        for (Freelancer freelancer : AccountViewModel.getRoster().getAllFreelancers()) {
             if (freelancer.getUserName().equals(username)) {
                 return freelancer;
             }

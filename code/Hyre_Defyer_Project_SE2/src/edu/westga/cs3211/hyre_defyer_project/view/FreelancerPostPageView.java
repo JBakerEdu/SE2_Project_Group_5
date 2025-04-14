@@ -4,8 +4,8 @@ import java.util.List;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.AccountViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -83,8 +83,8 @@ public class FreelancerPostPageView {
 
     @FXML
     void initialize() {
-    	if (UserSignInHelper.getCurrentUser() != null) {
-    		this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	}
     	this.disableAll();
         this.updateDataShown();
@@ -102,7 +102,7 @@ public class FreelancerPostPageView {
 	}
 
 	private void updateDataShown() {
-        User selectedUser = ViewedUserHelper.getUserSelectedToView();
+        User selectedUser = AccountViewModel.getUserSelectedToView();
         Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         if (freelancer == null) {
             return;
@@ -132,7 +132,7 @@ public class FreelancerPostPageView {
 	}
 
     private Freelancer getFreelancerByUsername(String username) {
-        for (Freelancer freelancer : ViewedUserHelper.getRoster().getAllFreelancers()) {
+        for (Freelancer freelancer : AccountViewModel.getRoster().getAllFreelancers()) {
             if (freelancer.getUserName().equals(username)) {
                 return freelancer;
             }
@@ -141,8 +141,8 @@ public class FreelancerPostPageView {
     }   
     
     private void updateHyreButtonAndErrorLabel() {
-        User current = UserSignInHelper.getCurrentUser();
-        User viewed  = ViewedUserHelper.getUserSelectedToView();
+        User current = SignInViewModel.getCurrentUser();
+        User viewed  = AccountViewModel.getUserSelectedToView();
 
         boolean signedIn    = (current != null);
         boolean viewingSelf = signedIn && current.getUserName().equals(viewed.getUserName());
@@ -163,8 +163,8 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleHyreButtonClick(ActionEvent event) {
-        var current = UserSignInHelper.getCurrentUser();
-        var selected = ViewedUserHelper.getUserSelectedToView();
+        var current = SignInViewModel.getCurrentUser();
+        var selected = AccountViewModel.getUserSelectedToView();
         ServerInterface.addMessageableUser(current, selected);
         GUIHelper.switchView(this.anchorPane, Views.DMS);
     }
@@ -176,7 +176,7 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-        if (UserSignInHelper.getCurrentUser() != null) {
+        if (SignInViewModel.getCurrentUser() != null) {
             GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
         } else {
             GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -185,7 +185,7 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-        if (UserSignInHelper.getCurrentUser() != null) {
+        if (SignInViewModel.getCurrentUser() != null) {
             GUIHelper.switchView(this.anchorPane, Views.DMS);
         } else {
             GUIHelper.switchView(this.anchorPane, Views.SIGNIN);

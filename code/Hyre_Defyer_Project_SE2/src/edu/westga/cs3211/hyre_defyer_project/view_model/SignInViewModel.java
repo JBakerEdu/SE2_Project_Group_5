@@ -1,4 +1,4 @@
-package edu.westga.cs3211.hyre_defyer_project.view_helpers;
+package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
@@ -9,13 +9,13 @@ import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
  * @author Myles Debro
  * @version Spring 2025
  */
-public class UserSignInHelper {
+public class SignInViewModel {
 	private static User currentUser;
 	
 	/**
 	 * Creates new SignInViewModel object
 	 */
-	public UserSignInHelper() {
+	public SignInViewModel() {
 	}
 	
 	/**

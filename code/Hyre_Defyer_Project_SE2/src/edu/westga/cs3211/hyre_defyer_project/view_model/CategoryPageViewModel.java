@@ -1,4 +1,4 @@
-package edu.westga.cs3211.hyre_defyer_project.view_helpers;
+package edu.westga.cs3211.hyre_defyer_project.view_model;
 
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author Jacob Baker and Kate Anglin
  * @version Spring 2025
  */
-public class CategorySelectionHelper {
+public class CategoryPageViewModel {
 	
 	public static String selectedCategory;
 
