@@ -3,7 +3,7 @@ package edu.westga.cs3211.hyre_defyer_project.view_helpers;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +17,8 @@ import java.util.List;
 public class CategorySelectionHelper {
 	
 	public static String selectedCategory;
+	private static ArrayList<String> selectedSkills;
+	private static String selectedName;
 
     /**
      * Sets the selected category.
@@ -59,4 +61,40 @@ public class CategorySelectionHelper {
     	List<Freelancer> result = roster.getFreelancersByNameAndSkill(name, skill);
     	return result;
     }
+    
+	/**
+	 * gets the selected name for the category sorting
+	 * 
+	 * @return the selected name passed in
+	 */
+	public static String getSelectedName() {
+		return selectedName;
+	}
+
+	/**
+	 * sets the selected name for filtering
+	 * 
+	 * @param selectedName the name typed up sorting by
+	 */
+	public static void setSelectedName(String selectedName) {
+		CategorySelectionHelper.selectedName = selectedName;
+	}
+
+	/**
+	 * get a list of the selected skills
+	 * 
+	 * @return a list of skills 
+	 */
+	public static ArrayList<String> getSelectedSkills() {
+		return selectedSkills;
+	}
+
+	/**
+	 * sets the list of selected skills 
+	 * 
+	 * @param selectedSkills the list of skills selected in the category list
+	 */
+	public static void setSelectedSkills(ArrayList<String> selectedSkills) {
+		CategorySelectionHelper.selectedSkills = selectedSkills;
+	}
 }

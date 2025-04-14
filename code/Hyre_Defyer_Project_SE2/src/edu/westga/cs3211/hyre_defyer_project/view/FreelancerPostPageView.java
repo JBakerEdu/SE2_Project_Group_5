@@ -38,6 +38,9 @@ public class FreelancerPostPageView {
 
     @FXML
     private AnchorPane anchorPane;
+    
+    @FXML
+    private Button backButton;
 
     @FXML
     private Label categoryLabel;
@@ -89,6 +92,11 @@ public class FreelancerPostPageView {
     	this.disableAll();
         this.updateDataShown();
         this.updateHyreButtonAndErrorLabel();
+    }
+    
+    @FXML
+    void handleBackButtonClick(ActionEvent event) {
+    	GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
     }
 
     private void disableAll() {
