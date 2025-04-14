@@ -226,20 +226,24 @@ public class CategoryPageView {
         this.previousPageButton.setDisable(true);
         this.nextPageButton.setDisable(true);
 
-        if (CategorySelectionHelper.selectedCategory != null) {
-            this.categoryName.setText(CategorySelectionHelper.selectedCategory.toString().toUpperCase().replace("_", " "));
-            this.freelancers = CategorySelectionHelper.getFreelancers();
-        } else {
-            this.categoryName.setText("No category selected");
-        }
-
         if (UserSignInHelper.getCurrentUser() != null) {
             this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
         } else {
             this.accountLabel.textProperty().setValue("Account");
         }
+
+        this.initializeFilteredPageValues();
         this.initializeFreelancerButtons();
         this.updatePeopleButtons();
+    }
+    
+    private void initializeFilteredPageValues() {
+    	if (CategorySelectionHelper.selectedCategory != null) {
+            this.categoryName.setText(CategorySelectionHelper.selectedCategory.toString().toUpperCase().replace("_", " "));
+            this.freelancers = CategorySelectionHelper.getFreelancers();
+        } else {
+            this.categoryName.setText("Please Select Category");
+        }
     }
 
     /**
