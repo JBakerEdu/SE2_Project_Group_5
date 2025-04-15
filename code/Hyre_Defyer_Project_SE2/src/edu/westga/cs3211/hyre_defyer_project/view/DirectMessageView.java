@@ -9,12 +9,13 @@ import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewMo
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -32,12 +33,6 @@ public class DirectMessageView {
 
     @FXML
     private Label accountLabel;
-    
-    @FXML
-    private MenuButton chatSettingsMenu;
-
-    @FXML
-    private MenuItem deleteChat;
 
     @FXML
     private ListView<User> contactListView;
@@ -66,6 +61,12 @@ public class DirectMessageView {
     @FXML
     private ListView<Message> messageListView;
     
+    @FXML
+    private Button refreshChatButton;
+
+    @FXML
+    private Button removeContactButton;
+    
     private DirectMessageHandler directMessageHandler;
 
     @FXML
@@ -85,8 +86,32 @@ public class DirectMessageView {
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
     	}
+    }
+    
+    @FXML
+    void handleRefreshChatClick(ActionEvent event) {
+    	User selectedUser = this.contactListView.getSelectionModel().getSelectedItem();
+		
+    	this.updateContactList();
+
+    	if (selectedUser != null) {
+			this.updateDisplayedMessages();
+			this.contactListView.getSelectionModel().select(selectedUser);
+		}
     	
     }
+   
+    @FXML
+    void handleRemoveContactClick(ActionEvent event) {
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setHeaderText("Are you sure you want to remove this contact?");
+		alert.setContentText("Click OK to remove the contact, or Cancel to keep the contact.");
+		alert.showAndWait();
+		if (alert.getResult() == ButtonType.OK) {
+			this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+			this.updateContactList();
+		}
+	}
 
     @FXML
     void handleHomeClick(MouseEvent event) {
@@ -116,7 +141,6 @@ public class DirectMessageView {
     		this.accountLabel.textProperty().setValue("Account");
     	}
 
-    	this.chatSettingsMenu.disableProperty().set(true);
     	this.updateContactList();
     	this.setUpListeners();
     	
@@ -138,19 +162,17 @@ public class DirectMessageView {
 		private void setUpListeners() {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				if (newValue != null) {
-					this.chatSettingsMenu.disableProperty().setValue(false);
+					this.removeContactButton.disableProperty().setValue(false);
+					if (newValue.getUserName().equals("admin")) {
+						this.removeContactButton.disableProperty().setValue(true);
+					}
 	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
 	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
-					this.chatSettingsMenu.disableProperty().setValue(true);
+					this.removeContactButton.disableProperty().setValue(true);
 	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
     		this.updateDisplayedMessages();
-    	});
-			
-			this.deleteChat.setOnAction((event) -> {
-				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
-				this.updateContactList();
 			});
 		}
 

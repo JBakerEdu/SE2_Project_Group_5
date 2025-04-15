@@ -25,12 +25,10 @@ public class DirectMessageHandler {
 	public DirectMessageHandler(User sender, User receiver) {
         this.sender = sender;
         this.receiver = receiver;
-        this.updateMessageLog();
     }
 
 	private void updateMessageLog() {
-		ArrayList<Message> fullMessageLog = new ArrayList<Message>(ServerInterface.getMessagesBetween(this.sender, this.receiver));
-        this.messageLog = fullMessageLog;
+        this.messageLog = ServerInterface.getMessagesBetween(this.sender, this.receiver);
     }
 	
 	/** Sends a direct message to the receiver​
