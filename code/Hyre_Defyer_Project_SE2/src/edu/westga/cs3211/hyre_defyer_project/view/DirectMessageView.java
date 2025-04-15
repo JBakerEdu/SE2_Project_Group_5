@@ -12,8 +12,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -32,12 +30,6 @@ public class DirectMessageView {
 
     @FXML
     private Label accountLabel;
-    
-    @FXML
-    private MenuButton chatSettingsMenu;
-
-    @FXML
-    private MenuItem deleteChat;
 
     @FXML
     private ListView<User> contactListView;
@@ -66,7 +58,15 @@ public class DirectMessageView {
     @FXML
     private ListView<Message> messageListView;
     
+    @FXML
+    private Button refreshChatButton;
+
+    @FXML
+    private Button removeContactButton;
+    
     private DirectMessageHandler directMessageHandler;
+    
+    
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -85,8 +85,19 @@ public class DirectMessageView {
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
     	}
-    	
     }
+    
+    @FXML
+    void handleRefreshChatClick(ActionEvent event) {
+    	this.updateDisplayedMessages();
+    }
+   
+    
+    @FXML
+    void handleRemoveContactClick(ActionEvent event) {
+    	this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
+		this.updateContactList();
+	}
 
     @FXML
     void handleHomeClick(MouseEvent event) {
@@ -116,7 +127,6 @@ public class DirectMessageView {
     		this.accountLabel.textProperty().setValue("Account");
     	}
 
-    	this.chatSettingsMenu.disableProperty().set(true);
     	this.updateContactList();
     	this.setUpListeners();
     	
@@ -138,19 +148,16 @@ public class DirectMessageView {
 		private void setUpListeners() {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				if (newValue != null) {
-					this.chatSettingsMenu.disableProperty().setValue(false);
+					this.removeContactButton.disableProperty().setValue(false);
+					this.refreshChatButton.disableProperty().setValue(false);
 	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
 	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
-					this.chatSettingsMenu.disableProperty().setValue(true);
+					this.removeContactButton.disableProperty().setValue(true);
+					this.refreshChatButton.disableProperty().setValue(true);
 	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
     		this.updateDisplayedMessages();
-    	});
-			
-			this.deleteChat.setOnAction((event) -> {
-				this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
-				this.updateContactList();
 			});
 		}
 

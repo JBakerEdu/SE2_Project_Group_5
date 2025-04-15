@@ -148,6 +148,10 @@ class ServerRequestHandler:
         
         self._serverResourceHandler.removeUserFromDMList(current_user, other_user)
         
+        response = {}
+        response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        return response
+        
 
     def _getFreelancers(self):
         '''
