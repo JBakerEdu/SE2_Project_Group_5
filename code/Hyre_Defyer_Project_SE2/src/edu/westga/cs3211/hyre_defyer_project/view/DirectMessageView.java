@@ -68,8 +68,6 @@ public class DirectMessageView {
     private Button removeContactButton;
     
     private DirectMessageHandler directMessageHandler;
-    
-    
 
     @FXML
     void handleAccountClick(MouseEvent event) {
@@ -103,7 +101,6 @@ public class DirectMessageView {
     	
     }
    
-    
     @FXML
     void handleRemoveContactClick(ActionEvent event) {
     	Alert alert = new Alert(AlertType.CONFIRMATION);
