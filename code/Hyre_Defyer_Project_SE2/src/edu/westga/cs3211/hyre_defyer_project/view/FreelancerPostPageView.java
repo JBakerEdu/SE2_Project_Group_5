@@ -24,8 +24,8 @@ import javafx.scene.layout.AnchorPane;
  */
 public class FreelancerPostPageView {
 	
-	private static final String MSG_MUST_LOGIN     = "You must be logged in";
-	private static final String MSG_CANNOT_SELF    = "You cannot Hyre yourself";
+	private static final String MSG_MUST_LOGIN = "You must be logged in";
+	private static final String MSG_CANNOT_SELF = "You cannot Hyre yourself";
 
 	@FXML
     private Label aboutLabel;

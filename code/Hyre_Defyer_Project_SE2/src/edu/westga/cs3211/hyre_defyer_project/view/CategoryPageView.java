@@ -238,8 +238,8 @@ public class CategoryPageView {
     }
     
     private void initializeFilteredPageValues() {
-    	if (CategoryPageViewModel.selectedCategory != null) {
-            this.categoryName.setText(CategoryPageViewModel.selectedCategory.toString().toUpperCase().replace("_", " "));
+    	if (CategoryPageViewModel.getSelectedCategory() != null) {
+            this.categoryName.setText(CategoryPageViewModel.getSelectedCategory().toString().toUpperCase().replace("_", " "));
             this.freelancers = CategoryPageViewModel.getFreelancers();
         } else {
             this.categoryName.setText("Please Select Category");

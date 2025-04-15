@@ -14,7 +14,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 
-class AccountPageViewModelTest {
+class FreelancerPostPageViewModelTest {
 
     private User testUser;
     private Freelancer testFreelancer;

@@ -24,8 +24,6 @@ import javafx.scene.layout.Pane;
  */
 public class HomePageView {
 
-		private CategoryPageViewModel categoryViewModel;
-
 	@FXML
     private ImageView accountBioImage;
 
@@ -96,7 +94,7 @@ public class HomePageView {
             Button clickedButton = (Button) event.getSource();
             String buttonText = clickedButton.getText();
             try {
-                this.categoryViewModel.setSelectedCategory(buttonText);
+                CategoryPageViewModel.setSelectedCategory(buttonText);
             } catch (IllegalArgumentException ex) {
                 System.err.println("Invalid category selected: " + buttonText);
                 return;
@@ -147,7 +145,6 @@ public class HomePageView {
     	} else {
     		this.accountLabel.textProperty().setValue("Account");
     	}
-    	this.categoryViewModel = new CategoryPageViewModel();
     	this.otherCategoryPane.setVisible(false);
     	List<Button> buttons = List.of(this.categoryButton1, this.categoryButton2, this.categoryButton3, this.categoryButton4, this.categoryButton5, this.categoryButton6);
         List<String> categories = Categories.values();
@@ -171,7 +168,7 @@ public class HomePageView {
             if (selectedItem != null) {
                 String categoryName = selectedItem.toString();
                 try {
-                    this.categoryViewModel.setSelectedCategory(categoryName);
+                    CategoryPageViewModel.setSelectedCategory(categoryName);
                     GUIHelper.switchView(this.anchorPane, Views.CATEGORY);
                 } catch (IllegalArgumentException ex) {
                     System.err.println("Invalid category selected: " + categoryName);

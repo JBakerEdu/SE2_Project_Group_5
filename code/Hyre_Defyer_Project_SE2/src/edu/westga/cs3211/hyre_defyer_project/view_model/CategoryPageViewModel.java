@@ -16,16 +16,25 @@ import java.util.List;
  */
 public class CategoryPageViewModel {
 	
-	public static String selectedCategory;
+	private static String selectedCategory;
 	private static ArrayList<String> selectedSkills;
 	private static String selectedName;
+	
+    /**
+     * Clears all static selection state.
+     */
+    public static void clearSelections() {
+        selectedCategory = null;
+        selectedSkills = null;
+        selectedName = null;
+    }
 
     /**
      * Sets the selected category.
      * 
      * @param category the category to be set
      */
-    public void setSelectedCategory(String category) {
+    public static void setSelectedCategory(String category) {
     	String normalizedCategory = category.trim().toUpperCase().replace(" ", "_");
         selectedCategory = normalizedCategory;
     }
@@ -35,7 +44,7 @@ public class CategoryPageViewModel {
      * 
      * @return the selected category
      */
-    public String getSelectedCategory() {
+    public static String getSelectedCategory() {
         return selectedCategory;
     }
     
