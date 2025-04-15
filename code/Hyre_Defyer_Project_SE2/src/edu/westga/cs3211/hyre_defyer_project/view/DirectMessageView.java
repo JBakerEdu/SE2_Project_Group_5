@@ -89,7 +89,15 @@ public class DirectMessageView {
     
     @FXML
     void handleRefreshChatClick(ActionEvent event) {
-    	this.updateDisplayedMessages();
+    	User selectedUser = this.contactListView.getSelectionModel().getSelectedItem();
+		
+    	this.updateContactList();
+
+    	if (selectedUser != null) {
+			this.updateDisplayedMessages();
+			this.contactListView.getSelectionModel().select(selectedUser);
+		}
+    	
     }
    
     
@@ -149,12 +157,13 @@ public class DirectMessageView {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				if (newValue != null) {
 					this.removeContactButton.disableProperty().setValue(false);
-					this.refreshChatButton.disableProperty().setValue(false);
+					if (newValue.getUserName().equals("admin")) {
+						this.removeContactButton.disableProperty().setValue(true);
+					}
 	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
 	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
 					this.removeContactButton.disableProperty().setValue(true);
-					this.refreshChatButton.disableProperty().setValue(true);
 	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
     		this.updateDisplayedMessages();
