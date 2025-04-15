@@ -97,6 +97,11 @@
             </Button>
             <TextField fx:id="categoryTextFeild" layoutX="126.0" layoutY="311.0" prefHeight="25.0" prefWidth="302.0" promptText="Category" />
             <Label fx:id="hyreMsgErrorLabel" alignment="CENTER" layoutX="263.0" layoutY="410.0" prefHeight="25.0" prefWidth="161.0" text="Must be logged in to Hyre" textFill="RED" />
+            <Button fx:id="backButton" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleBackButtonClick" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: #F0FFF0; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Back">
+               <effect>
+                  <Bloom />
+               </effect>
+            </Button>
          </children>
       </Pane>
    </children>
