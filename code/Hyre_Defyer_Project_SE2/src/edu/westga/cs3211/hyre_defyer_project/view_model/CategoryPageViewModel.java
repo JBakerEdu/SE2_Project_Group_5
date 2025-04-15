@@ -54,7 +54,7 @@ public class CategoryPageViewModel {
      * @return the freelancers with the selected category
      */
     public static List<Freelancer> getFreelancers() {
-    	return ServerInterface.getFreelancers().getFreelancersByCategory(selectedCategory);
+    	return ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory());
     }
     
     /**
@@ -65,7 +65,7 @@ public class CategoryPageViewModel {
      * @return the freelancers that match
      */
     public static List<Freelancer> getFreelancersWithNameAndSkill(String name, String skill) {
-    	List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(selectedCategory);
+    	List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory());
     	FreelancerRoster roster = new FreelancerRoster(searched);
     	List<Freelancer> result = roster.getFreelancersByNameAndSkill(name, skill);
     	return result;

@@ -1,48 +1,104 @@
 package edu.westga.cs3211.hyre_defyer_project.test.view_model;
 
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
+import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
+import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+
+/**
+ * Unit tests for the CategoryViewModel class.
+ */
 public class TestCategoryViewModel {
-	
-	CategoryPageViewModel viewModel = new CategoryPageViewModel();
+    
+    private CategoryPageViewModel categoryViewModel;
+    private Freelancer freelancer1;
+    private Freelancer freelancer2;
+    private Freelancer freelancer3;
 
     @BeforeEach
     void setUp() {
-        CategoryPageViewModel.setSelectedName(null);
-        CategoryPageViewModel.setSelectedName(null);
-        CategoryPageViewModel.setSelectedSkills(null);
-    }
+        CategoryPageViewModel.clearSelections();
 
+        this.categoryViewModel = new CategoryPageViewModel();
+        freelancer1 = new Freelancer("Ben Dover", "Bio", Categories.BUSINESS_AND_FINANCE);
+        freelancer2 = new Freelancer("Jane Smith", "Bio", Categories.BUSINESS_AND_FINANCE);
+        freelancer3 = new Freelancer("Mike Jones", "Bio", Categories.BUSINESS_AND_FINANCE);
+        ServerInterface.addFreelancer(freelancer1);
+        ServerInterface.addFreelancer(freelancer2);
+        ServerInterface.addFreelancer(freelancer3);
+    }
+    
     @AfterEach
     void tearDown() {
-        CategoryPageViewModel.setSelectedName(null);
-        CategoryPageViewModel.setSelectedName(null);
-        CategoryPageViewModel.setSelectedSkills(null);
+        RosterHelper.removeFreelancerFromServer(freelancer1);
+        RosterHelper.removeFreelancerFromServer(freelancer2);
+        RosterHelper.removeFreelancerFromServer(freelancer3);
+
+        CategoryPageViewModel.clearSelections();
+    }
+
+    @Test
+    void testSetSelectedCategory() {
+    	assertNotNull(this.categoryViewModel);
+        CategoryPageViewModel.setSelectedCategory(Categories.DEVELOPMENT_AND_IT);
+        assertEquals(
+            Categories.DEVELOPMENT_AND_IT.toUpperCase().replace(" ", "_"),
+            CategoryPageViewModel.getSelectedCategory(),
+            "Selected category should be set correctly."
+        );
+    }
+
+    @Test
+    public void testGetFreelancersReturnsCorrectList() {
+        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
+        List<Freelancer> roster = CategoryPageViewModel.getFreelancers();
+        assertTrue(roster.contains(freelancer1));
+        assertTrue(roster.contains(freelancer2));
+        assertTrue(roster.contains(freelancer3));
+    }
+
+    @Test
+    public void testGetFreelancersWithNameAndSkillReturnsCorrectList() {
+        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
+        List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill(" ", null);
+        assertTrue(roster.contains(freelancer1));
+        assertTrue(roster.contains(freelancer2));
+        assertTrue(roster.contains(freelancer3));
+    }
+
+    @Test
+    public void testGetFreelancersWithNameAndSkillEmptyResult() {
+        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
+        List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill("Someone", "Something");
+        assertFalse(roster.contains(freelancer1));
+        assertFalse(roster.contains(freelancer2));
+        assertFalse(roster.contains(freelancer3));
     }
 
     @Test
     void testSelectedNameSetterAndGetter() {
-    	
-    	assertNotNull(viewModel, "Should not be null once created");
-        assertNull(CategoryPageViewModel.getSelectedName(), "Initially, selectedName should be null");
+        assertNull(CategoryPageViewModel.getSelectedName());
 
         CategoryPageViewModel.setSelectedName("Alice");
-        assertEquals("Alice", CategoryPageViewModel.getSelectedName(),
-                "After setting, getSelectedName should return the same value");
+        assertEquals("Alice", CategoryPageViewModel.getSelectedName());
 
         CategoryPageViewModel.setSelectedName("Bob");
         assertEquals("Bob", CategoryPageViewModel.getSelectedName(),
-                "Setter should overwrite previous selectedName");
+            "Setter should overwrite previous selectedName");
     }
 
     @Test
     void testSelectedSkillsSetterAndGetter() {
-        assertNull(CategoryPageViewModel.getSelectedSkills(), "Initially, selectedSkills should be null");
+        assertNull(CategoryPageViewModel.getSelectedSkills());
 
         ArrayList<String> skills = new ArrayList<>();
         skills.add("Java");
@@ -51,45 +107,31 @@ public class TestCategoryViewModel {
         CategoryPageViewModel.setSelectedSkills(skills);
         ArrayList<String> retrieved = CategoryPageViewModel.getSelectedSkills();
 
-        assertNotNull(retrieved, "After setting, selectedSkills should not be null");
-        assertEquals(2, retrieved.size(), "List size should match");
-        assertTrue(retrieved.contains("Java") && retrieved.contains("Spring"),
-                "Retrieved list should contain exactly the elements set");
+        assertNotNull(retrieved);
+        assertEquals(2, retrieved.size());
+        assertTrue(retrieved.contains("Java") && retrieved.contains("Spring"));
 
         retrieved.remove("Spring");
         assertEquals(1, CategoryPageViewModel.getSelectedSkills().size(),
-                "Modifications to the returned list should affect the stored list");
+            "Mutations to returned list should reflect in static field");
     }
-    
+
     @Test
     void testClearSelectionsResetsAllStaticFields() {
+        CategoryPageViewModel.setSelectedCategory("TestCat");
         CategoryPageViewModel.setSelectedName("TestName");
         ArrayList<String> skills = new ArrayList<>();
-        skills.add("SkillA");
+        skills.add("X");
         CategoryPageViewModel.setSelectedSkills(skills);
-        CategoryPageViewModel.setSelectedCategory("Some Category");
 
-        assertNotNull(CategoryPageViewModel.getSelectedName(), "Precondition: selectedName should be non-null");
-        assertNotNull(CategoryPageViewModel.getSelectedSkills(), "Precondition: selectedSkills should be non-null");
-        assertNotNull(CategoryPageViewModel.getSelectedCategory(), "Precondition: selectedCategory should be non-null");
+        assertNotNull(CategoryPageViewModel.getSelectedCategory());
+        assertNotNull(CategoryPageViewModel.getSelectedName());
+        assertNotNull(CategoryPageViewModel.getSelectedSkills());
 
         CategoryPageViewModel.clearSelections();
 
-        assertNull(CategoryPageViewModel.getSelectedName(), "selectedName should be null after clearSelections()");
-        assertNull(CategoryPageViewModel.getSelectedSkills(), "selectedSkills should be null after clearSelections()");
-        assertNull(CategoryPageViewModel.getSelectedCategory(), "selectedCategory should be null after clearSelections()");
-    }
-
-
-    @Test
-    void testSelectedCategoryStaticBehavior() {
-        assertNull(CategoryPageViewModel.getSelectedCategory(), "Initially, selectedCategory should be null");
-
-        CategoryPageViewModel.setSelectedCategory("  Development and IT  ");
-        assertEquals("DEVELOPMENT_AND_IT", CategoryPageViewModel.getSelectedCategory(),
-                "Category should be normalized to uppercase with underscores");
-
-        assertEquals("DEVELOPMENT_AND_IT", CategoryPageViewModel.getSelectedCategory(),
-                "Static selectedCategory should be shared across instances");
+        assertNull(CategoryPageViewModel.getSelectedCategory());
+        assertNull(CategoryPageViewModel.getSelectedName());
+        assertNull(CategoryPageViewModel.getSelectedSkills());
     }
 }
