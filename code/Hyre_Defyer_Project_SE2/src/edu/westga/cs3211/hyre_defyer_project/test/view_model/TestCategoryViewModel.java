@@ -59,20 +59,20 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersReturnsCorrectList() {
-        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-        List<Freelancer> roster = CategoryPageViewModel.getFreelancers();
-        assertTrue(roster.contains(freelancer1));
-        assertTrue(roster.contains(freelancer2));
-        assertTrue(roster.contains(freelancer3));
+    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancers();
+    	assertTrue(roster.contains(freelancer1));
+    	assertTrue(roster.contains(freelancer2));
+    	assertTrue(roster.contains(freelancer3));
     }
 
     @Test
     public void testGetFreelancersWithNameAndSkillReturnsCorrectList() {
-        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-        List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill(" ", null);
-        assertTrue(roster.contains(freelancer1));
-        assertTrue(roster.contains(freelancer2));
-        assertTrue(roster.contains(freelancer3));
+    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill(" ", null);
+    	assertTrue(roster.contains(freelancer1));
+    	assertTrue(roster.contains(freelancer2));
+    	assertTrue(roster.contains(freelancer3));
     }
 
     @Test
