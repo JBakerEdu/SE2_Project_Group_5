@@ -146,6 +146,12 @@ public class CategoryPageView {
     private Pane row4PeoplePane;
     
     @FXML
+    private Pane row5PeoplePane;
+    
+    @FXML
+    private Pane row6PeoplePane;
+    
+    @FXML
     private Button applyFiterButton;
     
     @FXML
