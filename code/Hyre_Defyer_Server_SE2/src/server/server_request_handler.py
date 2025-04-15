@@ -209,6 +209,19 @@ class ServerRequestHandler:
 
         return response
     
+    def _rateFreelancer(self, request):
+        response = {}
+        freelancer = request.get(constants.REQ_RECEIVER)
+        currUser = request.get(constants.REQ_SENDER)
+        rating = request.get(constants.REQ_RATING)
+        
+        if self._serverResourceHandler.rateFreelancer(currUser, freelancer, rating):
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+        else:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+            
+        return response
+    
     def _getCategories(self, request):
         '''
             gets the categories
@@ -250,6 +263,7 @@ class ServerRequestHandler:
                 add freelancer
                 get categories
                 delete user from server
+                rate freelancer
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
         
@@ -284,6 +298,9 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_REMOVE_FREELANCER:
             response = self._removeFreelancer(request)
+            
+        elif req_type == constants.REQ_RATE_FREELANCER:
+            response = self._rateFreelancer(request)
         
         elif req_type == constants.REQ_GET_CATEGORIES:
             response = self._getCategories(request);

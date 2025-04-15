@@ -246,6 +246,50 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertIn(freelancer.to_dict(), response[constants.REP_FREELANCERS])
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
 
+    def test_rate_freelancer_success(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "NewUser",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "Freelancer",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "Freelancer",
+            constants.REQ_PASSWORD: "pass",
+            constants.REQ_BIO: "bio",
+            constants.REQ_SKILLS: [],
+            constants.REQ_CATEGORIES: []
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
+            constants.REQ_SENDER: "NewUser",
+            constants.REQ_RECEIVER: "Freelancer"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
+            constants.REQ_SENDER: "Freelancer",
+            constants.REQ_RECEIVER: "NewUser"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_RATE_FREELANCER,
+            constants.REQ_SENDER: "NewUser",
+            constants.REQ_RECEIVER: "Freelancer",
+            constants.REQ_RATING: 5
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+
     def test_equalMessage(self):
         msg1 = Message("Hello", User("Alice", ""), User("Bob", ""))
         msg2 = Message("Hello", User("Alice", ""), User("Bob", ""))

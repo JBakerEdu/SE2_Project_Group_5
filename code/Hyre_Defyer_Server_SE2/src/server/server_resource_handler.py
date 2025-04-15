@@ -257,6 +257,28 @@ class ServerResourceHandler:
 
         return result
     
+    def rateFreelancer(self, userName, user2, rating):
+        '''
+            Rates the freelancer
+            
+            @precondition: 
+            @postcondition: 
+            
+            @param currUser: the user leaving the rating
+            @param freelancer: the freelancer being rated
+            @param rating: the rating
+            
+            @return: true if successful
+                     false if unsuccessful
+        '''
+        currUser = self.getUser(userName)
+        freelancer = self.freelancers.get_freelancer_by_name(user2)
+        if freelancer in currUser.getMessageableUsers() or currUser in freelancer.getMessageableUsers():
+            freelancer.rate(rating)
+            return True
+        else:
+            return False
+    
     def getCategories(self):
         '''
             Gets the categories
