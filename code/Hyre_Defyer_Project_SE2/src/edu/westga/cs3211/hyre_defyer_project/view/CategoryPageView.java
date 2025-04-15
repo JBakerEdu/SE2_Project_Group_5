@@ -3,9 +3,9 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 import java.util.Arrays;
 import java.util.List;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.CategorySelectionHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.UserSignInHelper;
-import edu.westga.cs3211.hyre_defyer_project.view_helpers.ViewedUserHelper;
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -156,14 +156,14 @@ public class CategoryPageView {
     
     @FXML
     void handleApplyFilterButtonClick(ActionEvent event) {
-    	this.freelancers = CategorySelectionHelper.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
+    	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
     	this.updatePeopleButtons();
     }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
-    		ViewedUserHelper.setUserSelectedToView(UserSignInHelper.getCurrentUser());
+    	if (SignInViewModel.getCurrentUser() != null) {
+    		FreelancerPostPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -172,7 +172,7 @@ public class CategoryPageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
-    	if (UserSignInHelper.getCurrentUser() != null) {
+    	if (SignInViewModel.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
     		GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
@@ -197,7 +197,7 @@ public class CategoryPageView {
 
         if (freelancerIndex < this.freelancers.size()) {
             Freelancer selectedFreelancer = this.freelancers.get(freelancerIndex);
-            ViewedUserHelper.setUserSelectedToView(selectedFreelancer);
+            FreelancerPostPageViewModel.setUserSelectedToView(selectedFreelancer);
         }
         GUIHelper.switchView(this.anchorPane, Views.FREELANCER_POST);
     }
@@ -226,8 +226,8 @@ public class CategoryPageView {
         this.previousPageButton.setDisable(true);
         this.nextPageButton.setDisable(true);
 
-        if (UserSignInHelper.getCurrentUser() != null) {
-            this.accountLabel.textProperty().setValue(UserSignInHelper.getCurrentUser().getUserName());
+        if (SignInViewModel.getCurrentUser() != null) {
+            this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
         } else {
             this.accountLabel.textProperty().setValue("Account");
         }
@@ -238,9 +238,9 @@ public class CategoryPageView {
     }
     
     private void initializeFilteredPageValues() {
-    	if (CategorySelectionHelper.selectedCategory != null) {
-            this.categoryName.setText(CategorySelectionHelper.selectedCategory.toString().toUpperCase().replace("_", " "));
-            this.freelancers = CategorySelectionHelper.getFreelancers();
+    	if (CategoryPageViewModel.selectedCategory != null) {
+            this.categoryName.setText(CategoryPageViewModel.selectedCategory.toString().toUpperCase().replace("_", " "));
+            this.freelancers = CategoryPageViewModel.getFreelancers();
         } else {
             this.categoryName.setText("Please Select Category");
         }
