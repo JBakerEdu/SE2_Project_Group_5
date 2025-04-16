@@ -58,16 +58,16 @@ public class CategoryPageViewModel {
     }
     
     /**
-     * Gets the freelancers that matches the name and skill specified
+     * Gets the freelancers that matches the name and skills specified
      * 
      * @param name the name searching by
-     * @param skill the skill searching by
+     * @param skills the skills searching by
      * @return the freelancers that match
      */
-    public static List<Freelancer> getFreelancersWithNameAndSkill(String name, String skill) {
+    public static List<Freelancer> getFreelancersWithNameAndSkills(String name, List<String> skills) {
     	List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory());
     	FreelancerRoster roster = new FreelancerRoster(searched);
-    	List<Freelancer> result = roster.getFreelancersByNameAndSkill(name, skill);
+    	List<Freelancer> result = roster.getFreelancersByNameAndSkills(name, skills);
     	return result;
     }
     
@@ -105,5 +105,26 @@ public class CategoryPageViewModel {
 	 */
 	public static void setSelectedSkills(ArrayList<String> selectedSkills) {
 		CategoryPageViewModel.selectedSkills = selectedSkills;
+	}
+
+	/**
+	 * gets the list of unselected skills
+	 * 
+	 * @return unselected skills in the list of freelancers
+	 */
+	public static List<String> getUnselectedSkills() {
+		List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory());
+    	FreelancerRoster roster = new FreelancerRoster(searched);
+    	List<String> result = roster.getAllSkills();
+    	List<String> remove = new ArrayList<String>();
+    	for (String skill : result) {
+    		if (CategoryPageViewModel.getSelectedSkills().contains(skill)) {
+    			remove.add(skill);
+    		}
+    	}
+    	for (String skill : remove) {
+    		result.remove(skill);
+    	}
+    	return result;
 	}
 }

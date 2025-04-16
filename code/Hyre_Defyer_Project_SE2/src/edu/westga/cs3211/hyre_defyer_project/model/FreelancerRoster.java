@@ -100,27 +100,29 @@ public class FreelancerRoster {
     }
     
     /**
-     * Retrieves a list of freelancers who have a specific skill, ignoring case and allowing partial matches.
+     * Retrieves a list of freelancers who have a skill in the skills list, ignoring case and allowing partial matches.
      *
      * @precondition none
      * @postcondition none
      *
-     * @param skill The skill to filter by
-     * @return a list of freelancers with the given skill
+     * @param skills The skills to filter by
+     * @return a list of freelancers with the given skills
      */
-    public List<Freelancer> getFreelancersBySkill(String skill) {
-        if ((skill == null) || (skill.isBlank())) {
+    public List<Freelancer> getFreelancersBySkills(List<String> skills) {
+        if ((skills == null) || (skills.isEmpty())) {
         	return this.getAllFreelancers();
         }
         
         List<Freelancer> result = new ArrayList<>();
-        String skillLower = skill.toLowerCase();
-        
-        for (Freelancer freelancer : this.freelancers) {
-            for (String freelancerSkill : freelancer.getSkills()) {
-                if (freelancerSkill.toLowerCase().contains(skillLower)) {
-                    result.add(freelancer);
-                    break;
+        for (String skill : skills) {
+        	String skillLower = skill.toLowerCase();
+            
+            for (Freelancer freelancer : this.freelancers) {
+                for (String freelancerSkill : freelancer.getSkills()) {
+                    if (freelancerSkill.toLowerCase().contains(skillLower)) {
+                        result.add(freelancer);
+                        break;
+                    }
                 }
             }
         }
@@ -155,12 +157,12 @@ public class FreelancerRoster {
      * Gets the freelancers with the name and skill
      * 
      * @param name the name to search by
-     * @param skill the skill to search by
+     * @param skills the skills to search by
      * @return the freelancers matching the name and skill
      */
-    public List<Freelancer> getFreelancersByNameAndSkill(String name, String skill) {
+    public List<Freelancer> getFreelancersByNameAndSkills(String name, List<String> skills) {
     	List<Freelancer> freelancersByName = this.getFreelancersByName(name);
-    	List<Freelancer> freelancersBySkill = this.getFreelancersBySkill(skill);
+    	List<Freelancer> freelancersBySkill = this.getFreelancersBySkills(skills);
         List<Freelancer> result = new ArrayList<>();
         
         for (Freelancer freelancer : freelancersByName) {
@@ -183,5 +185,22 @@ public class FreelancerRoster {
     public List<Freelancer> getAllFreelancers() {
         return this.freelancers;
     }
+    
+    /**
+     * Gets all the skills from the freelancers
+     * 
+     * @return list of skills
+     */
+    public List<String> getAllSkills() {
+        List<String> result = new ArrayList<>();
+        
+        for (Freelancer freelancer : this.freelancers) {
+        	List<String> freelancerSkills = freelancer.getSkills();
+        	for (String skill : freelancerSkills) {
+        		result.add(skill);
+        	}
+        }
+        return result;
+	}
 
 }

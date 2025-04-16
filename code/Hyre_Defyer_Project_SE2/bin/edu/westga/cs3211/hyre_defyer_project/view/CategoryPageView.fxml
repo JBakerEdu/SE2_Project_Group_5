@@ -266,7 +266,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ComboBox fx:id="skillsComboBox" layoutX="29.0" layoutY="285.0" onMouseClicked="#handleSkillSelect" prefHeight="30.0" prefWidth="200.0" promptText="Skills" style="-fx-background-color: #F0FFF0;" />
-      <ListView fx:id="skillsListView" layoutX="29.0" layoutY="322.0" onMouseClicked="#handleSkillDeselect" prefHeight="174.0" prefWidth="200.0" />
+      <ComboBox fx:id="skillsComboBox" layoutX="29.0" layoutY="285.0" prefHeight="30.0" prefWidth="200.0" promptText="Skills" style="-fx-background-color: #F0FFF0;" />
+      <ListView fx:id="skillsListView" layoutX="29.0" layoutY="322.0" prefHeight="174.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
