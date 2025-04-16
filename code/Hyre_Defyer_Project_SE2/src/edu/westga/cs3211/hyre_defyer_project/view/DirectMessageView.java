@@ -112,6 +112,7 @@ public class DirectMessageView {
 		if (alert.getResult() == ButtonType.OK) {
 			this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
 			this.updateContactList();
+			this.messageListView.getItems().clear();
 		}
 	}
 
@@ -171,8 +172,8 @@ public class DirectMessageView {
 					if (newValue.getUserName().equals("admin")) {
 						this.removeContactButton.disableProperty().setValue(true);
 					}
-	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+					this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+					this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
 					this.removeContactButton.disableProperty().setValue(true);
 					this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
