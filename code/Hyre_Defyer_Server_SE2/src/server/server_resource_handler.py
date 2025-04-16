@@ -205,8 +205,28 @@ class ServerResourceHandler:
             @param otherUser: the other user
         '''
         user1 = self.getUser(user)
+        user2 = self.getUser(otherUser)
         user1.removeMessageableUser(otherUser)
+        if user not in user2.getMessageableUsers():
+            self._deleteMessageLog(user, otherUser)
         
+    def _deleteMessageLog(self, user, otherUser):
+        '''
+            Deletes the message log between two users
+            
+            @precondition none
+            @postcondition all messages between the two users are deleted
+            
+            @param user: the user
+            @param otherUser: the other user
+        '''
+        for messageLog in self._godMessageLog:
+            if (messageLog and 
+                ((messageLog[0].getSender().getUserName() == user and messageLog[0].getReceiver().getUserName() == otherUser) or
+                 (messageLog[0].getSender().getUserName() == otherUser and messageLog[0].getReceiver().getUserName() == user))):
+                self._godMessageLog.remove(messageLog)
+                break
+
     def addFreelancerToRoster(self, freelancer):
         '''
             Adds the freelancer to the roster

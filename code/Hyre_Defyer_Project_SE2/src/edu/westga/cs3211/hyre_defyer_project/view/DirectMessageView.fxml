@@ -4,8 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
@@ -14,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.DirectMessageView">
+<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.DirectMessageView">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="HONEYDEW" height="58.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <Label fx:id="otherPersonUserNameLbel" alignment="CENTER" layoutX="416.0" layoutY="73.0" prefHeight="45.0" prefWidth="302.0" style="-fx-font-weight: bold; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 3, 3);" text="Other Person User Name">
@@ -70,10 +68,7 @@
       <ListView fx:id="contactListView" layoutX="17.0" layoutY="73.0" prefHeight="514.0" prefWidth="227.0" />
       <TextArea fx:id="draftMessageTextArea" layoutX="280.0" layoutY="502.0" prefHeight="75.0" prefWidth="453.0" />
       <ListView fx:id="messageListView" layoutX="280.0" layoutY="118.0" prefHeight="370.0" prefWidth="599.0" />
-      <MenuButton fx:id="chatSettingsMenu" layoutX="803.0" layoutY="83.0" mnemonicParsing="false" text="Settings">
-        <items>
-          <MenuItem fx:id="deleteChat" mnemonicParsing="false" text="Delete Chat" />
-        </items>
-      </MenuButton>
+      <Button fx:id="removeContactButton" layoutX="280.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleRemoveContactClick" text="Remove Contact" />
+      <Button fx:id="refreshChatButton" layoutX="758.0" layoutY="83.0" mnemonicParsing="false" onAction="#handleRefreshChatClick" prefHeight="25.0" prefWidth="104.0" text="Refresh Chat" />
    </children>
 </AnchorPane>
