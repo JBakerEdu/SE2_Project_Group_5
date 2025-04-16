@@ -205,9 +205,7 @@ class ServerResourceHandler:
             @param otherUser: the other user
         '''
         user1 = self.getUser(user)
-        user2 = self.getUser(otherUser)
         user1.removeMessageableUser(otherUser)
-        user2.removeMessageableUser(user)
         
     def addFreelancerToRoster(self, freelancer):
         '''
