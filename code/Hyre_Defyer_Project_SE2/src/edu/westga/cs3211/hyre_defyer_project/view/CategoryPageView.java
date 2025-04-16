@@ -9,7 +9,9 @@ import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewMo
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -158,11 +160,32 @@ public class CategoryPageView {
     private TextField nameTextBox;
     
     @FXML
-    private TextField skillTextBox;
+    private ComboBox<?> categoryComboBox;
+    
+    @FXML
+    private ComboBox<?> skillsComboBox;
+
+    @FXML
+    private ListView<?> skillsListView;
+    
+    @FXML
+    void handleCategorySelected(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void handleSkillDeselect(MouseEvent event) {
+
+    }
+
+    @FXML
+    void handleSkillSelect(MouseEvent event) {
+
+    }
     
     @FXML
     void handleApplyFilterButtonClick(ActionEvent event) {
-    	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
+    	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), "");
     	this.updatePeopleButtons();
     }
 
