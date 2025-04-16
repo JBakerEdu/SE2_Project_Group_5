@@ -11,7 +11,7 @@ class TestServerResourceHandler(unittest.TestCase):
 
     def test_setBio(self):
         self.serverResourceHandler.setUserBio("Alice", "Bio")
-        self.assertEquals("Bio", self.serverResourceHandler.getUser("Alice").getBio())
+        self.assertEqual("Bio", self.serverResourceHandler.getUser("Alice").getBio())
 
     def test_create_account(self):
         self.assertTrue(self.serverResourceHandler.createAccount("username", "password"))
@@ -66,11 +66,9 @@ class TestServerResourceHandler(unittest.TestCase):
         self.serverResourceHandler.addUserToDMList("dummy", "dummy2")
         
         user1 = self.serverResourceHandler.getUser("dummy")
-        user2 = self.serverResourceHandler.getUser("dummy2")
         self.serverResourceHandler.removeUserFromDMList("dummy", "dummy2")
         
         self.assertNotIn("dummy2", user1.getMessageableUsers())
-        self.assertNotIn("dummy", user2.getMessageableUsers())
 
     def test_removeUserFromServer(self):
         self.serverResourceHandler.createAccount("dummy account", "pass")
@@ -108,7 +106,28 @@ class TestServerResourceHandler(unittest.TestCase):
         self.serverResourceHandler.removeFreelancerFromRoster(self.freelancer)
         afterRemove = self.serverResourceHandler.getCategories()
         self.assertTrue(size == len(afterRemove))
+    
+    def test_delete_full_message_log(self):
+        self.serverResourceHandler.createAccount("username", "password")
+        self.serverResourceHandler.createAccount("friend", "password")
         
+        sender = self.serverResourceHandler.getUser("username")
+        receiver = self.serverResourceHandler.getUser("friend")
+        
+        message = Message("Hello", sender, receiver)
+        message2 = Message("Hi", receiver, sender)
+        
+        self.serverResourceHandler.addUserToDMList("username", "friend")
+        
+        self.serverResourceHandler.sendMessage(message)
+        self.serverResourceHandler.sendMessage(message2)
+        
+        self.serverResourceHandler.removeUserFromDMList("username", "friend")
+        self.serverResourceHandler.removeUserFromDMList("friend", "username")
+        
+        messageLog = self.serverResourceHandler.getMessagesBetween(sender, receiver)
+        
+        self.assertEqual(messageLog, [])
 
 if __name__ == "__main__":
     unittest.main()

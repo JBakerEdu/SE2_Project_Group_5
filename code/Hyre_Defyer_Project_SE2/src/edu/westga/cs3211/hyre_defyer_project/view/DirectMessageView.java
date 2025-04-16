@@ -6,6 +6,8 @@ import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -110,6 +112,7 @@ public class DirectMessageView {
 		if (alert.getResult() == ButtonType.OK) {
 			this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
 			this.updateContactList();
+			this.messageListView.getItems().clear();
 		}
 	}
 
@@ -131,6 +134,7 @@ public class DirectMessageView {
     	
     	this.directMessageHandler.sendMessage(new Message(message, currentUser, otherPerson));
     	this.updateDisplayedMessages();
+    	this.draftMessageTextArea.clear();
     }
     
     @FXML
@@ -157,6 +161,8 @@ public class DirectMessageView {
     	} else {
     		this.contactListView.getSelectionModel().select(0);
     	}
+    	BooleanBinding sendButtonBindings = Bindings.isNull(this.contactListView.getSelectionModel().selectedItemProperty()).or(this.draftMessageTextArea.textProperty().isEmpty());
+    	this.sendMessageButton.disableProperty().bind(sendButtonBindings);
     }
 
 		private void setUpListeners() {
@@ -166,11 +172,11 @@ public class DirectMessageView {
 					if (newValue.getUserName().equals("admin")) {
 						this.removeContactButton.disableProperty().setValue(true);
 					}
-	    		this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
-	    		this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
+					this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
+					this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
 					this.removeContactButton.disableProperty().setValue(true);
-	    		this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
+					this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
     		this.updateDisplayedMessages();
 			});

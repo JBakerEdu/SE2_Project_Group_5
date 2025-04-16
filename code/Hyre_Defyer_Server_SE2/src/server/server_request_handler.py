@@ -104,7 +104,6 @@ class ServerRequestHandler:
     def _login(self, request):
         '''
             Returns the user details if username and password are correct.
-            TODO
         '''
         response = {}
         userName = request.get(constants.REQ_USERNAME)
@@ -139,7 +138,7 @@ class ServerRequestHandler:
         return response
     
 
-    def _deleteChat(self, request):
+    def _removeMessageableUser(self, request):
         '''
             Deletes a user from the list of users that can be messaged
         '''
@@ -278,7 +277,7 @@ class ServerRequestHandler:
             response = self._addMessageableUser(request)
             
         elif req_type == constants.REQ_DELETE_CHAT:
-            response = self._deleteChat(request)
+            response = self._removeMessageableUser(request)
 
         elif req_type == constants.REQ_GET_FREELANCERS:
             response = self._getFreelancers()
