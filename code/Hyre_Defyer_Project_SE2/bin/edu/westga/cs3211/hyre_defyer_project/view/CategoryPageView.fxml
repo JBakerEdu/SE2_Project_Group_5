@@ -248,7 +248,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ComboBox fx:id="categoryComboBox" layoutX="29.0" layoutY="166.0" onMouseClicked="#handleCategorySelected" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #F0FFF0;" />
+      <ComboBox fx:id="categoryComboBox" layoutX="29.0" layoutY="166.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #F0FFF0;" />
       <TextField fx:id="nameTextBox" layoutX="29.0" layoutY="226.0" prefHeight="27.0" prefWidth="200.0" promptText="Search by Name" style="-fx-background-color: #ffff; -fx-border-color: #ccc;" />
       <Label layoutX="29.0" layoutY="206.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 1, 3, 3, 3);" text="Search By Name">
          <font>

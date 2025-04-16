@@ -2,10 +2,14 @@ package edu.westga.cs3211.hyre_defyer_project.view;
 
 import java.util.Arrays;
 import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -160,18 +164,13 @@ public class CategoryPageView {
     private TextField nameTextBox;
     
     @FXML
-    private ComboBox<?> categoryComboBox;
+    private ComboBox<String> categoryComboBox;
     
     @FXML
     private ComboBox<?> skillsComboBox;
 
     @FXML
     private ListView<?> skillsListView;
-    
-    @FXML
-    void handleCategorySelected(MouseEvent event) {
-
-    }
     
     @FXML
     void handleSkillDeselect(MouseEvent event) {
@@ -260,11 +259,33 @@ public class CategoryPageView {
         } else {
             this.accountLabel.textProperty().setValue("Account");
         }
-
         this.initializeFilteredPageValues();
         this.initializeFreelancerButtons();
         this.updatePeopleButtons();
+        this.initializeCategoryComboBox();
     }
+
+	private void initializeCategoryComboBox() {
+		this.categoryComboBox.getItems().setAll(Categories.values());
+        this.categoryComboBox.getSelectionModel().select(CategoryPageViewModel.selectedCategory.toUpperCase().replace("_", " "));
+        this.categoryComboBox.getSelectionModel().selectedItemProperty().addListener(new 
+        		ChangeListener<Object>() {
+
+					@Override
+					public void changed(ObservableValue<?> arg0, Object oldValue, Object newValue) {
+						if (newValue != null) {
+							String categoryName = newValue.toString();
+			                try {
+			                    CategoryPageViewModel.setSelectedCategory(categoryName);
+			                    CategoryPageView.this.initializeFilteredPageValues();
+			                    CategoryPageView.this.updatePeopleButtons();
+			                } catch (IllegalArgumentException ex) {
+			                    System.err.println("Invalid category selected: " + categoryName);
+			                }
+			            }
+					}
+				});
+	}
     
     private void initializeFilteredPageValues() {
     	if (CategoryPageViewModel.getSelectedCategory() != null) {
