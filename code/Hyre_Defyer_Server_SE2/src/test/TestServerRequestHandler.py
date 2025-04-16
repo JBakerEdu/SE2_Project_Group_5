@@ -4,6 +4,7 @@ from src.server.server_request_handler import ServerRequestHandler
 from src.model.message import Message
 from src.model.user import User
 from src.model.freelancer import Freelancer
+from src.server.constants import REP_USERS
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -263,22 +264,44 @@ class TestServerRequestHandler(unittest.TestCase):
         request = {
             constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
             constants.REQ_USERNAME: "Freelancer",
-            constants.REQ_PASSWORD: "pass",
-            constants.REQ_BIO: "bio",
-            constants.REQ_SKILLS: [],
-            constants.REQ_CATEGORIES: []
+            constants.REQ_PASSWORD: "pass"
         }
         self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+
         request = {
             constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
             constants.REQ_SENDER: "NewUser",
             constants.REQ_RECEIVER: "Freelancer"
         }
         self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+
         request = {
-            constants.REQ_TYPE: constants.REQ_ADD_MESSAGEABLE_USER,
-            constants.REQ_SENDER: "Freelancer",
-            constants.REQ_RECEIVER: "NewUser"
+            constants.REQ_TYPE: constants.REQ_RATE_FREELANCER,
+            constants.REQ_SENDER: "NewUser",
+            constants.REQ_RECEIVER: "Freelancer",
+            constants.REQ_RATING: 5
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_rate_freelancer_invalid(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "NewUser",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "Freelancer",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_ADD_FREELANCER,
+            constants.REQ_USERNAME: "Freelancer",
+            constants.REQ_PASSWORD: "pass"
         }
         self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
         request = {
@@ -288,7 +311,8 @@ class TestServerRequestHandler(unittest.TestCase):
             constants.REQ_RATING: 5
         }
         response = self.serverRequestHandler.handleRequest(request)
-        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
+
 
     def test_equalMessage(self):
         msg1 = Message("Hello", User("Alice", ""), User("Bob", ""))

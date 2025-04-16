@@ -103,7 +103,7 @@ class TestServerResourceHandler(unittest.TestCase):
         self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
         currUser = self.serverResourceHandler.getUser("User")
         
-        currUser.addMessageableUser(self.freelancer)
+        currUser.addMessageableUser("New")
         
         self.assertTrue(self.serverResourceHandler.rateFreelancer("User", "New", 3))
         self.assertEqual(3, self.freelancer.getRating())

@@ -257,7 +257,7 @@ class ServerResourceHandler:
 
         return result
     
-    def rateFreelancer(self, userName, user2, rating):
+    def rateFreelancer(self, userName, freelancerName, rating):
         '''
             Rates the freelancer
             
@@ -272,8 +272,8 @@ class ServerResourceHandler:
                      false if unsuccessful
         '''
         currUser = self.getUser(userName)
-        freelancer = self.freelancers.get_freelancer_by_name(user2)
-        if freelancer in currUser.getMessageableUsers() or currUser in freelancer.getMessageableUsers():
+        freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
+        if freelancer is not None and freelancerName in currUser.getMessageableUsers():
             freelancer.rate(rating)
             return True
         else:
