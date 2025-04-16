@@ -104,7 +104,6 @@ class ServerRequestHandler:
     def _login(self, request):
         '''
             Returns the user details if username and password are correct.
-            TODO
         '''
         response = {}
         userName = request.get(constants.REQ_USERNAME)
