@@ -90,6 +90,7 @@ public class FreelancerRoster {
         if (catagory == null) {
             throw new IllegalArgumentException(CATEGORY_CANNOT_BE_NULL);
         }
+        catagory = catagory.trim().toUpperCase().replace("_", " ");
         List<Freelancer> result = new ArrayList<>();
         for (Freelancer freelancer : this.freelancers) {
             if (freelancer.getCategory().equals(catagory)) {
