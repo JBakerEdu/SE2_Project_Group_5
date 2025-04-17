@@ -4,7 +4,6 @@ import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -118,7 +117,7 @@ public class CategoryPageViewModel {
 	 * @return unselected skills in the list of freelancers
 	 */
 	public static List<String> getUnselectedSkills() {
-		List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory());
+		List<Freelancer> searched = ServerInterface.getFreelancers().getFreelancersByCategory(CategoryPageViewModel.getSelectedCategory().toUpperCase().replace(" ", "_"));
     	FreelancerRoster roster = new FreelancerRoster(searched);
     	List<String> result = roster.getAllSkills();
     	Collections.sort(result);
