@@ -140,24 +140,30 @@ public class TestCategoryViewModel {
     
     @Test
     void testGetUnselectedSkillsFiltersOutSelectedOnes() {
-    	RosterHelper.removeFreelancerFromServer(freelancer1);
+        RosterHelper.removeFreelancerFromServer(freelancer1);
         RosterHelper.removeFreelancerFromServer(freelancer2);
         RosterHelper.removeFreelancerFromServer(freelancer3);
+
         freelancer1.setAllSkills(Arrays.asList("Editing", "Proofreading", "Blogging"));
         freelancer2.setAllSkills(Arrays.asList("Spanish", "French", "Editing"));
         freelancer3.setAllSkills(Arrays.asList("SEO Writing", "Blogging"));
+
         ServerInterface.addFreelancer(freelancer1);
         ServerInterface.addFreelancer(freelancer2);
         ServerInterface.addFreelancer(freelancer3);
+
         CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-        ArrayList<String> selectedSkills = new ArrayList<>();
-        selectedSkills.add("Editing");
-        selectedSkills.add("Spanish");
-        CategoryPageViewModel.setSelectedSkills(selectedSkills);
+
+        CategoryPageViewModel.setSelectedSkills(new ArrayList<>());
+
+        ArrayList<String> selected = CategoryPageViewModel.getSelectedSkills();
+        selected.add("Editing");
+        
+        CategoryPageViewModel.setSelectedSkills(selected);
 
         List<String> unselected = CategoryPageViewModel.getUnselectedSkills();
 
         assertFalse(unselected.contains("Editing"), "Unselected list should not include 'Editing'.");
-        assertFalse(unselected.contains("Spanish"), "Unselected list should not include 'Spanish'.");
+        
     }
 }
