@@ -179,6 +179,9 @@ public class CategoryPageView {
     void handleApplyFilterButtonClick(ActionEvent event) {
     	String name = this.nameTextBox.getText().trim();
     	CategoryPageViewModel.setSelectedName(name);
+    	
+    	CategoryPageViewModel.setSelectedSkills(new ArrayList<>(this.skillsListView.getItems()));    	
+    	
     	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkills(this.nameTextBox.getText(), CategoryPageViewModel.getSelectedSkills());
     	this.updatePeopleButtons();
     }
@@ -261,7 +264,9 @@ public class CategoryPageView {
         if (CategoryPageViewModel.getSelectedName() != null) {
             this.nameTextBox.setText(CategoryPageViewModel.getSelectedName());
         }
-        CategoryPageViewModel.setSelectedSkills(new ArrayList<String>());
+        if (CategoryPageViewModel.getSelectedSkills() == null) {
+        	CategoryPageViewModel.setSelectedSkills(new ArrayList<String>());
+        }
         this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
     	this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
         this.initializeFilteredPageValues();
