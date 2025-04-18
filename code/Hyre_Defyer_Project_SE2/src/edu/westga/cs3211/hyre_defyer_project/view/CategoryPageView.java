@@ -1,15 +1,23 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import edu.westga.cs3211.hyre_defyer_project.model.Categories;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -27,6 +35,7 @@ public class CategoryPageView {
 	private List<Freelancer> freelancers;
 	private int currentPage = 1;
 	private int pageSize;
+	private boolean isUpdatingSkills = false;
 	
 	@FXML
     private Button nextPageButton;
@@ -146,17 +155,29 @@ public class CategoryPageView {
     private Pane row4PeoplePane;
     
     @FXML
+    private Pane row5PeoplePane;
+    
+    @FXML
+    private Pane row6PeoplePane;
+    
+    @FXML
     private Button applyFiterButton;
     
     @FXML
     private TextField nameTextBox;
     
     @FXML
-    private TextField skillTextBox;
+    private ComboBox<String> categoryComboBox;
+    
+    @FXML
+    private ComboBox<String> skillsComboBox;
+
+    @FXML
+    private ListView<String> skillsListView;
     
     @FXML
     void handleApplyFilterButtonClick(ActionEvent event) {
-    	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkill(this.nameTextBox.getText(), this.skillTextBox.getText());
+    	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkills(this.nameTextBox.getText(), CategoryPageViewModel.getSelectedSkills());
     	this.updatePeopleButtons();
     }
 
@@ -231,11 +252,104 @@ public class CategoryPageView {
         } else {
             this.accountLabel.textProperty().setValue("Account");
         }
-
+        CategoryPageViewModel.setSelectedSkills(new ArrayList<String>());
+        this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
+    	this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
         this.initializeFilteredPageValues();
         this.initializeFreelancerButtons();
         this.updatePeopleButtons();
+        this.initializeCategoryComboBox();
+        this.initializeSkillsComboBox();
+        this.initializeSkillsListView();
     }
+
+	private void initializeSkillsListView() {
+		this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
+        this.skillsListView.getSelectionModel().selectedItemProperty().addListener(
+            new ChangeListener<Object>() {
+                @Override
+                public void changed(ObservableValue<?> arg0, Object oldValue, Object newValue) {
+                    if (newValue != null && !CategoryPageView.this.isUpdatingSkills) {
+                        CategoryPageView.this.isUpdatingSkills = true;
+                        String skillName = newValue.toString();
+                        try {
+                            CategoryPageViewModel.getSelectedSkills().remove(skillName);
+                            CategoryPageViewModel.getUnselectedSkills().add(skillName);
+
+                            Platform.runLater(() -> {
+                                CategoryPageView.this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
+                                CategoryPageView.this.skillsListView.getSelectionModel().clearSelection();
+                                CategoryPageView.this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
+                                CategoryPageView.this.initializeFilteredPageValues();
+                                CategoryPageView.this.updatePeopleButtons();
+                                CategoryPageView.this.isUpdatingSkills = false;
+                            });
+                        } catch (Exception ex) {
+                            System.err.println("Error handling skill selection: " + skillName);
+                            ex.printStackTrace();
+                            CategoryPageView.this.isUpdatingSkills = false;
+                        }
+                    }
+                }
+            }
+        );
+	}
+
+	private void initializeSkillsComboBox() {
+		this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
+        this.skillsComboBox.getSelectionModel().selectedItemProperty().addListener(
+            new ChangeListener<Object>() {
+                @Override
+                public void changed(ObservableValue<?> arg0, Object oldValue, Object newValue) {
+                    if (newValue != null && !CategoryPageView.this.isUpdatingSkills) {
+                        CategoryPageView.this.isUpdatingSkills = true;
+                        String skillName = newValue.toString();
+                        try {
+                            CategoryPageViewModel.getUnselectedSkills().remove(skillName);
+                            CategoryPageViewModel.getSelectedSkills().add(skillName);
+
+                            Platform.runLater(() -> {
+                                CategoryPageView.this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
+                                CategoryPageView.this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
+                                CategoryPageView.this.skillsComboBox.getSelectionModel().clearSelection();
+
+                                CategoryPageView.this.initializeFilteredPageValues();
+                                CategoryPageView.this.updatePeopleButtons();
+                                CategoryPageView.this.isUpdatingSkills = false;
+                            });
+
+                        } catch (Exception ex) {
+                            System.err.println("Error handling skill selection: " + skillName);
+                            ex.printStackTrace();
+                            CategoryPageView.this.isUpdatingSkills = false;
+                        }
+                    }
+                }
+            }
+        );
+	}
+
+	private void initializeCategoryComboBox() {
+		this.categoryComboBox.getItems().setAll(Categories.values());
+        this.categoryComboBox.getSelectionModel().select(CategoryPageViewModel.selectedCategory.toUpperCase().replace("_", " "));
+        this.categoryComboBox.getSelectionModel().selectedItemProperty().addListener(new 
+        		ChangeListener<Object>() {
+
+					@Override
+					public void changed(ObservableValue<?> arg0, Object oldValue, Object newValue) {
+						if (newValue != null) {
+							String categoryName = newValue.toString();
+			                try {
+			                    CategoryPageViewModel.setSelectedCategory(categoryName);
+			                    CategoryPageView.this.initializeFilteredPageValues();
+			                    CategoryPageView.this.updatePeopleButtons();
+			                } catch (IllegalArgumentException ex) {
+			                    System.err.println("Invalid category selected: " + categoryName);
+			                }
+			            }
+					}
+				});
+	}
     
     private void initializeFilteredPageValues() {
     	if (CategoryPageViewModel.getSelectedCategory() != null) {
