@@ -177,12 +177,18 @@ public class CategoryPageView {
     
     @FXML
     void handleApplyFilterButtonClick(ActionEvent event) {
+    	String name = this.nameTextBox.getText().trim();
+    	CategoryPageViewModel.setSelectedName(name);
+    	
+    	CategoryPageViewModel.setSelectedSkills(new ArrayList<>(this.skillsListView.getItems()));    	
+    	
     	this.freelancers = CategoryPageViewModel.getFreelancersWithNameAndSkills(this.nameTextBox.getText(), CategoryPageViewModel.getSelectedSkills());
     	this.updatePeopleButtons();
     }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
     	if (SignInViewModel.getCurrentUser() != null) {
     		FreelancerPostPageViewModel.setUserSelectedToView(SignInViewModel.getCurrentUser());
     		GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
@@ -193,6 +199,7 @@ public class CategoryPageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
     	if (SignInViewModel.getCurrentUser() != null) {
     		GUIHelper.switchView(this.anchorPane, Views.DMS);
     	} else {
@@ -202,11 +209,13 @@ public class CategoryPageView {
 
     @FXML
     void handleHomeClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
     	GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
     void handleAboutHyreClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
     	GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 
@@ -252,7 +261,12 @@ public class CategoryPageView {
         } else {
             this.accountLabel.textProperty().setValue("Account");
         }
-        CategoryPageViewModel.setSelectedSkills(new ArrayList<String>());
+        if (CategoryPageViewModel.getSelectedName() != null) {
+            this.nameTextBox.setText(CategoryPageViewModel.getSelectedName());
+        }
+        if (CategoryPageViewModel.getSelectedSkills() == null) {
+        	CategoryPageViewModel.setSelectedSkills(new ArrayList<String>());
+        }
         this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
     	this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
         this.initializeFilteredPageValues();
@@ -261,6 +275,7 @@ public class CategoryPageView {
         this.initializeCategoryComboBox();
         this.initializeSkillsComboBox();
         this.initializeSkillsListView();
+        this.handleApplyFilterButtonClick(null);
     }
 
 	private void initializeSkillsListView() {
