@@ -295,8 +295,6 @@ public class CategoryPageView {
                                 CategoryPageView.this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
                                 CategoryPageView.this.skillsListView.getSelectionModel().clearSelection();
                                 CategoryPageView.this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
-                                CategoryPageView.this.initializeFilteredPageValues();
-                                CategoryPageView.this.updatePeopleButtons();
                                 CategoryPageView.this.isUpdatingSkills = false;
                             });
                         } catch (Exception ex) {
@@ -327,9 +325,6 @@ public class CategoryPageView {
                                 CategoryPageView.this.skillsComboBox.getItems().setAll(CategoryPageViewModel.getUnselectedSkills());
                                 CategoryPageView.this.skillsListView.getItems().setAll(CategoryPageViewModel.getSelectedSkills());
                                 CategoryPageView.this.skillsComboBox.getSelectionModel().clearSelection();
-
-                                CategoryPageView.this.initializeFilteredPageValues();
-                                CategoryPageView.this.updatePeopleButtons();
                                 CategoryPageView.this.isUpdatingSkills = false;
                             });
 
