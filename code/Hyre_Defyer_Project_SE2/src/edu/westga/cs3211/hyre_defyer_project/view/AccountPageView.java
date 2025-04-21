@@ -113,9 +113,6 @@ public class AccountPageView {
     private Label skillsLabel;
 
     @FXML
-    private Label starRating;
-
-    @FXML
     private Label userLabel;
     
     @FXML
@@ -257,7 +254,6 @@ public class AccountPageView {
             GUIHelper.switchView(this.anchorPane, Views.SIGNIN);
             return;
         }
-
         this.accountLabel.setText(current.getUserName());
         this.userLabel.setText(current.getUserName());
         this.isFreelancer = RosterHelper.getFreelancerRoster().getAllFreelancers().stream().anyMatch(f -> f.getUserName().equals(current.getUserName()));

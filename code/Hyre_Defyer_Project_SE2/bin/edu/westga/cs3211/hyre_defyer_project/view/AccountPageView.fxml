@@ -128,7 +128,6 @@
                   <Bloom />
                </effect>
             </Button>
-            <Label fx:id="starRating" layoutX="518.0" layoutY="30.0" text="Star Rating" />
          </children>
       </Pane>
       <Pane fx:id="addNewCategoryPane" layoutX="543.0" layoutY="386.0" prefHeight="214.0" prefWidth="357.0" style="-fx-background-color: #f0fff0; -fx-border-color: #000;" visible="false">

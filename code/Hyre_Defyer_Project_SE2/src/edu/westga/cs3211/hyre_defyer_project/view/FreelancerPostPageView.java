@@ -80,6 +80,9 @@ public class FreelancerPostPageView {
 
     @FXML
     private Label skillsLabel;
+    
+    @FXML
+    private Label starRating;
 
     @FXML
     private Label userLabel;
