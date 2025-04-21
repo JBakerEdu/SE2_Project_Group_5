@@ -374,4 +374,22 @@ public class ServerInterface {
 	    }
 		return null;
 	}
+	
+	/**
+	 * Rate the freelancer in the server
+	 * 
+	 * @param user the user that's rating
+	 * @param rating what the users rating the freelancer
+	 * @param freelancer the freelancer the users rating
+	 * @return the rating of the freelancer
+	 */
+	public static double rateFreelancer(User user, int rating, String freelancer) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_RATE_FREELANCER);
+		request.put(Constants.REQ_SENDER, user.getUserName());
+		request.put(Constants.REQ_RECEIVER, freelancer);
+		double response = 0;
+//	double response = ServerCommunicator.sendRequestToServer(request);
+		return response;
+	}
 }
