@@ -70,7 +70,7 @@ class FreelancerRoster:
         if not name:
             raise ValueError("Name cannot be null.")
         for f in self.freelancers:
-            if f.getUserName() is name:
+            if f.getUserName() == name:
                 return f
     
     def remove_freelancer(self, freelancer: Freelancer):

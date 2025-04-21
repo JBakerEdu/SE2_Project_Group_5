@@ -273,6 +273,7 @@ class ServerResourceHandler:
         if freelancer is not None:
             freelancer.rate(rating)
             return freelancer.getRating()
+        
 
     
     def getCategories(self):

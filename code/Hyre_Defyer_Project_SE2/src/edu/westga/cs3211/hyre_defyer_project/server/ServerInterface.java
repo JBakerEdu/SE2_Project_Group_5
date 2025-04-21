@@ -391,7 +391,8 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
-			return responseJSON.getString(Constants.REP_RATING);
+			return String.valueOf(responseJSON.getInt(Constants.REP_RATING));
+
 		}
 		return "Rating failed";
 	}
