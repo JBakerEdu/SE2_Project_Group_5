@@ -267,7 +267,7 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
-        #self.assertEqual(5, response[constants.REP_RATING])
+        self.assertEqual(5, response[constants.REP_RATING])
 
 
     def test_equalMessage(self):

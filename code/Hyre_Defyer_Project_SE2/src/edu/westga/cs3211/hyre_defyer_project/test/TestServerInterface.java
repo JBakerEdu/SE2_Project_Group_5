@@ -13,6 +13,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.Constants;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerCommunicator;
@@ -209,4 +210,12 @@ public class TestServerInterface {
 		assertTrue(result.contains(Categories.BUSINESS_AND_FINANCE.toUpperCase().replace("_", " ")));
 	}
   
+	@Test
+	public void testRateFreelancer() {
+		User alice = ServerInterface.login("Alice", "password");
+		ServerInterface.getFreelancers().getAllFreelancers().contains(alice);
+		String response = ServerInterface.rateFreelancer("Alice", 3);
+	
+		assertEquals("3", response);
+	}
 }
