@@ -97,24 +97,17 @@ class TestServerResourceHandler(unittest.TestCase):
         self.assertEqual(str(context.exception), "Freelancer not found in roster.")
         
     def test_rate_freelancer_success(self):
-        self.serverResourceHandler.createAccount("User", "pass")
-        self.serverResourceHandler.createAccount("New", "Freelancer")
-        self.freelancer = Freelancer("New", "Freelancer")
-        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
-        currUser = self.serverResourceHandler.getUser("User")
+        self.serverResourceHandler.createAccount("Free", "Freelancer")
+        self.serverResourceHandler.addFreelancerToRoster(Freelancer("Free", "Freelancer"))
         
-        currUser.addMessageableUser("New")
-        
-        self.assertTrue(self.serverResourceHandler.rateFreelancer("User", "New", 3))
-        self.assertEqual(3, self.freelancer.getRating())
+        self.assertIn(Freelancer("Free", "Freelancer"), self.serverResourceHandler.getFreelancers())
+        self.assertEqual(3, self.serverResourceHandler.rateFreelancer("Free", 3))
         
     def test_rate_freelancer_fail(self):
-        self.serverResourceHandler.createAccount("OtherUser", "pass")
         self.serverResourceHandler.createAccount("New", "Freelancer")
         self.freelancer = Freelancer("New", "Freelancer")
-        self.serverResourceHandler.addFreelancerToRoster(self.freelancer)
         
-        self.assertFalse(self.serverResourceHandler.rateFreelancer("OtherUser", "New", 3))
+        self.assertEquals(None, self.serverResourceHandler.rateFreelancer("New", 3))
         
     def test_remove_all_from_category(self):
         self.freelancer = Freelancer("HELLO", "password")

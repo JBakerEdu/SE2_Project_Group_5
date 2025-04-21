@@ -257,27 +257,23 @@ class ServerResourceHandler:
 
         return result
     
-    def rateFreelancer(self, userName, freelancerName, rating):
+    def rateFreelancer(self, freelancerName, rating):
         '''
             Rates the freelancer
             
-            @precondition: 
-            @postcondition: 
+            @precondition: none
+            @postcondition: none
             
-            @param currUser: the user leaving the rating
             @param freelancer: the freelancer being rated
             @param rating: the rating
             
-            @return: true if successful
-                     false if unsuccessful
+            @return: the rating of the freelancer
         '''
-        currUser = self.getUser(userName)
         freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
-        if freelancer is not None and freelancerName in currUser.getMessageableUsers():
+        if freelancer is not None:
             freelancer.rate(rating)
-            return True
-        else:
-            return False
+            return freelancer.getRating()
+
     
     def getCategories(self):
         '''

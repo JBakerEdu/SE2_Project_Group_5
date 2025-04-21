@@ -38,5 +38,6 @@ REP_MESSAGES = "messages"
 REP_USERS = "users"
 REP_FREELANCERS = "freelancers"
 REP_CATEGORIES = "categories"
+REP_RATING = "rating"
 
 SUCCESS_CODE = "success code"
