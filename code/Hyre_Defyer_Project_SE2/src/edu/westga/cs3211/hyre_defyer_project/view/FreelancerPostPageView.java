@@ -9,12 +9,14 @@ import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewMo
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * This is the class for viewing a freelancer that is within the categories
@@ -86,6 +88,18 @@ public class FreelancerPostPageView {
 
     @FXML
     private Label userLabel;
+    
+    @FXML
+    private Button rateButton;
+    
+    @FXML
+    private ChoiceBox<Integer> starValues;
+
+    @FXML
+    private Button submitRateButton;
+    
+    @FXML
+    private Pane rateFreelancerPane;
 
     @FXML
     void initialize() {
@@ -93,8 +107,8 @@ public class FreelancerPostPageView {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	}
     	this.disableAll();
-        this.updateDataShown();
-        this.updateHyreButtonAndErrorLabel();
+      this.updateDataShown();
+      this.updateHyreButtonAndErrorLabel();
     }
     
     @FXML
@@ -103,13 +117,13 @@ public class FreelancerPostPageView {
     }
 
     private void disableAll() {
-		this.descriptionTextBox.setEditable(false);
-		this.skill1TextArea.setEditable(false);
-		this.skill2TextArea.setEditable(false);
-		this.skill3TextArea.setEditable(false);
-		this.skill4TextArea.setEditable(false);
-		this.skill5TextArea.setEditable(false);
-		this.categoryTextFeild.setEditable(false);
+    	this.descriptionTextBox.setEditable(false);
+    	this.skill1TextArea.setEditable(false);
+    	this.skill2TextArea.setEditable(false);
+    	this.skill3TextArea.setEditable(false);
+    	this.skill4TextArea.setEditable(false);
+    	this.skill5TextArea.setEditable(false);
+    	this.categoryTextFeild.setEditable(false);
 	}
 
 	private void updateDataShown() {
@@ -118,6 +132,12 @@ public class FreelancerPostPageView {
         if (freelancer == null) {
             return;
         }
+        if (SignInViewModel.getCurrentUser() == null) {
+        	this.rateButton.disableProperty().set(true);
+        } else if (ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
+        	this.rateButton.disableProperty().set(false);
+        }
+        this.starRating.textProperty().setValue("Rating: " + freelancer.getRating() + " stars");
         this.userLabel.setText(freelancer.getUserName());
         this.descriptionTextBox.setText(freelancer.getBio());
         this.categoryTextFeild.setText(freelancer.getCategory().replace("_", " "));

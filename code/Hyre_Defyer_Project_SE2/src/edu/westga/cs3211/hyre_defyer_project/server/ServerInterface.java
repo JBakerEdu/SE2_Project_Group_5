@@ -391,6 +391,12 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
+			int rateValue = responseJSON.getInt(Constants.REP_RATING);
+			for (Freelancer curr : ServerInterface.getFreelancers().getAllFreelancers()) {
+				if (curr.getUserName().equals(freelancer)) {
+					curr.setRating(rateValue);
+				}
+			}
 			return String.valueOf(responseJSON.getInt(Constants.REP_RATING));
 
 		}
