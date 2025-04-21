@@ -113,6 +113,9 @@ public class AccountPageView {
     private Label skillsLabel;
 
     @FXML
+    private Label starRating;
+
+    @FXML
     private Label userLabel;
     
     @FXML

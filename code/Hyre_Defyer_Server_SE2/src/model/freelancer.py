@@ -135,7 +135,7 @@ class Freelancer(User):
             
             @param rate: what the freelancer was rated out of 5 
         '''
-        if self._rating is 0:
+        if self._rating == 0:
             self._rating = rate
         else:
             new_rate = (self._rating + rate)/2
