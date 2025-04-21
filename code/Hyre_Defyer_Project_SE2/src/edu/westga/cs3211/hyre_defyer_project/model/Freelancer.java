@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,7 +8,7 @@ import java.util.Objects;
 /**
  * The Freelancer class stores the category selected and the skills listed.
  * 
- * @author Kate Anglin
+ * @author Kate Anglin & Myles Debro
  * @version Spring 2025
  */
 public class Freelancer extends User {
@@ -19,6 +20,8 @@ public class Freelancer extends User {
 	
 	private List<String> categories;
     private List<String> skills;
+  private String starRating = "n/a";
+  private DecimalFormat df = new DecimalFormat("#.#");
 	
     /**
      * Creates a freelancer with a username, password, biography, and categories.
@@ -253,6 +256,30 @@ public class Freelancer extends User {
             }
         }
         return false;
+    }
+    
+    /**
+     * Sets the rating of the freelancer
+     * 
+     * @precondition none
+     * @postcondition starRating == rate
+     * 
+     * @param rate the rating of the freelancer
+     */
+    public void setRating(double rate) {
+    	this.starRating = this.df.format(rate);
+    }
+    
+    /**
+     * Gets the rating of the freelancer
+     * 
+     * @precondition none
+     * @postcondition none
+     * 
+     * @return the rating of the freelancer
+     */
+    public String getRating() {
+    	return this.starRating;
     }
 
 	@Override
