@@ -113,6 +113,7 @@ public class DirectMessageView {
 			this.directMessageHandler.deleteChat(SignInViewModel.getCurrentUser(), this.contactListView.getSelectionModel().getSelectedItem());
 			this.updateContactList();
 			this.messageListView.getItems().clear();
+			this.contactListView.getSelectionModel().select(0);
 		}
 	}
 
