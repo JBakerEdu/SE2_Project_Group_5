@@ -182,7 +182,7 @@ public class FreelancerPostPageView {
     	});
     	this.submitRateButton.setOnAction((event) -> {
     		int rating = this.starValues.getSelectionModel().getSelectedItem();
-    		ServerInterface.rateFreelancer(FreelancerPostPageViewModel.getUserSelectedToView().getUserName(), rating);
+    		ServerInterface.rateFreelancer((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView(), rating);
     		this.updateDataShown();
     		this.rateFreelancerPane.setVisible(false);
     	});

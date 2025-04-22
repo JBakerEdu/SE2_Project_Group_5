@@ -211,21 +211,38 @@ public class TestServerInterface {
 	}
   
 	@Test
-	public void testRateFreelancer() {
+	public void testRateNewFreelancer() {
 		Freelancer freelancer = new Freelancer("tmp", "", "");
 		assertTrue(ServerInterface.addFreelancer(freelancer));
 		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer));
-		String response = ServerInterface.rateFreelancer("tmp", 3);
-		Freelancer actual = new Freelancer("tmp", "", "fail");
-		
-		for (Freelancer curr : ServerInterface.getFreelancers().getAllFreelancers()) {
-			if (curr.getUserName().equals(freelancer.getUserName())) {
-				actual = curr;
-			}
-		}
+		String response = ServerInterface.rateFreelancer(freelancer, 3);
 
-		freelancer.setRating(3);
 		assertEquals("3.0", response);
-		assertEquals("3.0", actual.getRating() + actual.getCategory());
+		assertEquals("3.0", freelancer.getRating());
+	}
+	
+	@Test
+	public void testRateExistingFreelancer() {
+		Freelancer freelancer1 = ServerInterface.getFreelancers().getFreelancersByName("Alice").get(0);
+		String response = ServerInterface.rateFreelancer(freelancer1, 3);
+		
+		assertEquals("3.0", response);
+		assertEquals("3.0", freelancer1.getRating());
+	}
+	
+	@Test
+	public void testFreelancerWithMultipleRatings() {
+		Freelancer freelancer1 = new Freelancer("Dummy Account 123", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer1));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
+		String response = ServerInterface.rateFreelancer(freelancer1, 3);
+		
+		assertEquals("3.0", response);
+		assertEquals("3.0", freelancer1.getRating());
+		
+		response = ServerInterface.rateFreelancer(freelancer1, 5);
+		
+		assertEquals("4.0", response);
+		assertEquals("4.0", freelancer1.getRating());
 	}
 }

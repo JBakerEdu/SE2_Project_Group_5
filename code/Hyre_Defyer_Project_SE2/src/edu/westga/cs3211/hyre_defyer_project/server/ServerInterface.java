@@ -383,23 +383,18 @@ public class ServerInterface {
 	 * @param freelancer the freelancer the users rating
 	 * @return the rating of the freelancer
 	 */
-	public static String rateFreelancer(String freelancer, int rating) {
+	public static String rateFreelancer(Freelancer freelancer, int rating) {
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_RATE_FREELANCER);
-		request.put(Constants.REQ_RECEIVER, freelancer);
+		request.put(Constants.REQ_RECEIVER, freelancer.getUserName());
 		request.put(Constants.REQ_RATING, rating);
 		
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
 			double rateValue = responseJSON.getDouble(Constants.REP_RATING);
-			for (Freelancer curr : ServerInterface.getFreelancers().getAllFreelancers()) {
-				if (curr.getUserName().equals(freelancer)) {
-					curr.setRating(rateValue);
-				}
-			}
+			freelancer.setRating(rateValue);
 			return String.valueOf(responseJSON.getDouble(Constants.REP_RATING));
-
 		}
 		return "Rating failed";
 	}
