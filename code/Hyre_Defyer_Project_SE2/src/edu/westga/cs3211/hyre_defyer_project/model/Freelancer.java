@@ -267,7 +267,12 @@ public class Freelancer extends User {
      * @param rate the rating of the freelancer
      */
     public void setRating(double rate) {
-    	this.starRating = this.df.format(rate);
+    	if (rate % 1 != 0) {
+    		this.starRating = this.df.format(rate);
+    	} else {
+    		this.starRating = String.valueOf(rate);
+    	}
+    	
     }
     
     /**

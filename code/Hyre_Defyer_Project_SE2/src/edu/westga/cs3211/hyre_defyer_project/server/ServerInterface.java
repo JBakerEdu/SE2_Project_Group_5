@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
+import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 
 /**
@@ -391,13 +392,13 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
-			int rateValue = responseJSON.getInt(Constants.REP_RATING);
+			double rateValue = responseJSON.getDouble(Constants.REP_RATING);
 			for (Freelancer curr : ServerInterface.getFreelancers().getAllFreelancers()) {
 				if (curr.getUserName().equals(freelancer)) {
 					curr.setRating(rateValue);
 				}
 			}
-			return String.valueOf(responseJSON.getInt(Constants.REP_RATING));
+			return String.valueOf(responseJSON.getDouble(Constants.REP_RATING));
 
 		}
 		return "Rating failed";

@@ -1,11 +1,13 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -109,6 +111,7 @@ public class FreelancerPostPageView {
     	this.disableAll();
       this.updateDataShown();
       this.updateHyreButtonAndErrorLabel();
+      this.setStarRatingElements();
     }
     
     @FXML
@@ -124,9 +127,10 @@ public class FreelancerPostPageView {
     	this.skill4TextArea.setEditable(false);
     	this.skill5TextArea.setEditable(false);
     	this.categoryTextFeild.setEditable(false);
+    	this.rateFreelancerPane.setVisible(false);
 	}
 
-	private void updateDataShown() {
+    private void updateDataShown() {
         User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
         Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         if (freelancer == null) {
@@ -155,12 +159,12 @@ public class FreelancerPostPageView {
         }
     }
 	
-	private String getOrBlank(List<String> list, int index) {
+    private String getOrBlank(List<String> list, int index) {
 	    if (index < list.size()) {
 	        return list.get(index);
 	    }
 	    return "";
-	}
+    }
 
     private Freelancer getFreelancerByUsername(String username) {
         for (Freelancer freelancer : FreelancerPostPageViewModel.getRoster().getAllFreelancers()) {
@@ -169,7 +173,28 @@ public class FreelancerPostPageView {
             }
         }
         return null;
-    }   
+    }
+    
+    private void setStarRatingElements() {
+    	this.setStarValues();
+    	this.rateButton.setOnAction((event) -> {
+    		this.rateFreelancerPane.setVisible(true);
+    	});
+    	this.submitRateButton.setOnAction((event) -> {
+    		int rating = this.starValues.getSelectionModel().getSelectedItem();
+    		ServerInterface.rateFreelancer(FreelancerPostPageViewModel.getUserSelectedToView().getUserName(), rating);
+    		this.updateDataShown();
+    		this.rateFreelancerPane.setVisible(false);
+    	});
+    }
+
+		private void setStarValues() {
+			this.starValues.itemsProperty().get().add(1);
+    	this.starValues.itemsProperty().get().add(2);
+    	this.starValues.itemsProperty().get().add(3);
+    	this.starValues.itemsProperty().get().add(4);
+    	this.starValues.itemsProperty().get().add(5);
+		}
     
     private void updateHyreButtonAndErrorLabel() {
         User current = SignInViewModel.getCurrentUser();

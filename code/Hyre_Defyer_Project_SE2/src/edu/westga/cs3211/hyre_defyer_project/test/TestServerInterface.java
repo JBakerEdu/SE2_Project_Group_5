@@ -212,10 +212,20 @@ public class TestServerInterface {
   
 	@Test
 	public void testRateFreelancer() {
-		User alice = ServerInterface.login("Alice", "password");
-		ServerInterface.getFreelancers().getAllFreelancers().contains(alice);
-		String response = ServerInterface.rateFreelancer("Alice", 3);
-	
-		assertEquals("3", response);
+		Freelancer freelancer = new Freelancer("tmp", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer));
+		String response = ServerInterface.rateFreelancer("tmp", 3);
+		Freelancer actual = new Freelancer("tmp", "", "fail");
+		
+		for (Freelancer curr : ServerInterface.getFreelancers().getAllFreelancers()) {
+			if (curr.getUserName().equals(freelancer.getUserName())) {
+				actual = curr;
+			}
+		}
+
+		freelancer.setRating(3);
+		assertEquals("3.0", response);
+		assertEquals("3.0", actual.getRating() + actual.getCategory());
 	}
 }
