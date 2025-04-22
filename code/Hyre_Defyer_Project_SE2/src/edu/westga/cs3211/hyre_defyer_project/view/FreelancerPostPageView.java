@@ -136,11 +136,11 @@ public class FreelancerPostPageView {
         if (freelancer == null) {
             return;
         }
-        if (SignInViewModel.getCurrentUser() == null) {
-        	this.rateButton.disableProperty().set(true);
-        } else if (ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
+        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
         	this.rateButton.disableProperty().set(false);
         }
+        this.rateButton.disableProperty().set(true);
+        this.starRating.setText("Rating: " + freelancer.getRating() + " stars");
         this.userLabel.setText(freelancer.getUserName());
         this.descriptionTextBox.setText(freelancer.getBio());
         this.categoryTextFeild.setText(freelancer.getCategory().replace("_", " "));
@@ -180,12 +180,15 @@ public class FreelancerPostPageView {
     		this.rateFreelancerPane.setVisible(true);
     	});
     	this.submitRateButton.setOnAction((event) -> {
+    		User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
+        Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
     		int rating = this.starValues.getSelectionModel().getSelectedItem();
-    		ServerInterface.rateFreelancer((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView(), rating);
-    		this.starRating.textProperty().setValue("Rating: " + ((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView()).getRating() + " stars");
+    		String starRating = ServerInterface.rateFreelancer((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView(), rating);
+    		this.starRating.textProperty().setValue("Rating: " + freelancer.getRating() + " stars");
+    		this.getFreelancerByUsername(FreelancerPostPageViewModel.getUserSelectedToView().getUserName()).setRating(Double.parseDouble(starRating));
+
     		this.rateFreelancerPane.setVisible(false);
-//    		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), FreelancerPostPageViewModel.getUserSelectedToView());
-    		this.updateDataShown();
+    		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), freelancer);
     	});
     }
 
