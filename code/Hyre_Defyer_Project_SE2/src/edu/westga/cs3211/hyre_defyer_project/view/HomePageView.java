@@ -157,7 +157,7 @@ public class HomePageView {
             }
         }
         
-        this.categoryListView.getItems().setAll(Categories.values());
+        this.categoryListView.getItems().setAll(categories);
         this.bindUIAndListeners();
     }
     

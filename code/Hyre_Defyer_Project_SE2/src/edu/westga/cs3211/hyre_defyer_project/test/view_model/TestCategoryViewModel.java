@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -69,7 +70,7 @@ public class TestCategoryViewModel {
     @Test
     public void testGetFreelancersWithNameAndSkillReturnsCorrectList() {
     	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
-    	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill(" ", null);
+    	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkills(" ", null);
     	assertTrue(roster.contains(freelancer1));
     	assertTrue(roster.contains(freelancer2));
     	assertTrue(roster.contains(freelancer3));
@@ -78,7 +79,9 @@ public class TestCategoryViewModel {
     @Test
     public void testGetFreelancersWithNameAndSkillEmptyResult() {
         CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
-        List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkill("Someone", "Something");
+        List<String> skills = new ArrayList<String>();
+        skills.add("Something");
+        List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkills("Someone", skills);
         assertFalse(roster.contains(freelancer1));
         assertFalse(roster.contains(freelancer2));
         assertFalse(roster.contains(freelancer3));
@@ -133,5 +136,34 @@ public class TestCategoryViewModel {
         assertNull(CategoryPageViewModel.getSelectedCategory());
         assertNull(CategoryPageViewModel.getSelectedName());
         assertNull(CategoryPageViewModel.getSelectedSkills());
+    }
+    
+    @Test
+    void testGetUnselectedSkillsFiltersOutSelectedOnes() {
+        RosterHelper.removeFreelancerFromServer(freelancer1);
+        RosterHelper.removeFreelancerFromServer(freelancer2);
+        RosterHelper.removeFreelancerFromServer(freelancer3);
+
+        freelancer1.setAllSkills(Arrays.asList("Editing", "Proofreading", "Blogging"));
+        freelancer2.setAllSkills(Arrays.asList("Spanish", "French", "Editing"));
+        freelancer3.setAllSkills(Arrays.asList("SEO Writing", "Blogging"));
+
+        ServerInterface.addFreelancer(freelancer1);
+        ServerInterface.addFreelancer(freelancer2);
+        ServerInterface.addFreelancer(freelancer3);
+
+        CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
+
+        CategoryPageViewModel.setSelectedSkills(new ArrayList<>());
+
+        ArrayList<String> selected = CategoryPageViewModel.getSelectedSkills();
+        selected.add("Editing");
+        
+        CategoryPageViewModel.setSelectedSkills(selected);
+
+        List<String> unselected = CategoryPageViewModel.getUnselectedSkills();
+
+        assertFalse(unselected.contains("Editing"), "Unselected list should not include 'Editing'.");
+        
     }
 }

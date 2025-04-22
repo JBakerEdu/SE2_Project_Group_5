@@ -6,6 +6,7 @@ import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
+import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -223,6 +224,7 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleHyreButtonClick(ActionEvent event) {
+    	CategoryPageViewModel.clearSelections();
         var current = SignInViewModel.getCurrentUser();
         var selected = FreelancerPostPageViewModel.getUserSelectedToView();
         ServerInterface.addMessageableUser(current, selected);
@@ -231,11 +233,13 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleHomeClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
         GUIHelper.switchView(this.anchorPane, Views.HOMEPAGE);
     }
 
     @FXML
     void handleAccountClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
         if (SignInViewModel.getCurrentUser() != null) {
             GUIHelper.switchView(this.anchorPane, Views.ACCOUNT);
         } else {
@@ -245,6 +249,7 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleDMClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
         if (SignInViewModel.getCurrentUser() != null) {
             GUIHelper.switchView(this.anchorPane, Views.DMS);
         } else {
@@ -254,6 +259,7 @@ public class FreelancerPostPageView {
 
     @FXML
     void handleAboutHyreClick(MouseEvent event) {
+    	CategoryPageViewModel.clearSelections();
         GUIHelper.switchView(this.anchorPane, Views.ABOUT_HYRE);
     }
 }

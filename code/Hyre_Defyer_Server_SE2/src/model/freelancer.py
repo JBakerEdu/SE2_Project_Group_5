@@ -37,8 +37,6 @@ class Freelancer(User):
             @param category: the category to add
         '''
         self._categories.add(category)
-        
-        print(f"📌 Added category: {category}, Current categories: {self._categories}")
     
     def removeCategory(self, category):
         '''
