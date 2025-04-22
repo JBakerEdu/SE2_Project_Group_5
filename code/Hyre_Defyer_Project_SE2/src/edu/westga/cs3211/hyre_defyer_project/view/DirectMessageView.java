@@ -163,20 +163,22 @@ public class DirectMessageView {
     		this.contactListView.getSelectionModel().select(0);
     	}
     	BooleanBinding sendButtonBindings = Bindings.isNull(this.contactListView.getSelectionModel().selectedItemProperty()).or(this.draftMessageTextArea.textProperty().isEmpty());
+    	BooleanBinding removeButtonBindings = Bindings.createBooleanBinding(() -> {
+    	    var selected = this.contactListView.getSelectionModel().getSelectedItem();
+    	    return selected == null || "admin".equals(selected.getUserName());
+    	}, this.contactListView.getSelectionModel().selectedItemProperty());
+
+    	this.removeContactButton.disableProperty().bind(removeButtonBindings);
+
     	this.sendMessageButton.disableProperty().bind(sendButtonBindings);
     }
 
 		private void setUpListeners() {
 			this.contactListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 				if (newValue != null) {
-					this.removeContactButton.disableProperty().setValue(false);
-					if (newValue.getUserName().equals("admin")) {
-						this.removeContactButton.disableProperty().setValue(true);
-					}
 					this.otherPersonUserNameLbel.textProperty().setValue(newValue.getUserName());
 					this.directMessageHandler = new DirectMessageHandler(SignInViewModel.getCurrentUser(), newValue);
 				} else {
-					this.removeContactButton.disableProperty().setValue(true);
 					this.otherPersonUserNameLbel.textProperty().setValue("Other Person User Name");
 				}
     		this.updateDisplayedMessages();
