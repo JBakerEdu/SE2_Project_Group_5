@@ -184,7 +184,7 @@ public class FreelancerPostPageView {
     		ServerInterface.rateFreelancer((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView(), rating);
     		this.starRating.textProperty().setValue("Rating: " + ((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView()).getRating() + " stars");
     		this.rateFreelancerPane.setVisible(false);
-    		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), FreelancerPostPageViewModel.getUserSelectedToView());
+//    		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), FreelancerPostPageViewModel.getUserSelectedToView());
     		this.updateDataShown();
     	});
     }

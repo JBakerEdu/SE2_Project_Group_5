@@ -25,6 +25,7 @@ class Freelancer(User):
         self._categories = set()
         self._skills = set()
         self._rating = 0
+        self._ratings = list()
     
     def addCategory(self, category):
         '''
@@ -131,15 +132,15 @@ class Freelancer(User):
             Sets the rating of the freelancer
             
             @precondition: none
-            @postcondition: self._rating = (self._rating + rate)/2
+            @postcondition: self._rating = the average of their ratings
             
             @param rate: what the freelancer was rated out of 5 
         '''
-        if self._rating == 0:
-            self._rating = rate
-        else:
-            new_rate = (self._rating + rate)/2
-            self._rating = new_rate
+        self.getRatings().append(rate)
+        self._rating = sum(self.getRatings())/len(self.getRatings())
+    
+    def getRatings(self):
+        return self._ratings
     
     def to_dict(self):
         '''

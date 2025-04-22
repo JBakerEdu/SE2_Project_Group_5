@@ -109,6 +109,18 @@ class TestServerResourceHandler(unittest.TestCase):
         
         self.assertEquals(None, self.serverResourceHandler.rateFreelancer("New", 3))
         
+    def test_rate_freelancer_multiple_times(self):
+        self.assertTrue(self.serverResourceHandler.createAccount("Dummyyy", "Freelancer"))
+        self.serverResourceHandler.addFreelancerToRoster(Freelancer("Dummyyy", "Freelancer"))
+        
+        self.freelancer = Freelancer("Dummyyy", "Freelancer")
+        
+        self.assertEquals(5, self.serverResourceHandler.rateFreelancer("Dummyyy", 5))
+        self.assertEquals(3, self.serverResourceHandler.rateFreelancer("Dummyyy", 1))
+        self.assertAlmostEquals(2.3, self.serverResourceHandler.rateFreelancer("Dummyyy", 1), places=1)
+        self.assertEquals(2, self.serverResourceHandler.rateFreelancer("Dummyyy", 1))
+        self.assertAlmostEquals(1.8, self.serverResourceHandler.rateFreelancer("Dummyyy", 1), places=1)
+        
     def test_remove_all_from_category(self):
         self.freelancer = Freelancer("HELLO", "password")
         self.freelancer.addCategory("NEW")
