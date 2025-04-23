@@ -275,7 +275,7 @@ class ServerResourceHandler:
 
         return result
     
-    def rateFreelancer(self, freelancerName, rating):
+    def rateFreelancer(self, user, freelancerName, rating):
         '''
             Rates the freelancer
             
@@ -289,7 +289,7 @@ class ServerResourceHandler:
         '''
         freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
         if freelancer is not None:
-            freelancer.rate(rating)
+            freelancer.rate(user, rating)
             return freelancer.getRating()
         
 

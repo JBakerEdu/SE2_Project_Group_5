@@ -25,7 +25,7 @@ class Freelancer(User):
         self._categories = set()
         self._skills = set()
         self._rating = 0
-        self._ratings = list()
+        self._ratings = dict()
     
     def addCategory(self, category):
         '''
@@ -125,7 +125,7 @@ class Freelancer(User):
         '''
         return self._rating
     
-    def rate(self, rate):
+    def rate(self, user, rate):
         '''
             Sets the rating of the freelancer
             
@@ -134,8 +134,8 @@ class Freelancer(User):
             
             @param rate: what the freelancer was rated out of 5 
         '''
-        self.getRatings().append(rate)
-        self._rating = sum(self.getRatings())/len(self.getRatings())
+        self.getRatings()[user] = rate
+        self._rating = sum(self.getRatings().values())/len(self.getRatings())
     
     def getRatings(self):
         return self._ratings

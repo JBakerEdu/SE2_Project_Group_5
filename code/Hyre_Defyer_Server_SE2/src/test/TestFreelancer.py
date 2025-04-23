@@ -53,13 +53,19 @@ class TestFreelancer(unittest.TestCase):
     def test_get_rating(self):
         self.assertEquals(0, self.freelancer.getRating())
         
+    def test_rate_multiple_times(self):
+        self.freelancer.rate("dummy1", 5)
+        self.assertEquals(5, self.freelancer.getRating())
+        self.freelancer.rate("dummy1", 3)
+        self.assertEquals(3, self.freelancer.getRating())
+        
     def test_set_rating_is_zero(self):
-        self.freelancer.rate(5)
+        self.freelancer.rate("dummy1", 5)
         self.assertEquals(5, self.freelancer.getRating())
     
     def test_set_rating_not_zero(self):
-        self.freelancer.rate(5)
-        self.freelancer.rate(1)
+        self.freelancer.rate("dummy1", 5)
+        self.freelancer.rate("dummy2", 1)
         self.assertEqual(3, self.freelancer.getRating())
     
     def test_to_dict(self):

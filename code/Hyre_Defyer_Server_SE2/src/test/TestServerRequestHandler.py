@@ -250,6 +250,12 @@ class TestServerRequestHandler(unittest.TestCase):
     def test_rate_freelancer_success(self):
         request = {
             constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "User1",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
             constants.REQ_USERNAME: "Freelancer",
             constants.REQ_PASSWORD: "pass"
         }
@@ -262,6 +268,7 @@ class TestServerRequestHandler(unittest.TestCase):
         self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
         request = {
             constants.REQ_TYPE: constants.REQ_RATE_FREELANCER,
+            constants.REQ_SENDER: "User1",
             constants.REQ_RECEIVER: "Freelancer",
             constants.REQ_RATING: 5
         }

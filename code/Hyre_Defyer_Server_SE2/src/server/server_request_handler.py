@@ -214,10 +214,11 @@ class ServerRequestHandler:
     
     def _rateFreelancer(self, request):
         response = {}
+        user = request.get(constants.REQ_SENDER)
         freelancer = request.get(constants.REQ_RECEIVER)
         rating = request.get(constants.REQ_RATING)
         
-        result = self._serverResourceHandler.rateFreelancer(freelancer, rating)
+        result = self._serverResourceHandler.rateFreelancer(user, freelancer, rating)
         
         if result is None:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL

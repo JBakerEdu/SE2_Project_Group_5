@@ -137,10 +137,10 @@ public class FreelancerPostPageView {
         if (freelancer == null) {
             return;
         }
-        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
+        this.rateButton.disableProperty().set(true);
+        if (SignInViewModel.getCurrentUser() != null) { //&& ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
         	this.rateButton.disableProperty().set(false);
         }
-        this.rateButton.disableProperty().set(true);
         this.starRating.setText("Rating: " + freelancer.getRating() + " stars");
         this.userLabel.setText(freelancer.getUserName());
         this.descriptionTextBox.setText(freelancer.getBio());
@@ -183,13 +183,15 @@ public class FreelancerPostPageView {
     	this.submitRateButton.setOnAction((event) -> {
     		User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
         Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
-    		int rating = this.starValues.getSelectionModel().getSelectedItem();
-    		String starRating = ServerInterface.rateFreelancer((Freelancer) FreelancerPostPageViewModel.getUserSelectedToView(), rating);
-    		this.starRating.textProperty().setValue("Rating: " + freelancer.getRating() + " stars");
-    		this.getFreelancerByUsername(FreelancerPostPageViewModel.getUserSelectedToView().getUserName()).setRating(Double.parseDouble(starRating));
+        if (this.starValues.getSelectionModel().getSelectedItem() != null) {
+      		int rating = this.starValues.getSelectionModel().getSelectedItem();
+      		ServerInterface.rateFreelancer(freelancer, rating);
+      		this.starRating.textProperty().setValue("Rating: " + freelancer.getRating() + " stars");
 
-    		this.rateFreelancerPane.setVisible(false);
-    		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), freelancer);
+      		this.rateFreelancerPane.setVisible(false);
+//      		ServerInterface.deleteChat(SignInViewModel.getCurrentUser(), freelancer);
+      		this.starValues.getSelectionModel().clearSelection();
+        }
     	});
     }
 
