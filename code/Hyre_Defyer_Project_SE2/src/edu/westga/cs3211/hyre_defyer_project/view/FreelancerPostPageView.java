@@ -129,6 +129,7 @@ public class FreelancerPostPageView {
     	this.skill5TextArea.setEditable(false);
     	this.categoryTextFeild.setEditable(false);
     	this.rateFreelancerPane.setVisible(false);
+    	this.rateButton.disableProperty().set(true);
 	}
 
     private void updateDataShown() {
@@ -137,8 +138,7 @@ public class FreelancerPostPageView {
         if (freelancer == null) {
             return;
         }
-        this.rateButton.disableProperty().set(true);
-        if (SignInViewModel.getCurrentUser() != null) { //&& ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(freelancer)) {
+        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(selectedUser)) {
         	this.rateButton.disableProperty().set(false);
         }
         this.starRating.setText("Rating: " + freelancer.getRating() + " stars");
@@ -185,11 +185,11 @@ public class FreelancerPostPageView {
         Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         if (this.starValues.getSelectionModel().getSelectedItem() != null) {
       		int rating = this.starValues.getSelectionModel().getSelectedItem();
-      		ServerInterface.rateFreelancer(freelancer, rating);
-      		this.starRating.textProperty().setValue("Rating: " + freelancer.getRating() + " stars");
-
+      		ServerInterface.rateFreelancer(SignInViewModel.getCurrentUser(), freelancer, rating);
+    		
       		this.rateFreelancerPane.setVisible(false);
       		this.starValues.getSelectionModel().clearSelection();
+      		this.updateDataShown();
         }
     	});
     }
