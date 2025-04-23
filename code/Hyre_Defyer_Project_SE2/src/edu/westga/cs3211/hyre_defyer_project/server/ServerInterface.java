@@ -379,13 +379,16 @@ public class ServerInterface {
 	/**
 	 * Rate the freelancer in the server
 	 * 
-	 * @param rating what the users rating the freelancer
+	 * @param user the user leaving the rating
 	 * @param freelancer the freelancer the users rating
+	 * @param rating what the users rating the freelancer
+	 *
 	 * @return the rating of the freelancer
 	 */
-	public static String rateFreelancer(Freelancer freelancer, int rating) {
+	public static String rateFreelancer(User user, Freelancer freelancer, int rating) {
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_RATE_FREELANCER);
+		request.put(Constants.REQ_SENDER, user.getUserName());
 		request.put(Constants.REQ_RECEIVER, freelancer.getUserName());
 		request.put(Constants.REQ_RATING, rating);
 		

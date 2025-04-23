@@ -215,7 +215,9 @@ public class TestServerInterface {
 		Freelancer freelancer = new Freelancer("tmp", "", "");
 		assertTrue(ServerInterface.addFreelancer(freelancer));
 		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer));
-		String response = ServerInterface.rateFreelancer(freelancer, 3);
+		assertTrue(ServerInterface.createAccount("userrr", "pass"));
+		User user = ServerInterface.login("userrr", "pass");
+		String response = ServerInterface.rateFreelancer(user, freelancer, 3);
 
 		assertEquals("3.0", response);
 		assertEquals("3.0", freelancer.getRating());
@@ -223,8 +225,10 @@ public class TestServerInterface {
 	
 	@Test
 	public void testRateExistingFreelancer() {
+		assertTrue(ServerInterface.createAccount("abcd", "pass"));
+		User user = ServerInterface.login("abcd", "pass");
 		Freelancer freelancer1 = ServerInterface.getFreelancers().getFreelancersByName("Alice").get(0);
-		String response = ServerInterface.rateFreelancer(freelancer1, 3);
+		String response = ServerInterface.rateFreelancer(user, freelancer1, 3);
 		
 		assertEquals("3.0", response);
 		assertEquals("3.0", freelancer1.getRating());
@@ -235,12 +239,17 @@ public class TestServerInterface {
 		Freelancer freelancer1 = new Freelancer("Dummy Account 123", "", "");
 		assertTrue(ServerInterface.addFreelancer(freelancer1));
 		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
-		String response = ServerInterface.rateFreelancer(freelancer1, 3);
+		assertTrue(ServerInterface.createAccount("user tmp", "pass"));
+		User user = ServerInterface.login("user tmp", "pass");
+		String response = ServerInterface.rateFreelancer(user, freelancer1, 3);
 		
 		assertEquals("3.0", response);
 		assertEquals("3.0", freelancer1.getRating());
 		
-		response = ServerInterface.rateFreelancer(freelancer1, 5);
+		assertTrue(ServerInterface.createAccount("user tm", "pass"));
+		User user1 = ServerInterface.login("user tm", "pass");
+		
+		response = ServerInterface.rateFreelancer(user1, freelancer1, 5);
 		
 		assertEquals("4.0", response);
 		assertEquals("4.0", freelancer1.getRating());
