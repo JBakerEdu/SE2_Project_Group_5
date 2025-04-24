@@ -1,7 +1,6 @@
 Use Case 9: Sign In to Existing Account
 
-
-Actor: Freelancer and Employer
+Actor: User
 Pre-condition: The user already has an account registered on the platform.
 
 Description:
