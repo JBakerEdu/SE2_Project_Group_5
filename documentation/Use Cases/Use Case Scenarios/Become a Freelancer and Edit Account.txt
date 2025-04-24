@@ -1,0 +1,31 @@
+Use Case 8: Edit Account and Become a Freelancer
+
+Actor: User (Basic Account)
+Pre-condition: The user is logged in with a basic account (non-freelancer).
+
+Description:
+A basic user can update their account bio and choose to become a freelancer. Once they opt to become a freelancer, the system updates their role and reveals additional profile fields for them to complete, including skills and category selection. Upon completion, the user is publicly visible in the selected category and can be "Hyred" by employers.
+
+Basic Flow – Become a Freelancer
+	1. The user navigates to their account settings.
+	2. The user clicks the "Become a Freelancer" button.
+	3. The system updates the user’s role from basic to freelancer.
+	4. The system assigns the user to the "Undetermined" category.
+	5. The system generates a blank freelancer profile with: Empty skills, Empty bio, and Default category: "Undetermined"
+	6. The user is now publicly listed in the "Undetermined" category.
+	7. The user accesses the freelancer profile edit page.
+	8. The user enters or updates their skills.
+	9. The user writes or updates their freelancer bio.
+	10. The user selects an existing category from a dropdown.
+	11. The user clicks the "Save" button.
+	12. The system validates the input and saves the updated profile.
+	13. The system removes the user from the "Undetermined" category.
+	14. The system assigns the user to the selected category.
+	15. The updated profile is shown in search results and within the new category listing.
+	16. Employers can now view the complete profile and "Hyre" the freelancer.
+
+Alternative Flow 10.A – Create New Category
+	10A. Instead of selecting a category, the user enters a new personal category name.
+	10B. The system creates the new category.
+	10C. The user is assigned as the first freelancer in that category.
+	10D. Continue to Step 12.
