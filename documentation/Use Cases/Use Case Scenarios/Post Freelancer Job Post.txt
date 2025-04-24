@@ -1,4 +1,4 @@
-Use Case 5: Post Freelancer Job Post
+ves posting from catUse Case 5: Post Freelancer Job Post
 
 Actor: Freelancer
 Pre-condition: The freelancer is logged in.
@@ -20,7 +20,7 @@ Basic Flow – Update Profile
 Alternative Flow 1.A – Delete Account
 	1A. The freelancer navigates to account settings.
 	1B. The freelancer clicks the "Delete Account" option.
-	1C. The system permanently deletes the freelancer’s account and all associated data.
+	1C. The system permanently deletes the freelancer’s account and removes from the Category page.
 
 Alternative Flow 2.A – Cancel Edit
 	2A. The freelancer clicks "Cancel" instead of proceeding with edits.
