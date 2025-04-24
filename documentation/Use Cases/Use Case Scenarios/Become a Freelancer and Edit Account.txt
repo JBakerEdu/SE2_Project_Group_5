@@ -1,6 +1,6 @@
 Use Case 8: Edit Account and Become a Freelancer
 
-Actor: User (Basic Account)
+Actor: Employer
 Pre-condition: The user is logged in with a basic account (non-freelancer).
 
 Description:
