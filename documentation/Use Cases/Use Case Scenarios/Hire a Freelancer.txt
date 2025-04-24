@@ -1,6 +1,5 @@
 Use Case 4: Hire a Freelancer
 
-
 Actor: Employer
 
 Description: 
