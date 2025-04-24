@@ -2,14 +2,23 @@ Use Case 2: View Categories of Freelancers
 
 
 Actor: User, Freelancer, Employer
-Pre-condition: None
 
 Description: 
-	Users can browse categories to find freelancers by field (e.g., programming, writing).
+	Users can browse available categories to find freelancers grouped by their field of expertise (e.g., programming, writing).
 
-Basic Flow:
-	User selects a category from the Home Page to view
-	System switched to category page and displays a list of freelancers within the category selected.
-	User clicks a freelancer to view 
+Basic Flow - Browse Freelancer Categories:
+	1. User navigates to Home Page.
+	2. The system displays a list of some freelancer categories.
+	3. The User clicks on one of the categories. 
+	4. System navigates to the selected categories page. 
+	5. The system displays the freelancers associated with that category. 
+	6. User may select a freelancer to view in that category.
 
-Post-condition: The user can view a list of freelancer categories.
+Alternative Flow 2.A - User Views More Categories
+	2A. The user clicks view all categories 
+	2B. The sytem displays all categories (return to step 3).
+
+Alternative Flow 5.A - User selects another Catgeory.
+	5A. System displays dropdown with other categories.
+	5B. The user selects a different category, (return to step 4).
+	
