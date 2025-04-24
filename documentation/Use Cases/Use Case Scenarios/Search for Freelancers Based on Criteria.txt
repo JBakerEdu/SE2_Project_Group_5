@@ -1,6 +1,5 @@
 Use Case 3: Search for Freelancers Based on Criteria
 
-
 Actor: User, Freelancer, Employer
 
 Description:
