@@ -1,6 +1,5 @@
 Use Case 2: View Categories of Freelancers
 
-
 Actor: User, Freelancer, Employer
 
 Description: 
