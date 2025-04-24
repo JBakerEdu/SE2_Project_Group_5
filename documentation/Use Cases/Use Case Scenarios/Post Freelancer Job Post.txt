@@ -1,4 +1,4 @@
-Use Case 5: Post Freelancer Job Skills
+Use Case 5: Post Freelancer Job Post
 
 Actor: Freelancer
 Pre-condition: The freelancer is logged in.
