@@ -2,21 +2,14 @@ Use Case 6: Review Freelancer
 
 
 Actor: Employer
-Pre-condition: The freelancer has been Hyred by the employer and has completed the task.
+Pre-condition: The freelancer has been Hyred by the employer.
 
-Description: 
-	After hiring a freelancer, the employer can leave a review. 
-	This includes a star rating out of 5. 
-	The system updates the freelancer’s profile and recalculates their average rating.
+Description: After hiring a freelancer, the employer can leave a rating from 1-5. The system updates the freelancer’s profile and recalculates their average rating.
 
 Basic Flow:
-	The employer visits the freelancer’s profile.
-	The employer clicks the "Leave Review" button.
-	The employer selects a rating (1–5).
-	The employer confirms the submission.
-	The system adds the review to the freelancer’s profile and recalculates the average rating.
-
-Alternative Flow – Employer Skips Review:
-	The employer chooses not to leave a review and exits the process.
-
-Post-condition: The freelancer's profile is updated with the new review, and the average rating is recalculated and displayed.
+	1. The employer visits the freelancer’s profile.
+	2. The employer clicks the "Rate" button.
+	3. The employer selects a rating (1–5).
+	4. The employer confirms the submission.
+	5. The system adds the rating to the freelancer’s ratings and recalculates the average rating.
+	6. The system displays the freelancer's updated average rating.
