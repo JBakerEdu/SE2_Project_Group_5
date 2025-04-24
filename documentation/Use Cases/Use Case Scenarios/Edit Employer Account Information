@@ -1,0 +1,12 @@
+Use Case: Edit Employer Account Information
+
+Actor: Employer
+Pre-condition: The user is logged in with an employer account.
+
+Description:
+  1. An employer can update their personal bio to better describe themselves or their hiring preferences. This helps present a more detailed profile to potential freelancers.
+  2. Basic Flow – Edit Employer Profile
+  3. The user navigates to the account settings or profile edit page.
+  4. The user enters or updates their bio.
+  5. The user clicks the "Save" button.
+  6. The system validates the input and saves the updated profile.
