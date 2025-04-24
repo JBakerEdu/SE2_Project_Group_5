@@ -1,6 +1,5 @@
 Use Case 5: Post Freelancer Job Skills
 
-
 Actor: Freelancer
 Pre-condition: The freelancer is logged in.
 
@@ -9,22 +8,27 @@ Description:
 	They can select from existing categories or create a new one if needed. 
 	Additionally, freelancers have the option to delete their account entirely.
 
-Basic Flow:
-	The freelancer navigates to their account/profile page.
-	The freelancer clicks the "Edit" button.
-	Updates or adds job skills.
-	Writes or edits their bio.
-	Selects an existing category or enters a personal category.
-	If a personal category is entered:
-		The system creates the category and assigns the freelancer as the first member.
-	The freelancer clicks "Save."
-	The system updates the freelancer’s profile with the new information.
+Basic Flow – Update Profile
+	1. The freelancer navigates to their account/profile page.
+	2. The freelancer clicks the "Edit" button.
+	3. The freelancer updates or adds job skills.
+	4. The freelancer writes or edits their bio.
+	5. The freelancer selects an existing category from the dropdown.
+	6. The freelancer clicks the "Save" button.
+	7. The system updates the freelancer’s profile with the new information.
 
-Additional Flow – Delete Account:
-	The freelancer clicks the "Delete Account" option in settings.
-	Upon confirmation, the system permanently deletes the freelancer’s account and associated data.
+Alternative Flow 1.A – Delete Account
+	1A. The freelancer navigates to account settings.
+	1B. The freelancer clicks the "Delete Account" option.
+	1C. The system permanently deletes the freelancer’s account and all associated data.
 
-Alternative Flows:
-	Unconfirmed Deletion: If the freelancer cancels the confirmation prompt, no data is deleted.
+Alternative Flow 2.A – Cancel Edit
+	2A. The freelancer clicks "Cancel" instead of proceeding with edits.
+	2B. The system discards any unsaved changes.
+	2C. The profile remains unchanged.
 
-Post-condition: The freelancer’s profile is updated with new or modified skills, bio, and category — or the account is successfully deleted, depending on the action taken.
+Alternative Flow 5.A – Create New Category
+	5A. Instead of selecting from the dropdown, the freelancer enters a new category name.
+	5B. The system creates the new category.
+	5C. The system assigns the freelancer to the new category.
+	5D. Continue to Step 6 of the Basic Flow.
