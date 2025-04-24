@@ -1,0 +1,24 @@
+Use Case: Edit Freelancer Account Information
+
+Actor: Freelancer 
+Pre-condition: The user is logged in as a freelancer account.
+
+Description:
+A freelancer can update their profile details such as skills, bio, and category. Completing this information finalizes their freelancer profile and places them in the appropriate category listing.
+
+Basic Flow – Edit Freelancer Profile
+  1. The user accesses the freelancer profile edit page.
+  2. The user enters or updates their skills.
+  3. The user writes or updates their freelancer bio.
+  4. The user selects an existing category from a dropdown.
+  5. The user clicks the "Save" button.
+  6. The system validates the input and saves the updated profile.
+  7. The system assigns the user to the selected category.
+  8. The updated profile is shown in search results and within the new category listing.
+  9. Employers can now view the complete profile and "Hyre" the freelancer.
+
+Alternative Flow 4.A – Create New Category
+  4A. Instead of selecting a category, the user enters a new personal category name.
+  4B. The system creates the new category.
+  4C. The user is assigned as the first freelancer in that category.
+  4D. Continue to Step 5.
