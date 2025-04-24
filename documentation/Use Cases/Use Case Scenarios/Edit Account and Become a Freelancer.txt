@@ -6,25 +6,24 @@ Pre-condition: The user is logged in with a basic account (non-freelancer).
 Description:
 A basic user can update their account bio and choose to become a freelancer. Once they opt to become a freelancer, the system updates their role and reveals additional profile fields for them to complete, including skills and category selection. Upon completion, the user is publicly visible in the selected category and can be "Hyred" by employers.
 
-Basic Flow – Edit Bio (Basic User):
-	User navigates to their account settings.
-	User updates their bio.
-	User clicks "Save."
-	System validates and applies the update.
+Basic Flow – Edit Bio (Basic User)
+	1. The user navigates to their account settings.
+	2. The user updates their bio.
+	3. The user clicks the "Save" button.
+	4. The system validates and applies the update.
+	6. The user clicks the "Become a Freelancer" button in account settings.
+	7. The system updates the user’s role from basic to freelancer.
+	8. The system reveals new profile fields for: Skills input, Category selection (dropdown), and Option to create a new personal category
+	9. The user enters their skills.
+	10. The user selects a category.
+	11. The user clicks the "Save" button.
+	12. The system saves the freelancer profile.
+	13. The user’s profile becomes publicly visible in the selected category.
+	14. The user is now listed in search results and category pages.
+	15. Employers can now view and "Hyre" the freelancer.
 
-Basic Flow – Become a Freelancer:
-	User clicks the "Become a Freelancer" button in their account settings.
-	System updates their role and displays additional profile fields:
-		Skills
-		Category selection or creation
-	User fills in their skills and selects an existing category or adds a new personal category.
-	If a new category is added, the system creates it and places the user as the first listed freelancer.
-	User clicks "Save."
-	System saves the information and makes the freelancer profile publicly visible:
-	The user now appears in search results and category listings.
-	Employers can view the profile and Hyre the freelancer.
-
-Alternative Flow – Missing Info:
-	If the freelancer form is submitted with missing or invalid fields, the system displays an error and prompts the user to correct it.
-
-Post-condition: The user's account is updated. && If they become a freelancer, their profile includes skills and category, and they are now visible to others as a freelancer available for hire.
+Alternative Flow 10.A – Create New Category
+	10A. The user enters a new personal category instead of selecting one.
+	10B. The system creates the new category.
+	10C. The system assigns the user as the first freelancer in that category.
+	10D. Continue to Step 11 of the Basic Flow.
