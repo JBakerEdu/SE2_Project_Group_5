@@ -1,6 +1,5 @@
 package edu.westga.cs3211.hyre_defyer_project.model;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,9 +18,7 @@ public class Freelancer extends User {
 	private static final String CATEGORIES_CANNOT_BE_NULL = "Categories cannot be null.";
 	
 	private List<String> categories;
-    private List<String> skills;
-  private String starRating = "n/a";
-  private DecimalFormat df = new DecimalFormat("#.#");
+  private List<String> skills;
 	
     /**
      * Creates a freelancer with a username, password, biography, and categories.
@@ -256,35 +253,6 @@ public class Freelancer extends User {
             }
         }
         return false;
-    }
-    
-    /**
-     * Sets the rating of the freelancer
-     * 
-     * @precondition none
-     * @postcondition starRating == rate
-     * 
-     * @param rate the rating of the freelancer
-     */
-    public void setRating(double rate) {
-    	if (rate % 1 != 0) {
-    		this.starRating = this.df.format(rate);
-    	} else {
-    		this.starRating = String.valueOf(rate);
-    	}
-    	
-    }
-    
-    /**
-     * Gets the rating of the freelancer
-     * 
-     * @precondition none
-     * @postcondition none
-     * 
-     * @return the rating of the freelancer
-     */
-    public String getRating() {
-    	return this.starRating;
     }
 
 	@Override

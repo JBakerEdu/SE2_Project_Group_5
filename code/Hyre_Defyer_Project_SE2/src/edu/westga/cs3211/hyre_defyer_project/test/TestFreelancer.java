@@ -326,22 +326,5 @@ class TestFreelancer {
         assertEquals("Java", skills.get(0));
         assertEquals("C++", skills.get(1));
     }
-    
-    @Test
-    public void testSetRatingWholeNumber() {
-    	this.freelancer.setRating(4);
-    	assertEquals("4.0", this.freelancer.getRating());
-    }
-    
-    @Test
-    public void testSetRating() {
-    	this.freelancer.setRating(4.5);
-    	assertEquals("4.5", this.freelancer.getRating());
-    }
-    
-    @Test
-    public void testGetRating() {
-    	assertEquals("n/a", this.freelancer1.getRating());
-    }
 
 }

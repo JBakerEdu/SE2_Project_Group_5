@@ -250,16 +250,25 @@ public class TestServerInterface {
 		String freelancersRating = ServerInterface.getRating(freelancer1);
 		
 		assertTrue(isSuccessful);
-		assertEquals("3.0", freelancersRating);
+		assertEquals("3", freelancersRating);
 		
-		assertTrue(ServerInterface.createAccount("user tm", "pass"));
-		User user1 = ServerInterface.login("user tm", "pass");
+		assertTrue(ServerInterface.createAccount("user tmp1", "pass"));
+		user = ServerInterface.login("user tmp1", "pass");
 		
-		isSuccessful = ServerInterface.rateFreelancer(user1, freelancer1, 5);
+		isSuccessful = ServerInterface.rateFreelancer(user, freelancer1, 4);
 		freelancersRating = ServerInterface.getRating(freelancer1);
 		
 		assertEquals(true, isSuccessful);
-		assertEquals("4.0", freelancersRating);
+		assertEquals("3.5", freelancersRating);
+		
+		assertTrue(ServerInterface.createAccount("user tmp2", "pass"));
+		user = ServerInterface.login("user tmp2", "pass");
+		
+		isSuccessful = ServerInterface.rateFreelancer(user, freelancer1, 3);
+		freelancersRating = ServerInterface.getRating(freelancer1);
+		
+		assertEquals(true, isSuccessful);
+		assertEquals("3.3", freelancersRating);
 	}
 	
 	@Test
@@ -275,11 +284,11 @@ public class TestServerInterface {
 		Freelancer freelancer1 = new Freelancer("Dummy Account 12345", "", "");
 		assertTrue(ServerInterface.addFreelancer(freelancer1));
 		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
-		assertTrue(ServerInterface.createAccount("user tmp1", "pass"));
-		User user = ServerInterface.login("user tmp1", "pass");
+		assertTrue(ServerInterface.createAccount("user tmp124", "pass"));
+		User user = ServerInterface.login("user tmp124", "pass");
 		ServerInterface.rateFreelancer(user, freelancer1, 3);
 		
 		String response = ServerInterface.getRating(freelancer1);
-		assertEquals("3.0", response);
+		assertEquals("3", response);
 	}
 }

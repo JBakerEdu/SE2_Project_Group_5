@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.server;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class ServerInterface {
 	
 	private static final String FREELANCER_TO_ADD_CAN_NOT_BE_NULL = "freelancer to add can not be null.";
 	private static final String FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL = "freelancer to remove can not be null.";
+	private static DecimalFormat df = new DecimalFormat("#.#");
 
 	/**
 	 * Sets the bio of the user
@@ -416,7 +418,7 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
-			return String.valueOf(responseJSON.getDouble(Constants.REP_RATING));
+			return String.valueOf(df.format(responseJSON.getDouble(Constants.REP_RATING)));
 		}
 		return "n/a";
 	}
