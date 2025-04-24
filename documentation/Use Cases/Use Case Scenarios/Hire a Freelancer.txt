@@ -2,18 +2,22 @@ Use Case 4: Hire a Freelancer
 
 
 Actor: Employer
-Pre-condition: Employer is logged in and has found a suitable freelancer.
 
 Description: 
 	Employers can hire freelancers by negotiating and confirming job terms.
 
-Basic Flow:
-	Employer selects a freelancer and clicks "Hyre."
-	Employer and freelancer negotiate terms via messaging.
-	Employer confirms the hire.
-	Freelancer can start working.
+Basic Flow - Hiring a Freelancer:
+	1. Employer views a freelancers profile.
+	2. The employer clicks the "Hyre" button to initiate hiring the freelancer.
+	3. The system opens the messaging page to start communicating to freelancer. 
+	4. The employer and freelancer negotiate job details via messaging (e.g., timeline, rate, deliverables). 
+	5. The employer and freelancer agree on terms via messaging. 
+	6. Freelancer starts working.
 
-Alternative Flow – No Agreement:
-	Employer selects another freelancer or cancels.
-
-Post-condition: The freelancer is hired and begins work.
+Alternative Flow 4.A – No Agreement:
+	4A. The employer and freelancer cannot agree on terms. 
+	4B. The freelancer may chose to:
+		a. Delete conversation with employer.
+	4C. The employer may chose to:
+		a. Delete conversation with freelancer.
+		b. Return to the search results and select another freelancer (return to Step 1).
