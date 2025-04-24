@@ -30,6 +30,7 @@ REQ_DELETE_USER_FROM_SERVER = "delete user from server"
 REQ_SET_USER_BIO = "set user bio"
 REQ_RATING = "rating"
 REQ_RATE_FREELANCER = "rate freelancer"
+REQ_GET_RATING = "get rating"
 
 REP_SUCCESS = "success"
 REP_FAIL = "fail"

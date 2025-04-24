@@ -97,4 +97,13 @@ public class User {
 	public String toString() {
 		return this.userName;
 	}
+	
+	@Override
+	public boolean equals(Object object) {
+		User user = (User) object;
+		if (user != null && user.getUserName().equals(this.userName)) {
+			return true;
+		}
+		return false;
+	}
 }

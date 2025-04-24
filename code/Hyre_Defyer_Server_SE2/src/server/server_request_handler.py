@@ -228,6 +228,19 @@ class ServerRequestHandler:
             
         return response
     
+    def _getFreelancerRating(self, request):
+        response = {}
+        freelancer = request.get(constants.REQ_USERNAME)
+        
+        result = self._serverResourceHandler.getFreelancerRating(freelancer)
+        if result == 0:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+        else:
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+            response[constants.REP_RATING] = result
+            
+        return response
+    
     def _getCategories(self, request):
         '''
             gets the categories
@@ -307,6 +320,9 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_RATE_FREELANCER:
             response = self._rateFreelancer(request)
+            
+        elif req_type == constants.REQ_GET_RATING:
+            response = self._getFreelancerRating(request)
         
         elif req_type == constants.REQ_GET_CATEGORIES:
             response = self._getCategories(request);

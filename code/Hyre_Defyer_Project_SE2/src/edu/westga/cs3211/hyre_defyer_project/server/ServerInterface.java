@@ -383,9 +383,10 @@ public class ServerInterface {
 	 * @param freelancer the freelancer the users rating
 	 * @param rating what the users rating the freelancer
 	 *
-	 * @return the rating of the freelancer
+	 * @return true if freelancer was rated
+	 * 				 false if freelancer was not rated
 	 */
-	public static String rateFreelancer(User user, Freelancer freelancer, int rating) {
+	public static boolean rateFreelancer(User user, Freelancer freelancer, int rating) {
 		JSONObject request = new JSONObject();
 		request.put(Constants.REQ_TYPE, Constants.REQ_RATE_FREELANCER);
 		request.put(Constants.REQ_SENDER, user.getUserName());
@@ -395,10 +396,28 @@ public class ServerInterface {
 		String response = ServerCommunicator.sendRequestToServer(request);
 		JSONObject responseJSON = new JSONObject(response);
 		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
-			double rateValue = responseJSON.getDouble(Constants.REP_RATING);
-			freelancer.setRating(rateValue);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Get the rating of the freelancer
+	 * 
+	 * @param freelancer the freelancer
+	 * 
+	 * @return the freelancers rating
+	 */
+	public static String getRating(Freelancer freelancer) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_GET_RATING);
+		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
+
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject responseJSON = new JSONObject(response);
+		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
 			return String.valueOf(responseJSON.getDouble(Constants.REP_RATING));
 		}
-		return "Rating failed";
+		return "n/a";
 	}
 }

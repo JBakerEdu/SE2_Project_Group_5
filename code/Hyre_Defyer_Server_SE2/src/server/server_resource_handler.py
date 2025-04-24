@@ -292,7 +292,10 @@ class ServerResourceHandler:
             freelancer.rate(user, rating)
             return freelancer.getRating()
         
-
+    def getFreelancerRating(self, freelancerName):
+        freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
+        if freelancer is not None:
+            return freelancer.getRating()
     
     def getCategories(self):
         '''

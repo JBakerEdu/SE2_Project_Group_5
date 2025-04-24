@@ -103,12 +103,19 @@ public class FreelancerPostPageView {
     
     @FXML
     private Pane rateFreelancerPane;
+    
+    private User selectedUser;
+    
+    private Freelancer selectedFreelancer;
 
     @FXML
     void initialize() {
     	if (SignInViewModel.getCurrentUser() != null) {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	}
+    	this.selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
+      this.selectedFreelancer = ServerInterface.getFreelancers().getFreelancersByName(this.selectedUser.getUserName()).get(0);
+      
     	this.disableAll();
       this.updateDataShown();
       this.updateHyreButtonAndErrorLabel();
@@ -133,20 +140,19 @@ public class FreelancerPostPageView {
 	}
 
     private void updateDataShown() {
-        User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
-        Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
-        if (freelancer == null) {
+        if (this.selectedFreelancer == null) {
             return;
         }
-        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(selectedUser)) {
+        User tmp = new User(this.selectedUser.getUserName());
+        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(tmp)) {
         	this.rateButton.disableProperty().set(false);
         }
-        this.starRating.setText("Rating: " + freelancer.getRating() + " stars");
-        this.userLabel.setText(freelancer.getUserName());
-        this.descriptionTextBox.setText(freelancer.getBio());
-        this.categoryTextFeild.setText(freelancer.getCategory().replace("_", " "));
+        this.starRating.setText("Rating: " + ServerInterface.getRating(this.selectedFreelancer) + " stars");
+        this.userLabel.setText(this.selectedFreelancer.getUserName());
+        this.descriptionTextBox.setText(this.selectedFreelancer.getBio());
+        this.categoryTextFeild.setText(this.selectedFreelancer.getCategory().replace("_", " "));
 
-        List<String> skills = freelancer.getSkills();
+        List<String> skills = this.selectedFreelancer.getSkills();
         TextArea[] fields = {
             this.skill1TextArea,
             this.skill2TextArea,
@@ -181,11 +187,10 @@ public class FreelancerPostPageView {
     		this.rateFreelancerPane.setVisible(true);
     	});
     	this.submitRateButton.setOnAction((event) -> {
-    		User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
-        Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
         if (this.starValues.getSelectionModel().getSelectedItem() != null) {
       		int rating = this.starValues.getSelectionModel().getSelectedItem();
-      		ServerInterface.rateFreelancer(SignInViewModel.getCurrentUser(), freelancer, rating);
+      		ServerInterface.rateFreelancer(SignInViewModel.getCurrentUser(), this.selectedFreelancer, rating);
+      		this.starRating.setText("Rating: " + ServerInterface.getRating(this.selectedFreelancer) + " stars");
     		
       		this.rateFreelancerPane.setVisible(false);
       		this.starValues.getSelectionModel().clearSelection();

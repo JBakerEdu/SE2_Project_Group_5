@@ -128,6 +128,12 @@ class TestServerResourceHandler(unittest.TestCase):
         self.assertEquals(5, self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 5))
         self.assertEquals(3, self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 3))
         
+    def test_get_freelancer_rating(self):
+        self.assertTrue(self.serverResourceHandler.createAccount("Dummyyyy", "Freelancer"))
+        self.serverResourceHandler.addFreelancerToRoster(Freelancer("Dummyyyy", "Freelancer"))
+        
+        self.assertEqual(0, self.serverResourceHandler.getFreelancerRating("Dummyyyy"))
+        
         
     def test_remove_all_from_category(self):
         self.freelancer = Freelancer("HELLO", "password")
