@@ -341,7 +341,7 @@ public class CategoryPageView {
 
 	private void initializeCategoryComboBox() {
 		this.categoryComboBox.getItems().setAll(Categories.values());
-        this.categoryComboBox.getSelectionModel().select(CategoryPageViewModel.getSelectedCategory().toUpperCase().replace("_", " "));
+        this.categoryComboBox.getSelectionModel().select(CategoryPageViewModel.selectedCategory.toUpperCase().replace("_", " "));
         this.categoryComboBox.getSelectionModel().selectedItemProperty().addListener(new 
         		ChangeListener<Object>() {
 
