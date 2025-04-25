@@ -1,3 +1,821 @@
+commit 7fb66e1bb3dd15cda7ee9d82d7402ab41045288d
+Author: Jacob <jb00645@my.westga.edu>
+Date:   Thu Apr 24 22:21:26 2025 -0400
+
+    Added Sprint Burndown
+    
+    Added the sprint 3 burndown.
+
+commit 6ac4618e656aa61977b068f4b2ce87c300f069e0
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 22:04:40 2025 -0400
+
+    Updated Product Backlog
+    
+    Updated the product backlog to show which users can do which actions.
+
+commit 75157996dbc989be40d4f31a362ad3a06feabba4
+Merge: c522b35 31739d5
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 21:51:21 2025 -0400
+
+    Merge pull request #56 from JBakerEdu/Feature-Star_Ratings
+    
+    Implement Freelancer Ratings
+
+commit c522b357b11b2c2f8c45973ddd9237d0ab8568a1
+Merge: 433a61d abf254a
+Author: Jacob <jb00645@my.westga.edu>
+Date:   Thu Apr 24 21:38:35 2025 -0400
+
+    Merge branch 'main' of https://github.com/JBakerEdu/SE2_Project_Group_5
+    
+    I am trying to push but it says I need to merge first. I am not sure what this.
+
+commit 31739d5f762df1a5f4d43ae7484e1a67084a9f6b
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 21:37:51 2025 -0400
+
+    Fixed Test failure after Two Runs
+
+commit 433a61d4eb3df0719a80db0ed1a1f4434cf09f33
+Author: Jacob <jb00645@my.westga.edu>
+Date:   Thu Apr 24 21:36:56 2025 -0400
+
+    Added Diagrams into documentation folder
+    
+    Added the Python and Java Class Diagrams and also the Use Case Diagram.
+
+commit abf254a2488d98f8ddd9e12d8f12c9e87ec5b42c
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Thu Apr 24 21:31:27 2025 -0400
+
+    Update Communicate With Other Users.txt
+
+commit c193038c168b2e54050a7a4fdd0c49bf890e147b
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 21:15:37 2025 -0400
+
+    Update Hire a Freelancer.txt Use Case
+    
+    Updated the Use case to not have alternate flows off of alternative flows. This new updated version is better for reading.
+
+commit 9ebef08124527442cedf3333523797dea3974101
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 21:08:00 2025 -0400
+
+    Update Search for Freelancers Based on Criteria.txt Use Case
+    
+    Removed the If statements and added the alternative flow for when no skills and no name is entered.
+
+commit a5bf8fb30590e492c62230c7d3d41262fedd17fc
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 21:05:35 2025 -0400
+
+    Undoing previous commit changes
+
+commit 01889b5e0ffcbc7cde4c45da17152bfa0da0ac3a
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 20:55:58 2025 -0400
+
+    Fixed Checkstyle Error in CategoryPageViewModel
+
+commit 9eb0fa7315f002bf7e3b5ec3461e4ee109d34ac4
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 20:44:56 2025 -0400
+
+    Fix Python Test
+
+commit 33d2b6aab50617b22832b3fb50c30ed2d5fa6b24
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 20:40:45 2025 -0400
+
+    Fixed Testing
+    
+    1) Fixed tests in Server and ServerInterface
+
+commit 8875dd7d1fb346a561d7b31d17e08e16a436196f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 20:03:40 2025 -0400
+
+    Update Post Freelancer Job Post.txt
+    
+    Fixed extra chars in use case
+
+commit ee5a4d31b04a60412622063478f10372fcd3f20b
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:25:05 2025 -0400
+
+    Update View Categories of Freelancers.txt
+    
+    Styling had an extra space I removed
+
+commit 7782698b07e594499ab31fbd63af69b8da94fb22
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:24:37 2025 -0400
+
+    Update Sign In to Existing Account.txt
+    
+    Styling had an extra line and switch from Freelancer and Empoyer to User since you must be logged out to sign in
+
+commit 186d86a3fd7b37e1f6e2e479ec267f5e7cd05be0
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:22:22 2025 -0400
+
+    Update Search for Freelancers Based on Criteria.txt
+    
+    Styling had an extra line.
+
+commit 16f3e7f092dadc0e21c1c9a692ae3e3324ad947e
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:21:33 2025 -0400
+
+    Update Review Freelancer.txt
+    
+    Removed extra line from styling.
+
+commit cb7f7475389f6c94cd670c8a9f49ccf49504347b
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:21:02 2025 -0400
+
+    Update Post Freelancer Job Post.txt
+    
+    Made minor change to the deletion alternative path flow
+
+commit 6c51b4f58f26d9e4e8f267b7fc7713f381f76cf3
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:18:01 2025 -0400
+
+    Update Hire a Freelancer.txt
+    
+    Styling had an extra line
+
+commit f5f4f8cb10f9a0a84734bcbe99c5170c20c9db38
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:13:23 2025 -0400
+
+    Update and rename Create and View Account.txt to Create a New Account.txt
+    
+    Altered to only being about Creating a new account
+
+commit 55677c0012e1c24e5862d17a6a68f7c9c1bb92a2
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:09:34 2025 -0400
+
+    Update and rename Become a Freelancer and Edit Account.txt to Become a Freelancer.txt
+    
+    This use case is not only for becoming a freelancer
+
+commit 2839285da8ebd46b5b1c7ee4dd48f3a02bc3e6c8
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:08:17 2025 -0400
+
+    Create Edit Employer Account Information
+    
+    Added a new case for Employers editing their account
+
+commit 868a228a319692ba47b8542652727102e267beae
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 19:06:46 2025 -0400
+
+    Update and rename Edit Account Information to Edit Freelancer Account Information
+    
+    Made this into editing account as a freelancer
+
+commit d2057450af316ff6281fbf6385d7b0e0354fb0a9
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 19:00:26 2025 -0400
+
+    Implemented boundary on Decimal Places
+    
+    1) Numbers are now condensed to have only one decimal place to not crash the system.
+
+commit 0b9c90a918740979582b84f125767cc8c152e8a6
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Thu Apr 24 16:19:36 2025 -0400
+
+    Update Sign In to Existing Account.txt
+
+commit c3440da38b9931604a3b82e32556d4053689994d
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Thu Apr 24 16:12:54 2025 -0400
+
+    Update Review Freelancer.txt
+
+commit c9336fd77b029025634e70fd4d2804642b034c16
+Author: Myles Debro <118378443+miles-multi@users.noreply.github.com>
+Date:   Thu Apr 24 16:09:46 2025 -0400
+
+    Update Communicate With Other Users.txt
+
+commit 9888ebe35c43a234df6ebe110b3759f33c0a7df8
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Thu Apr 24 16:00:26 2025 -0400
+
+    Fixed previous bug
+    
+    1) Added a method to ServerInterface, server_request_handler, and server_resource_handler to get the freelancers rating. All fully tested.
+    2) Users that have hired a freelancer can now rate that freelancer with the rating displaying for all other users as well.
+
+commit 96d3a1eb835a7e6a125de9468122e4386c67d23b
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 15:39:44 2025 -0400
+
+    Update Hire a Freelancer.txt Use Case
+    
+    Updated the use case to show how the hyre button sends you to the direct messaging page and sets up communication between the freelancer and employer. Also updated the format of the Use Case.
+
+commit 859a65364df4e3b8854c8e12458747999eab4fd1
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 15:23:28 2025 -0400
+
+    Update View Categories of Freelancers.txt Use Case
+    
+    Updated the use case to show when the user selects a category from the drop down and when the user selects another category from the categories page. Also updated the Use Case to have the correct format.
+
+commit 56641681d82612b37aafeb58e9d72eebc751c362
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 14:58:31 2025 -0400
+
+    Update Search for Freelancers Based on Criteria.txt Use Case
+    
+    Updated the Use case to show selecting and deselecting skills to search by. Also updated the use case format to be more inline with the requirements.
+
+commit cc870c5a53f4c18b29de7bfa200b4a3c849fcdf9
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 24 14:22:16 2025 -0400
+
+    Update README.md
+    
+    Updated the readme to include the new way for searching by multiple skills and name.
+
+commit a9032d6b4c89a06b40e29285ecffd3a77b35ca2f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 13:39:34 2025 -0400
+
+    Create Edit Account Information
+    
+    Creating a new use case to separate the Become Freelancer and edit account should be two separate use cases.
+
+commit d98e0af3988c176ef1bdfdf7efe51b80ca76bd72
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 13:18:05 2025 -0400
+
+    Update and rename Post Freelancer Job Skills.txt to Post Freelancer Job Post.txt
+    
+    Renamed the File to better suit the Use Case
+
+commit 16d619717b924ac9569b44aaa0e17c0e858da47c
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 00:48:44 2025 -0400
+
+    Update Become a Freelancer and Edit Account.txt
+    
+    Never mind disregard last commit for now might go back later we will see.
+
+commit cf38620a9fe5787e656a68dc608f9e10c42f3ee9
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 00:46:20 2025 -0400
+
+    Update Become a Freelancer and Edit Account.txt
+    
+    Switched user to employer since you must be logged in you aren't a user you are considered an Employer
+
+commit 7becdcc89f7ea24846c953ee9f3999154cf84fff
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 00:30:07 2025 -0400
+
+    Update and rename Create and Manage Account.txt to Create and View Account.txt
+    
+    Updated the Use case for creating and account and viewing account.
+
+commit d5401c3e26324b9fcfbbe510a955d326fbec6da6
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 00:22:05 2025 -0400
+
+    Update and rename Edit Account and Become a Freelancer.txt to Become a Freelancer and Edit Account.txt
+    
+    Renamed to better fit the Use Case and corrected minor issues.
+
+commit f463286d19b6a604ed209ceef7e7c4ee7cfcebfa
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 24 00:12:50 2025 -0400
+
+    Update Edit Account and Become a Freelancer.txt
+    
+    Updated the Use case with alternative paths, numbered the paths, and ensured content was up to date.
+
+commit e4a20a020fcca601859711716cce907d7848fd30
+Merge: d973e61 6a035df
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 23 23:47:53 2025 -0400
+
+    Merge pull request #55 from JBakerEdu/fix_DMViewBug
+    
+    Fixed bug when removing null contact
+
+commit d973e61669bc182f335d0505e3028c08973ebffa
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Wed Apr 23 23:45:00 2025 -0400
+
+    Update Post Freelancer Job Skills.txt
+    
+    Updated the Use Case Scenario for Use Case 5: Post Freelancer Job Skills. Not it has the alternative paths and numbering correctly and steps laid out as suggested.
+
+commit 756ec21f18d27512c52c8da7381b17478f808d72
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 23 12:05:34 2025 -0400
+
+    BUG: Freelancer isn't updating
+    
+    1) After pressing the Hyre button and being added to the users DM's it doesn't enable the Rate button as expected.
+    2) Freelancers new rating isn't being shown after you leave a rating.
+    3) The freelancer is probably not getting fetched right.
+
+commit 96c7c343b7b571d13f85529e16538cd578595945
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 23 11:44:33 2025 -0400
+
+    Updated ServerInterface
+    
+    1) ServerInterface was updated to send requests the new way.
+
+commit c80410a0ba0396939754f8cf0b6a3380ded49f34
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 23 11:33:51 2025 -0400
+
+    Server: Refactored how ratings are saved
+    
+    1) Ratings are now saved in a dictionary that the freelancer holds.
+    2) Users can rate multiple times but their new rating will override their old one
+
+commit d9ec359ab6eab790a7848bc19b0eece731b1e67d
+Merge: 1c97842 7e81bf3
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 18:44:00 2025 -0400
+
+    Resolved merge conflicts
+
+commit 1c97842bb4580ec0fa32ae2f80dc777197d4866f
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 18:42:21 2025 -0400
+
+    Made small code changes, simplified
+
+commit 0a6b1abf989902557f719a886ec82adb4faf8da5
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 17:34:54 2025 -0400
+
+    Improved Ratings
+    
+    1) Fixed the math for the ratings to be accurate to the average
+
+commit 95bbd0d7fcf33228e9b074486cf0ea45eca3c984
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 17:00:05 2025 -0400
+
+    Fixed Ratings in GUI
+    
+    1) Ratings of the freelancers now appear accurately.
+
+commit 57fe62b2518008cebfaf48240628af4ce2b4000a
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 16:50:04 2025 -0400
+
+    Fixed Previous Bug
+
+commit c4ebfc29e01dbac28a18a778e4b9abac8646aa0b
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 22 13:43:22 2025 -0400
+
+    BUG: Freelancers ratings don't update
+    
+    1) After calling rate freelancer using ServerInterface the freelancers rating still return n/a.
+    2) The response from the server accurately gives the new rating of the freelancer.
+    3) The freelancers rating updates when you call freelancer.setRating(double) in the test. Line 227 is there to show that.
+
+commit 6a035df45d36c4d22ae9a41e48ef1f7392080f69
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Apr 22 13:00:05 2025 -0400
+
+    Fixed bug when removing null contact
+
+commit 7e81bf3a8072214fb9ca8acbd06a050a73f94e3d
+Merge: dec8a27 020b946
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Apr 22 11:19:21 2025 -0400
+
+    Merge pull request #54 from JBakerEdu/fix-DMViewBug
+    
+    Fixed User selection bug in DM View
+
+commit 3777355019fd49c1d95e06e103b1cd22b25a39b9
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 19:24:19 2025 -0400
+
+    GUI Additions
+    
+    1) Added a pane in the GUI specifically for rating Freelancers.
+
+commit eaceda471ccfc5fe8000ae64320de3a328b0c3b6
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Mon Apr 21 18:45:57 2025 -0400
+
+    Fixed freelancer rating bug
+
+commit 4060cbccc0fc09e44f175ea271499522c9249fa3
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 17:22:08 2025 -0400
+
+    Working on ServerInterface
+    
+    1) Troubleshooting the ServerInterface, currently doesn't function as expectedand has a pairing failing test.
+
+commit a13dfd849a1c6f312f43289e5ec33d4a3460d349
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 16:02:01 2025 -0400
+
+    Refactored Server Code
+    
+    1) Refactored the related request and resource server code to work better withthe ServerInterface
+
+commit dd2d009c0ed9fb4a4dd25254a886b6417218cb78
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 13:11:29 2025 -0400
+
+    Started Rate Freelancer in ServerInterface
+    
+    1) Just some bare bones for the method before I refactor the methods in the server.
+
+commit d3c68f5dc375863da9d469419cf7550e82c18acf
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 12:56:22 2025 -0400
+
+    Freelancer Business Logic
+    
+    1) Freelancers in the project now store their ratings
+    2) Getter and Setter for said ratings, 100% test coverage
+    3) Rating is a String and the math for the ratings in done in the server
+
+commit 50c6c2ce96f5ad51d20b0427b213486b4f4d257e
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Mon Apr 21 12:39:33 2025 -0400
+
+    Fixed GUI Elements
+    
+    1) The star rating label now only appears on the freelancer post page
+
+commit 020b9465675ce8108b4aee224f53903702730b34
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Sun Apr 20 22:47:09 2025 -0400
+
+    Fixed User selection bug in DM View
+
+commit fc8e3336ec9bd444ff94a07afab39095b80843d8
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Sun Apr 20 22:43:28 2025 -0400
+
+    Added GUI Elements
+    
+    1) Added a label to AccountViewPage to display star ratings of freelancers
+    2) Added light code to the codebehind for said label
+
+commit dec8a27ca51b9f990817b829a7cab6b397ed82b6
+Merge: f6fec58 ed1b249
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 19 14:20:13 2025 -0400
+
+    Merge pull request #53 from JBakerEdu/feature-Add/RemoveSkillDoesNotResetFreelancers
+    
+    Stopped Updating freelancers when skill selected
+
+commit ed1b2492b54b7e9c25f504020d5d8e708025b626
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sat Apr 19 11:34:59 2025 -0400
+
+    Stopped Updating freelancers
+    
+    Stopped Updating the freelancers when a skill is chosen to show all the available freelancers in the list.
+    Now it only updates the freelancers when you press the search button.
+
+commit f6fec58ad86ecc83fc3d5083a0d30fb73e27ecf4
+Merge: fd4e34a 0c8f8ae
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Sat Apr 19 11:10:02 2025 -0400
+
+    Merge pull request #52 from JBakerEdu/feature-BackButtonAppliesPastFilters
+    
+    Feature back button applies past filters
+
+commit 0c8f8ae1bbe90a7975dfb626af4c5b1f56582d27
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Fri Apr 18 00:04:28 2025 -0400
+
+    Made Back button work with skills
+    
+    Skills are now saved and able to go back to going to continue testing now.
+
+commit b4eed32e0828eb3b7d40f69a3514c4f8df4c8913
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 17 23:50:37 2025 -0400
+
+    Made the back button work with Name filter
+    
+    The Name is now applied in the filter when the back button is selected, also made it where is auto filters when initalized.
+
+commit fd4e34afc8b8780397041e0a6bd2ad6a0cfafb82
+Merge: dc243b9 293c560
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Thu Apr 17 22:36:02 2025 -0400
+
+    Merge pull request #51 from JBakerEdu/feature-UpdateCategoriesPage
+    
+    Feature update categories page
+
+commit 293c560f276ca6c2a7cb73356010e83a8856803a
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 17 15:37:03 2025 -0400
+
+    Fixing Merge Conclicts
+
+commit 51cca26fed9db1821eaa082a2acbfad864f2d00d
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 17 15:23:45 2025 -0400
+
+    Fixing Merge Conflicts
+
+commit 71ab12aa0a155911eae350dc71c8d6bf5eedf302
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 17 15:14:36 2025 -0400
+
+    Fixed Bug
+    
+    Fixed the bug where the freelancers were not showing up.
+    When Alec fixed the code coverage it broke the main application.
+    This fix fixes the main application while also keeping the code
+    coverage at 100.
+
+commit 6ee317630e7b39a76229050041d8b0c4c03e2acd
+Merge: 8d82181 e7e0022
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 17 13:30:02 2025 -0400
+
+    Merge branch 'feature-UpdateCategoriesPage' of https://github.com/JBakerEdu/SE2_Project_Group_5 into feature-UpdateCategoriesPage
+
+commit 8d82181472c7ac790aa680f44b04d9320f607c29
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Thu Apr 17 13:29:43 2025 -0400
+
+    Fixed 100% test coverage
+
+commit e7e0022cb978aca15d3f3d8fbd98ad181a150322
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Thu Apr 17 12:48:10 2025 -0400
+
+    Sorted the list of skills
+    
+    Sorted the list of skills in alphabetical order to show the user.
+
+commit e250031a39adb123a2a089eef8d5971f5bca8777
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 16 19:56:56 2025 -0400
+
+    Server: Rate Freelancer
+    
+    1) Finished implementing and testing rateFreelancer in server_request_handler and server_resource_handler.
+    2) server_request_handler is 100% test covered, code relevant to this method in sever_resource_handler are also covered.
+
+commit e23e7a5e3ab8aa75a853edf690c77abd3e76fdc8
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Wed Apr 16 19:02:57 2025 -0400
+
+    Server: Testing Freelancer Roster
+    
+    1) Finished tests for get_freelancer_by_name
+    2) freelancer_roster 100% covered by tests, all passing
+
+commit dc243b91af7406d7929f9038214139fd301559f7
+Merge: c1cac64 f66752f
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Apr 16 13:41:02 2025 -0400
+
+    Merge pull request #50 from JBakerEdu/feature-DMRemovingUsers
+    
+    Feature-Expanded on the removal of users and messages in DM
+
+commit bac14bea74b78af60681f2b389d1c2ad1a071998
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Wed Apr 16 13:27:23 2025 -0400
+
+    Completed the searching by skills
+    
+    The searching by skills currently works by getting all of the freelancers
+    with any of the skills listed. Still have a test that needs to be written for code coverage.
+
+commit f66752f8fb2eecc7795c59dc6419eee0513cd5d2
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Apr 16 12:51:24 2025 -0400
+
+    Removed excess server call for categories
+
+commit 04138f7228734a3202156a42478d85b652034d70
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Apr 16 12:43:46 2025 -0400
+
+    Fixed DM display not updating when removing contact
+
+commit 85e73cdde0b51267eafb33a72e9cd23cbd8a701f
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Apr 16 12:35:51 2025 -0400
+
+    Added test for coverage and fixed bug
+
+commit 3c1023fed6217b7b6b6b7e416a1bd5eccce14493
+Merge: 5de0b61 c1cac64
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Apr 16 11:46:55 2025 -0400
+
+    Merged for updated code, implemented DM deletion and fixed send message bug
+
+commit 5de0b61f837e2d1d029e4531b26a825f0d61ed92
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Wed Apr 16 10:53:07 2025 -0400
+
+    Ensured DMs only remove user from local contact list
+
+commit 92d72604b3c4f7f4118eca34c1e615cca4a918b5
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Apr 15 21:23:19 2025 -0400
+
+    Completed Category Selection
+    
+    You can now select a category in the CategoryPageView and view the freelancers
+    associated in that category.
+
+commit 97ad04795bb720575da6264e509a36105541bda2
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Apr 15 20:31:26 2025 -0400
+
+    Made the UI for Selecting skills and category
+    
+    Made the UI for selecting skills. A combo box will be clicked to add the skills to
+    the list view. all the skills in the list view are what you have selected to search
+    by. When you click the list view this will be how you remove the skills from the search.
+    A comboBox for the category selected will let you select which category you would like
+    to view. The searching by name still works and is functional.
+
+commit 7be6619ad9e9d5c6fe2f6fb707500e873c1f5ff2
+Author: Kate Anglin <kanglin3@my.westga.edu>
+Date:   Tue Apr 15 19:34:59 2025 -0400
+
+    Updated the Freelancers on CategoryPage
+    
+    Updated how the freelancers are presented on the categories page to implement the filtering by skills and
+    categories UI components. The freelancers were displayed 6 in a row and now they are displayed 4 in a row
+    to accomidate for the UI for filtering.
+
+commit b4f2cbf6b5b9badaf532596d70eb00e97f2b20bf
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 15 18:06:39 2025 -0400
+
+    Server: Implementing Ratings in Request and Response Handlers
+    
+    1) Added a get_freelancer_by_name method in FreelancerRoster to help with testing. One test currently missing.
+    2) Added REQ_RATING and REQ_RATE_FREELANCER to constants
+    3) Implemented rateFreelancer in server_resource_handler. Tests related to said method are implemented and passing.
+    4) Still implementing _rateFreelancer in server_request_handler. Tests are not currently passing for it.
+
+commit c1cac64d3feb3d09b3c371d938d63316ca9afaca
+Merge: 9da3ef9 66821b6
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Tue Apr 15 17:39:24 2025 -0400
+
+    Merge pull request #49 from JBakerEdu/feature-RefreshButton
+    
+    Feature refresh button
+
+commit 66821b60e5fdc9dd4d3dca8ac7cd460633ee72ea
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Apr 15 17:32:45 2025 -0400
+
+    Fiexed checkstyle
+
+commit d591b738a627a1b7f9971da8251bfcb9a3cff553
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Apr 15 17:16:16 2025 -0400
+
+    Added warning for removing contact button
+
+commit c064c02769c7f25f981cc08fc7d68284b03582f2
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Apr 15 17:00:18 2025 -0400
+
+    Fixed disabled property for removing users and refreshing chat
+
+commit 3fb4e2a2a762526261db41f963e62678ffd6037d
+Author: Miles Debro <kd00245@my.westga.edu>
+Date:   Tue Apr 15 16:23:21 2025 -0400
+
+    Server: Added Rating to Freelancer
+    
+    1) In the server, freelancer now has a rating variable to house freelancers ratings with a proper get and set method.
+    2) Currently the set method rates the freelancer and updates its rating, I may change it to a basic setter instead.
+    3) All tests covered in relation to the getter and rate methods.
+
+commit 758226dea11018c7228679e3b39146612a6bfd97
+Author: AlecNeal <alecxwneal@gmail.com>
+Date:   Tue Apr 15 16:17:59 2025 -0400
+
+    Added Refresh Button, Fixed server bug from Miles, and Remade Remove Contact Button
+
+commit 9da3ef9427a2ef1cf9f85e974ab0bb99ddec49c8
+Merge: 582c83b 7078f8c
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Tue Apr 15 15:00:56 2025 -0400
+
+    Merge pull request #48 from JBakerEdu/feature-ImplmentBackButton
+    
+    Thanks for fixing my request, looks good!
+
+commit 7078f8c9d0e5c1021933f812a9e2b81b02794d8f
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 22:36:52 2025 -0400
+
+    Went back to how it was done for test purposes only, the rest of code works as intended and correctly
+
+commit 5d6b77e3291b3882c0e6b495f4c952210f977ea6
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 22:28:41 2025 -0400
+
+    Still laying with testing
+    
+    The testing does not want to pass with a static get and set methods, instead it prefered a static direct call.
+
+commit 8780c1e79fe586a01eb14e21304195d9690f79b7
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 21:04:35 2025 -0400
+
+    Tested added method
+    
+    The FreelancerPostPageViewModel is not tested with the new method I have added.
+
+commit d5c501f3f3ed1100fbfc32335731f801c779ba00
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 20:43:03 2025 -0400
+
+    Renamed Helper To View Model naming
+    
+    Fist renamed to helper since sleec complained about it not being
+     a view model, now changing back cause alec complains
+     about wanting them to be view model classes.
+
+commit a038e7690513b5f0e0da1e96df379e3c49ebb098
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 16:41:35 2025 -0400
+
+    Implmented Back button with category selected.
+    
+    The back button works witht he category page for the category currently,
+     since kate is redoing page no reason to continue until she is done with filtering.
+
+commit 5686609c199e0e6b17ebded51f197474636c8ddc
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Mon Apr 14 16:26:31 2025 -0400
+
+    Added the back button in UI
+    
+    Added the back button into the UI and added a way to static set values to save where the page were at when being filtered, and can be gotten to set values on the category page.
+
+commit 582c83b68e7331a2a02a8baf90f2130117373fc4
+Merge: 157b1f5 f74e517
+Author: Alec Neal <alecxwneal@gmail.com>
+Date:   Mon Apr 14 14:28:36 2025 -0400
+
+    Merge pull request #46 from JBakerEdu/feature-SplitAccountAndFreelancerUi
+    
+    Seperated Account View into two pages
+
+commit f74e51773087a6b558b9b56aebb65e792ed40f94
+Author: Jacob Baker <jb00645@my.westga.edu>
+Date:   Sat Apr 12 22:41:39 2025 -0400
+
+    Seperated Account View into two pages
+    
+    Separated the AccountPage UI into two distinct views: an editable AccountPage that’s
+     only shown when you choose to view your own account, and a read‑only FreelancerPostPage
+     that displays a freelancer’s profile when clicked from a category list. Cleaned up code
+     by removing/fixing Checkstyle errors. Renamed the “viewmodel” package and classes to
+     more accurate “helper” classes to reflect their broader utility.
+
+commit 157b1f5aba37b46ddc33e5e28545b6f06b5f5df1
+Author: Jacob <jb00645@my.westga.edu>
+Date:   Thu Apr 10 20:25:11 2025 -0400
+
+    Updated documentation structure and added files
+    
+    Altered where file were and add the missing documentation.
+    Also this is all the most up to date documentation as of the end of sprint 2.
+
 commit 02607d45a20cfb747baa65c77ba89074835bc798
 Merge: 5734c84 fb82a86
 Author: Kate Anglin <kanglin3@my.westga.edu>
