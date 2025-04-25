@@ -299,5 +299,6 @@ public class TestServerInterface {
 		String response = ServerInterface.getRating(freelancer1);
 		assertEquals("3", response);
 		assertTrue(ServerInterface.removeFreelancer(freelancer1));
+		assertTrue(ServerInterface.deleteUser("user tmp124"));
 	}
 }
