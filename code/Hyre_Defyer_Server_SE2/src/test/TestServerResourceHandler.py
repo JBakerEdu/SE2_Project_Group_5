@@ -116,7 +116,7 @@ class TestServerResourceHandler(unittest.TestCase):
         self.assertTrue(self.serverResourceHandler.rateFreelancer("1", "Dummyyy", 5))
         self.assertTrue(self.serverResourceHandler.rateFreelancer("2", "Dummyyy", 1))
         self.assertTrue(self.serverResourceHandler.rateFreelancer("3", "Dummyyy", 1))
-        self.assertAlmostEquals(2.3, self.serverResourceHandler.getFreelancerRating("Dummyyy"), places=1)
+        self.assertAlmostEqual(2.3, self.serverResourceHandler.getFreelancerRating("Dummyyy"), places=1)
         self.assertTrue(self.serverResourceHandler.rateFreelancer("4", "Dummyyy", 1))
         self.assertTrue(self.serverResourceHandler.rateFreelancer("5", "Dummyyy", 1))
         self.assertAlmostEqual(1.8, self.serverResourceHandler.getFreelancerRating("Dummyyy"), places=1)
