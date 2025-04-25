@@ -13,10 +13,18 @@ Basic Flow - Hiring a Freelancer:
 	5. The employer and freelancer agree on terms via messaging. 
 	6. Freelancer starts working.
 
-Alternative Flow 4.A – No Agreement:
-	4A. The employer and freelancer cannot agree on terms. 
-	4B. The freelancer may chose to:
-		a. Delete conversation with employer.
-	4C. The employer may chose to:
-		a. Delete conversation with freelancer.
-		b. Return to the search results and select another freelancer (return to Step 1).
+Alternative Flow 4.A – No Agreement Reached:
+	4A1. The employer and freelancer cannot agree on job terms.
+	4A2. The process is abandoned and may lead to the following user actions:
+
+Alternative Flow 4.B – Freelancer Deletes Conversation:
+	4B1. The freelancer chooses to delete the conversation with the employer.
+	4B2. The messaging history is removed from the freelancer's view.
+
+Alternative Flow 4.C – Employer Deletes Conversation:
+	4C1. The employer chooses to delete the conversation with the freelancer.
+	4C2. The messaging history is removed from the employer's view.
+
+Alternative Flow 4.D – Employer Returns to Search:
+	4D1. The employer decides to return to the search results.
+	4D2. The employer selects another freelancer to view (return to Step 1 of Basic Flow).
