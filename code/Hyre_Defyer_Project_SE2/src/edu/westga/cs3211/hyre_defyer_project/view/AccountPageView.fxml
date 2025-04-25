@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.AccountPageView">
+<AnchorPane fx:id="anchorPane" minHeight="500.0" minWidth="600.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DCDCDC;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.westga.cs3211.hyre_defyer_project.view.AccountPageView">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="HONEYDEW" height="58.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
       <ImageView fx:id="accountBioImage" fitHeight="45.0" fitWidth="45.0" layoutX="6.0" layoutY="5.0" onMouseClicked="#handleAccountClick" pickOnBounds="true" preserveRatio="true">
@@ -130,7 +130,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="addNewCategoryPane" layoutX="543.0" layoutY="386.0" prefHeight="214.0" prefWidth="357.0" style="-fx-background-color: #f0fff0; -fx-border-color: #000;">
+      <Pane fx:id="addNewCategoryPane" layoutX="543.0" layoutY="386.0" prefHeight="214.0" prefWidth="357.0" style="-fx-background-color: #f0fff0; -fx-border-color: #000;" visible="false">
          <children>
             <Button fx:id="cancelNewCategoryButton" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="140.0" mnemonicParsing="false" onAction="#handleCancelNewCategoryClick" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #DCDCDCDC; -fx-font-weight: bold; -fx-background-radius: 16px; -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 1, 2, 4, 4); -fx-cursor: hand;" text="Cancel">
                <effect>

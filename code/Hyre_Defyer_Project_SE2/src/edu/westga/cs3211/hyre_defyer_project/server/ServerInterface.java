@@ -1,5 +1,6 @@
 package edu.westga.cs3211.hyre_defyer_project.server;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class ServerInterface {
 	
 	private static final String FREELANCER_TO_ADD_CAN_NOT_BE_NULL = "freelancer to add can not be null.";
 	private static final String FREELANCER_TO_REMOVE_CAN_NOT_BE_NULL = "freelancer to remove can not be null.";
+	private static DecimalFormat df = new DecimalFormat("#.#");
 
 	/**
 	 * Sets the bio of the user
@@ -373,5 +375,50 @@ public class ServerInterface {
 	        return categoriesList;
 	    }
 		return null;
+	}
+	
+	/**
+	 * Rate the freelancer in the server
+	 * 
+	 * @param user the user leaving the rating
+	 * @param freelancer the freelancer the users rating
+	 * @param rating what the users rating the freelancer
+	 *
+	 * @return true if freelancer was rated
+	 * 				 false if freelancer was not rated
+	 */
+	public static boolean rateFreelancer(User user, Freelancer freelancer, int rating) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_RATE_FREELANCER);
+		request.put(Constants.REQ_SENDER, user.getUserName());
+		request.put(Constants.REQ_RECEIVER, freelancer.getUserName());
+		request.put(Constants.REQ_RATING, rating);
+		
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject responseJSON = new JSONObject(response);
+		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Get the rating of the freelancer
+	 * 
+	 * @param freelancer the freelancer
+	 * 
+	 * @return the freelancers rating
+	 */
+	public static String getRating(Freelancer freelancer) {
+		JSONObject request = new JSONObject();
+		request.put(Constants.REQ_TYPE, Constants.REQ_GET_RATING);
+		request.put(Constants.REQ_USERNAME, freelancer.getUserName());
+
+		String response = ServerCommunicator.sendRequestToServer(request);
+		JSONObject responseJSON = new JSONObject(response);
+		if (responseJSON.getString(Constants.SUCCESS_CODE).equals(Constants.REP_SUCCESS)) {
+			return String.valueOf(df.format(responseJSON.getDouble(Constants.REP_RATING)));
+		}
+		return "n/a";
 	}
 }

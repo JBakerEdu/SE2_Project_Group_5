@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * The Freelancer class stores the category selected and the skills listed.
  * 
- * @author Kate Anglin
+ * @author Kate Anglin & Myles Debro
  * @version Spring 2025
  */
 public class Freelancer extends User {
@@ -18,7 +18,7 @@ public class Freelancer extends User {
 	private static final String CATEGORIES_CANNOT_BE_NULL = "Categories cannot be null.";
 	
 	private List<String> categories;
-    private List<String> skills;
+  private List<String> skills;
 	
     /**
      * Creates a freelancer with a username, password, biography, and categories.

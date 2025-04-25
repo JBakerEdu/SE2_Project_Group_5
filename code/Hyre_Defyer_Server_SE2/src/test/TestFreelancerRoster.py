@@ -72,6 +72,16 @@ class TestFreelancerRoster(unittest.TestCase):
     def test_get_freelancers_by_skill_invalid(self):
         with self.assertRaises(ValueError):
             self.roster.get_freelancers_by_skill(None)
+    
+    def test_get_freelancer_by_name(self):
+        self.freelancer1 = Freelancer("Charlie", "freelancePass")
+        self.roster.add_freelancer(self.freelancer1)
+        self.assertIn(self.freelancer1, self.roster.freelancers)
+        self.assertEqual(self.freelancer1, self.roster.get_freelancer_by_name("Charlie"))
+        
+    def test_get_freelancers_by_name_invalid(self):
+        with self.assertRaises(ValueError):
+            self.roster.get_freelancer_by_name(None)
             
     def test_remove_freelancer(self):
         self.freelancer1 = Freelancer("Charlie", "freelancePass")

@@ -212,6 +212,34 @@ class ServerRequestHandler:
 
         return response
     
+    def _rateFreelancer(self, request):
+        response = {}
+        user = request.get(constants.REQ_SENDER)
+        freelancer = request.get(constants.REQ_RECEIVER)
+        rating = request.get(constants.REQ_RATING)
+        
+        result = self._serverResourceHandler.rateFreelancer(user, freelancer, rating)
+        
+        if result is False:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+        else:
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS 
+
+        return response
+    
+    def _getFreelancerRating(self, request):
+        response = {}
+        freelancer = request.get(constants.REQ_USERNAME)
+        
+        result = self._serverResourceHandler.getFreelancerRating(freelancer)
+        if result == 0:
+            response[constants.SUCCESS_CODE] = constants.REP_FAIL
+        else:
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
+            response[constants.REP_RATING] = result
+            
+        return response
+    
     def _getCategories(self, request):
         '''
             gets the categories
@@ -253,6 +281,7 @@ class ServerRequestHandler:
                 add freelancer
                 get categories
                 delete user from server
+                rate freelancer
         '''
         response = {constants.SUCCESS_CODE: constants.REP_FAIL, constants.REP_ERROR_DESCRIPTION: "unsupported request type"}
         
@@ -287,6 +316,12 @@ class ServerRequestHandler:
             
         elif req_type == constants.REQ_REMOVE_FREELANCER:
             response = self._removeFreelancer(request)
+            
+        elif req_type == constants.REQ_RATE_FREELANCER:
+            response = self._rateFreelancer(request)
+            
+        elif req_type == constants.REQ_GET_RATING:
+            response = self._getFreelancerRating(request)
         
         elif req_type == constants.REQ_GET_CATEGORIES:
             response = self._getCategories(request);

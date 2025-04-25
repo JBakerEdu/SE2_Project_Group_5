@@ -14,16 +14,16 @@ import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 
 public class FreelancerFilter {
 	/**
-     * Filters a list of freelancers by selected Categories
-     * 
-     * @precondition freelancers != null & selectedCategories != null
-     * @postcondition a new sorted list is returned, original list remains unchanged
-     *
-     * @param freelancers The list of freelancers to sort
-     * @param selectedCategories the list of categories to show
-     * @return List of freelancers filtered by categories 
-     * @throws IllegalArgumentException if freelancers is null || selectedCategories is null
-     */
+   * Filters a list of freelancers by selected Categories
+   * 
+   * @precondition freelancers != null & selectedCategories != null
+   * @postcondition a new sorted list is returned, original list remains unchanged
+   *
+   * @param freelancers The list of freelancers to sort
+   * @param selectedCategories the list of categories to show
+   * @return List of freelancers filtered by categories 
+   * @throws IllegalArgumentException if freelancers is null || selectedCategories is null
+   */
 	public static List<Freelancer> filterByCategories(List<Freelancer> freelancers, List<String> selectedCategories) {
         if (freelancers == null) {
             throw new IllegalArgumentException("Freelancers list cannot be null.");

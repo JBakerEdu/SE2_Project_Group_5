@@ -66,6 +66,13 @@ class FreelancerRoster:
             raise ValueError("Skill cannot be null.")
         return [f for f in self.freelancers if f.contains_skill(skill)]
     
+    def get_freelancer_by_name(self, name: str):
+        if not name:
+            raise ValueError("Name cannot be null.")
+        for f in self.freelancers:
+            if f.getUserName() == name:
+                return f
+    
     def remove_freelancer(self, freelancer: Freelancer):
         """
             Removes a freelancer from the roster.

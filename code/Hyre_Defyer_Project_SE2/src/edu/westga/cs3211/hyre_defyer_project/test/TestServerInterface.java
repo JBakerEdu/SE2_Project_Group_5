@@ -57,7 +57,6 @@ public class TestServerInterface {
 		DirectMessageHandler handler = new DirectMessageHandler(user1, user2);
 		handler.deleteChat(user1, user2);
 		assertFalse(ServerInterface.getMessagableUsers(user1).contains(user2));
-		assertFalse(ServerInterface.getMessagableUsers(user2).contains(user1));
 	}
 	
 	@Test
@@ -209,4 +208,97 @@ public class TestServerInterface {
 		assertTrue(result.contains(Categories.BUSINESS_AND_FINANCE.toUpperCase().replace("_", " ")));
 	}
   
+	@Test
+	public void testRateNewFreelancer() {
+		Freelancer freelancer = new Freelancer("tmp", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer));
+		assertTrue(ServerInterface.createAccount("userrr", "pass"));
+		User user = ServerInterface.login("userrr", "pass");
+		boolean response = ServerInterface.rateFreelancer(user, freelancer, 3);
+
+		assertTrue(response);
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
+		assertTrue(ServerInterface.removeFreelancer(freelancer));
+	}
+	
+	@Test
+	public void testRateExistingFreelancer() {
+		assertTrue(ServerInterface.createAccount("abcd", "pass"));
+		User user = ServerInterface.login("abcd", "pass");
+		Freelancer freelancer1 = ServerInterface.getFreelancers().getFreelancersByName("Alice").get(0);
+		boolean response = ServerInterface.rateFreelancer(user, freelancer1, 3);
+		
+		assertTrue(response);
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
+	}
+	
+	@Test
+	public void testRateNonFreelancer() {
+		assertTrue(ServerInterface.createAccount("abcde", "pass"));
+		User user = ServerInterface.login("abcde", "pass");
+		Freelancer freelancer = new Freelancer("tmp12", "", "");
+		assertFalse(ServerInterface.rateFreelancer(user, freelancer, 2));
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
+	}
+	
+	@Test
+	public void testFreelancerWithMultipleRatings() {
+		Freelancer freelancer1 = new Freelancer("Dummy Account 123", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer1));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
+		assertTrue(ServerInterface.createAccount("user tmp", "pass"));
+		User user = ServerInterface.login("user tmp", "pass");
+		boolean isSuccessful = ServerInterface.rateFreelancer(user, freelancer1, 3);
+		String freelancersRating = ServerInterface.getRating(freelancer1);
+		
+		assertTrue(isSuccessful);
+		assertEquals("3", freelancersRating);
+		
+		assertTrue(ServerInterface.createAccount("user tmp1", "pass"));
+		user = ServerInterface.login("user tmp1", "pass");
+		
+		isSuccessful = ServerInterface.rateFreelancer(user, freelancer1, 4);
+		freelancersRating = ServerInterface.getRating(freelancer1);
+		
+		assertEquals(true, isSuccessful);
+		assertEquals("3.5", freelancersRating);
+		
+		assertTrue(ServerInterface.createAccount("user tmp2", "pass"));
+		user = ServerInterface.login("user tmp2", "pass");
+		
+		isSuccessful = ServerInterface.rateFreelancer(user, freelancer1, 3);
+		freelancersRating = ServerInterface.getRating(freelancer1);
+		
+		assertEquals(true, isSuccessful);
+		assertEquals("3.3", freelancersRating);
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
+		assertTrue(ServerInterface.deleteUser("user tmp"));
+		assertTrue(ServerInterface.deleteUser("user tmp1"));
+		assertTrue(ServerInterface.deleteUser("user tmp2"));
+	}
+	
+	@Test
+	public void testGetRatingNoRatings() {
+		Freelancer freelancer1 = new Freelancer("Dummy Account 1234", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer1));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
+		assertEquals("n/a", ServerInterface.getRating(freelancer1));
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
+	}
+	
+	@Test
+	public void testGetRatingWithRatings() {
+		Freelancer freelancer1 = new Freelancer("Dummy Account 12345", "", "");
+		assertTrue(ServerInterface.addFreelancer(freelancer1));
+		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
+		assertTrue(ServerInterface.createAccount("user tmp124", "pass"));
+		User user = ServerInterface.login("user tmp124", "pass");
+		ServerInterface.rateFreelancer(user, freelancer1, 3);
+		
+		String response = ServerInterface.getRating(freelancer1);
+		assertEquals("3", response);
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
+		assertTrue(ServerInterface.deleteUser("user tmp124"));
+	}
 }

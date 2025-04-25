@@ -24,6 +24,8 @@ class Freelancer(User):
         super().__init__(userName, password)
         self._categories = set()
         self._skills = set()
+        self._rating = 0
+        self._ratings = dict()
     
     def addCategory(self, category):
         '''
@@ -111,6 +113,32 @@ class Freelancer(User):
             @return: True if the freelancer has the skill, False otherwise.
         '''
         return skill in self.getSkills()
+    
+    def getRating(self):
+        '''
+            Gets the rating of the freelancer
+            
+            @precondition: none
+            @postcondition: none
+            
+            @return: the rating of the freelancer
+        '''
+        return self._rating
+    
+    def rate(self, user, rate):
+        '''
+            Sets the rating of the freelancer
+            
+            @precondition: none
+            @postcondition: self._rating = the average of their ratings
+            
+            @param rate: what the freelancer was rated out of 5 
+        '''
+        self.getRatings()[user] = rate
+        self._rating = sum(self.getRatings().values())/len(self.getRatings())
+    
+    def getRatings(self):
+        return self._ratings
     
     def to_dict(self):
         '''

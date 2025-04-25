@@ -11,7 +11,6 @@ import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
  * @version Spring 2025
  */
 public class Categories {
-	
 	public static final String BUSINESS_AND_FINANCE = "BUSINESS AND FINANCE";
 	public static final String DESIGN_AND_CREATIVE = "DESIGN AND CREATIVE";
 	public static final String DEVELOPMENT_AND_IT = "DEVELOPMENT AND IT";

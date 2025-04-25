@@ -10,12 +10,14 @@ import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewMo
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * This is the class for viewing a freelancer that is within the categories
@@ -81,18 +83,41 @@ public class FreelancerPostPageView {
 
     @FXML
     private Label skillsLabel;
+    
+    @FXML
+    private Label starRating;
 
     @FXML
     private Label userLabel;
+    
+    @FXML
+    private Button rateButton;
+    
+    @FXML
+    private ChoiceBox<Integer> starValues;
+
+    @FXML
+    private Button submitRateButton;
+    
+    @FXML
+    private Pane rateFreelancerPane;
+    
+    private User selectedUser;
+    
+    private Freelancer selectedFreelancer;
 
     @FXML
     void initialize() {
     	if (SignInViewModel.getCurrentUser() != null) {
     		this.accountLabel.textProperty().setValue(SignInViewModel.getCurrentUser().getUserName());
     	}
+    	this.selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
+      this.selectedFreelancer = ServerInterface.getFreelancers().getFreelancersByName(this.selectedUser.getUserName()).get(0);
+      
     	this.disableAll();
-        this.updateDataShown();
-        this.updateHyreButtonAndErrorLabel();
+      this.updateDataShown();
+      this.updateHyreButtonAndErrorLabel();
+      this.setStarRatingElements();
     }
     
     @FXML
@@ -101,26 +126,31 @@ public class FreelancerPostPageView {
     }
 
     private void disableAll() {
-		this.descriptionTextBox.setEditable(false);
-		this.skill1TextArea.setEditable(false);
-		this.skill2TextArea.setEditable(false);
-		this.skill3TextArea.setEditable(false);
-		this.skill4TextArea.setEditable(false);
-		this.skill5TextArea.setEditable(false);
-		this.categoryTextFeild.setEditable(false);
+    	this.descriptionTextBox.setEditable(false);
+    	this.skill1TextArea.setEditable(false);
+    	this.skill2TextArea.setEditable(false);
+    	this.skill3TextArea.setEditable(false);
+    	this.skill4TextArea.setEditable(false);
+    	this.skill5TextArea.setEditable(false);
+    	this.categoryTextFeild.setEditable(false);
+    	this.rateFreelancerPane.setVisible(false);
+    	this.rateButton.disableProperty().set(true);
 	}
 
-	private void updateDataShown() {
-        User selectedUser = FreelancerPostPageViewModel.getUserSelectedToView();
-        Freelancer freelancer = this.getFreelancerByUsername(selectedUser.getUserName());
-        if (freelancer == null) {
+    private void updateDataShown() {
+        if (this.selectedFreelancer == null) {
             return;
         }
-        this.userLabel.setText(freelancer.getUserName());
-        this.descriptionTextBox.setText(freelancer.getBio());
-        this.categoryTextFeild.setText(freelancer.getCategory().replace("_", " "));
+        User tmp = new User(this.selectedUser.getUserName());
+        if (SignInViewModel.getCurrentUser() != null && ServerInterface.getMessagableUsers(SignInViewModel.getCurrentUser()).contains(tmp)) {
+        	this.rateButton.disableProperty().set(false);
+        }
+        this.starRating.setText("Rating: " + ServerInterface.getRating(this.selectedFreelancer) + " stars");
+        this.userLabel.setText(this.selectedFreelancer.getUserName());
+        this.descriptionTextBox.setText(this.selectedFreelancer.getBio());
+        this.categoryTextFeild.setText(this.selectedFreelancer.getCategory().replace("_", " "));
 
-        List<String> skills = freelancer.getSkills();
+        List<String> skills = this.selectedFreelancer.getSkills();
         TextArea[] fields = {
             this.skill1TextArea,
             this.skill2TextArea,
@@ -133,21 +163,38 @@ public class FreelancerPostPageView {
         }
     }
 	
-	private String getOrBlank(List<String> list, int index) {
+    private String getOrBlank(List<String> list, int index) {
 	    if (index < list.size()) {
 	        return list.get(index);
 	    }
 	    return "";
-	}
-
-    private Freelancer getFreelancerByUsername(String username) {
-        for (Freelancer freelancer : FreelancerPostPageViewModel.getRoster().getAllFreelancers()) {
-            if (freelancer.getUserName().equals(username)) {
-                return freelancer;
-            }
+    }
+    
+    private void setStarRatingElements() {
+    	this.setStarValues();
+    	this.rateButton.setOnAction((event) -> {
+    		this.rateFreelancerPane.setVisible(true);
+    	});
+    	this.submitRateButton.setOnAction((event) -> {
+        if (this.starValues.getSelectionModel().getSelectedItem() != null) {
+      		int rating = this.starValues.getSelectionModel().getSelectedItem();
+      		ServerInterface.rateFreelancer(SignInViewModel.getCurrentUser(), this.selectedFreelancer, rating);
+      		this.starRating.setText("Rating: " + ServerInterface.getRating(this.selectedFreelancer) + " stars");
+    		
+      		this.rateFreelancerPane.setVisible(false);
+      		this.starValues.getSelectionModel().clearSelection();
+      		this.updateDataShown();
         }
-        return null;
-    }   
+    	});
+    }
+
+		private void setStarValues() {
+			this.starValues.itemsProperty().get().add(1);
+    	this.starValues.itemsProperty().get().add(2);
+    	this.starValues.itemsProperty().get().add(3);
+    	this.starValues.itemsProperty().get().add(4);
+    	this.starValues.itemsProperty().get().add(5);
+		}
     
     private void updateHyreButtonAndErrorLabel() {
         User current = SignInViewModel.getCurrentUser();

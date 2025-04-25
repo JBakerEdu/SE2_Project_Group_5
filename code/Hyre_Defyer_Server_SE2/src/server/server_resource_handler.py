@@ -275,6 +275,29 @@ class ServerResourceHandler:
 
         return result
     
+    def rateFreelancer(self, user, freelancerName, rating):
+        '''
+            Rates the freelancer
+            
+            @precondition: none
+            @postcondition: none
+            
+            @param freelancer: the freelancer being rated
+            @param rating: the rating
+            
+            @return: the rating of the freelancer
+        '''
+        freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
+        if freelancer is not None:
+            freelancer.rate(user, rating)
+            return True
+        return False
+        
+    def getFreelancerRating(self, freelancerName):
+        freelancer = self.freelancers.get_freelancer_by_name(freelancerName)
+        if freelancer is not None:
+            return freelancer.getRating()
+    
     def getCategories(self):
         '''
             Gets the categories

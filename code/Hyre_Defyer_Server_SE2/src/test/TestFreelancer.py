@@ -48,7 +48,25 @@ class TestFreelancer(unittest.TestCase):
         self.assertTrue(self.freelancer.contains_skill("Python"))
         self.assertTrue(self.freelancer.contains_skill("JavaScript"))
         
-        self.assertFalse(self.freelancer.contains_skill("Java"))    
+        self.assertFalse(self.freelancer.contains_skill("Java"))  
+        
+    def test_get_rating(self):
+        self.assertEqual(0, self.freelancer.getRating())
+        
+    def test_rate_multiple_times(self):
+        self.freelancer.rate("dummy1", 5)
+        self.assertEqual(5, self.freelancer.getRating())
+        self.freelancer.rate("dummy1", 3)
+        self.assertEqual(3, self.freelancer.getRating())
+        
+    def test_set_rating_is_zero(self):
+        self.freelancer.rate("dummy1", 5)
+        self.assertEqual(5, self.freelancer.getRating())
+    
+    def test_set_rating_not_zero(self):
+        self.freelancer.rate("dummy1", 5)
+        self.freelancer.rate("dummy2", 1)
+        self.assertEqual(3, self.freelancer.getRating())
     
     def test_to_dict(self):
         self.freelancer.addCategory("Web Development")
