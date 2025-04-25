@@ -99,13 +99,13 @@ class TestServerResourceHandler(unittest.TestCase):
         self.serverResourceHandler.addFreelancerToRoster(Freelancer("Free", "Freelancer"))
         
         self.assertIn(Freelancer("Free", "Freelancer"), self.serverResourceHandler.getFreelancers())
-        self.assertEqual(3, self.serverResourceHandler.rateFreelancer("dummy1", "Free", 3))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("dummy1", "Free", 3))
         
     def test_rate_freelancer_fail(self):
         self.serverResourceHandler.createAccount("New", "Freelancer")
         self.freelancer = Freelancer("New", "Freelancer")
         
-        self.assertEquals(None, self.serverResourceHandler.rateFreelancer("dummy2", "New", 3))
+        self.assertFalse(self.serverResourceHandler.rateFreelancer("dummy2", "New", 3))
         
     def test_rate_freelancer_multiple_times(self):
         self.assertTrue(self.serverResourceHandler.createAccount("Dummyyy", "Freelancer"))
@@ -113,11 +113,13 @@ class TestServerResourceHandler(unittest.TestCase):
         
         self.freelancer = Freelancer("Dummyyy", "Freelancer")
         
-        self.assertEquals(5, self.serverResourceHandler.rateFreelancer("1", "Dummyyy", 5))
-        self.assertEquals(3, self.serverResourceHandler.rateFreelancer("2", "Dummyyy", 1))
-        self.assertAlmostEquals(2.3, self.serverResourceHandler.rateFreelancer("3", "Dummyyy", 1), places=1)
-        self.assertEquals(2, self.serverResourceHandler.rateFreelancer("4", "Dummyyy", 1))
-        self.assertAlmostEquals(1.8, self.serverResourceHandler.rateFreelancer("5", "Dummyyy", 1), places=1)
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("1", "Dummyyy", 5))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("2", "Dummyyy", 1))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("3", "Dummyyy", 1))
+        self.assertAlmostEquals(2.3, self.serverResourceHandler.getFreelancerRating("Dummyyy"), places=1)
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("4", "Dummyyy", 1))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("5", "Dummyyy", 1))
+        self.assertAlmostEqual(1.8, self.serverResourceHandler.getFreelancerRating("Dummyyy"), places=1)
         
     def test_user_rates_freelancer_multiple_times(self):
         self.assertTrue(self.serverResourceHandler.createAccount("Dummyyy", "Freelancer"))
@@ -125,8 +127,9 @@ class TestServerResourceHandler(unittest.TestCase):
         
         self.freelancer = Freelancer("Dummyyy", "Freelancer")
         
-        self.assertEquals(5, self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 5))
-        self.assertEquals(3, self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 3))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 5))
+        self.assertTrue(self.serverResourceHandler.rateFreelancer("user", "Dummyyy", 3))
+        self.assertEqual(3, self.serverResourceHandler.getFreelancerRating("Dummyyy"))
         
     def test_get_freelancer_rating(self):
         self.assertTrue(self.serverResourceHandler.createAccount("Dummyyyy", "Freelancer"))

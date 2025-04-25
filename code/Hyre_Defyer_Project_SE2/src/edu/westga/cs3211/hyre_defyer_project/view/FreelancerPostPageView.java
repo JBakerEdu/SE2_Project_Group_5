@@ -1,6 +1,5 @@
 package edu.westga.cs3211.hyre_defyer_project.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
@@ -8,7 +7,6 @@ import edu.westga.cs3211.hyre_defyer_project.server.ServerInterface;
 import edu.westga.cs3211.hyre_defyer_project.view_model.SignInViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.CategoryPageViewModel;
 import edu.westga.cs3211.hyre_defyer_project.view_model.FreelancerPostPageViewModel;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -170,15 +168,6 @@ public class FreelancerPostPageView {
 	        return list.get(index);
 	    }
 	    return "";
-    }
-
-    private Freelancer getFreelancerByUsername(String username) {
-        for (Freelancer freelancer : FreelancerPostPageViewModel.getRoster().getAllFreelancers()) {
-            if (freelancer.getUserName().equals(username)) {
-                return freelancer;
-            }
-        }
-        return null;
     }
     
     private void setStarRatingElements() {

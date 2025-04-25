@@ -4,7 +4,6 @@ from src.server.server_request_handler import ServerRequestHandler
 from src.model.message import Message
 from src.model.user import User
 from src.model.freelancer import Freelancer
-from src.server.constants import REP_USERS
 
 class TestServerRequestHandler(unittest.TestCase):
     def setUp(self):
@@ -246,6 +245,22 @@ class TestServerRequestHandler(unittest.TestCase):
         response = self.serverRequestHandler.handleRequest(request)
         self.assertIn(freelancer.to_dict(), response[constants.REP_FREELANCERS])
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        
+    def test_rate_freelancer_fails(self):
+        request = {
+            constants.REQ_TYPE: constants.REQ_CREATE_ACCOUNT,
+            constants.REQ_USERNAME: "User145",
+            constants.REQ_PASSWORD: "pass"
+        }
+        self.assertEqual(self.serverRequestHandler.handleRequest(request)[constants.SUCCESS_CODE], constants.REP_SUCCESS)
+        request = {
+            constants.REQ_TYPE: constants.REQ_RATE_FREELANCER,
+            constants.REQ_SENDER: "User145",
+            constants.REQ_RECEIVER: "Freelancer",
+            constants.REQ_RATING: 5
+        }
+        response = self.serverRequestHandler.handleRequest(request)
+        self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_FAIL)
 
     def test_rate_freelancer_success(self):
         request = {
@@ -274,7 +289,6 @@ class TestServerRequestHandler(unittest.TestCase):
         }
         response = self.serverRequestHandler.handleRequest(request)
         self.assertEqual(response[constants.SUCCESS_CODE], constants.REP_SUCCESS)
-        self.assertEqual(5, response[constants.REP_RATING])
 
     def test_get_rating_fail(self):
         request = {

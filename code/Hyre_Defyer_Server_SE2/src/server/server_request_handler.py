@@ -220,12 +220,11 @@ class ServerRequestHandler:
         
         result = self._serverResourceHandler.rateFreelancer(user, freelancer, rating)
         
-        if result is None:
+        if result is False:
             response[constants.SUCCESS_CODE] = constants.REP_FAIL
         else:
-            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS
-            response[constants.REP_RATING] = result  
-            
+            response[constants.SUCCESS_CODE] = constants.REP_SUCCESS 
+
         return response
     
     def _getFreelancerRating(self, request):

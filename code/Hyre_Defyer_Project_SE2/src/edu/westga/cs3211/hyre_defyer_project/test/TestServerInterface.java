@@ -13,7 +13,6 @@ import edu.westga.cs3211.hyre_defyer_project.model.DirectMessageHandler;
 import edu.westga.cs3211.hyre_defyer_project.model.Freelancer;
 import edu.westga.cs3211.hyre_defyer_project.model.FreelancerRoster;
 import edu.westga.cs3211.hyre_defyer_project.model.Message;
-import edu.westga.cs3211.hyre_defyer_project.model.RosterHelper;
 import edu.westga.cs3211.hyre_defyer_project.model.User;
 import edu.westga.cs3211.hyre_defyer_project.server.Constants;
 import edu.westga.cs3211.hyre_defyer_project.server.ServerCommunicator;
@@ -219,6 +218,8 @@ public class TestServerInterface {
 		boolean response = ServerInterface.rateFreelancer(user, freelancer, 3);
 
 		assertTrue(response);
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
+		assertTrue(ServerInterface.removeFreelancer(freelancer));
 	}
 	
 	@Test
@@ -229,6 +230,7 @@ public class TestServerInterface {
 		boolean response = ServerInterface.rateFreelancer(user, freelancer1, 3);
 		
 		assertTrue(response);
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
 	}
 	
 	@Test
@@ -237,6 +239,7 @@ public class TestServerInterface {
 		User user = ServerInterface.login("abcde", "pass");
 		Freelancer freelancer = new Freelancer("tmp12", "", "");
 		assertFalse(ServerInterface.rateFreelancer(user, freelancer, 2));
+		assertTrue(ServerInterface.deleteUser(user.getUserName()));
 	}
 	
 	@Test
@@ -269,6 +272,10 @@ public class TestServerInterface {
 		
 		assertEquals(true, isSuccessful);
 		assertEquals("3.3", freelancersRating);
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
+		assertTrue(ServerInterface.deleteUser("user tmp"));
+		assertTrue(ServerInterface.deleteUser("user tmp1"));
+		assertTrue(ServerInterface.deleteUser("user tmp2"));
 	}
 	
 	@Test
@@ -277,6 +284,7 @@ public class TestServerInterface {
 		assertTrue(ServerInterface.addFreelancer(freelancer1));
 		assertTrue(ServerInterface.getFreelancers().getAllFreelancers().contains(freelancer1));
 		assertEquals("n/a", ServerInterface.getRating(freelancer1));
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
 	}
 	
 	@Test
@@ -290,5 +298,6 @@ public class TestServerInterface {
 		
 		String response = ServerInterface.getRating(freelancer1);
 		assertEquals("3", response);
+		assertTrue(ServerInterface.removeFreelancer(freelancer1));
 	}
 }
