@@ -11,24 +11,44 @@ Description:
 Basic Flow:
 	1. The user navigates to the search interface.
 	2. The system displays a search name field and the unselected skills combo box, and the selected skills list view. 
-	3. The user enters the search criteria:
-		a. a name in the search box.
-		b. selects skills from the comboBox.
+	3. The user enters the search criteria.
 	4. System updates the selected skills.
 	5. The User clicks search
-	6. The system preforms a case-insensitive search using the following logic:
-		a. If name is entered:
-			-Show freelancers whose names contain that string.
-		b. If skills are selected:
-			-Show freelancers who have any of the skills selected.
-		c. If both are entered:
-			-Only show freelancers whose name contains the string and freelancer who has at least one of the selected skills.
+	6. The system preforms a case-insensitive search using the entered criteria.
 	7. The system displays a list of freelancers who match the criteria.
 	8. The user may select a freelancers profile to view more details or choose to refine their search (return to Step 4).
+
+Alternative Flow 3.A - Entering name only
+	3A. The user enters a name but no skills (return back to 4).
+
+Alternative Flow 3.B - Entering skills only
+	3B. The user selects skills but enters no name (return back to 4).
+
+Alternative Flow 3.C - Entering name and skills
+	3C. The user enters a name and selects one or more skills (return back to 4).
+
+Alternative Flow 3.D - Nothing Entered
+	3D. The user does not enter a name or skills (return back to 4).
 
 Alternative Flow 4.A - Deselecting skills:
 	4A. The user deselects skills by clicking the skill in the list view.
 	4B. The system updates to delete the selected skill.
+
+Alternative Flow 6.A – Name Only Search:
+	6A1. The system displays freelancers whose names contain the search string (case-insensitive).
+	6A2. Return to Step 7 of the Basic Flow.
+
+Alternative Flow 6.B – Skills Only Search:
+	6B1. The system displays freelancers who possess any of the selected skills.
+	6B2. Return to Step 7 of the Basic Flow.
+
+Alternative Flow 6.C – Name and Skills Search:
+	6C1. The system displays freelancers whose names contain the string and who have at least one of the selected skills.
+	6C2. Return to Step 7 of the Basic Flow.
+
+Alternative Flow 6.D - Nothing Searched:
+	6D1. The system displays freelancers who are in the selected category.
+	6D2. Return to Step 7 of the Basic Flow.
 
 Alternative Flow 7.A – No Matches:
 	7A. The system finds no freelancers matching the entered criteria.
