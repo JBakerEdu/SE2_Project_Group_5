@@ -60,7 +60,7 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersReturnsCorrectList() {
-    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
     	List<Freelancer> roster = CategoryPageViewModel.getFreelancers();
     	assertTrue(roster.contains(freelancer1));
     	assertTrue(roster.contains(freelancer2));
@@ -69,7 +69,7 @@ public class TestCategoryViewModel {
 
     @Test
     public void testGetFreelancersWithNameAndSkillReturnsCorrectList() {
-    	CategoryPageViewModel.selectedCategory = Categories.BUSINESS_AND_FINANCE;
+    	CategoryPageViewModel.setSelectedCategory(Categories.BUSINESS_AND_FINANCE);
     	List<Freelancer> roster = CategoryPageViewModel.getFreelancersWithNameAndSkills(" ", null);
     	assertTrue(roster.contains(freelancer1));
     	assertTrue(roster.contains(freelancer2));

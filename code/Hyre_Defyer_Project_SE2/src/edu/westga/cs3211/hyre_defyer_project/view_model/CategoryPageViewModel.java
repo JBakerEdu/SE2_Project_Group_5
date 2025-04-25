@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class CategoryPageViewModel {
 	
-	public static String selectedCategory;
+	private static String selectedCategory;
 	private static ArrayList<String> selectedSkills;
 	private static String selectedName;
 	
