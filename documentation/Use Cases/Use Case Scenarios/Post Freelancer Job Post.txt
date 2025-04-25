@@ -1,4 +1,4 @@
-ves posting from catUse Case 5: Post Freelancer Job Post
+Use Case 5: Post Freelancer Job Post
 
 Actor: Freelancer
 Pre-condition: The freelancer is logged in.
