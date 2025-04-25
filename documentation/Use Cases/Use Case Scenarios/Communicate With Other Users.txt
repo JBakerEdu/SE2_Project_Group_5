@@ -7,13 +7,19 @@ Pre-condition: The user is logged in. The employer has selected the "Hyre" butto
 Description:
 This use case describes how an employer initiates communication with a freelancer by clicking the "Hyre" button. Once initiated, the freelancer can view and respond to the message through the platform's direct messaging system.
 
-Basic Flow - Employer:
-	1. The employer navigates to a freelancer's profile.
-	2. The employer clicks the "Hyre" button to initiate a direct message.
-	3. The system creates a new conversation thread between the Employer and Freelancer.
-	4. The thread appears in both the employer's and freelancer's message inboxes.
+Basic Flow:
+	1. The user navigates to the "Direct Messages" section.
+	2. The system displays the users they can message and the messaging UI.
+	3. The user opens the conversation thread started by the employer.
+	4. The user responds using the messaging UI.
 
-Basic Flow - Freelancer:
-	1. The freelancer navigates to the "Direct Messages" section.
-	2. The freelancer opens the conversation thread started by the employer.
-	3. The freelancer responds using the messaging UI.
+Alternative Flow 2.A - Delete Contact:
+	2A. The user clicks the Delete Contact button.
+	2B. The system displays a confirmation pop up.
+	2C. The user clicks Ok.
+	2D. The system removes the contact for the user and updates their DM page.
+
+Alternative Flow 2C.A - Cancel Delete Contact:
+	2C1. The user clicks Cancel.
+	2C2. The system closes the confirmation pop up.
+	
